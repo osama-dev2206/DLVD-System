@@ -508,6 +508,30 @@
         <mxCell id="EbtoECT1mD3G0AZF3hHH-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Email" vertex="1">
           <mxGeometry height="50" width="100" x="220" y="-340" as="geometry" />
         </mxCell>
+        <mxCell id="EbtoECT1mD3G0AZF3hHH-10" edge="1" parent="1" source="EbtoECT1mD3G0AZF3hHH-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="EbtoECT1mD3G0AZF3hHH-9" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EbtoECT1mD3G0AZF3hHH-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font style=&quot;font-size: 36px;&quot;&gt;Country&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="260" x="385" y="-220" as="geometry" />
+        </mxCell>
+        <mxCell id="EbtoECT1mD3G0AZF3hHH-7" edge="1" parent="1" source="EbtoECT1mD3G0AZF3hHH-4" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="EbtoECT1mD3G0AZF3hHH-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EbtoECT1mD3G0AZF3hHH-4" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="&lt;b&gt;&lt;u&gt;Country ID&lt;/u&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="100" x="473" y="-352" as="geometry" />
+        </mxCell>
+        <mxCell id="EbtoECT1mD3G0AZF3hHH-6" edge="1" parent="1" source="EbtoECT1mD3G0AZF3hHH-5" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="EbtoECT1mD3G0AZF3hHH-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EbtoECT1mD3G0AZF3hHH-5" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Country Name" vertex="1">
+          <mxGeometry height="50" width="100" x="645" y="-330" as="geometry" />
+        </mxCell>
+        <mxCell id="EbtoECT1mD3G0AZF3hHH-11" edge="1" parent="1" source="EbtoECT1mD3G0AZF3hHH-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" target="Sob1xx8CaRscx1A1xmya-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EbtoECT1mD3G0AZF3hHH-9" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;rounded=1;" value="Belongs To" vertex="1">
+          <mxGeometry height="80" width="80" x="121" y="-180" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
