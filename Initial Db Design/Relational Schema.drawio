@@ -28,7 +28,7 @@
             <mxRectangle height="60" width="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="SnvtlRG-mikOty4Jq3Ye-7" parent="SnvtlRG-mikOty4Jq3Ye-5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="&lt;div&gt;First Name : nvarchar(15)&lt;/div&gt;&lt;div&gt;Second Name : nvarchar(15)&lt;/div&gt;&lt;div&gt;Third Name : nvarchar(15)&lt;/div&gt;" vertex="1">
+        <mxCell id="SnvtlRG-mikOty4Jq3Ye-7" parent="SnvtlRG-mikOty4Jq3Ye-5" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="&lt;div&gt;First Name : nvarchar(15)&lt;/div&gt;&lt;div&gt;Second Name : nvarchar(15)&lt;/div&gt;&lt;div&gt;Last Name : nvarchar(15)&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="210" x="30" as="geometry">
             <mxRectangle height="60" width="210" as="alternateBounds" />
           </mxGeometry>
@@ -41,7 +41,7 @@
             <mxRectangle height="110" width="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="SnvtlRG-mikOty4Jq3Ye-10" parent="SnvtlRG-mikOty4Jq3Ye-8" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="&lt;div&gt;National ID Number : nvarchar(20)&lt;/div&gt;&lt;div&gt;Date Of Birth : date only&lt;/div&gt;&lt;div&gt;Phone : varchar(11)&lt;/div&gt;&lt;div&gt;Email : nvarchar(50)&lt;/div&gt;&lt;div&gt;Address : nvarchar(100)&lt;/div&gt;&lt;div&gt;Profile Picture Path : nvarchar(250)&lt;/div&gt;&lt;div&gt;Gender : tiny Int&lt;/div&gt;" vertex="1">
+        <mxCell id="SnvtlRG-mikOty4Jq3Ye-10" parent="SnvtlRG-mikOty4Jq3Ye-8" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="&lt;div&gt;National Number : nvarchar(20)&lt;/div&gt;&lt;div&gt;Date Of Birth : date only&lt;/div&gt;&lt;div&gt;Phone : varchar(11)&lt;/div&gt;&lt;div&gt;Email : nvarchar(50)&lt;/div&gt;&lt;div&gt;Address : nvarchar(100)&lt;/div&gt;&lt;div&gt;Profile Picture Path : nvarchar(250)&lt;/div&gt;&lt;div&gt;Gender : tiny Int&lt;/div&gt;" vertex="1">
           <mxGeometry height="110" width="210" x="30" as="geometry">
             <mxRectangle height="110" width="210" as="alternateBounds" />
           </mxGeometry>
