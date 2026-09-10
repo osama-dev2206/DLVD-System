@@ -103,6 +103,10 @@ alter table Applications
 Add Constraint CHK_AppStatus 
 Check(ApplicationStatus in (1,2,3) ) ;
 
+alter table Applications 
+Add Constraint Default_ApplicationStatus 
+Default 1 for ApplicationStatus ;
+
 -- Local Driving License 
 Create Table LicenseClasses -- lookup table 
 (
@@ -211,4 +215,13 @@ ReleasedDateTime datetime null ,
 ReleasedByUserID int null Foreign Key References Users(UserID) ,
 ReleaseApplicationID int null foreign Key References Applications(ApplicationID) 
 );
+
+alter table DetainedLicenses
+add Constraint Default_ISReleased
+Default 0 for ISReleased ;
+
+alter table LicenseClasses 
+Add Constraint Default_MinAge 
+Default 18 for [MinimumAllowedAge];
+
 
