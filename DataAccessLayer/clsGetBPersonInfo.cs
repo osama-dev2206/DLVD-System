@@ -21,7 +21,7 @@ namespace DataAccessLayer
 
                 var Reader = cmd.ExecuteReader();
 
-                if (Reader.HasRows) dt.Load(cmd.ExecuteReader());
+                if (Reader.HasRows) dt.Load(Reader);
 
                 Reader.Close();
             }
