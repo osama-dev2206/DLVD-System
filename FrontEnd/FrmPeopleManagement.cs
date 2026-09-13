@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BussinessLogicLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,16 @@ namespace FrontEnd
         public FrmPeopleManagement()
         {
             InitializeComponent();
+            RefreshDataGridView();
+        }
+
+        private void RefreshDataGridView()
+        {
+          DataTable dt = clsPeople.GetPeople();
+            if(dt !=null && dt.Rows.Count > 0 )
+            {
+                this.DGVPeople.DataSource = dt;
+            }
         }
 
         private void FrmPeopleManagement_Load(object sender, EventArgs e)
@@ -65,6 +76,7 @@ namespace FrontEnd
             if (e.ClickedItem.Text == "Add" || e.ClickedItem.Text == "Edit") // it depends on selected row index 
             {
                 AddEdit_Click(sender, e); //ADD 
+                RefreshDataGridView();
             }
 
         }
