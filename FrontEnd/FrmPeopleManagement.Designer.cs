@@ -37,7 +37,7 @@
             tbSearchBy = new TextBox();
             cbFilter = new ComboBox();
             btnClose = new Button();
-            pbAddEdit = new PictureBox();
+            pbAdd = new PictureBox();
             label3 = new Label();
             labCountOfRecords = new Label();
             contextMenuStrip1 = new ContextMenuStrip(components);
@@ -51,7 +51,7 @@
             toolStripSeparator2 = new ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DGVPeople).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbAddEdit).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbAdd).BeginInit();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -146,16 +146,16 @@
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += btnClose_Click;
             // 
-            // pbAddEdit
+            // pbAdd
             // 
-            pbAddEdit.BackgroundImage = Properties.Resources.Add_Person_72;
-            pbAddEdit.BackgroundImageLayout = ImageLayout.Stretch;
-            pbAddEdit.Location = new Point(1199, 316);
-            pbAddEdit.Name = "pbAddEdit";
-            pbAddEdit.Size = new Size(79, 84);
-            pbAddEdit.TabIndex = 6;
-            pbAddEdit.TabStop = false;
-            pbAddEdit.Click += AddEdit_Click;
+            pbAdd.BackgroundImage = Properties.Resources.Add_Person_72;
+            pbAdd.BackgroundImageLayout = ImageLayout.Stretch;
+            pbAdd.Location = new Point(1199, 316);
+            pbAdd.Name = "pbAdd";
+            pbAdd.Size = new Size(79, 84);
+            pbAdd.TabIndex = 6;
+            pbAdd.TabStop = false;
+            pbAdd.Click += Add_Click;
             // 
             // label3
             // 
@@ -242,7 +242,7 @@
             ContextMenuStrip = contextMenuStrip1;
             Controls.Add(labCountOfRecords);
             Controls.Add(label3);
-            Controls.Add(pbAddEdit);
+            Controls.Add(pbAdd);
             Controls.Add(btnClose);
             Controls.Add(tbSearchBy);
             Controls.Add(label2);
@@ -260,7 +260,7 @@
             Load += FrmPeopleManagement_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)DGVPeople).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbAddEdit).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbAdd).EndInit();
             contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -275,7 +275,7 @@
         private TextBox tbSearchBy;
         private ComboBox cbFilter;
         private Button btnClose;
-        private PictureBox pbAddEdit;
+        private PictureBox pbAdd;
         private Label label3;
         private Label labCountOfRecords;
         private ContextMenuStrip contextMenuStrip1;

@@ -116,7 +116,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(11, 285);
+            label6.Location = new Point(1, 298);
             label6.Name = "label6";
             label6.Size = new Size(145, 38);
             label6.TabIndex = 0;
@@ -136,7 +136,7 @@
             // 
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox2.Image = Properties.Resources.Number_32;
-            pictureBox2.Location = new Point(192, 140);
+            pictureBox2.Location = new Point(193, 142);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(34, 34);
             pictureBox2.TabIndex = 2;
@@ -166,7 +166,7 @@
             // 
             pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox5.Image = Properties.Resources.Address_32;
-            pictureBox5.Location = new Point(152, 287);
+            pictureBox5.Location = new Point(142, 300);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(34, 34);
             pictureBox5.TabIndex = 5;
@@ -175,68 +175,68 @@
             // labPersonID
             // 
             labPersonID.AutoSize = true;
-            labPersonID.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labPersonID.Location = new Point(178, 54);
+            labPersonID.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            labPersonID.Location = new Point(178, 40);
             labPersonID.Name = "labPersonID";
-            labPersonID.Size = new Size(23, 20);
+            labPersonID.Size = new Size(41, 38);
             labPersonID.TabIndex = 6;
             labPersonID.Text = "??";
             // 
             // labPersonName
             // 
             labPersonName.AutoSize = true;
-            labPersonName.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labPersonName.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
             labPersonName.ForeColor = Color.Red;
-            labPersonName.Location = new Point(192, 98);
+            labPersonName.Location = new Point(178, 89);
             labPersonName.Name = "labPersonName";
-            labPersonName.Size = new Size(23, 20);
+            labPersonName.Size = new Size(41, 38);
             labPersonName.TabIndex = 7;
             labPersonName.Text = "??";
             // 
             // labPersonNationalNo
             // 
             labPersonNationalNo.AutoSize = true;
-            labPersonNationalNo.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labPersonNationalNo.Location = new Point(249, 147);
+            labPersonNationalNo.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labPersonNationalNo.Location = new Point(233, 145);
             labPersonNationalNo.Name = "labPersonNationalNo";
-            labPersonNationalNo.Size = new Size(23, 20);
+            labPersonNationalNo.Size = new Size(28, 28);
             labPersonNationalNo.TabIndex = 8;
             labPersonNationalNo.Text = "??";
             // 
             // labPersonGender
             // 
             labPersonGender.AutoSize = true;
-            labPersonGender.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labPersonGender.Location = new Point(203, 196);
+            labPersonGender.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            labPersonGender.Location = new Point(182, 187);
             labPersonGender.Name = "labPersonGender";
-            labPersonGender.Size = new Size(23, 20);
+            labPersonGender.Size = new Size(41, 38);
             labPersonGender.TabIndex = 9;
             labPersonGender.Text = "??";
             // 
             // labPersonEmail
             // 
             labPersonEmail.AutoSize = true;
-            labPersonEmail.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labPersonEmail.Location = new Point(192, 245);
+            labPersonEmail.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            labPersonEmail.Location = new Point(163, 236);
             labPersonEmail.Name = "labPersonEmail";
-            labPersonEmail.Size = new Size(23, 20);
+            labPersonEmail.Size = new Size(41, 38);
             labPersonEmail.TabIndex = 10;
             labPersonEmail.Text = "??";
             // 
             // labPersonAddress
             // 
             labPersonAddress.AutoSize = true;
-            labPersonAddress.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labPersonAddress.Location = new Point(192, 294);
+            labPersonAddress.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            labPersonAddress.Location = new Point(182, 298);
             labPersonAddress.Name = "labPersonAddress";
-            labPersonAddress.Size = new Size(23, 20);
+            labPersonAddress.Size = new Size(41, 38);
             labPersonAddress.TabIndex = 11;
             labPersonAddress.Text = "??";
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(385, 138);
+            label13.Location = new Point(524, 170);
             label13.Name = "label13";
             label13.Size = new Size(217, 38);
             label13.TabIndex = 12;
@@ -246,7 +246,7 @@
             // 
             pictureBox6.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox6.Image = Properties.Resources.Calendar_32;
-            pictureBox6.Location = new Point(589, 140);
+            pictureBox6.Location = new Point(728, 172);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(34, 34);
             pictureBox6.TabIndex = 13;
@@ -255,17 +255,17 @@
             // labDateOfBirth
             // 
             labDateOfBirth.AutoSize = true;
-            labDateOfBirth.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labDateOfBirth.Location = new Point(664, 147);
+            labDateOfBirth.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            labDateOfBirth.Location = new Point(777, 170);
             labDateOfBirth.Name = "labDateOfBirth";
-            labDateOfBirth.Size = new Size(23, 20);
+            labDateOfBirth.Size = new Size(41, 38);
             labDateOfBirth.TabIndex = 14;
             labDateOfBirth.Text = "??";
             // 
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(395, 189);
+            label15.Location = new Point(561, 221);
             label15.Name = "label15";
             label15.Size = new Size(132, 38);
             label15.TabIndex = 15;
@@ -274,7 +274,7 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(385, 243);
+            label16.Location = new Point(558, 281);
             label16.Name = "label16";
             label16.Size = new Size(147, 38);
             label16.TabIndex = 16;
@@ -321,20 +321,20 @@
             // labPersonCountry
             // 
             labPersonCountry.AutoSize = true;
-            labPersonCountry.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labPersonCountry.Location = new Point(589, 254);
+            labPersonCountry.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            labPersonCountry.Location = new Point(739, 283);
             labPersonCountry.Name = "labPersonCountry";
-            labPersonCountry.Size = new Size(23, 20);
+            labPersonCountry.Size = new Size(41, 38);
             labPersonCountry.TabIndex = 21;
             labPersonCountry.Text = "??";
             // 
             // labPersonPhone
             // 
             labPersonPhone.AutoSize = true;
-            labPersonPhone.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labPersonPhone.Location = new Point(589, 200);
+            labPersonPhone.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            labPersonPhone.Location = new Point(732, 223);
             labPersonPhone.Name = "labPersonPhone";
-            labPersonPhone.Size = new Size(23, 20);
+            labPersonPhone.Size = new Size(41, 38);
             labPersonPhone.TabIndex = 20;
             labPersonPhone.Text = "??";
             // 
@@ -352,7 +352,7 @@
             // 
             pictureBox8.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox8.Image = Properties.Resources.Country_32;
-            pictureBox8.Location = new Point(525, 247);
+            pictureBox8.Location = new Point(698, 285);
             pictureBox8.Name = "pictureBox8";
             pictureBox8.Size = new Size(34, 34);
             pictureBox8.TabIndex = 18;
@@ -362,7 +362,7 @@
             // 
             pictureBox7.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox7.Image = Properties.Resources.Phone_32;
-            pictureBox7.Location = new Point(516, 193);
+            pictureBox7.Location = new Point(682, 225);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(34, 34);
             pictureBox7.TabIndex = 17;

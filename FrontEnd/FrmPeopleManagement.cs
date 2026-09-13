@@ -122,7 +122,7 @@ namespace FrontEnd
 
         private void DGVPeople_SelectionChanged(object sender, EventArgs e)
         {
-            if (DGVPeople.CurrentRow != null && DGVPeople.CurrentRow.Cells != null && DGVPeople.CurrentRow.Cells[0] != null && int.TryParse(DGVPeople.CurrentRow.Cells[0].ToString(), out int Row))
+            if (DGVPeople.CurrentRow != null && DGVPeople.CurrentRow.Cells != null && int.TryParse(DGVPeople.CurrentRow.Cells[0]?.Value?.ToString(), out int Row) )
             {
                 selectedRowIndex = Row;
             }
@@ -134,27 +134,34 @@ namespace FrontEnd
         }
 
         // we will use another form to add or edit a person, so we will just show a message box for now
-        private void AddEdit_Click(object sender, EventArgs e)
+        private void Add_Click(object sender, EventArgs e)
         {
-            frmAddEditPerson frmAddEditPerson = new frmAddEditPerson(selectedRowIndex);
+            frmAddEditPerson frmAddEditPerson = new frmAddEditPerson(-1); // not implemented yet, but we will pass -1 to indicate that we are adding a new person
             frmAddEditPerson.ShowDialog();
             frmAddEditPerson.Dispose();
         }
 
         private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            if (e.ClickedItem == null || selectedRowIndex == -1) return;
-
-            if (e.ClickedItem.Text == "Add" || e.ClickedItem.Text == "Edit") // it depends on selected row index 
+            if (e.ClickedItem.Text == "Add")
             {
-                AddEdit_Click(sender, e); //ADD 
-                RefreshDataGridView();
+
+            }
+            if (e.ClickedItem.Text == "Edit") // it depends on selected row index 
+            {
+           
             }
             if(e.ClickedItem.Text == "Show Details")
             {
-
+                FrmShowPersonDetails personDetails = new FrmShowPersonDetails(this.selectedRowIndex);
+                personDetails.ShowDialog();
+                personDetails.Dispose();
             }
 
+            if(e.ClickedItem.Text == "Delete")
+            {
+                // Not implemented yet.
+            }
         }
 
 

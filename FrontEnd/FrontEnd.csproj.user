@@ -13,5 +13,8 @@
     <Compile Update="FrmPeopleManagement.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmShowPersonDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
