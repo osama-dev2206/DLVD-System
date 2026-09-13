@@ -53,7 +53,7 @@
             groupBox1 = new GroupBox();
             labPersonCountry = new Label();
             labPersonPhone = new Label();
-            pictureBox9 = new PictureBox();
+            pbPFP = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox7 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -63,7 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbPFP).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             SuspendLayout();
@@ -284,7 +284,7 @@
             // 
             groupBox1.Controls.Add(labPersonCountry);
             groupBox1.Controls.Add(labPersonPhone);
-            groupBox1.Controls.Add(pictureBox9);
+            groupBox1.Controls.Add(pbPFP);
             groupBox1.Controls.Add(pictureBox8);
             groupBox1.Controls.Add(pictureBox7);
             groupBox1.Controls.Add(label16);
@@ -338,15 +338,15 @@
             labPersonPhone.TabIndex = 20;
             labPersonPhone.Text = "??";
             // 
-            // pictureBox9
+            // pbPFP
             // 
-            pictureBox9.Image = Properties.Resources.Male_512;
-            pictureBox9.Location = new Point(1019, 73);
-            pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(259, 248);
-            pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox9.TabIndex = 19;
-            pictureBox9.TabStop = false;
+            pbPFP.Image = Properties.Resources.Male_512;
+            pbPFP.Location = new Point(1019, 73);
+            pbPFP.Name = "pbPFP";
+            pbPFP.Size = new Size(259, 248);
+            pbPFP.SizeMode = PictureBoxSizeMode.Zoom;
+            pbPFP.TabIndex = 19;
+            pbPFP.TabStop = false;
             // 
             // pictureBox8
             // 
@@ -383,7 +383,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbPFP).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ResumeLayout(false);
@@ -416,7 +416,7 @@
         private GroupBox groupBox1;
         private PictureBox pictureBox8;
         private PictureBox pictureBox7;
-        private PictureBox pictureBox9;
+        private PictureBox pbPFP;
         private Label labPersonPhone;
         private Label labPersonCountry;
     }

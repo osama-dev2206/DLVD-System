@@ -4,8 +4,9 @@ using System.Text;
 
 namespace BussinessLogicLayer
 {
-    public class abPerson
+    public class abPerson // from people table 
     {
+     public  enum enMode { Update = 1, Add = 2 }
         public int PersonID { get; protected set; }
         public string NationalNumber { get; set; }  
         public string FirstName { get; set; }
@@ -21,7 +22,7 @@ namespace BussinessLogicLayer
         public string Email { get; set; }
         public  string ImagePath { get; set; }
 
+        public string NationalityCountry { get; set; }
         public int NationalityCountryID { get; set; }
-
     }
 }
