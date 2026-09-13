@@ -1,0 +1,16 @@
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\bin\Debug\net10.0\BussinessLogicLayer.deps.json
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\bin\Debug\net10.0\BussinessLogicLayer.dll
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\bin\Debug\net10.0\BussinessLogicLayer.pdb
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\obj\Debug\net10.0\BussinessLogicLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\obj\Debug\net10.0\BussinessLogicLayer.AssemblyInfoInputs.cache
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\obj\Debug\net10.0\BussinessLogicLayer.AssemblyInfo.cs
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\obj\Debug\net10.0\BussinessLogicLayer.csproj.CoreCompileInputs.cache
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\obj\Debug\net10.0\BussinessLogicLayer.sourcelink.json
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\obj\Debug\net10.0\BussinessLogicLayer.dll
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\obj\Debug\net10.0\refint\BussinessLogicLayer.dll
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\obj\Debug\net10.0\BussinessLogicLayer.pdb
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\obj\Debug\net10.0\ref\BussinessLogicLayer.dll
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\bin\Debug\net10.0\DataAccessLayer.dll
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\bin\Debug\net10.0\DataAccessLayer.pdb
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\obj\Debug\net10.0\BussinessLogicLayer.csproj.AssemblyReference.cache
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\BussinessLogicLayer\obj\Debug\net10.0\Bussines.2EFEE8B4.Up2Date
