@@ -11,7 +11,7 @@ namespace FrontEnd
             InitializeComponent();
         }
 
-        private void TSMPeople_Click(object sender, EventArgs e) // mamge people 
+        private void TSMPeople_Click(object sender, EventArgs e) // manage people 
         {
             FrmPeopleManagement frmManagePeople = new FrmPeopleManagement();
             frmManagePeople.ShowDialog();
