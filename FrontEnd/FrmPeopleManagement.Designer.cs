@@ -41,14 +41,14 @@
             label3 = new Label();
             labCountOfRecords = new Label();
             contextMenuStrip1 = new ContextMenuStrip(components);
+            addToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator3 = new ToolStripSeparator();
             showDetailsToolStripMenuItem1 = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             showDetailsToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator4 = new ToolStripSeparator();
             deleteToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
-            addToolStripMenuItem = new ToolStripMenuItem();
-            toolStripSeparator3 = new ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DGVPeople).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAddEdit).BeginInit();
@@ -111,6 +111,7 @@
             tbSearchBy.Size = new Size(348, 27);
             tbSearchBy.TabIndex = 2;
             tbSearchBy.TextAlign = HorizontalAlignment.Center;
+            tbSearchBy.TextChanged += tbSearchBy_TextChanged;
             // 
             // cbFilter
             // 
@@ -181,56 +182,56 @@
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { addToolStripMenuItem, toolStripSeparator3, showDetailsToolStripMenuItem1, toolStripSeparator1, showDetailsToolStripMenuItem, toolStripSeparator4, deleteToolStripMenuItem, toolStripSeparator2 });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(215, 160);
+            contextMenuStrip1.Size = new Size(169, 132);
             contextMenuStrip1.ItemClicked += contextMenuStrip1_ItemClicked;
-            // 
-            // showDetailsToolStripMenuItem1
-            // 
-            showDetailsToolStripMenuItem1.Image = Properties.Resources.PersonDetails_32;
-            showDetailsToolStripMenuItem1.Name = "showDetailsToolStripMenuItem1";
-            showDetailsToolStripMenuItem1.Size = new Size(214, 26);
-            showDetailsToolStripMenuItem1.Text = "Show Details";
-            // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(211, 6);
-            // 
-            // showDetailsToolStripMenuItem
-            // 
-            showDetailsToolStripMenuItem.Image = Properties.Resources.edit_32;
-            showDetailsToolStripMenuItem.Name = "showDetailsToolStripMenuItem";
-            showDetailsToolStripMenuItem.Size = new Size(214, 26);
-            showDetailsToolStripMenuItem.Text = "Edit";
-            // 
-            // toolStripSeparator4
-            // 
-            toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(211, 6);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            deleteToolStripMenuItem.Image = Properties.Resources.Delete_32_2;
-            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(214, 26);
-            deleteToolStripMenuItem.Text = "Delete";
-            // 
-            // toolStripSeparator2
-            // 
-            toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(211, 6);
             // 
             // addToolStripMenuItem
             // 
             addToolStripMenuItem.Image = Properties.Resources.Add_Person_40;
             addToolStripMenuItem.Name = "addToolStripMenuItem";
-            addToolStripMenuItem.Size = new Size(214, 26);
+            addToolStripMenuItem.Size = new Size(168, 26);
             addToolStripMenuItem.Text = "Add";
             // 
             // toolStripSeparator3
             // 
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(211, 6);
+            toolStripSeparator3.Size = new Size(165, 6);
+            // 
+            // showDetailsToolStripMenuItem1
+            // 
+            showDetailsToolStripMenuItem1.Image = Properties.Resources.PersonDetails_32;
+            showDetailsToolStripMenuItem1.Name = "showDetailsToolStripMenuItem1";
+            showDetailsToolStripMenuItem1.Size = new Size(168, 26);
+            showDetailsToolStripMenuItem1.Text = "Show Details";
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(165, 6);
+            // 
+            // showDetailsToolStripMenuItem
+            // 
+            showDetailsToolStripMenuItem.Image = Properties.Resources.edit_32;
+            showDetailsToolStripMenuItem.Name = "showDetailsToolStripMenuItem";
+            showDetailsToolStripMenuItem.Size = new Size(168, 26);
+            showDetailsToolStripMenuItem.Text = "Edit";
+            // 
+            // toolStripSeparator4
+            // 
+            toolStripSeparator4.Name = "toolStripSeparator4";
+            toolStripSeparator4.Size = new Size(165, 6);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            deleteToolStripMenuItem.Image = Properties.Resources.Delete_32_2;
+            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            deleteToolStripMenuItem.Size = new Size(168, 26);
+            deleteToolStripMenuItem.Text = "Delete";
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(165, 6);
             // 
             // FrmPeopleManagement
             // 
