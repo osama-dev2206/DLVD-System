@@ -3,14 +3,15 @@ using System.Data;
 using DataAccessLayer;
 namespace BussinessLogicLayer
 {
-    public class clsPeople : abPerson
+    public class clsPeople : abPerson // data view not main table 
     {
-
+        enMode Mode;
         public static DataTable GetPeople()
         {
             return clsGetBPersonInfo.GetPeopleDataTable();
         }
 
+        // These Methods `Use ShowBasicPersonInfo` Data View ! ///////////
         // Get The DataTable Filtered by PersonID
         public static DataTable GetPersonByPersonID(int PersonID )
         {
@@ -19,7 +20,7 @@ namespace BussinessLogicLayer
                 return null; 
             }
 
-            return clsSearchPersonBy.GetPersonRecordBy(PersonID,clsSearchPersonBy.enSearchPersonBy.PersonID); 
+            return clsSearchPersonBy.GetPersonRecordBy(PersonID,clsSearchPersonBy.enSearchPersonBy.PersonID);  // data view 
         }
 
         public static DataTable GetPersonByNationalNo(string NationalNo)
@@ -78,7 +79,64 @@ namespace BussinessLogicLayer
             return clsSearchPersonBy.GetPersonRecordBy(Email, clsSearchPersonBy.enSearchPersonBy.Email);
         }
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        // it is like the og table except gender is string and nationality is string not int
+        private clsPeople(int personID, string nationalNumber, string firstName, string secondName, string thirdName, string lastName, string gender, string nationalityCountry, string phone, string email,
+            DateTime dateOfBirth, string address, string imagePath)  // Data View 
+        {
+            this.PersonID = personID;
+            this.NationalNumber = nationalNumber;
+            this.FirstName = firstName;
+            this.SecondName = secondName;
+            this.ThirdName = thirdName;
+            this.LastName = lastName;
+            this.DateOfBirth= DateOnly.FromDateTime(dateOfBirth);
+            this.Gender = gender;
+            this.Address = address;
+            this.Phone = phone;
+            this.Email = email; 
+            this.ImagePath  = imagePath;
+            this.NationalityCountry = nationalityCountry;
+
+            this.Mode = enMode.Update;
+        }
+
+
+        public static clsPeople ? GetPersonObjectByPersonID(int PersonID)
+        {
+            DataTable dt = clsGetDetailsPersonInfoByPersonID.GetFullPersonByPersonID(PersonID);
+            if (dt is not null) 
+            {
+                clsPeople? people = null; 
+                foreach (DataRow R in dt.Rows) 
+                {
+                  
+                    people = new clsPeople
+                        (
+                         Convert.ToInt32(R["PersonID"]) ,
+                         R["NationalNumber"].ToString() ,
+                         R["FirstName"].ToString(),
+                         R["SecondName"].ToString(),
+                         R["ThirdName"].ToString(),
+                         R["LastName"].ToString(),
+                         R["Gender"].ToString() ,
+                         R["Nationality"].ToString(), 
+                         R["Phone"].ToString(),
+                         R["Email"].ToString() ,
+                        Convert.ToDateTime((R["DateOfBirth"]))  ,
+                        R["Address"].ToString(),
+                        R["ImagePath"].ToString()
+                        );
+                }
+
+                return people;
+
+            }
+
+            else 
+                return null;
+        }
 
     }
 }
