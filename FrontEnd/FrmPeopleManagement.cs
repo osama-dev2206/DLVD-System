@@ -40,56 +40,57 @@ namespace FrontEnd
         }
 
 
-        /*
-
-Phone
-Email
-         */
         void SearchBySelectedFilter(string SearchKeyword) // this method will handle the search by selected filter
         {
 
-            if (cbFilter.SelectedItem == "PersonID" && int.TryParse(SearchKeyword, out int id))
+            switch (cbFilter.SelectedItem)
             {
-                DGVPeople.DataSource = clsPeople.GetPersonByPersonID(id);
+                case "PersonID":
+                    if (int.TryParse(SearchKeyword, out int id))
+                    {
+                        DGVPeople.DataSource = clsPeople.GetPersonByPersonID(id);
+                    }
+                    break;
+
+                case "NationalNo":
+                    DGVPeople.DataSource = clsPeople.GetPersonByNationalNo(SearchKeyword);
+                    break;
+
+                case "FirstName":
+                    DGVPeople.DataSource = clsPeople.GetPersonByFirstName(SearchKeyword);
+                    break;
+
+                case "SecondName":
+                    DGVPeople.DataSource = clsPeople.GetPersonBySecondName(SearchKeyword);
+                    break;
+
+                case "ThirdName":
+                    DGVPeople.DataSource = clsPeople.GetPersonByThirdName(SearchKeyword);
+                    break;
+
+                case "LastName":
+                    DGVPeople.DataSource = clsPeople.GetPersonByLastName(SearchKeyword);
+                    break;
+
+                case "Nationality":
+                    DGVPeople.DataSource = clsPeople.GetPersonByNationality(SearchKeyword);
+                    break;
+
+                case "Gender":
+                    DGVPeople.DataSource = clsPeople.GetPersonByGender(SearchKeyword);
+                    break;
+
+                case "Phone":
+                    DGVPeople.DataSource = clsPeople.GetPersonByPhone(SearchKeyword);
+                    break;
+
+                case "Email":
+                    DGVPeople.DataSource = clsPeople.GetPersonByEmail(SearchKeyword);
+                    break;
+
             }
 
-            if (cbFilter.SelectedItem == "NationalNo")
-            {
-                DGVPeople.DataSource = clsPeople.GetPersonByNationalNo(SearchKeyword);
-            }
-
-            if (cbFilter.SelectedItem == "FirstName")
-            {
-                DGVPeople.DataSource = clsPeople.GetPersonByFirstName(SearchKeyword);
-            }
-
-            if (cbFilter.SelectedItem == "SecondName")
-            {
-                DGVPeople.DataSource = clsPeople.GetPersonBySecondName(SearchKeyword);
-            }
-
-            if (cbFilter.SelectedItem == "ThirdName")
-            {
-                DGVPeople.DataSource = clsPeople.GetPersonByThirdName(SearchKeyword);
-            }
-
-            if (cbFilter.SelectedItem == "LastName")
-            {
-                DGVPeople.DataSource = clsPeople.GetPersonByLastName(SearchKeyword);
-            }
-
-            if(cbFilter.SelectedItem == "Nationality")
-            {
-                DGVPeople.DataSource = clsPeople.GetPersonByNationality(SearchKeyword);
-            }
-
-           if (cbFilter.SelectedItem == "Gender")
-            {
-                DGVPeople.DataSource = clsPeople.GetPersonByGender(SearchKeyword);
-            }
-
-
-            }
+        }
 
              // changing the filter handling only
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -97,17 +98,13 @@ Email
             if (cbFilter.SelectedIndex != -1 && cbFilter.SelectedItem != null && cbFilter.SelectedIndex != 0)
             {
                 tbSearchBy.Visible = true;
-               
             }
-            else if (cbFilter.SelectedIndex == 0)
+            else if (cbFilter.SelectedIndex == 0) // if i set the filter to null 
             {
                 tbSearchBy.Visible = false;
-                RefreshDataGridView();
                 this.tbSearchBy.Text = string.Empty;
+                RefreshDataGridView();
             }
-
-
-
         }
 
         private void tbSearchBy_TextChanged(object sender, EventArgs e)
@@ -116,7 +113,7 @@ Email
             {
                 SearchBySelectedFilter(tbSearchBy.Text);
             }
-            else
+            else if (tbSearchBy.Visible) // if it is visible then the user has cleared the search box so we rest the view to default 
             {
                 RefreshDataGridView(); // rest the dgv after clearing the search box 
             }
@@ -152,6 +149,10 @@ Email
             {
                 AddEdit_Click(sender, e); //ADD 
                 RefreshDataGridView();
+            }
+            if(e.ClickedItem.Text == "Show Details")
+            {
+
             }
 
         }
