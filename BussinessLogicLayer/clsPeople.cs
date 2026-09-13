@@ -55,12 +55,30 @@ namespace BussinessLogicLayer
         public static DataTable GetPersonByGender(string Gender)
         {
             Gender = Gender.ToLower(); 
-            if(  Gender == "male" || Gender =="m" || (Gender == "female" || Gender == "f") )
+            if(  Gender == "male" || Gender =="m"  )
             {
-                return clsSearchPersonBy.GetPersonRecordBy(Keyword:Gender.ToLower(), clsSearchPersonBy.enSearchPersonBy.Gender);
+                return clsSearchPersonBy.GetPersonRecordBy("m", clsSearchPersonBy.enSearchPersonBy.Gender);
             } 
+            else if(Gender == "female" || Gender == "f")
+            {
+                return clsSearchPersonBy.GetPersonRecordBy("f", clsSearchPersonBy.enSearchPersonBy.Gender);
+            }
+
             return null; 
         }
+
+
+        public static DataTable GetPersonByPhone(string Phone)
+        {
+            return clsSearchPersonBy.GetPersonRecordBy(Phone, clsSearchPersonBy.enSearchPersonBy.Phone);
+        }
+
+        public static DataTable GetPersonByEmail(string Email)
+        {
+            return clsSearchPersonBy.GetPersonRecordBy(Email, clsSearchPersonBy.enSearchPersonBy.Email);
+        }
+
+
 
     }
 }
