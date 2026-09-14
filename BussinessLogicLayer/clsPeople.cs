@@ -92,7 +92,7 @@ namespace BussinessLogicLayer
             this.ThirdName = thirdName;
             this.LastName = lastName;
             this.DateOfBirth= DateOnly.FromDateTime(dateOfBirth);
-            this.Gender = gender;
+            this.Gender = (gender.ToUpper() == "M")? 1 : 2;
             this.Address = address;
             this.Phone = phone;
             this.Email = email; 
@@ -120,7 +120,7 @@ namespace BussinessLogicLayer
                          R["SecondName"].ToString(),
                          R["ThirdName"].ToString(),
                          R["LastName"].ToString(),
-                         R["Gender"].ToString() ,
+                         R["Gender"].ToString(), // string from data view
                          R["Nationality"].ToString(), 
                          R["Phone"].ToString(),
                          R["Email"].ToString() ,
@@ -154,6 +154,12 @@ namespace BussinessLogicLayer
             return clsGetCountryIDByCountryName.GetCountryID(this.NationalityCountry);
         }
 
+        public static bool IsNationalNumberExists(string NationalNumber)
+        {
+            return clsCheckNationalNumExistence.IsNationalNumExist(NationalNumber);
+        }
+
+
         public clsPeople() // for adding new person
         {
             this.Mode = enMode.Add;
@@ -161,16 +167,21 @@ namespace BussinessLogicLayer
 
         private bool AddNewPerson()
         {
-            return
-               (
+            
+            int ID =   (
                clsAddNewPerson.AddNewPerson
                 (
                 NationalNumber: this.NationalNumber, FirstName: this.FirstName, SecondName: this.SecondName, ThirdName: this.ThirdName, LastName: this.LastName,
-                DateOfBirth: this.DateOfBirth, Gender: this.Gender == "m" ? 1 : 2, Address: this.Address, Phone: this.Phone, Email: this.Email, ImagePath: this.ImagePath, NationalityCountryID: GetCountryIDByItsName()
+                DateOfBirth: this.DateOfBirth, Gender: this.Gender , Address: this.Address, Phone: this.Phone, Email: this.Email, ImagePath: this.ImagePath, NationalityCountryID: GetCountryIDByItsName()
                 )
-                ) != -1 ;
+                )  ;
+
+            this.PersonID = ID;
+
+            return (ID != -1);
 
         }
+
 
         public bool Save()
         {

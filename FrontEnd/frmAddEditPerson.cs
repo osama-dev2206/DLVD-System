@@ -13,6 +13,18 @@ namespace FrontEnd
         public frmAddEditPerson(int ID)
         {
             InitializeComponent();
+            this.ctrlAddEditPerson1.OnPersonSaved += UpdatePersonIDAfterSaving; // subscribe to the OnPersonSaved event of the user control
+
+
         }
+
+        // Event
+        void UpdatePersonIDAfterSaving(int PersonID)
+        {
+            this.lblPersonID.Text = PersonID.ToString();
+        }
+
+
+
     }
 }
