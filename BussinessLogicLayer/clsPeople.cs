@@ -138,5 +138,17 @@ namespace BussinessLogicLayer
                 return null;
         }
 
-    }
+
+        public static bool DeletePersonByPersonID(int PersonID)
+        {
+            return clsDeletePerson.DeletePerson(PersonID);
+        }
+
+        public static DataTable GetAllCountries()
+        {
+            return clsListOfCountrires.GetAllCountries();
+        }
+
+
+        }
 }
