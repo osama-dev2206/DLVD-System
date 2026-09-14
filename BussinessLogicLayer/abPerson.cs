@@ -20,7 +20,7 @@ namespace BussinessLogicLayer
 
         public string Phone { get; set; }
         public string ? Email { get; set; }
-        public  string ImagePath { get; set; }
+        public  string ? ImagePath { get; set; }
 
         public string NationalityCountry { get; set; }
         public int NationalityCountryID { get; set; }

@@ -14,7 +14,7 @@ namespace FrontEnd
         public frmAddEditPerson(int ID)
         {
             PersonID = ID;
-            InitializeComponent();
+            InitializeComponent(); // the id will be passed to the user control to determine if we are adding a new person or editing an existing one
             this.label1.Text = (PersonID ==-1) ? "Add New Person" : "Edit Person";
 
         }

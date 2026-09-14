@@ -70,6 +70,7 @@
             tbSecondName = new TextBox();
             tbFirstName = new TextBox();
             errorProvider1 = new ErrorProvider(components);
+            openFileDialog1 = new OpenFileDialog();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbIndicator).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
@@ -196,6 +197,7 @@
             labRemoveImage.TabStop = true;
             labRemoveImage.Text = "Remove Image";
             labRemoveImage.Visible = false;
+            labRemoveImage.LinkClicked += labRemoveImage_LinkClicked;
             // 
             // lblSetImage
             // 
@@ -526,6 +528,10 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = ".jpg";
+            // 
             // ctrlAddEditPerson
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -594,5 +600,6 @@
         private Label label13;
         private PictureBox pbIndicator;
         private ErrorProvider errorProvider1;
+        private OpenFileDialog openFileDialog1;
     }
 }

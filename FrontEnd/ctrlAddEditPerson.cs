@@ -36,21 +36,42 @@ namespace FrontEnd
         private void ctrlAddEditPerson_Load(object sender, EventArgs e)
         {
             FillCountriesInComboBox(); // fill the combobox with countries from the database
-            cbCountry.Text = "Egypt"; // set the default country to Egypt
-            this.rbMale.Checked = true; // set the default gender to Male
-            if (String.IsNullOrEmpty(this?.person?.ImagePath)) this.pbPFP.Image = Properties.Resources.Male_512;
             this.dtDateOfBirth.MaxDate = DateTime.Now.AddYears(-18); // set the default date of birth to 18 years ago
 
-            if (person.ImagePath is null || person.ImagePath == "")
+            openFileDialog1.InitialDirectory = "C:\\Users\\Public\\Downloads";
+            openFileDialog1.DefaultExt = ".jpg";
+            openFileDialog1.Filter = "Image Files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg";
+            openFileDialog1.FileName = "Photo.jpg";//to set the default opening file 
+
+            if (FormMode == enMode.Add)
             {
+                cbCountry.Text = "Egypt"; // set the default country to Egypt
+                this.rbMale.Checked = true; // set the default gender to Male
+                if (String.IsNullOrEmpty(this?.person?.ImagePath)) this.pbPFP.Image = Properties.Resources.Male_512;
+
+            }
+
+
+            if (person.ImagePath is null || person.ImagePath == "" || !File.Exists(person.ImagePath)) // set the default image if the person has no image or the image path is invalid
+            {
+                SetDefaultPFP();
                 lblSetImage.Visible = true;
                 labRemoveImage.Visible = false;
             }
-            else
+            else // set the image from the person's image path if it exists
             {
+                this.pbPFP.Image = Image.FromFile(this.person.ImagePath);
                 lblSetImage.Visible = false;
                 labRemoveImage.Visible = true;
             }
+
+
+        }
+
+        void SetDefaultPFP()
+        {
+            if (person?.Gender == 1) this.pbPFP.Image = Properties.Resources.Male_512;
+            else if (person?.Gender == 2) this.pbPFP.Image = Properties.Resources.Female_512;
         }
 
         void FillCountriesInComboBox()
@@ -182,23 +203,21 @@ namespace FrontEnd
             }
         }
 
-        bool CheckBeforeSave() // person.ImagePath == null add it after adding pfp handling
+        bool CheckBeforeSave()
         {
             return
                 !(
                 string.IsNullOrEmpty(tbFirstName.Text) || string.IsNullOrEmpty(tbSecondName.Text) || string.IsNullOrEmpty(tbThirdName.Text)
                 || string.IsNullOrEmpty(tbLastName.Text) || string.IsNullOrEmpty(tbNationalNum.Text) ||
                 string.IsNullOrEmpty(tbPhone.Text) || string.IsNullOrEmpty(tbAddress.Text) || string.IsNullOrEmpty(cbCountry?.SelectedItem?.ToString())
-                || dtDateOfBirth.Value == null 
+                || dtDateOfBirth?.Value == null || person?.ImagePath == null
                 );
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            person.ImagePath = ""; //temp
             if (CheckBeforeSave() && person.Save())
             {
-          
                 MessageBox.Show("Person saved successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 pbIndicator.Visible = false;
                 OnPersonSaving(); // raise the event to notify that the person has been saved and pass the person ID to the parent form
@@ -222,7 +241,21 @@ namespace FrontEnd
 
         private void lblSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            if (DialogResult.OK == openFileDialog1.ShowDialog())
+            {
+                this?.person?.ImagePath = openFileDialog1.FileName; // set the image path to the person object
+                this.pbPFP.Image = Image.FromFile(this?.person?.ImagePath); // set the image to the picture box
+                lblSetImage.Visible = false;
+                labRemoveImage.Visible = true;
+            }
+        }
 
+        private void labRemoveImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SetDefaultPFP();
+            person?.ImagePath = null; // remove the image path from the person object (won't be saved to the database)
+            lblSetImage.Visible = true;
+            labRemoveImage?.Visible = false;
         }
 
 
