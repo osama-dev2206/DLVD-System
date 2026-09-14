@@ -10,11 +10,12 @@ namespace FrontEnd
 {
     public partial class frmAddEditPerson : Form
     {
+        int PersonID{get; set;}
         public frmAddEditPerson(int ID)
         {
+            PersonID = ID;
             InitializeComponent();
-            this.ctrlAddEditPerson1.OnPersonSaved += UpdatePersonIDAfterSaving; // subscribe to the OnPersonSaved event of the user control
-
+            this.label1.Text = (PersonID ==-1) ? "Add New Person" : "Edit Person";
 
         }
 

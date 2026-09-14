@@ -102,7 +102,7 @@ namespace BussinessLogicLayer
             this.Mode = enMode.Update;
         }
 
-
+        // retrurns object of clsPeople with all properties filled from the database by PersonID
         public static clsPeople ? GetPersonObjectByPersonID(int PersonID)
         {
             DataTable dt = clsGetDetailsPersonInfoByPersonID.GetFullPersonByPersonID(PersonID);
@@ -200,6 +200,10 @@ namespace BussinessLogicLayer
 
             return false;
         }
+
+
+        // Image Handling 
+
 
         }
 }

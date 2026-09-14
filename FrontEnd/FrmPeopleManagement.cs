@@ -160,7 +160,9 @@ namespace FrontEnd
         {
             if (e.ClickedItem.Text == "Add")
             {
-
+                frmAddEditPerson frmAddEditPerson = new frmAddEditPerson(-1); // -1 = add 
+                frmAddEditPerson.ShowDialog();
+                frmAddEditPerson.Dispose();
             }
             if (e.ClickedItem.Text == "Edit") // it depends on selected row index 
             {

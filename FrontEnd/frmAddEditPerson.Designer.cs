@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ctrlAddEditPerson1 = new ctrlAddEditPerson();
+            ctrlAddEditPerson1 = new ctrlAddEditPerson(this.PersonID);
+            this.ctrlAddEditPerson1.OnPersonSaved += UpdatePersonIDAfterSaving; // subscribe to the OnPersonSaved event of the user control
+
             label1 = new Label();
             label2 = new Label();
             pictureBox4 = new PictureBox();
