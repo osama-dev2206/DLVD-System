@@ -18,7 +18,7 @@ namespace FrontEnd
 
         private void ctrlAddEditPerson_Load(object sender, EventArgs e)
         {
-             
+            FillCountriesInComboBox(); // fill the combobox with countries from the database
         }
 
         void FillCountriesInComboBox()
@@ -28,6 +28,9 @@ namespace FrontEnd
                 this.cbCountry.Items.Add(R["CountryName"].ToString() );
             }
         }
+
+
+
 
     }
 }

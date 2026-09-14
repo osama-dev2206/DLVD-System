@@ -149,6 +149,46 @@ namespace BussinessLogicLayer
             return clsListOfCountrires.GetAllCountries();
         }
 
+        private int ? GetCountryIDByItsName()
+        {
+            return clsGetCountryIDByCountryName.GetCountryID(this.NationalityCountry);
+        }
+
+        public clsPeople() // for adding new person
+        {
+            this.Mode = enMode.Add;
+        }
+
+        private bool AddNewPerson()
+        {
+            return
+               (
+               clsAddNewPerson.AddNewPerson
+                (
+                NationalNumber: this.NationalNumber, FirstName: this.FirstName, SecondName: this.SecondName, ThirdName: this.ThirdName, LastName: this.LastName,
+                DateOfBirth: this.DateOfBirth, Gender: this.Gender == "m" ? 1 : 2, Address: this.Address, Phone: this.Phone, Email: this.Email, ImagePath: this.ImagePath, NationalityCountryID: GetCountryIDByItsName()
+                )
+                ) != -1 ;
+
+        }
+
+        public bool Save()
+        {
+            switch(this.Mode)
+            {
+                case enMode.Add:
+                  if (AddNewPerson())
+                    {
+                        Mode = enMode.Update;
+                        return true;
+                    }
+                  return false;
+
+
+            }
+
+            return false;
+        }
 
         }
 }
