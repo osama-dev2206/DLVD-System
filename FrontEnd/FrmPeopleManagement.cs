@@ -167,7 +167,10 @@ namespace FrontEnd
             }
             if (e.ClickedItem.Text == "Edit") // it depends on selected row index 
             {
-           
+                frmAddEditPerson frmAddEditPerson = new frmAddEditPerson(this.selectedRowIndex); 
+                frmAddEditPerson.ShowDialog();
+                frmAddEditPerson.Dispose();
+                RefreshDataGridView();
             }
 
             if(e.ClickedItem.Text == "Show Details")
