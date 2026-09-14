@@ -187,20 +187,48 @@ namespace BussinessLogicLayer
         }
 
 
-
+        private bool Update() // the old pfp will be deleted and the new one will be added to the new path
+        {
+            return clsUpdatePerson.UpdatePerson(personID:this.PersonID, nationalNumber: this.NationalNumber ,
+                firstName : this.FirstName ,  secondName: this.SecondName ,  thirdName: this.ThirdName,
+                lastName:this.LastName , dateOfBirth:this.DateOfBirth , gender:this.Gender , address: this.Address ,
+                phone:this.Phone , email:this?.Email , imagePath:this?.ImagePath , nationalityCountryID: this.NationalityCountryID); 
+        }
 
         public bool Save()
         {
             switch(this.Mode)
             {
                 case enMode.Add:
-                  if (ImageMoveToNewDir() && AddNewPerson())
                     {
-                        Mode = enMode.Update;
-                        return true;
+                        if (ImageMoveToNewDir() && AddNewPerson())
+                        {
+                            Mode = enMode.Update;
+                            return true;
+                        }
+                        return false;
                     }
-                  return false;
 
+                case enMode.Update:
+                    {
+                        string ?OldPath = this.ImagePath; // store the old path before deleting 
+                        if (Update() ) 
+                        {
+                            // change in image path
+                            bool DeleteStatus = false;
+                            bool MoveStatus = false;
+                            if (OldPath != this.ImagePath)
+                            {
+                                DeleteStatus =  DeleteOldImage(OldPath);
+                                MoveStatus  = ImageMoveToNewDir();
+
+                                return (DeleteStatus ==  true && MoveStatus == true )? true : false;
+                            }
+
+                            return  true; // update was successful and no image path change was needed
+                        }
+                        return false;
+                    }
 
             }
 
@@ -244,6 +272,25 @@ namespace BussinessLogicLayer
             }
             return false;
         }
+
+        private bool DeleteOldImage(string ?OldPath)
+        {
+            if (File.Exists(OldPath))
+            {
+                try
+                {
+                    File.Delete(OldPath);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return true; // if the file does not exist, consider it deleted
+        }
+
+
 
     }
 }

@@ -284,15 +284,30 @@ namespace FrontEnd
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (CheckBeforeSave() && person.Save())
+            if (this.FormMode == enMode.Add)
             {
-                MessageBox.Show("Person saved successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                pbIndicator.Visible = false;
-                OnPersonSaving(); // raise the event to notify that the person has been saved and pass the person ID to the parent form
+                if (CheckBeforeSave() && person.Save())
+                {
+                    MessageBox.Show("Person saved successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    pbIndicator.Visible = false;
+                    OnPersonSaving(); // raise the event to notify that the person has been saved and pass the person ID to the parent form
+                }
+                else
+                {
+                    MessageBox.Show("Failed to save person.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+
+            if(this.FormMode == enMode.Edit)
             {
-                MessageBox.Show("Failed to save person.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if(this.CheckBeforeSave() && person.Save())
+                {
+                    MessageBox.Show("Person updated successfully.", "Info",MessageBoxButtons.OK , MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to update person.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
         }
