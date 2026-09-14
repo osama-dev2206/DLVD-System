@@ -10,7 +10,7 @@ namespace DataAccessLayer
         static string Query = @"
 Select Countries.CountryID 
 From Countries
-where Countries.CountryName = @Name;";
+where CountryName = @Name;";
 
         public static int ? GetCountryID(string CountyName)
         {
@@ -20,9 +20,9 @@ where Countries.CountryName = @Name;";
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(Query, connection);
-                cmd.Parameters.AddWithValue(CountyName, "@Name");
-
-               if (int.TryParse(cmd.ExecuteScalar().ToString() , out int id))
+                cmd.Parameters.AddWithValue("@Name", CountyName);
+                object reader = cmd.ExecuteScalar();
+               if (int.TryParse(reader.ToString() , out int id))
                   CountryID = id;
             }
             catch { }

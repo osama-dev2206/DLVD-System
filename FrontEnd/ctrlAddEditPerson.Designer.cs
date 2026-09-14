@@ -206,6 +206,7 @@
             lblSetImage.TabIndex = 32;
             lblSetImage.TabStop = true;
             lblSetImage.Text = "Set Image";
+            lblSetImage.LinkClicked += lblSetImage_LinkClicked;
             // 
             // btnSave
             // 
@@ -496,7 +497,6 @@
             tbLastName.Size = new Size(125, 27);
             tbLastName.TabIndex = 3;
             tbLastName.TextChanged += tbLastName_TextChanged;
-
             // 
             // tbThirdName
             // 
@@ -513,7 +513,6 @@
             tbSecondName.Size = new Size(125, 27);
             tbSecondName.TabIndex = 1;
             tbSecondName.TextChanged += tbSecondName_TextChanged;
-
             // 
             // tbFirstName
             // 
@@ -522,7 +521,6 @@
             tbFirstName.Size = new Size(125, 27);
             tbFirstName.TabIndex = 0;
             tbFirstName.TextChanged += tbFirstName_TextChanged;
-
             // 
             // errorProvider1
             // 
