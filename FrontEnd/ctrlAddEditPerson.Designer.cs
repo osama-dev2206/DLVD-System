@@ -251,10 +251,12 @@
             // tbAddress
             // 
             tbAddress.Location = new Point(462, 202);
+            tbAddress.MaxLength = 500;
             tbAddress.Name = "tbAddress";
             tbAddress.Size = new Size(259, 27);
             tbAddress.TabIndex = 28;
             tbAddress.TextChanged += tbAddress_TextChanged;
+            tbAddress.KeyPress += tbAddresstbPhone_KeyPress;
             // 
             // label11
             // 
@@ -364,10 +366,12 @@
             // tbPhone
             // 
             tbPhone.Location = new Point(464, 150);
+            tbPhone.MaxLength = 20;
             tbPhone.Name = "tbPhone";
             tbPhone.Size = new Size(256, 27);
             tbPhone.TabIndex = 17;
             tbPhone.TextChanged += tbPhone_TextChanged;
+            tbPhone.KeyPress += tbPhone_KeyPress;
             // 
             // label8
             // 
@@ -495,34 +499,42 @@
             // tbLastName
             // 
             tbLastName.Location = new Point(672, 33);
+            tbLastName.MaxLength = 20;
             tbLastName.Name = "tbLastName";
             tbLastName.Size = new Size(125, 27);
             tbLastName.TabIndex = 3;
             tbLastName.TextChanged += tbLastName_TextChanged;
+            tbLastName.KeyPress += tbName_KeyPress;
             // 
             // tbThirdName
             // 
             tbThirdName.Location = new Point(502, 33);
+            tbThirdName.MaxLength = 20;
             tbThirdName.Name = "tbThirdName";
             tbThirdName.Size = new Size(125, 27);
             tbThirdName.TabIndex = 2;
             tbThirdName.TextChanged += tbThirdName_TextChanged;
+            tbThirdName.KeyPress += tbName_KeyPress;
             // 
             // tbSecondName
             // 
             tbSecondName.Location = new Point(332, 33);
+            tbSecondName.MaxLength = 20;
             tbSecondName.Name = "tbSecondName";
             tbSecondName.Size = new Size(125, 27);
             tbSecondName.TabIndex = 1;
             tbSecondName.TextChanged += tbSecondName_TextChanged;
+            tbSecondName.KeyPress += tbName_KeyPress;
             // 
             // tbFirstName
             // 
             tbFirstName.Location = new Point(162, 33);
+            tbFirstName.MaxLength = 20;
             tbFirstName.Name = "tbFirstName";
             tbFirstName.Size = new Size(125, 27);
             tbFirstName.TabIndex = 0;
             tbFirstName.TextChanged += tbFirstName_TextChanged;
+            tbFirstName.KeyPress += tbName_KeyPress;
             // 
             // errorProvider1
             // 
