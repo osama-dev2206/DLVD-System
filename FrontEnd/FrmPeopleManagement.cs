@@ -133,6 +133,21 @@ namespace FrontEnd
             this.Close();
         }
 
+        private void Delete_Click()
+        {
+            if (DialogResult.Yes == MessageBox.Show("Are you sure you want to delete this person?", "Delete Person", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            {
+                if (clsPeople.DeletePersonByPersonID(this.selectedRowIndex))
+                {
+                    MessageBox.Show("Person deleted successfully.", "Delete Person", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RefreshDataGridView();
+
+                }
+                else 
+                    MessageBox.Show("Failed to delete person.", "Delete Person", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         // we will use another form to add or edit a person, so we will just show a message box for now
         private void Add_Click(object sender, EventArgs e)
         {
@@ -151,6 +166,7 @@ namespace FrontEnd
             {
            
             }
+
             if(e.ClickedItem.Text == "Show Details")
             {
                 FrmShowPersonDetails personDetails = new FrmShowPersonDetails(this.selectedRowIndex);
@@ -160,8 +176,11 @@ namespace FrontEnd
 
             if(e.ClickedItem.Text == "Delete")
             {
-                // Not implemented yet.
+
+                Delete_Click();
             }
+
+
         }
 
 
