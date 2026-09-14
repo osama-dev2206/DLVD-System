@@ -77,7 +77,7 @@ namespace FrontEnd
 
         void FillForm()
         {
-           if(person!=null)
+            if (person != null)
             {
 
                 this.tbFirstName.Text = person.FirstName;
@@ -86,9 +86,9 @@ namespace FrontEnd
                 this.tbLastName.Text = person.LastName;
 
                 this.tbNationalNum.Text = person.NationalNumber;
-                _=(person.Gender ==1 )?  this.rbMale.Checked = true : this.rbFemale.Checked = true;
+                _ = (person.Gender == 1) ? this.rbMale.Checked = true : this.rbFemale.Checked = true;
 
-               if(!string.IsNullOrEmpty(person.Email) ) this.mtbEmail.Text = person.Email;
+                if (!string.IsNullOrEmpty(person.Email)) this.mtbEmail.Text = person.Email;
 
                 this.dtDateOfBirth.Value = person.DateOfBirth.ToDateTime(TimeOnly.MinValue);
 
@@ -101,7 +101,7 @@ namespace FrontEnd
 
 
             }
-}
+        }
 
         void SetDefaultPFP()
         {
@@ -114,6 +114,31 @@ namespace FrontEnd
             foreach (DataRow R in clsPeople.GetAllCountries().Rows)
             {
                 this.cbCountry.Items.Add(R["CountryName"].ToString());
+            }
+        }
+
+
+        private void tbName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbAddresstbPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if( !char.IsDigit(e.KeyChar) && e.KeyChar != '+' && e.KeyChar != ' ' && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '+' && e.KeyChar != '-' && e.KeyChar != ' ')
+            {
+                e.Handled = true;
             }
         }
 
@@ -163,11 +188,11 @@ namespace FrontEnd
 
         private void tbNationalNum_TextChanged(object sender, EventArgs e)
         {
-          
+
 
             if (!String.IsNullOrEmpty(tbNationalNum.Text))
             {
-                if(this.FormMode == enMode.Add && clsPeople.IsNationalNumberExists(tbNationalNum.Text))
+                if (this.FormMode == enMode.Add && clsPeople.IsNationalNumberExists(tbNationalNum.Text))
                 {
                     errorProvider1.SetError(tbNationalNum, "The national num field must be filled or you have entered existed national num ");
                     return;
@@ -300,6 +325,8 @@ namespace FrontEnd
             lblSetImage.Visible = true;
             labRemoveImage?.Visible = false;
         }
+
+
 
 
     }
