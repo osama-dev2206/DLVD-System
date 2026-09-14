@@ -30,7 +30,13 @@ namespace FrontEnd
                 person = new clsPeople(); // create a new instance of clsPeople for adding a new person
                 FormMode = enMode.Add;
             }
-            // Edit 
+            else // Edit
+            {
+                this.person = clsPeople.GetPersonObjectByPersonID(PersonID); // get the person from the database by ID)
+                FillForm();
+                FormMode = enMode.Edit;
+            }
+
         }
 
         private void ctrlAddEditPerson_Load(object sender, EventArgs e)
@@ -47,6 +53,7 @@ namespace FrontEnd
             {
                 cbCountry.Text = "Egypt"; // set the default country to Egypt
                 this.rbMale.Checked = true; // set the default gender to Male
+                this.person.Gender = 1; // default gender to Male
                 if (String.IsNullOrEmpty(this?.person?.ImagePath)) this.pbPFP.Image = Properties.Resources.Male_512;
 
             }
@@ -67,6 +74,34 @@ namespace FrontEnd
 
 
         }
+
+        void FillForm()
+        {
+           if(person!=null)
+            {
+
+                this.tbFirstName.Text = person.FirstName;
+                this.tbSecondName.Text = person.SecondName;
+                this.tbThirdName.Text = person.ThirdName;
+                this.tbLastName.Text = person.LastName;
+
+                this.tbNationalNum.Text = person.NationalNumber;
+                _=(person.Gender ==1 )?  this.rbMale.Checked = true : this.rbFemale.Checked = true;
+
+               if(!string.IsNullOrEmpty(person.Email) ) this.mtbEmail.Text = person.Email;
+
+                this.dtDateOfBirth.Value = person.DateOfBirth.ToDateTime(TimeOnly.MinValue);
+
+                this.tbPhone.Text = person.Phone;
+
+                this.tbAddress.Text = person.Address;
+
+                this.cbCountry.Text = person.NationalityCountry;
+
+
+
+            }
+}
 
         void SetDefaultPFP()
         {
@@ -128,8 +163,16 @@ namespace FrontEnd
 
         private void tbNationalNum_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(tbNationalNum.Text) && !clsPeople.IsNationalNumberExists(tbNationalNum.Text))
+          
+
+            if (!String.IsNullOrEmpty(tbNationalNum.Text))
             {
+                if(this.FormMode == enMode.Add && clsPeople.IsNationalNumberExists(tbNationalNum.Text))
+                {
+                    errorProvider1.SetError(tbNationalNum, "The national num field must be filled or you have entered existed national num ");
+                    return;
+                }
+
                 person?.NationalNumber = tbNationalNum.Text;
                 errorProvider1.SetError(tbNationalNum, "");
             }

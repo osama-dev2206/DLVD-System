@@ -44,7 +44,7 @@ namespace FrontEnd
                 this.labPersonPhone.Text = Person.Phone.ToString();
                 this.labPersonCountry.Text = Person.NationalityCountry.ToString();
                 if (File.Exists(Person.ImagePath))
-                    this.pbPFP.Image = Image.FromFile("@" + Person.ImagePath);
+                    this.pbPFP.Image = Image.FromFile( Person.ImagePath);
             }
         }
 
