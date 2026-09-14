@@ -163,6 +163,7 @@ namespace FrontEnd
                 frmAddEditPerson frmAddEditPerson = new frmAddEditPerson(-1); // -1 = add 
                 frmAddEditPerson.ShowDialog();
                 frmAddEditPerson.Dispose();
+                RefreshDataGridView();
             }
             if (e.ClickedItem.Text == "Edit") // it depends on selected row index 
             {

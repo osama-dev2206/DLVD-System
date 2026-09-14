@@ -1,6 +1,10 @@
+using DataAccessLayer;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Data;
-using DataAccessLayer;
+using System.IO;
+using System.Xml.Linq;
+
 namespace BussinessLogicLayer
 {
     public class clsPeople : abPerson // data view not main table 
@@ -188,7 +192,7 @@ namespace BussinessLogicLayer
             switch(this.Mode)
             {
                 case enMode.Add:
-                  if (AddNewPerson())
+                  if (ImageMoveToNewDir() && AddNewPerson())
                     {
                         Mode = enMode.Update;
                         return true;
@@ -203,7 +207,41 @@ namespace BussinessLogicLayer
 
 
         // Image Handling 
+        // Path To Move C:\
+        private DirectoryInfo DI;  // class 
+        string PathToMove = @"C:\DVLDPeopleImages\";
 
+        // Create New Directory If Not Exist 
+        private bool  CheckDir()
+        {
+            if (Directory.Exists(PathToMove)) return true; // if the directory already exists return true
+            try { DI = Directory.CreateDirectory(PathToMove); } // create new directory if not exist
+            catch { return false; }
+            
+             return  true; 
+        }
+
+        private void CopyTheFileToNewDestination()
+        {
+            string ?FileName = Path.GetFileName(this?.ImagePath); // get the file name from the original path
+            string? CopyPath = Path.Combine(PathToMove, Guid.NewGuid().ToString() + Path.GetExtension(ImagePath)); // the new path 
+
+            File.Copy(this.ImagePath, CopyPath); // copy 
+
+            ImagePath = CopyPath; // change the path to the new path
+   
 
         }
+
+        private bool  ImageMoveToNewDir()
+        {
+            if(CheckDir() && File.Exists(this.ImagePath) )
+            {
+                CopyTheFileToNewDestination();
+                return File.Exists(this.ImagePath); // check if the new path exists and return true if it does, false otherwise
+            }
+            return false;
+        }
+
+    }
 }
