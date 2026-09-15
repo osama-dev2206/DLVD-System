@@ -16,7 +16,7 @@ namespace BussinessLogicLayer
 
         enMode Mode;
 
-        private clsUsers(int UserID , int UserPersonID , string UserName , string Password ,bool  IsActive )
+        private clsUsers(int UserID , int UserPersonID , string UserName , string Password ,bool  IsActive )// to get user info only
         {
             this.UserID = UserID;
             this.PersonID = UserPersonID;
@@ -64,6 +64,8 @@ namespace BussinessLogicLayer
 
             return false;
         }
+
+
 
     }
 

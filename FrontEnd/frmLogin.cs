@@ -95,8 +95,6 @@ namespace FrontEnd
                 MessageBox.Show("Invalid username or password.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            clsCurrentLoggedInUser.User = null;
-
         }
 
 

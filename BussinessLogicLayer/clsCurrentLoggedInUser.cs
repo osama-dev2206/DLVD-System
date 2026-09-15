@@ -7,7 +7,7 @@ namespace BussinessLogicLayer
     public static class clsCurrentLoggedInUser 
     {
 
-      public  static clsUsers ? User { get; set; }
+      public  static clsUsers ? User { get; internal set; }
 
 
     }
