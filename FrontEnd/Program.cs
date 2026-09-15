@@ -5,13 +5,30 @@ namespace FrontEnd
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
-        [STAThread]
+
+       private static frmLogin login = new frmLogin();
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmMain());
+
+            login.OnUserLoggedSuccess += OnLoginSuccess;
+
+            login.ShowDialog();
+
         }
+
+
+       static void OnLoginSuccess(bool  Res)
+        {
+            if(Res)
+            {
+              frmMain main = new frmMain();
+                login.Dispose();
+                main.ShowDialog();
+            }
+        }
+
+
     }
 }
