@@ -26,6 +26,11 @@ namespace FrontEnd
         {
             InitializeComponent();
 
+            if(!int.TryParse(PersonID.ToString(), out int id))
+            {
+                throw new ArgumentException("PersonID must be an integer.");
+            }
+
             FillCountriesInComboBox(); // fill the combobox with countries from the database
 
             if (PersonID == -1) // Add New Person
