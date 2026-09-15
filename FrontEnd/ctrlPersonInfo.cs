@@ -12,25 +12,23 @@ namespace FrontEnd
     public partial class ctrlPersonInfo : UserControl
     {
         clsPeople? Person;
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 
-        public int SentPersonID { private get; set; }
         public ctrlPersonInfo() { InitializeComponent(); } // تسليكي كدا هنعدل بعدين في ديزاينر بتاع فورم الي هيستعمل كنترول دا 
 
         public ctrlPersonInfo(int SentPersonID)
         {
             InitializeComponent();
-            this.SentPersonID = SentPersonID;
+
             if (SentPersonID > 0 && int.TryParse(SentPersonID.ToString(), out _))
             {
                 Person = clsPeople.GetPersonObjectByPersonID(SentPersonID);
-                UpdateUserControl();
+                UpdateUserControlViewingINfo();
 
             }
         }
 
 
-        void UpdateUserControl()
+        void UpdateUserControlViewingINfo()
         {
             if (Person is not null)
             {
@@ -44,7 +42,17 @@ namespace FrontEnd
                 this.labPersonPhone.Text = Person.Phone.ToString();
                 this.labPersonCountry.Text = Person.NationalityCountry.ToString();
                 if (File.Exists(Person.ImagePath))
-                    this.pbPFP.Image = Image.FromFile(Person.ImagePath);
+                {
+                    //this.pbPFP.Image = Image.FromFile(Person.ImagePath);
+                    using (var stream = new FileStream(Person.ImagePath,FileMode.Open,FileAccess.Read,FileShare.Read))
+                    {
+                        using (var temp = Image.FromStream(stream))
+                        {
+                            pbPFP.Image = new Bitmap(temp);
+                        }
+                    }
+
+                }
             }
         }
 
