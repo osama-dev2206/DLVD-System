@@ -10,12 +10,14 @@ namespace FrontEnd
 {
     public partial class frmAddEditPerson : Form
     {
-        int PersonID{get; set;}
+        int PersonID { get; set; }
         public frmAddEditPerson(int ID)
         {
+     
             PersonID = ID;
             InitializeComponent(); // the id will be passed to the user control to determine if we are adding a new person or editing an existing one
-            this.label1.Text = (PersonID ==-1) ? "Add New Person" : "Edit Person";
+            ctrlAddEditPerson1.OnPersonSaved += UpdatePersonIDAfterSaving;
+            this.labFormState.Text = (PersonID == -1) ? "Add New Person" : "Edit Person";
 
         }
 
@@ -23,8 +25,13 @@ namespace FrontEnd
         void UpdatePersonIDAfterSaving(int PersonID)
         {
             this.lblPersonID.Text = PersonID.ToString();
+            this.labFormState.Text = "Edit Person";
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
 
     }

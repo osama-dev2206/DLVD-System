@@ -16,14 +16,16 @@ namespace FrontEnd
         enum enMode { Add, Edit }
         enMode FormMode;
 
-        public ctrlAddEditPerson()
+        public ctrlAddEditPerson() // Temp For Intilization ONLY NOR REAL USE
         {
             InitializeComponent();
+            person = new clsPeople(); // create a new instance of clsPeople for adding a new person
         }
 
         public ctrlAddEditPerson(int PersonID)
         {
             InitializeComponent();
+
             FillCountriesInComboBox(); // fill the combobox with countries from the database
 
             if (PersonID == -1) // Add New Person
@@ -306,6 +308,8 @@ namespace FrontEnd
                     MessageBox.Show("Person saved successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     pbIndicator.Visible = false;
                     OnPersonSaving(); // raise the event to notify that the person has been saved and pass the person ID to the parent form
+                    FormMode = enMode.Edit; // change the form mode to edit after saving
+                    return; // exit the method to prevent updating the person again in the edit mode
                 }
                 else
                 {

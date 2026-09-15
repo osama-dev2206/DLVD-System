@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using BussinessLogicLayer;
 
 namespace FrontEnd
-{       
+{
     public partial class frmMain : Form
     {
         public frmMain()
@@ -16,6 +16,7 @@ namespace FrontEnd
             FrmPeopleManagement frmManagePeople = new FrmPeopleManagement();
             frmManagePeople.ShowDialog();
         }
+
 
     }
 }
