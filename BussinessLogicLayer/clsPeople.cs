@@ -146,8 +146,8 @@ namespace BussinessLogicLayer
         public static bool DeletePersonByPersonID(int PersonID)
         {
             string Path = ImagePathFromDB(PersonID);
-            DeleteImageFromDb( Path);
-            return clsDeletePerson.DeletePerson(PersonID);
+         
+            return (DeleteImageFromDir(Path) && clsDeletePerson.DeletePerson(PersonID) );
         }
 
         public static DataTable GetAllCountries()
@@ -298,7 +298,7 @@ namespace BussinessLogicLayer
             return true; // if the file does not exist, consider it deleted
         }
 
-        private static bool DeleteImageFromDb(string Path)
+        private static bool DeleteImageFromDir(string Path)
         {
             clsPeople p = new clsPeople();
             return p.DeleteOldImage(Path);

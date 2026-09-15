@@ -16,9 +16,13 @@ namespace FrontEnd
             if (int.TryParse(PersonID.ToString(), out int ID)) // please note that the user conmtrol is  handled in the runtime and the ID is passed to the form in designer file 
                 this.SelectedPersonID = ID;
             InitializeComponent();
-          
+
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
     }
 }
