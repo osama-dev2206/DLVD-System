@@ -134,7 +134,7 @@
             btnClose.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 128);
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnClose.Image = Properties.Resources.Save_32;
+            btnClose.Image = Properties.Resources.Close_32;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
             btnClose.Location = new Point(1124, 694);
             btnClose.Name = "btnClose";

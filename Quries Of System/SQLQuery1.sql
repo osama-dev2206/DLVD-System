@@ -20,3 +20,36 @@ select * from ShowBasicPersonInfo where PersonID =1 ;
 
 
 Select * from DetailedPersonInfo;
+
+Delete People
+Where People.PersonID = 1; 
+
+select * from People; 
+
+Insert Into People 
+values ('N2','Samia','Mohamoud','Abd-elrhamaan','Elgohry','1/1/2002', 2 , '1st main', '012562252','samia12313@gamil.com','empty',1);
+
+-- People Main Table 
+insert Into People ( NationalNumber , FirstName , SecondName , ThirdName , LastName , 
+DateOfBirth,Gender , Address , Phone ,Email  , ImagePath , NationalityCountryID)
+values ('@NationalNumber','@FirstName',
+'@SecondName','@ThirdName','@LastName', '@DateOfBirth' ,
+'@Gender','@Address' , '@Phone' ,'@Email' , 
+'@ImagePath' , '@NationalityCountryID' );
+
+
+Select Countries.CountryID 
+From Countries
+where Countries.CountryName = '@Name';
+
+select SCOPE_IDENTITY()
+
+select R='T'
+from People
+where People.NationalNumber = '@NationalNum';
+
+
+select People.ImagePath
+from People
+where People.PersonID = '@PersonID'
+
