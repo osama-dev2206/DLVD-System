@@ -16,7 +16,7 @@ namespace FrontEnd
      
             PersonID = ID;
             InitializeComponent(); // the id will be passed to the user control to determine if we are adding a new person or editing an existing one
-            ctrlAddEditPerson1.OnPersonSaved += UpdatePersonIDAfterSaving;
+            this.ctrlAddEditPerson2.OnPersonSaved += UpdatePersonIDAfterSaving;
             this.labFormState.Text = (PersonID == -1) ? "Add New Person" : "Edit Person";
 
         }
@@ -28,8 +28,10 @@ namespace FrontEnd
             this.labFormState.Text = "Edit Person";
         }
 
+
         private void btnClose_Click(object sender, EventArgs e)
         {
+
             this.Close();
         }
 

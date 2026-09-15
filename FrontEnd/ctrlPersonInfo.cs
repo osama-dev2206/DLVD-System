@@ -12,13 +12,14 @@ namespace FrontEnd
     public partial class ctrlPersonInfo : UserControl
     {
         clsPeople? Person;
-
+        int personID { get; set; }
         public ctrlPersonInfo() { InitializeComponent(); } // تسليكي كدا هنعدل بعدين في ديزاينر بتاع فورم الي هيستعمل كنترول دا 
 
         public ctrlPersonInfo(int SentPersonID)
         {
             InitializeComponent();
-
+            this.personID = SentPersonID;
+            
             if (SentPersonID > 0 && int.TryParse(SentPersonID.ToString(), out _))
             {
                 Person = clsPeople.GetPersonObjectByPersonID(SentPersonID);
@@ -57,5 +58,11 @@ namespace FrontEnd
         }
 
  
+        public void RefreshPersonInfo()
+        {
+            Person = clsPeople.GetPersonObjectByPersonID(personID);
+            UpdateUserControlViewingINfo();
+        }
+
     }
 }

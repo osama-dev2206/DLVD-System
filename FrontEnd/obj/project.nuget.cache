@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "/PFfo1yBjx4=",
+  "dgSpecHash": "sVZW38A59Ec=",
   "success": true,
   "projectFilePath": "D:\\Self-Study\\C#\\Projects (Windows Forms)\\DLVD - Full Project\\FrontEnd\\FrontEnd.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\MSI\\.nuget\\packages\\fastui.winforms\\1.1.0\\fastui.winforms.1.1.0.nupkg.sha512",
     "C:\\Users\\MSI\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.13\\microsoft.bcl.cryptography.9.0.13.nupkg.sha512",
     "C:\\Users\\MSI\\.nuget\\packages\\microsoft.data.sqlclient\\7.0.3\\microsoft.data.sqlclient.7.0.3.nupkg.sha512",
     "C:\\Users\\MSI\\.nuget\\packages\\microsoft.data.sqlclient.extensions.abstractions\\7.0.3\\microsoft.data.sqlclient.extensions.abstractions.7.0.3.nupkg.sha512",

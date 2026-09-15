@@ -30,7 +30,8 @@
         {
             label1 = new Label();
             btnClose = new Button();
-            ctrlPersonInfo1 = new ctrlPersonInfo(this.SelectedPersonID);
+            lblEdit = new LinkLabel();
+            ctrlPersonInfo2 = new ctrlPersonInfo(this.SelectedPersonID);
             SuspendLayout();
             // 
             // label1
@@ -62,12 +63,23 @@
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += btnClose_Click;
             // 
-            // ctrlPersonInfo1
+            // lblEdit
             // 
-            ctrlPersonInfo1.Location = new Point(28, 80);
-            ctrlPersonInfo1.Name = "ctrlPersonInfo1";
-            ctrlPersonInfo1.Size = new Size(886, 291);
-            ctrlPersonInfo1.TabIndex = 4;
+            lblEdit.AutoSize = true;
+            lblEdit.Location = new Point(767, 66);
+            lblEdit.Name = "lblEdit";
+            lblEdit.Size = new Size(82, 20);
+            lblEdit.TabIndex = 4;
+            lblEdit.TabStop = true;
+            lblEdit.Text = "Edit Person";
+            lblEdit.LinkClicked += lblEdit_LinkClicked;
+            // 
+            // ctrlPersonInfo2
+            // 
+            ctrlPersonInfo2.Location = new Point(17, 89);
+            ctrlPersonInfo2.Name = "ctrlPersonInfo2";
+            ctrlPersonInfo2.Size = new Size(897, 294);
+            ctrlPersonInfo2.TabIndex = 5;
             // 
             // FrmShowPersonDetails
             // 
@@ -75,7 +87,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(942, 440);
-            Controls.Add(ctrlPersonInfo1);
+            Controls.Add(ctrlPersonInfo2);
+            Controls.Add(lblEdit);
             Controls.Add(btnClose);
             Controls.Add(label1);
             MaximizeBox = false;
@@ -87,11 +100,14 @@
             StartPosition = FormStartPosition.CenterParent;
             Text = "FrmShowPersonDetails";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
         private Label label1;
         private Button btnClose;
-        private ctrlPersonInfo ctrlPersonInfo1;
+
+        private LinkLabel lblEdit;
+        private ctrlPersonInfo ctrlPersonInfo2;
     }
 }
