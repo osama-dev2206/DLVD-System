@@ -1,4 +1,5 @@
 ﻿using BussinessLogicLayer;
+using FrontEnd.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,7 @@ namespace FrontEnd
         public ctrlAddEditPerson(int PersonID)
         {
             InitializeComponent();
+            FillCountriesInComboBox(); // fill the combobox with countries from the database
 
             if (PersonID == -1) // Add New Person
             {
@@ -32,19 +34,20 @@ namespace FrontEnd
             }
             else // Edit
             {
+                FormMode = enMode.Edit;
                 this.person = clsPeople.GetPersonObjectByPersonID(PersonID); // get the person from the database by ID)
                 FillForm();
-                FormMode = enMode.Edit;
+            
             }
 
         }
 
         private void ctrlAddEditPerson_Load(object sender, EventArgs e)
         {
-            FillCountriesInComboBox(); // fill the combobox with countries from the database
+     
             this.dtDateOfBirth.MaxDate = DateTime.Now.AddYears(-18); // set the default date of birth to 18 years ago
 
-            openFileDialog1.InitialDirectory = "C:\\Users\\Public\\Downloads";
+            openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads"; ;
             openFileDialog1.DefaultExt = ".jpg";
             openFileDialog1.Filter = "Image Files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg";
             openFileDialog1.FileName = "Photo.jpg";//to set the default opening file 
@@ -67,7 +70,20 @@ namespace FrontEnd
             }
             else // set the image from the person's image path if it exists
             {
-                this.pbPFP.Image = Image.FromFile(this.person.ImagePath);
+                //this.pbPFP.Image = Image.FromFile(this.person.ImagePath);
+
+                using (var stream = new FileStream(
+             person.ImagePath,
+             FileMode.Open,
+             FileAccess.Read,
+             FileShare.Read))
+                {
+                    using (var temp = Image.FromStream(stream))
+                    {
+                        pbPFP.Image = new Bitmap(temp);
+                    }
+                }
+
                 lblSetImage.Visible = false;
                 labRemoveImage.Visible = true;
             }
@@ -96,7 +112,7 @@ namespace FrontEnd
 
                 this.tbAddress.Text = person.Address;
 
-                this.cbCountry.Text = person.NationalityCountry;
+                this.cbCountry.Text = ( person.NationalityCountry.Trim());
 
 
 
@@ -188,21 +204,19 @@ namespace FrontEnd
 
         private void tbNationalNum_TextChanged(object sender, EventArgs e)
         {
-
-
             if (!String.IsNullOrEmpty(tbNationalNum.Text))
             {
                 if (this.FormMode == enMode.Add && clsPeople.IsNationalNumberExists(tbNationalNum.Text))
                 {
-                    errorProvider1.SetError(tbNationalNum, "The national num field must be filled or you have entered existed national num ");
+                    errorProvider1.SetError(tbNationalNum, "you have entered existed national num ");
                     return;
                 }
 
                 person?.NationalNumber = tbNationalNum.Text;
                 errorProvider1.SetError(tbNationalNum, "");
             }
-            else
-                errorProvider1.SetError(tbNationalNum, "The national num field must be filled or you have entered existed national num ");
+            else if(String.IsNullOrEmpty(tbNationalNum.Text) && this.FormMode == enMode.Add)
+                errorProvider1.SetError(tbNationalNum, "The national num field must be filled");
         }
 
         private void rbGender_Click(object sender, EventArgs e)
@@ -268,6 +282,7 @@ namespace FrontEnd
             if (cbCountry.SelectedIndex != -1 && !string.IsNullOrEmpty(cbCountry?.SelectedItem?.ToString()))
             {
                 person?.NationalityCountry = cbCountry?.SelectedItem?.ToString(); // when you add the bussiness logic layer you will need to get the country id from the database and set it to the person object
+                person?.NationalityCountryID = clsPeople.GetCountryIDByItsName(cbCountry?.SelectedItem?.ToString());
             }
         }
 
@@ -300,9 +315,10 @@ namespace FrontEnd
 
             if(this.FormMode == enMode.Edit)
             {
-                if(this.CheckBeforeSave() && person.Save())
-                {
-                    MessageBox.Show("Person updated successfully.", "Info",MessageBoxButtons.OK , MessageBoxIcon.Information);
+        
+                if (this.CheckBeforeSave() && person.Save())
+                { 
+                        MessageBox.Show("Person updated successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -315,6 +331,8 @@ namespace FrontEnd
 
 
         // Event Handler To Update The person ID in another form 
+        
+
 
         public Action<int>? OnPersonSaved;
         private void OnPersonSaving()
@@ -326,8 +344,21 @@ namespace FrontEnd
         {
             if (DialogResult.OK == openFileDialog1.ShowDialog())
             {
+  
                 this?.person?.ImagePath = openFileDialog1.FileName; // set the image path to the person object
-                this.pbPFP.Image = Image.FromFile(this?.person?.ImagePath); // set the image to the picture box
+
+                using (var stream = new FileStream(
+             person.ImagePath,
+             FileMode.Open,
+             FileAccess.Read,
+             FileShare.Read))
+                {
+                    using (var temp = Image.FromStream(stream))
+                    {
+                        pbPFP.Image = new Bitmap(temp);
+                    }
+                }
+
                 lblSetImage.Visible = false;
                 labRemoveImage.Visible = true;
             }

@@ -23,6 +23,6 @@ namespace BussinessLogicLayer
         public  string ? ImagePath { get; set; }
 
         public string NationalityCountry { get; set; }
-        public int NationalityCountryID { get; set; }
+        public int ?NationalityCountryID { get; set; }
     }
 }
