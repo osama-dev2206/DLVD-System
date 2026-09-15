@@ -129,12 +129,12 @@
             // btnClose
             // 
             btnClose.AutoSize = true;
-            btnClose.BackgroundImage = Properties.Resources.Close_321;
             btnClose.BackgroundImageLayout = ImageLayout.None;
             btnClose.FlatAppearance.MouseDownBackColor = Color.Red;
             btnClose.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 128);
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            btnClose.Image = Properties.Resources.Save_32;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
             btnClose.Location = new Point(1124, 694);
             btnClose.Name = "btnClose";

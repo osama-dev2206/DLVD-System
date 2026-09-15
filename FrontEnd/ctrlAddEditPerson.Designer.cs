@@ -291,7 +291,7 @@
             // mtbEmail
             // 
             mtbEmail.Location = new Point(133, 215);
-            mtbEmail.Mask = "AAAaaaa\\@\\ AAaaaa";
+            mtbEmail.Mask = "AAAaaaa\\@\\ AAaaaa\\,\\c\\o\\m";
             mtbEmail.Name = "mtbEmail";
             mtbEmail.Size = new Size(145, 27);
             mtbEmail.TabIndex = 24;

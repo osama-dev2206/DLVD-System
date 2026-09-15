@@ -27,7 +27,7 @@ WHERE PersonID = @PersonID;";
 
         public static bool UpdatePerson(int personID,
     string nationalNumber, string firstName, string secondName, string thirdName, string lastName,
-    DateOnly dateOfBirth, int gender, string address, string phone, string ?email, string? imagePath, int nationalityCountryID)
+    DateOnly dateOfBirth, int gender, string address, string phone, string ?email, string? imagePath, int ?nationalityCountryID)
         {
 
             SqlConnection connection = dbSettings.DbConnection();
@@ -56,7 +56,7 @@ WHERE PersonID = @PersonID;";
                     command.Parameters.AddWithValue("@Email", email);
                 }
                 command.Parameters.AddWithValue("@ImagePath", imagePath);
-                command.Parameters.AddWithValue("@NationalityCountryID", nationalityCountryID);
+                command.Parameters.AddWithValue("@NationalityCountryID", nationalityCountryID); // جايله صفر
 
                int ?NumOfAffectedRows= command.ExecuteNonQuery();
 

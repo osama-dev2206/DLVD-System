@@ -145,6 +145,8 @@ namespace BussinessLogicLayer
 
         public static bool DeletePersonByPersonID(int PersonID)
         {
+            string Path = ImagePathFromDB(PersonID);
+            DeleteImageFromDb( Path);
             return clsDeletePerson.DeletePerson(PersonID);
         }
 
@@ -156,6 +158,11 @@ namespace BussinessLogicLayer
         private int ? GetCountryIDByItsName()
         {
             return clsGetCountryIDByCountryName.GetCountryID(this.NationalityCountry);
+        }
+
+        public static int ? GetCountryIDByItsName(string CountryName)
+        {
+            return clsGetCountryIDByCountryName.GetCountryID(CountryName);
         }
 
         public static bool IsNationalNumberExists(string NationalNumber)
@@ -186,13 +193,23 @@ namespace BussinessLogicLayer
 
         }
 
-
+        public string? OldPath { get; set; }
         private bool Update() // the old pfp will be deleted and the new one will be added to the new path
         {
             return clsUpdatePerson.UpdatePerson(personID:this.PersonID, nationalNumber: this.NationalNumber ,
                 firstName : this.FirstName ,  secondName: this.SecondName ,  thirdName: this.ThirdName,
                 lastName:this.LastName , dateOfBirth:this.DateOfBirth , gender:this.Gender , address: this.Address ,
                 phone:this.Phone , email:this?.Email , imagePath:this?.ImagePath , nationalityCountryID: this.NationalityCountryID); 
+        }
+
+        private string ? ImagePathFromDB()
+        {
+            return clsGetPersonImagePathOnly.GetPersonImagePath(this.PersonID);
+        }
+
+        private static string? ImagePathFromDB(int personID)
+        {
+            return clsGetPersonImagePathOnly.GetPersonImagePath(personID);
         }
 
         public bool Save()
@@ -211,21 +228,12 @@ namespace BussinessLogicLayer
 
                 case enMode.Update:
                     {
-                        string ?OldPath = this.ImagePath; // store the old path before deleting 
-                        if (Update() ) 
+                        string ?OldPath = ImagePathFromDB(); // store the old image path before updating
+                        if (ImageMoveToNewDir() && Update()  ) 
                         {
-                            // change in image path
-                            bool DeleteStatus = false;
-                            bool MoveStatus = false;
-                            if (OldPath != this.ImagePath)
-                            {
-                                DeleteStatus =  DeleteOldImage(OldPath);
-                                MoveStatus  = ImageMoveToNewDir();
-
-                                return (DeleteStatus ==  true && MoveStatus == true )? true : false;
-                            }
-
-                            return  true; // update was successful and no image path change was needed
+                      
+                            return DeleteOldImage(OldPath);
+                            
                         }
                         return false;
                     }
@@ -290,7 +298,11 @@ namespace BussinessLogicLayer
             return true; // if the file does not exist, consider it deleted
         }
 
-
+        private static bool DeleteImageFromDb(string Path)
+        {
+            clsPeople p = new clsPeople();
+            return p.DeleteOldImage(Path);
+        }
 
     }
 }
