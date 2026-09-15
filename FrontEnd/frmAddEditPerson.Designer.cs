@@ -32,8 +32,8 @@
             label1 = new Label();
             pictureBox3 = new PictureBox();
             lblPersonID = new Label();
-            ctrlAddEditPerson1 = new ctrlAddEditPerson(this.PersonID);
             button1 = new Button();
+            ctrlAddEditPerson2 = new ctrlAddEditPerson(this.PersonID);
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
@@ -79,13 +79,6 @@
             lblPersonID.TabIndex = 15;
             lblPersonID.Text = "??";
             // 
-            // ctrlAddEditPerson1
-            // 
-            ctrlAddEditPerson1.Location = new Point(12, 81);
-            ctrlAddEditPerson1.Name = "ctrlAddEditPerson1";
-            ctrlAddEditPerson1.Size = new Size(1082, 377);
-            ctrlAddEditPerson1.TabIndex = 16;
-            // 
             // button1
             // 
             button1.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -99,14 +92,21 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += btnClose_Click;
             // 
+            // ctrlAddEditPerson2
+            // 
+            ctrlAddEditPerson2.Location = new Point(12, 83);
+            ctrlAddEditPerson2.Name = "ctrlAddEditPerson2";
+            ctrlAddEditPerson2.Size = new Size(1077, 366);
+            ctrlAddEditPerson2.TabIndex = 18;
+            // 
             // frmAddEditPerson
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1101, 511);
+            Controls.Add(ctrlAddEditPerson2);
             Controls.Add(button1);
-            Controls.Add(ctrlAddEditPerson1);
             Controls.Add(lblPersonID);
             Controls.Add(pictureBox3);
             Controls.Add(label1);
@@ -115,6 +115,7 @@
             MinimizeBox = false;
             Name = "frmAddEditPerson";
             ShowIcon = false;
+            ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
             Text = "AddEditPerson";
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -130,5 +131,6 @@
         private Label lblPersonID;
         private ctrlAddEditPerson ctrlAddEditPerson1;
         private Button button1;
+        private ctrlAddEditPerson ctrlAddEditPerson2;
     }
 }

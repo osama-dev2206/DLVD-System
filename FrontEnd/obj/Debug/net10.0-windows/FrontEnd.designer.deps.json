@@ -6,6 +6,14 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v10.0": {
+      "FastUI.WinForms/1.1.0": {
+        "runtime": {
+          "lib/net8.0-windows7.0/FastUI.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
+        }
+      },
       "Microsoft.Bcl.Cryptography/9.0.13": {
         "runtime": {
           "lib/net9.0/Microsoft.Bcl.Cryptography.dll": {
@@ -278,6 +286,13 @@
     }
   },
   "libraries": {
+    "FastUI.WinForms/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TCaLHCRPhLPPR5i+Gac2lndklI1VAwRakBLXWG0rI0fhsOIJDX6+50VFdvO/RCaHzqV3cs7QpGOeT2VwHbk8jA==",
+      "path": "fastui.winforms/1.1.0",
+      "hashPath": "fastui.winforms.1.1.0.nupkg.sha512"
+    },
     "Microsoft.Bcl.Cryptography/9.0.13": {
       "type": "package",
       "serviceable": true,

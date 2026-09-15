@@ -2,6 +2,18 @@
   "version": 4,
   "targets": {
     "net10.0-windows": {
+      "FastUI.WinForms/1.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0-windows7.0/FastUI.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/FastUI.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      },
       "Microsoft.Bcl.Cryptography/9.0.13": {
         "type": "package",
         "compile": {
@@ -405,6 +417,22 @@
     }
   },
   "libraries": {
+    "FastUI.WinForms/1.1.0": {
+      "sha512": "TCaLHCRPhLPPR5i+Gac2lndklI1VAwRakBLXWG0rI0fhsOIJDX6+50VFdvO/RCaHzqV3cs7QpGOeT2VwHbk8jA==",
+      "type": "package",
+      "path": "fastui.winforms/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "fastui.winforms.1.1.0.nupkg.sha512",
+        "fastui.winforms.nuspec",
+        "icon.png",
+        "lib/net48/FastUI.dll",
+        "lib/net8.0-windows7.0/FastUI.dll"
+      ]
+    },
     "Microsoft.Bcl.Cryptography/9.0.13": {
       "sha512": "5T+bH3Lb1nEe8Hf/ixMxLmhlrx5wRi53wv7OhVwG2F1ZviW1ejFRS1NHur3uqPpJRGtkQwUchtY6zhVK2R+v+w==",
       "type": "package",
@@ -997,7 +1025,8 @@
   },
   "projectFileDependencyGroups": {
     "net10.0-windows": [
-      "BussinessLogicLayer >= 1.0.0"
+      "BussinessLogicLayer >= 1.0.0",
+      "FastUI.WinForms >= 1.1.0"
     ]
   },
   "packageFolders": {
@@ -1050,6 +1079,12 @@
       "net10.0-windows": {
         "framework": "net10.0-windows7.0",
         "targetAlias": "net10.0-windows",
+        "dependencies": {
+          "FastUI.WinForms": {
+            "target": "Package",
+            "version": "[1.1.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

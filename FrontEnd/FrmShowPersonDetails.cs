@@ -24,5 +24,17 @@ namespace FrontEnd
             this.Close();
         }
 
+       
+
+        private void lblEdit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmAddEditPerson frm = new frmAddEditPerson(SelectedPersonID); // call the edit form 
+            
+            frm.ShowDialog();
+            ctrlPersonInfo2.RefreshPersonInfo(); 
+            frm.Dispose();
+        }
+
+
     }
 }
