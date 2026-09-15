@@ -7,27 +7,50 @@ namespace FrontEnd
         /// </summary>
 
        private static frmLogin login = new frmLogin();
+        private static frmMain main = new frmMain();
         static void Main()
         {
 
             ApplicationConfiguration.Initialize();
 
+            // The First Time 
             login.OnUserLoggedSuccess += OnLoginSuccess;
-
+            main.OnUserLogOut += OnLogout;
             login.ShowDialog();
 
         }
 
 
-       static void OnLoginSuccess(bool  Res)
+        static void OnLoginSuccess(bool Res)
         {
-            if(Res)
+            if (Res)
             {
-              frmMain main = new frmMain();
                 login.Dispose();
                 main.ShowDialog();
             }
+
+
         }
+
+        static void OnLogout(bool Res)
+        {
+            if (Res)
+            {
+                main.Dispose(); // free the resources used by the main form
+         
+                login = new frmLogin(); // show a new instance of the login form
+                login.OnUserLoggedSuccess += OnLoginSuccess; // re-subscribe to the login success event
+
+                main = new frmMain(); // create a new instance of the main form
+                main.OnUserLogOut += OnLogout;
+
+                login.ShowDialog();
+            }
+
+        }
+
+
+
 
 
     }

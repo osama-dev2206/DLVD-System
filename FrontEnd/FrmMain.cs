@@ -17,6 +17,21 @@ namespace FrontEnd
             frmManagePeople.ShowDialog();
         }
 
+        private void showCurrentUserInfo_Click(object sender, EventArgs e)
+        {
+            frmShowCurrentUserInfo frmShowCurrentUserInfo = new frmShowCurrentUserInfo(clsCurrentLoggedInUser.User.PersonID);
+            frmShowCurrentUserInfo.ShowDialog();
+        }
+
+        internal Action<bool> OnUserLogOut;
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnUserLogOut?.Invoke(true);
+            this.Close();
+        }
+
+
 
     }
 }

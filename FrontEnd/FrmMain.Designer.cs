@@ -31,6 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             menuStrip1 = new MenuStrip();
             TSMPeople = new ToolStripMenuItem();
+            soonToolStripMenuItem = new ToolStripMenuItem();
+            accountSettToolStripMenuItem = new ToolStripMenuItem();
+            ShowCurrentUserInfo = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripSeparator();
+            changeCurrentUserPasswordToolStripMenuItem = new ToolStripMenuItem();
+            logoutToolStripMenuItem = new ToolStripMenuItem();
             label1 = new Label();
             label2 = new Label();
             menuStrip1.SuspendLayout();
@@ -40,7 +46,7 @@
             // 
             menuStrip1.BackColor = Color.Gainsboro;
             menuStrip1.ImageScalingSize = new Size(30, 30);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { TSMPeople });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { TSMPeople, soonToolStripMenuItem, accountSettToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1852, 39);
@@ -58,6 +64,48 @@
             TSMPeople.Size = new Size(128, 35);
             TSMPeople.Text = "People";
             TSMPeople.Click += TSMPeople_Click;
+            // 
+            // soonToolStripMenuItem
+            // 
+            soonToolStripMenuItem.Name = "soonToolStripMenuItem";
+            soonToolStripMenuItem.Size = new Size(65, 35);
+            soonToolStripMenuItem.Text = "Soon !";
+            // 
+            // accountSettToolStripMenuItem
+            // 
+            accountSettToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ShowCurrentUserInfo, toolStripMenuItem1, changeCurrentUserPasswordToolStripMenuItem, logoutToolStripMenuItem });
+            accountSettToolStripMenuItem.Image = Properties.Resources.account_settings_64;
+            accountSettToolStripMenuItem.Name = "accountSettToolStripMenuItem";
+            accountSettToolStripMenuItem.Size = new Size(131, 35);
+            accountSettToolStripMenuItem.Text = "My Account";
+            // 
+            // ShowCurrentUserInfo
+            // 
+            ShowCurrentUserInfo.Image = Properties.Resources.PersonDetails_32;
+            ShowCurrentUserInfo.Name = "ShowCurrentUserInfo";
+            ShowCurrentUserInfo.Size = new Size(302, 36);
+            ShowCurrentUserInfo.Text = "Show Current User Info";
+            ShowCurrentUserInfo.Click += showCurrentUserInfo_Click;
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(299, 6);
+            // 
+            // changeCurrentUserPasswordToolStripMenuItem
+            // 
+            changeCurrentUserPasswordToolStripMenuItem.Image = Properties.Resources.Password_32;
+            changeCurrentUserPasswordToolStripMenuItem.Name = "changeCurrentUserPasswordToolStripMenuItem";
+            changeCurrentUserPasswordToolStripMenuItem.Size = new Size(302, 36);
+            changeCurrentUserPasswordToolStripMenuItem.Text = "Change Current User Password";
+            // 
+            // logoutToolStripMenuItem
+            // 
+            logoutToolStripMenuItem.Image = Properties.Resources.sign_out_32__2;
+            logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            logoutToolStripMenuItem.Size = new Size(302, 36);
+            logoutToolStripMenuItem.Text = "Logout";
+            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
             // label1
             // 
@@ -110,5 +158,11 @@
         private ToolStripMenuItem TSMPeople;
         private Label label1;
         private Label label2;
+        private ToolStripMenuItem soonToolStripMenuItem;
+        private ToolStripMenuItem accountSettToolStripMenuItem;
+        private ToolStripMenuItem ShowCurrentUserInfo;
+        private ToolStripSeparator toolStripMenuItem1;
+        private ToolStripMenuItem changeCurrentUserPasswordToolStripMenuItem;
+        private ToolStripMenuItem logoutToolStripMenuItem;
     }
 }
