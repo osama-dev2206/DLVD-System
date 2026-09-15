@@ -101,7 +101,7 @@
             tbUsername.Size = new Size(272, 27);
             tbUsername.TabIndex = 2;
             tbUsername.TextChanged += tbUsername_TextChanged;
-            tbUsername.Validating += tbUserNamePassword_Validating;
+            tbUsername.Validating += tbUsername_Validating;
             // 
             // tbPassword
             // 
@@ -113,7 +113,6 @@
             tbPassword.Size = new Size(272, 27);
             tbPassword.TabIndex = 3;
             tbPassword.TextChanged += tbPassword_TextChanged;
-            tbPassword.Validating += tbUserNamePassword_Validating;
             // 
             // label4
             // 
@@ -162,7 +161,7 @@
             btnLogin.HoverBorder = Color.FromArgb(52, 115, 220);
             btnLogin.HoverFillColor = Color.FromArgb(52, 115, 220);
             btnLogin.HoverTextColor = Color.White;
-            btnLogin.Location = new Point(498, 291);
+            btnLogin.Location = new Point(512, 291);
             btnLogin.MoreFontSettings = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             btnLogin.MoveTextHorizontal = 0;
             btnLogin.MoveTextVertical = 0;
@@ -175,6 +174,7 @@
             btnLogin.Text = "Login";
             btnLogin.TextPosition = FastUI.FastUILibrary.Core.FastTextAlign.Center;
             btnLogin.Theme = "GoogleMaterial";
+            btnLogin.Click += btnLogin_Click;
             // 
             // errorProvider1
             // 
@@ -198,6 +198,7 @@
             Name = "frmLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login - DVLD";
+            FormClosing += frmLogin_FormClosing;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
