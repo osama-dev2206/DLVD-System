@@ -28,14 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             menuStrip1 = new MenuStrip();
             TSMPeople = new ToolStripMenuItem();
+            label1 = new Label();
+            label2 = new Label();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.BackColor = Color.Gainsboro;
+            menuStrip1.ImageScalingSize = new Size(30, 30);
             menuStrip1.Items.AddRange(new ToolStripItem[] { TSMPeople });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
@@ -45,25 +49,54 @@
             // 
             // TSMPeople
             // 
+            TSMPeople.BackColor = Color.Silver;
             TSMPeople.BackgroundImageLayout = ImageLayout.Zoom;
             TSMPeople.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TSMPeople.ForeColor = Color.Black;
             TSMPeople.Image = Properties.Resources.People_64;
             TSMPeople.Name = "TSMPeople";
-            TSMPeople.Size = new Size(118, 35);
+            TSMPeople.Size = new Size(128, 35);
             TSMPeople.Text = "People";
             TSMPeople.Click += TSMPeople_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Tahoma", 72F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Transparent;
+            label1.Location = new Point(155, 290);
+            label1.Name = "label1";
+            label1.Size = new Size(1163, 145);
+            label1.TabIndex = 1;
+            label1.Text = "Welcome To DVLD";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Gainsboro;
+            label2.Location = new Point(204, 454);
+            label2.Name = "label2";
+            label2.Size = new Size(1103, 48);
+            label2.TabIndex = 2;
+            label2.Text = "Driving and Vehicle License Department Management";
             // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.wallpaper;
+            BackgroundImage = Properties.Resources.beautiful_shot_bridge_reflective_lake_sunset;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1852, 822);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "frmMain";
-            Text = "Main Form";
+            Text = "DVLD Main Form";
             WindowState = FormWindowState.Maximized;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -75,5 +108,7 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem TSMPeople;
+        private Label label1;
+        private Label label2;
     }
 }

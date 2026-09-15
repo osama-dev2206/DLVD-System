@@ -25,18 +25,22 @@ namespace FrontEnd
             if (dt != null && dt.Rows.Count > 0)
             {
                 this.DGVPeople.DataSource = dt;
+                this.labCountOfRecords.Text = DGVPeople.Rows.Count.ToString();
             }
             else
             {
-                DGVPeople.Rows.Clear();
+                DGVPeople.DataSource = null;
+                this.labCountOfRecords.Text = "0";
             }
+
+      
         }
 
         private void FrmPeopleManagement_Load(object sender, EventArgs e)
         {
             cbFilter.SelectedIndex = 0; // none is the default 
             tbSearchBy.Visible = false;
-            if (DGVPeople is not null) this.labCountOfRecords.Text = DGVPeople.Rows.Count.ToString();
+  
         }
 
 
