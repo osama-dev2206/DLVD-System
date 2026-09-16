@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json;
+using System.IO;
 
 namespace BussinessLogicLayer
 {
@@ -66,8 +68,55 @@ namespace BussinessLogicLayer
         }
 
 
+        // Save Login Cardinealties Info (Remember Me) in the system
+        struct stLoginInfo
+        {
+            public string UserName { get; set; }
+            public string Password { get; set; }
+        }
 
-    }
+        static stLoginInfo SavedLoginInfo = new stLoginInfo();
+
+        private static string SavedLoginInfoPath = Path.Combine(@"C:\DVLDSavedLoginInfo", "SavedLogin.json");
+        public static void SaveLoginInfoAsJson(string username ,string password)
+        {
+            // Fill struct with the login info
+            SavedLoginInfo.UserName = username;
+            SavedLoginInfo.Password = password;
+
+            DeleteSavedLoginInfo(); // the requirements requires to save only one login info, so if the file is exist we will delete it and create a new one
+            
+            string JSONString = JsonSerializer.Serialize(SavedLoginInfo); // convert the anonymous type to JSON string
+           Directory.CreateDirectory(@"C:\DVLDSavedLoginInfo"); // create dir if it isn't exist
+            File.WriteAllText(SavedLoginInfoPath,JSONString); // write the json file to the path
+        }
+
+        public static void GetSavedLoginInfo(out string usename , out string password)
+        {
+            usename = string.Empty;
+            password = string.Empty;    
+
+            string JsonStringFromFile = File.ReadAllText(SavedLoginInfoPath);
+
+            stLoginInfo temp = new stLoginInfo();
+            temp= JsonSerializer.Deserialize<stLoginInfo>(JsonStringFromFile); // convert the JSON File to struct object
+
+            usename = temp.UserName;
+            password = temp.Password;
+        }
+
+
+        public static void DeleteSavedLoginInfo()
+        {
+            if (File.Exists(SavedLoginInfoPath))
+            {
+                File.Delete(SavedLoginInfoPath);
+            }
+        }
+
+
+
+        }
 
 
 }
