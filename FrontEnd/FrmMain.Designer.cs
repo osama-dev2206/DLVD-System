@@ -74,36 +74,37 @@
             // accountSettToolStripMenuItem
             // 
             accountSettToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ShowCurrentUserInfo, toolStripMenuItem1, changeCurrentUserPasswordToolStripMenuItem, logoutToolStripMenuItem });
+            accountSettToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             accountSettToolStripMenuItem.Image = Properties.Resources.account_settings_64;
             accountSettToolStripMenuItem.Name = "accountSettToolStripMenuItem";
-            accountSettToolStripMenuItem.Size = new Size(131, 35);
+            accountSettToolStripMenuItem.Size = new Size(164, 35);
             accountSettToolStripMenuItem.Text = "My Account";
             // 
             // ShowCurrentUserInfo
             // 
             ShowCurrentUserInfo.Image = Properties.Resources.PersonDetails_32;
             ShowCurrentUserInfo.Name = "ShowCurrentUserInfo";
-            ShowCurrentUserInfo.Size = new Size(302, 36);
+            ShowCurrentUserInfo.Size = new Size(389, 36);
             ShowCurrentUserInfo.Text = "Show Current User Info";
             ShowCurrentUserInfo.Click += showCurrentUserInfo_Click;
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(299, 6);
+            toolStripMenuItem1.Size = new Size(386, 6);
             // 
             // changeCurrentUserPasswordToolStripMenuItem
             // 
             changeCurrentUserPasswordToolStripMenuItem.Image = Properties.Resources.Password_32;
             changeCurrentUserPasswordToolStripMenuItem.Name = "changeCurrentUserPasswordToolStripMenuItem";
-            changeCurrentUserPasswordToolStripMenuItem.Size = new Size(302, 36);
+            changeCurrentUserPasswordToolStripMenuItem.Size = new Size(389, 36);
             changeCurrentUserPasswordToolStripMenuItem.Text = "Change Current User Password";
             // 
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.Image = Properties.Resources.sign_out_32__2;
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(302, 36);
+            logoutToolStripMenuItem.Size = new Size(389, 36);
             logoutToolStripMenuItem.Text = "Logout";
             logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 

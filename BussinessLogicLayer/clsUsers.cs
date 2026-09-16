@@ -107,26 +107,27 @@ namespace BussinessLogicLayer
             File.WriteAllText(SavedLoginInfoPath,JSONString); // write the json file to the path
         }
 
-        public static void GetSavedLoginInfo(out string usename , out string password)
+        public static bool GetSavedLoginInfo(out string usename , out string password)
         {
             usename = string.Empty;
             password = string.Empty;
 
-            if (!File.Exists(SavedLoginInfoPath)) return;  // if file doesn't exist we will return empty strings
+            if (!File.Exists(SavedLoginInfoPath)) return false;  // if file doesn't exist we will return empty strings
 
             string JsonStringFromFile = File.ReadAllText(SavedLoginInfoPath);
 
             stLoginInfo temp = new stLoginInfo();
             temp= JsonSerializer.Deserialize<stLoginInfo>(JsonStringFromFile); // convert the JSON File to struct object
 
-            if (!temp.RememberMe) return; // if the user didn't check remember me we will return empty strings
+            if (!temp.RememberMe) return false; // if the user didn't check remember me we will return empty strings
 
             usename = temp.UserName;
             password = temp.Password;
+            return true; 
         }
 
 
-        private static void DeleteSavedLoginInfo()
+        public static void DeleteSavedLoginInfo()
         {
             if (File.Exists(SavedLoginInfoPath))
             {
