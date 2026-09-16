@@ -9,12 +9,12 @@ namespace DataAccessLayer
     {
         static string Query = @"Select R = 'T'
 from Users
-where Users.Password = @Password  and  Users.UserName = @Username ;";
+where Users.Password = @Password  and  Users.UserName = @Username   ;";
 
         public static bool IsLoginInfoValid(string Username, string Password)
         {
             if (String.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password)) return false; 
-            bool res = false;
+            bool  res = false;
 
             SqlConnection connection = dbSettings.DbConnection();
             try
