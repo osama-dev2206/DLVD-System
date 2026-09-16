@@ -144,7 +144,7 @@
             cbRememberme.TabIndex = 6;
             cbRememberme.Text = "Remember Me ?";
             cbRememberme.UseVisualStyleBackColor = true;
-
+            cbRememberme.CheckedChanged += cbRememberme_CheckedChanged;
             // 
             // btnLogin
             // 

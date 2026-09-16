@@ -74,7 +74,7 @@ namespace FrontEnd
         void RaiseOnUserLoggedSuccess(bool isLoggedIn)
         {
             OnUserLoggedSuccess?.Invoke(isLoggedIn);
-            clsUsers.SaveLoginInfoAsJson(this.Username ,this.Password, cbRememberme.Checked);
+
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -87,9 +87,11 @@ namespace FrontEnd
 
             if (clsUsers.IsLoginValid(Username, Password))
             {
-                this.DialogResult = DialogResult.OK;
+                if (cbRememberme.Checked)
+                    clsUsers.SaveLoginInfoAsJson(this.Username, this.Password, cbRememberme.Checked);
+
                 RaiseOnUserLoggedSuccess(true);
-                this.Close();
+
             }
             else
             {
@@ -98,13 +100,21 @@ namespace FrontEnd
 
         }
 
-
+        bool LoadedSuccessLoginInfo = false;
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            clsUsers.GetSavedLoginInfo(out string savedUsername, out string savedPassword);
+            LoadedSuccessLoginInfo=  clsUsers.GetSavedLoginInfo(out string savedUsername, out string savedPassword);
             tbPassword.Text = savedPassword;
             tbUsername.Text = savedUsername;
             cbRememberme.Checked = true;
+        }
+
+        private void cbRememberme_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!cbRememberme.Checked)
+                clsUsers.DeleteSavedLoginInfo();
+            else if(cbRememberme.Checked && !String.IsNullOrEmpty( Password) && !String.IsNullOrEmpty(Username ) && !LoadedSuccessLoginInfo )
+                   clsUsers.SaveLoginInfoAsJson(this.Username, this.Password, cbRememberme.Checked);
         }
 
     }
