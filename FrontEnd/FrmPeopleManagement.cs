@@ -148,7 +148,7 @@ namespace FrontEnd
 
                 }
                 else 
-                    MessageBox.Show("Failed to delete person.", "Delete Person", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to delete person(person maybe connected with another entity).", "Delete Person", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
