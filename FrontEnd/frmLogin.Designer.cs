@@ -144,6 +144,7 @@
             cbRememberme.TabIndex = 6;
             cbRememberme.Text = "Remember Me ?";
             cbRememberme.UseVisualStyleBackColor = true;
+
             // 
             // btnLogin
             // 
@@ -199,6 +200,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login - DVLD";
             FormClosing += frmLogin_FormClosing;
+            Load += frmLogin_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();

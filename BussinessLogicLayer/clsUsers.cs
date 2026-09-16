@@ -54,6 +54,8 @@ namespace BussinessLogicLayer
             return User;
         }
 
+
+
         public static bool IsLoginValid(string Username, string Password)
         {
             if (Username is null || Password is null)
@@ -61,6 +63,7 @@ namespace BussinessLogicLayer
             if (clsCheckLoginInfo.IsLoginInfoValid(Username.Trim(), Password.Trim()) )
             {
                 clsCurrentLoggedInUser.User = GetUserObjByUsernameAndPassword(Username , Password);
+ 
                 return true;
             }
 
@@ -73,40 +76,57 @@ namespace BussinessLogicLayer
         {
             public string UserName { get; set; }
             public string Password { get; set; }
+            public bool RememberMe { get; set; }
+            public stLoginInfo()
+            {
+                RememberMe = false; 
+            }
         }
 
         static stLoginInfo SavedLoginInfo = new stLoginInfo();
 
         private static string SavedLoginInfoPath = Path.Combine(@"C:\DVLDSavedLoginInfo", "SavedLogin.json");
-        public static void SaveLoginInfoAsJson(string username ,string password)
+        public static void SaveLoginInfoAsJson(string username ,string password, bool RememberMe)
         {
+            if (!RememberMe) // donot remeber me 
+            {
+                return; // if the user checked remember me we will save the info in the json file
+            }
+
             // Fill struct with the login info
             SavedLoginInfo.UserName = username;
             SavedLoginInfo.Password = password;
+            SavedLoginInfo.RememberMe = RememberMe;
+
+            Directory.CreateDirectory(@"C:\DVLDSavedLoginInfo"); // create dir if it isn't exist
 
             DeleteSavedLoginInfo(); // the requirements requires to save only one login info, so if the file is exist we will delete it and create a new one
             
             string JSONString = JsonSerializer.Serialize(SavedLoginInfo); // convert the anonymous type to JSON string
-           Directory.CreateDirectory(@"C:\DVLDSavedLoginInfo"); // create dir if it isn't exist
+
             File.WriteAllText(SavedLoginInfoPath,JSONString); // write the json file to the path
         }
 
         public static void GetSavedLoginInfo(out string usename , out string password)
         {
             usename = string.Empty;
-            password = string.Empty;    
+            password = string.Empty;
+
+            if (!File.Exists(SavedLoginInfoPath)) return;  // if file doesn't exist we will return empty strings
 
             string JsonStringFromFile = File.ReadAllText(SavedLoginInfoPath);
 
             stLoginInfo temp = new stLoginInfo();
             temp= JsonSerializer.Deserialize<stLoginInfo>(JsonStringFromFile); // convert the JSON File to struct object
 
+            if (!temp.RememberMe) return; // if the user didn't check remember me we will return empty strings
+
             usename = temp.UserName;
             password = temp.Password;
         }
 
 
-        public static void DeleteSavedLoginInfo()
+        private static void DeleteSavedLoginInfo()
         {
             if (File.Exists(SavedLoginInfoPath))
             {
