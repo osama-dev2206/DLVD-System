@@ -60,14 +60,30 @@ namespace BussinessLogicLayer
             return clsIsUserActive.IsUserActive(username, clsIsUserActive.enCheckBy.ByUserName);
         }
 
+        public static bool IsUserActiveByPersonID(int PersonID)
+        {
+            if (!int.TryParse(PersonID.ToString() , out _ )) return false;
+            return clsIsUserActive.IsUserActive(PersonID, clsIsUserActive.enCheckBy.ByPersonID);
+        }
+
+        public static bool IsUserActiveByUserID(int UserD)
+        {
+            if (!int.TryParse(UserD.ToString(), out _ )) return false;
+            return clsIsUserActive.IsUserActive(UserD, clsIsUserActive.enCheckBy.ByUserID);
+        }
+
+
+
         public static bool  IsLoginValid(string Username, string Password)
         {
-            if (Username is null || Password is null) 
+            if (String.IsNullOrEmpty(Username ) || String.IsNullOrEmpty(Password) ) 
                 return false;
-            if ( IsUserActiveByUserName(Username) && clsCheckLoginInfo.IsLoginInfoValid(Username.Trim(), Password.Trim() ) )
+
+            Username = Username.Trim();
+            Password = Password.Trim();
+            if ( IsUserActiveByUserName(Username) && clsCheckLoginInfo.IsLoginInfoValid(Username, Password) )
             {
-                clsCurrentLoggedInUser.User = GetUserObjByUsernameAndPassword(Username , Password);
- 
+                clsCurrentLoggedInUser.User = GetUserObjByUsernameAndPassword(Username , Password); // set the current logged in user object
                 return true;
             }
 
@@ -141,7 +157,10 @@ namespace BussinessLogicLayer
 
 
 
-        }
+
+
+
+    }
 
 
 }
