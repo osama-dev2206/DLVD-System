@@ -85,7 +85,13 @@ namespace FrontEnd
                 return;
             }
 
-            if (clsUsers.IsLoginValid(Username, Password))
+            if(!clsUsers.IsUserActiveByUserName(Username))
+            {
+                MessageBox.Show("This user is not active. Please contact the administrator.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+            }
+
+            else if (clsUsers.IsLoginValid(Username, Password))
             {
                 if (cbRememberme.Checked)
                     clsUsers.SaveLoginInfoAsJson(this.Username, this.Password, cbRememberme.Checked);
