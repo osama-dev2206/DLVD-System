@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using System.IO;
 
 namespace BussinessLogicLayer
 {
@@ -73,7 +74,6 @@ namespace BussinessLogicLayer
         }
 
 
-
         public static bool  IsLoginValid(string Username, string Password)
         {
             if (String.IsNullOrEmpty(Username ) || String.IsNullOrEmpty(Password) ) 
@@ -81,9 +81,11 @@ namespace BussinessLogicLayer
 
             Username = Username.Trim();
             Password = Password.Trim();
+            // the password is encrypted  , so we will encrypt the password before checking it in the database
+            Password = clsEncryptDecrypt.Encrypt( Password);
             if ( IsUserActiveByUserName(Username) && clsCheckLoginInfo.IsLoginInfoValid(Username, Password) )
             {
-                clsCurrentLoggedInUser.User = GetUserObjByUsernameAndPassword(Username , Password); // set the current logged in user object
+                clsCurrentLoggedInUser.User = GetUserObjByUsernameAndPassword(Username , Password ); // set the current logged in user object
                 return true;
             }
 
@@ -115,7 +117,7 @@ namespace BussinessLogicLayer
 
             // Fill struct with the login info
             SavedLoginInfo.UserName = username;
-            SavedLoginInfo.Password = password;
+            SavedLoginInfo.Password = clsEncryptDecrypt.Encrypt(password) ; // encrypt the password before saving it in the json file
             SavedLoginInfo.RememberMe = RememberMe;
 
             Directory.CreateDirectory(@"C:\DVLDSavedLoginInfo"); // create dir if it isn't exist
@@ -142,7 +144,7 @@ namespace BussinessLogicLayer
             if (!temp.RememberMe) return false; // if the user didn't check remember me we will return empty strings
 
             usename = temp.UserName;
-            password = temp.Password;
+            password = clsEncryptDecrypt.Decrypt(temp.Password);
             return true; 
         }
 
