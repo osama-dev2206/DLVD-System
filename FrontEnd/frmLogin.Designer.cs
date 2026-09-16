@@ -102,6 +102,10 @@
             tbUsername.TabIndex = 2;
             tbUsername.TextChanged += tbUsername_TextChanged;
             tbUsername.Validating += tbUsername_Validating;
+            //
+            //
+            // Login Button
+
             // 
             // tbPassword
             // 

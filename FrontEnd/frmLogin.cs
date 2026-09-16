@@ -117,6 +117,19 @@ namespace FrontEnd
                    clsUsers.SaveLoginInfoAsJson(this.Username, this.Password, cbRememberme.Checked);
         }
 
+        // On Enter Key Press, Trigger the Login Button Click Event
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Enter))
+            {
+                btnLogin_Click(null , EventArgs.Empty);
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+
+        }
+
 
 
     }
