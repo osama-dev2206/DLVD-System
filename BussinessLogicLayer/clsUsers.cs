@@ -54,13 +54,17 @@ namespace BussinessLogicLayer
             return User;
         }
 
-
-
-        public static bool IsLoginValid(string Username, string Password)
+       public static bool  IsUserActiveByUserName(string username)
         {
-            if (Username is null || Password is null)
-                 return false;
-            if (clsCheckLoginInfo.IsLoginInfoValid(Username.Trim(), Password.Trim()) )
+            if (string.IsNullOrEmpty(username)) return false;
+            return clsIsUserActive.IsUserActive(username, clsIsUserActive.enCheckBy.ByUserName);
+        }
+
+        public static bool  IsLoginValid(string Username, string Password)
+        {
+            if (Username is null || Password is null) 
+                return false;
+            if ( IsUserActiveByUserName(Username) && clsCheckLoginInfo.IsLoginInfoValid(Username.Trim(), Password.Trim() ) )
             {
                 clsCurrentLoggedInUser.User = GetUserObjByUsernameAndPassword(Username , Password);
  
