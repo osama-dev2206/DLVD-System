@@ -21,21 +21,21 @@ namespace FrontEnd
 
         private void tbUsername_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(tbUsername.Text) )
+            if (!string.IsNullOrEmpty(tbUsername.Text))
             {
                 Username = tbUsername.Text;
             }
-          
+
         }
 
         private void tbPassword_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(tbPassword.Text) )
+            if (!string.IsNullOrEmpty(tbPassword.Text))
             {
                 Password = tbPassword.Text;
                 errorProvider1.SetError(tbPassword, string.Empty);
             }
-         
+
         }
 
         private void tbUsername_Validating(object sender, CancelEventArgs e)
@@ -43,7 +43,7 @@ namespace FrontEnd
             if (!clsUsers.IsUserNameExist(Username) || String.IsNullOrEmpty(Username))
             {
                 errorProvider1.SetError(tbUsername, "Username does not exist.");
-         
+
             }
             else
             {
@@ -54,7 +54,7 @@ namespace FrontEnd
             if (Password == null || string.IsNullOrEmpty(Password))
             {
                 errorProvider1.SetError(tbPassword, "password cannot be empty.");
-     
+
             }
             else
             {
@@ -62,7 +62,7 @@ namespace FrontEnd
 
             }
 
-            }
+        }
 
         private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -74,17 +74,18 @@ namespace FrontEnd
         void RaiseOnUserLoggedSuccess(bool isLoggedIn)
         {
             OnUserLoggedSuccess?.Invoke(isLoggedIn);
+            clsUsers.SaveLoginInfoAsJson(this.Username ,this.Password, cbRememberme.Checked);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if(String.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
+            if (String.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
             {
                 MessageBox.Show("Please enter both username and password.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if(clsUsers.IsLoginValid(Username, Password))
+            if (clsUsers.IsLoginValid(Username, Password))
             {
                 this.DialogResult = DialogResult.OK;
                 RaiseOnUserLoggedSuccess(true);
@@ -98,7 +99,13 @@ namespace FrontEnd
         }
 
 
-
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            clsUsers.GetSavedLoginInfo(out string savedUsername, out string savedPassword);
+            tbPassword.Text = savedPassword;
+            tbUsername.Text = savedUsername;
+            cbRememberme.Checked = true;
+        }
 
     }
 }
