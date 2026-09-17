@@ -53,3 +53,27 @@ select People.ImagePath
 from People
 where People.PersonID = '@PersonID'
 
+
+------ Users 
+select * from Users; 
+insert into Users 
+values(12,'osama.2006',121,1);
+
+Select R = 'T'
+from Users
+where Users.Password = 121 and Users.UserName = 'osama.2006' ;
+
+Select * from DetailedPersonInfo;
+
+Select * from Users;
+
+update Users set 
+Password = '94rQO8MpdbNKmxjSxo7NEw==' ;
+
+Select * from DetailsUserInfo
+where Password = 121 and UserName = 'osama.2006' ;
+
+Select R = 'T'
+from Users
+where Users.IsActive = 1
+and UserID =1 ; 

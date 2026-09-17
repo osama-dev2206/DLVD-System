@@ -10,7 +10,7 @@ using System.Text.Json;
 
 namespace BussinessLogicLayer
 {
-    public class clsUsers : abPerson
+    public partial class clsUsers : abPerson
     {
         public string ?Username { get; set; }
         public string ?Password { get; set; }

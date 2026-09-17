@@ -20,3 +20,12 @@ Select ShowBasicPersonInfo.* , People.Address , People.DateOfBirth , People.Imag
 from ShowBasicPersonInfo
 Inner Join People 
 On People.PersonID = ShowBasicPersonInfo.PersonID;
+
+
+------------- Users 
+Create View DetailsUserInfo As  
+Select DetailedPersonInfo.* , Users.UserID , Users.UserName ,
+Users.Password , Users.IsActive 
+from DetailedPersonInfo
+Inner Join Users
+On Users.UserPersonID = DetailedPersonInfo.PersonID ;

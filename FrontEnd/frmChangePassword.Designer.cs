@@ -1,8 +1,6 @@
-﻿using BussinessLogicLayer;
-
-namespace FrontEnd
+﻿namespace FrontEnd
 {
-    partial class frmShowCurrentUserInfo
+    partial class frmChangePassword
     {
         /// <summary>
         /// Required designer variable.
@@ -30,64 +28,44 @@ namespace FrontEnd
         /// </summary>
         private void InitializeComponent()
         {
-            ctrlPersonInfo1 = new ctrlPersonInfo(this.UserPersonID);
-            btnClose = new Button();
-            ctrlShowUserInfo1 = new ctrlShowUserInfo(this.UserID);
+            ctrlPersonInfo1 = new ctrlPersonInfo();
+            ctrlShowUserInfo1 = new ctrlShowUserInfo();
             SuspendLayout();
             // 
             // ctrlPersonInfo1
             // 
-            ctrlPersonInfo1.Location = new Point(10, 12);
+            ctrlPersonInfo1.Location = new Point(14, 30);
             ctrlPersonInfo1.Name = "ctrlPersonInfo1";
-            ctrlPersonInfo1.Size = new Size(903, 325);
+            ctrlPersonInfo1.Size = new Size(912, 301);
             ctrlPersonInfo1.TabIndex = 0;
-            // 
-            // btnClose
-            // 
-            btnClose.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
-            btnClose.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
-            btnClose.FlatStyle = FlatStyle.Flat;
-            btnClose.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnClose.Image = Properties.Resources.Close_321;
-            btnClose.ImageAlign = ContentAlignment.BottomLeft;
-            btnClose.Location = new Point(753, 430);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(160, 45);
-            btnClose.TabIndex = 1;
-            btnClose.Text = "Close";
-            btnClose.UseVisualStyleBackColor = true;
-            btnClose.Click += btnClose_Click;
             // 
             // ctrlShowUserInfo1
             // 
-            ctrlShowUserInfo1.Location = new Point(10, 311);
+            ctrlShowUserInfo1.Location = new Point(33, 337);
             ctrlShowUserInfo1.Name = "ctrlShowUserInfo1";
-            ctrlShowUserInfo1.Size = new Size(834, 96);
-            ctrlShowUserInfo1.TabIndex = 2;
+            ctrlShowUserInfo1.Size = new Size(862, 115);
+            ctrlShowUserInfo1.TabIndex = 1;
             // 
-            // frmShowCurrentUserInfo
+            // frmChangePassword
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(925, 477);
+            ClientSize = new Size(936, 706);
             Controls.Add(ctrlShowUserInfo1);
-            Controls.Add(btnClose);
             Controls.Add(ctrlPersonInfo1);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "frmShowCurrentUserInfo";
+            Name = "frmChangePassword";
             ShowIcon = false;
             ShowInTaskbar = false;
-            Text = "Current User Info";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Change Password";
             ResumeLayout(false);
         }
 
         #endregion
 
         private ctrlPersonInfo ctrlPersonInfo1;
-        private Button btnClose;
         private ctrlShowUserInfo ctrlShowUserInfo1;
-
-
     }
 }

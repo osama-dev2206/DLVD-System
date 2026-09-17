@@ -11,9 +11,11 @@ namespace FrontEnd
     public partial class frmShowCurrentUserInfo : Form
     {
         int UserPersonID { get; set; }
-        public frmShowCurrentUserInfo(int PersonID)
+        int UserID { get; set;  }
+        public frmShowCurrentUserInfo(int PersonID , int UserID)
         {
             this.UserPersonID = PersonID;
+            this.UserID = UserID;
             InitializeComponent();
         }
 

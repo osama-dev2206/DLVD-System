@@ -49,7 +49,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { TSMPeople, soonToolStripMenuItem, accountSettToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1852, 39);
+            menuStrip1.Size = new Size(1758, 39);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -73,7 +73,7 @@
             // 
             // accountSettToolStripMenuItem
             // 
-            accountSettToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ShowCurrentUserInfo, toolStripMenuItem1, changeCurrentUserPasswordToolStripMenuItem, logoutToolStripMenuItem });
+            accountSettToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem1, ShowCurrentUserInfo, changeCurrentUserPasswordToolStripMenuItem, logoutToolStripMenuItem });
             accountSettToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             accountSettToolStripMenuItem.Image = Properties.Resources.account_settings_64;
             accountSettToolStripMenuItem.Name = "accountSettToolStripMenuItem";
@@ -99,6 +99,7 @@
             changeCurrentUserPasswordToolStripMenuItem.Name = "changeCurrentUserPasswordToolStripMenuItem";
             changeCurrentUserPasswordToolStripMenuItem.Size = new Size(389, 36);
             changeCurrentUserPasswordToolStripMenuItem.Text = "Change Current User Password";
+            changeCurrentUserPasswordToolStripMenuItem.Click += changeCurrentUserPasswordToolStripMenuItem_Click;
             // 
             // logoutToolStripMenuItem
             // 
@@ -136,12 +137,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.beautiful_shot_bridge_reflective_lake_sunset;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1852, 822);
+            ClientSize = new Size(1758, 822);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "frmMain";
