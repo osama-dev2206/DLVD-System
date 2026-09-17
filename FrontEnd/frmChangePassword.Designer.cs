@@ -147,6 +147,7 @@
             // 
             tbConfrimPassword.Location = new Point(245, 126);
             tbConfrimPassword.Name = "tbConfrimPassword";
+            tbConfrimPassword.PasswordChar = '*';
             tbConfrimPassword.Size = new Size(184, 27);
             tbConfrimPassword.TabIndex = 2;
             tbConfrimPassword.Validating += tbConfrimPassword_Validating;
@@ -155,6 +156,7 @@
             // 
             tbNewPassword.Location = new Point(245, 80);
             tbNewPassword.Name = "tbNewPassword";
+            tbNewPassword.PasswordChar = '*';
             tbNewPassword.Size = new Size(184, 27);
             tbNewPassword.TabIndex = 1;
             tbNewPassword.Validating += tbNewPassword_Validating;
@@ -163,6 +165,7 @@
             // 
             tbCurrentPassword.Location = new Point(245, 34);
             tbCurrentPassword.Name = "tbCurrentPassword";
+            tbCurrentPassword.PasswordChar = '*';
             tbCurrentPassword.Size = new Size(184, 27);
             tbCurrentPassword.TabIndex = 0;
             tbCurrentPassword.Validating += tbCurrentPassword_Validating;
