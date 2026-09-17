@@ -66,7 +66,7 @@ namespace FrontEnd
 
         public void LoadInfoUsingPersonID(int PersonID)
         {
-            Person = clsPeople.GetPersonObjectByPersonID(personID);
+            Person = clsPeople.GetPersonObjectByPersonID(PersonID);
             UpdateUserControlViewingINfo();
         }
 
