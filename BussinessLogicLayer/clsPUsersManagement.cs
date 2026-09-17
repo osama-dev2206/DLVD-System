@@ -53,7 +53,7 @@ namespace BussinessLogicLayer
 
         bool Update()
         {
-            return false;
+            return clsUpdateUser.UpdateUser(UserID: this.UserID,UserName:this.Username, Password:this.Password , this.IsActive) ;
         }
 
         public bool Save()
@@ -79,6 +79,8 @@ namespace BussinessLogicLayer
 
             return false;
         }
+
+
 
     }
 }
