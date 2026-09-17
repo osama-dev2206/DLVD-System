@@ -51,6 +51,34 @@ namespace BussinessLogicLayer
             return user;
         }
 
+        bool Update()
+        {
+            return false;
+        }
+
+        public bool Save()
+        {
+            switch(this.Mode)
+            {
+                     case enMode.Update:
+                    {
+                        if(Update())
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+
+
+
+            }
+
+
+            return false;
+        }
 
     }
 }

@@ -39,18 +39,8 @@ namespace FrontEnd
         // using the same control without passing the user id will not show any information
         public void CtrlShowUserInfo_Load(int UserID)
         {
-            if (User == null)
-            {
-                this.labUserID.Text = "N/A";
-                this.labUsername.Text = "N/A";
-                this.labIsActive.Text = "N/A";
-            }
-            else
-            {
                 User = clsUsers.FindUserByUserIDAsObj(UserID);
                 UpdateFormInfo();
-            }
-
         }
 
         public void RefreshUserInfo()
