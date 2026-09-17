@@ -53,6 +53,7 @@ namespace BussinessLogicLayer
 
         bool Update()
         {
+            this.Password = clsEncryptDecrypt.Encrypt(Password); // encrypt the password before updating it in the database
             return clsUpdateUser.UpdateUser(UserID: this.UserID,UserName:this.Username, Password:this.Password , this.IsActive) ;
         }
 
