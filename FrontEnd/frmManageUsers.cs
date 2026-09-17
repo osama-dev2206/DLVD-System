@@ -42,17 +42,16 @@ namespace FrontEnd
 
         }
 
-
-
         void SearchBySelectedFilter(string SearchKeyword) // this method will handle the search by selected filter
         {
- 
+            DGVUsers.DataSource = null;
             switch (cbFilter.SelectedItem)
             {
                 case "PersonID":
 
                     if (int.TryParse(SearchKeyword, out int id))
                     {
+
                         DGVUsers.DataSource = clsUsers.FindUserByPersonID(id);
                     }
                     break;
@@ -60,7 +59,7 @@ namespace FrontEnd
                 case "UserID":
                     if (int.TryParse(SearchKeyword, out int userId))
                     {
-                        DGVUsers.DataSource = clsUsers.FindUserByUserID(userId);
+                        DGVUsers.DataSource = clsUsers.FindBasicUserByUserID(userId);
                     }
                     break;
 
@@ -138,6 +137,37 @@ namespace FrontEnd
             }
         }
 
+        private void DGVUsersSelectionChanged(object sender, EventArgs e)
+        {
+            if (DGVUsers.CurrentRow != null && DGVUsers.CurrentRow.Cells != null && int.TryParse(DGVUsers.CurrentRow.Cells[0]?.Value?.ToString(), out int Row))
+            {
+                selectedRowIndex = Row;
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("Are you sure you want to delete this person?", "Delete Person", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            {
+                if (clsUsers.DeleteUserByUserID(this.selectedRowIndex))
+                {
+                    MessageBox.Show("User deleted successfully.", "Delete User", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RefreshDataGridView();
+
+                }
+                else
+                    MessageBox.Show("Failed to delete User (User maybe connected with another entity).", "Delete User", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void showDetailsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmShowCurrentUserInfo frm = new frmShowCurrentUserInfo(UserID:  this.selectedRowIndex , PersonID: clsUsers.FindUserByUserIDAsObj(selectedRowIndex).PersonID);
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -145,7 +175,5 @@ namespace FrontEnd
         }
 
 
-
-        
     }
 }
