@@ -49,7 +49,7 @@ namespace DataAccessLayer
                     return dt;
 
                 case enFindUserBy.IsActive:
-              DelfindUserBy?.Invoke(@" select * from BasicUserInfo  where IsActive = @IsActive ;  -- Active  ; ", "@IsActive", 1, out dt);
+              DelfindUserBy?.Invoke(@" select * from BasicUserInfo  where IsActive = @IsActive ; ", "@IsActive", 1, out dt);
                     return dt;
 
                 case enFindUserBy.IsNOTActive:

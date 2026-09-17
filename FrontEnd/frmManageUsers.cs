@@ -83,36 +83,35 @@ namespace FrontEnd
                     DGVUsers.DataSource = clsUsers.GetUsersByPersonFullName(SearchKeyword);
                     break;
 
-                case "IsActive":
-                    {
-                        this.cbActiveFilter.Visible = true;
-                        this.tbSearchBy.Visible = false;
-                        /*
-                         All
-                        Yes
-                          No
-                         */
-                        if (this.cbActiveFilter.SelectedItem == "All")
-                        {
-                            DGVUsers.DataSource = clsUsers.GetAllUsers();
-                        }
 
-                        if (this.cbActiveFilter.SelectedItem == "Yes")
-                        {
-                            DGVUsers.DataSource = clsUsers.GetAllActiveUsers();
-                        }
-
-                        if (this.cbFilter.SelectedItem == "No")
-                        {
-                            DGVUsers.DataSource = clsUsers.GetAllNONActiveUsers();
-                        }
-
-                    }
-                    break;
 
             }
 
         }
+
+        private void cbISActiveFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.cbISActiveFilter.Visible = true;
+            this.tbSearchBy.Visible = false;
+
+            if (this.cbISActiveFilter.SelectedItem == "All")
+            {
+                RefreshDataGridView();
+            }
+
+            if (this.cbISActiveFilter.SelectedItem == "Yes")
+            {
+                DGVUsers.DataSource = clsUsers.GetAllActiveUsers();
+            }
+
+            if (this.cbISActiveFilter.SelectedItem == "No")
+            {
+                DGVUsers.DataSource = clsUsers.GetAllNONActiveUsers();
+            }
+
+
+        }
+
 
         // changing the filter handling only
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -120,12 +119,12 @@ namespace FrontEnd
             if (cbFilter.SelectedIndex != -1 && cbFilter.SelectedItem != null && cbFilter.SelectedIndex != 0 && cbFilter.SelectedItem != "IsActive")
             {
                 tbSearchBy.Visible = true;
-                cbActiveFilter.Visible = false;
+                cbISActiveFilter.Visible = false;
             }
             else if (cbFilter.SelectedIndex == 0) // if i set the filter to null 
             {
                 tbSearchBy.Visible = false;
-                cbActiveFilter.Visible = false;
+                cbISActiveFilter.Visible = false;
                 this.tbSearchBy.Text = string.Empty;
                 RefreshDataGridView();
             }
@@ -133,7 +132,7 @@ namespace FrontEnd
             {
                 this.tbSearchBy.Text = string.Empty;
                 tbSearchBy.Visible = false;
-                cbActiveFilter.Visible = true;
+                cbISActiveFilter.Visible = true;
             }
 
         }
