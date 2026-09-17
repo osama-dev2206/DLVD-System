@@ -10,7 +10,8 @@ namespace DataAccessLayer
     public static  class clsFindPersonBy
     {
 
-        public enum enSearchPersonBy {None = 0, PersonID = 1,  NationalNumber=2 , FirstName = 3 , SecondName =4 , ThirdName = 5 , LastName =6 , Nationality = 7 , Gender=8 , Phone=9 , Email =10 }
+        public enum enSearchPersonBy {None = 0, PersonID = 1,  NationalNumber=2 , FirstName = 3 , SecondName =4 , ThirdName = 5 , LastName =6 , Nationality = 7 , Gender=8 , Phone=9 , Email =10 
+       ,  DetailedPersonByNationalNum=11  , DetailedPersonByPersonID =12 }
         private  delegate void cmdDelegate(string Query, string @What ,dynamic value, SqlConnection connection);
         static cmdDelegate ?@delegate =null ; // instance of delegate 
         static SqlDataReader ? reader = null;
@@ -26,6 +27,7 @@ namespace DataAccessLayer
         {
             switch (enSearch)
             {
+                // For Searching 
                 case enSearchPersonBy.PersonID:
                     @delegate?.Invoke(@"select * from ShowBasicPersonInfo where PersonID =@PersonID ;", "@PersonID" , Convert.ToInt32(value) , connection);  // invoke 
                     break;
@@ -65,6 +67,17 @@ namespace DataAccessLayer
                     case enSearchPersonBy.Email:
                     @delegate?.Invoke(@"select * from ShowBasicPersonInfo where Email =@Email ;", "@Email", value, connection);
                     break; 
+
+                    // For Objects 
+                    case enSearchPersonBy.DetailedPersonByNationalNum:
+                    @delegate?.Invoke(@" select * from DetailedPersonInfo where NationalNumber= @NationalNum ; ", "@NationalNum", value, connection);
+                    break;
+
+                case enSearchPersonBy.DetailedPersonByPersonID:
+                    @delegate?.Invoke(@"  select * from DetailedPersonInfo where PersonID= @PersonID ; ", "@PersonID", value, connection);
+                    break;
+               
+
 
             }
             return ;

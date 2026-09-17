@@ -52,7 +52,11 @@ namespace BussinessLogicLayer
             return clsFindUser.FindUserBy(clsFindUser.enFindUserBy.IsNOTActive, 0);
         }
 
-
+      public static  bool IsUserISAPerson(int PersonID)
+        {
+            if(!int.TryParse(PersonID.ToString(), out _)) return false;
+            return clsCheckUserExistence.IsPersonIsAUser(PersonID);
+        }
 
         //////////////////////////////////////////////
 
