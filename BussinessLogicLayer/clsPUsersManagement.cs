@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Security;
 using System.Text;
 
 namespace BussinessLogicLayer
@@ -10,6 +11,7 @@ namespace BussinessLogicLayer
     public partial class clsUsers 
     {
 
+        // Find By Returns DataTable ///
         public static DataTable FindUserByUserID(int UserID)
         {
             if (!int.TryParse(UserID.ToString(), out _)) return null; 
@@ -26,6 +28,29 @@ namespace BussinessLogicLayer
         {
             if (!int.TryParse(PersonID.ToString(), out _)) return null;
             return clsFindUser.FindUserBy(clsFindUser.enFindUserBy.PersonID, PersonID);
+        }
+        
+        public static DataTable GetUsersByPersonFullName(string FullName)
+        {
+            if (string.IsNullOrEmpty(FullName)) return null;
+            return clsFindUser.FindUserBy(clsFindUser.enFindUserBy.FullName, FullName);
+        }
+
+        public static DataTable GetAllActiveUsers()
+        {
+            return clsFindUser.FindUserBy(clsFindUser.enFindUserBy.IsActive, 1);
+        }
+
+        public static DataTable GetAllNONActiveUsers()
+        {
+            return clsFindUser.FindUserBy(clsFindUser.enFindUserBy.IsNOTActive, 0);
+        }
+
+        //////////////////////////////////////////////
+
+        public static DataTable GetAllUsers()
+        {
+            return clsGetAllUsers.GetAllUsers();
         }
 
         public static clsUsers FindUserByUserIDAsObj(int UserID)
@@ -50,6 +75,7 @@ namespace BussinessLogicLayer
 
             return user;
         }
+
 
         bool Update()
         {

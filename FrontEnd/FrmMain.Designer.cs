@@ -33,8 +33,8 @@
             TSMPeople = new ToolStripMenuItem();
             soonToolStripMenuItem = new ToolStripMenuItem();
             accountSettToolStripMenuItem = new ToolStripMenuItem();
-            ShowCurrentUserInfo = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripSeparator();
+            ShowCurrentUserInfo = new ToolStripMenuItem();
             changeCurrentUserPasswordToolStripMenuItem = new ToolStripMenuItem();
             logoutToolStripMenuItem = new ToolStripMenuItem();
             label1 = new Label();
@@ -49,7 +49,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { TSMPeople, soonToolStripMenuItem, accountSettToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1758, 39);
+            menuStrip1.Size = new Size(1758, 38);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -57,19 +57,22 @@
             // 
             TSMPeople.BackColor = Color.Silver;
             TSMPeople.BackgroundImageLayout = ImageLayout.Zoom;
-            TSMPeople.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TSMPeople.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             TSMPeople.ForeColor = Color.Black;
             TSMPeople.Image = Properties.Resources.People_64;
             TSMPeople.Name = "TSMPeople";
-            TSMPeople.Size = new Size(128, 35);
+            TSMPeople.Size = new Size(118, 34);
             TSMPeople.Text = "People";
             TSMPeople.Click += TSMPeople_Click;
             // 
             // soonToolStripMenuItem
             // 
+            soonToolStripMenuItem.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            soonToolStripMenuItem.Image = Properties.Resources.Users_2_64;
             soonToolStripMenuItem.Name = "soonToolStripMenuItem";
-            soonToolStripMenuItem.Size = new Size(65, 35);
-            soonToolStripMenuItem.Text = "Soon !";
+            soonToolStripMenuItem.Size = new Size(189, 34);
+            soonToolStripMenuItem.Text = "Manage Users";
+            soonToolStripMenuItem.Click += soonToolStripMenuItem_Click;
             // 
             // accountSettToolStripMenuItem
             // 
@@ -77,8 +80,13 @@
             accountSettToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             accountSettToolStripMenuItem.Image = Properties.Resources.account_settings_64;
             accountSettToolStripMenuItem.Name = "accountSettToolStripMenuItem";
-            accountSettToolStripMenuItem.Size = new Size(164, 35);
+            accountSettToolStripMenuItem.Size = new Size(164, 34);
             accountSettToolStripMenuItem.Text = "My Account";
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(386, 6);
             // 
             // ShowCurrentUserInfo
             // 
@@ -87,11 +95,6 @@
             ShowCurrentUserInfo.Size = new Size(389, 36);
             ShowCurrentUserInfo.Text = "Show Current User Info";
             ShowCurrentUserInfo.Click += showCurrentUserInfo_Click;
-            // 
-            // toolStripMenuItem1
-            // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(386, 6);
             // 
             // changeCurrentUserPasswordToolStripMenuItem
             // 

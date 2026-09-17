@@ -13,7 +13,7 @@ namespace DataAccessLayer
             DelfindUserBy += @SqlCmd;
         }
 
-        public enum enFindUserBy { UserName,   UserID,  PersonID }
+        public enum enFindUserBy { UserName,   UserID,  PersonID , FullName , IsActive , IsNOTActive }
         static private SqlConnection connection = dbSettings.DbConnection();
         static DataTable dt = new DataTable();
         private   delegate void  DelFindBy(string Query, string @What, dynamic valueToPath);
@@ -36,6 +36,18 @@ namespace DataAccessLayer
                     DelfindUserBy?.Invoke(@"Select Users.*  From Users Where Users.UserName = @UserName ; ", "@UserName", valueToPath);
                     break;
 
+                case enFindUserBy.FullName:
+                    DelfindUserBy?.Invoke(@"  select * from BasicUserInfo 
+                     where FullName like '%' + @FullName + '%'  ; -- contains ", "@FullName", valueToPath);
+                    break;
+
+                case enFindUserBy.IsActive:
+                    DelfindUserBy?.Invoke(@" select * from BasicUserInfo  where IsActive = @IsActive ;  -- Active  ; ", "@IsActive", 1);
+                    break;
+
+                    case enFindUserBy.IsNOTActive:
+                    DelfindUserBy?.Invoke(@" select * from BasicUserInfo  where IsActive = @IsActive ;  -- IsNot Active  ; ", "@IsActive", 0);
+                    break;
 
             }
         }
