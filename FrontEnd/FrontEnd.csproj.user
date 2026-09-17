@@ -22,6 +22,9 @@
     <Compile Update="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmManageUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmPeopleManagement.cs">
       <SubType>Form</SubType>
     </Compile>
