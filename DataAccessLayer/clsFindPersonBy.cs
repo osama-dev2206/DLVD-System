@@ -7,7 +7,7 @@ using System.Text;
 namespace DataAccessLayer
 {
 
-    public static  class clsSearchPersonBy
+    public static  class clsFindPersonBy
     {
 
         public enum enSearchPersonBy {None = 0, PersonID = 1,  NationalNumber=2 , FirstName = 3 , SecondName =4 , ThirdName = 5 , LastName =6 , Nationality = 7 , Gender=8 , Phone=9 , Email =10 }
@@ -16,7 +16,7 @@ namespace DataAccessLayer
         static SqlDataReader ? reader = null;
        static SqlConnection connection = dbSettings.DbConnection();
 
-        static clsSearchPersonBy() // static constructor to initialize any static data or perform actions that need to be performed only once
+        static clsFindPersonBy() // static constructor to initialize any static data or perform actions that need to be performed only once
         {
             @delegate += cmd; // subscribe the cmd method to the delegate
         }

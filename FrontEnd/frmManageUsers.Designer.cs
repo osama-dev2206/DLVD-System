@@ -48,7 +48,7 @@
             cbFilter = new ComboBox();
             label1 = new Label();
             pictureBox1 = new PictureBox();
-            cbActiveFilter = new ComboBox();
+            cbISActiveFilter = new ComboBox();
             DGVUsers = new DataGridView();
             contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbAdd).BeginInit();
@@ -224,16 +224,17 @@
             pictureBox1.TabIndex = 10;
             pictureBox1.TabStop = false;
             // 
-            // cbActiveFilter
+            // cbISActiveFilter
             // 
-            cbActiveFilter.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbActiveFilter.FormattingEnabled = true;
-            cbActiveFilter.Items.AddRange(new object[] { "All", "Yes", "No" });
-            cbActiveFilter.Location = new Point(360, 371);
-            cbActiveFilter.Name = "cbActiveFilter";
-            cbActiveFilter.Size = new Size(178, 28);
-            cbActiveFilter.TabIndex = 19;
-            cbActiveFilter.Visible = false;
+            cbISActiveFilter.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbISActiveFilter.FormattingEnabled = true;
+            cbISActiveFilter.Items.AddRange(new object[] { "All", "Yes", "No" });
+            cbISActiveFilter.Location = new Point(360, 371);
+            cbISActiveFilter.Name = "cbISActiveFilter";
+            cbISActiveFilter.Size = new Size(178, 28);
+            cbISActiveFilter.TabIndex = 19;
+            cbISActiveFilter.Visible = false;
+            cbISActiveFilter.SelectedIndexChanged += cbISActiveFilter_SelectedIndexChanged;
             // 
             // DGVUsers
             // 
@@ -259,7 +260,7 @@
             ClientSize = new Size(1319, 782);
             ContextMenuStrip = contextMenuStrip1;
             Controls.Add(DGVUsers);
-            Controls.Add(cbActiveFilter);
+            Controls.Add(cbISActiveFilter);
             Controls.Add(labCountOfRecords);
             Controls.Add(label3);
             Controls.Add(pbAdd);
@@ -305,7 +306,7 @@
         private ComboBox cbFilter;
         private Label label1;
         private PictureBox pictureBox1;
-        private ComboBox cbActiveFilter;
+        private ComboBox cbISActiveFilter;
         private DataGridView DGVUsers;
     }
 }
