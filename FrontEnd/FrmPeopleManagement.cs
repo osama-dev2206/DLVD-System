@@ -152,6 +152,7 @@ namespace FrontEnd
             }
         }
 
+
         // we will use another form to add or edit a person, so we will just show a message box for now
         private void Add_Click(object sender, EventArgs e)
         {

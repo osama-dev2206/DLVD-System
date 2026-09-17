@@ -17,6 +17,12 @@ namespace BussinessLogicLayer
             if (!int.TryParse(UserID.ToString(), out _)) return null; 
             return clsFindUser.FindUserBy(clsFindUser.enFindUserBy.UserID, UserID);
         }
+        
+        public static DataTable FindBasicUserByUserID(int UserID)
+        {
+            if (!int.TryParse(UserID.ToString(), out _)) return null;
+            return clsFindUser.FindUserBy(clsFindUser.enFindUserBy.ByUserIDGetBasic, UserID);
+        }
 
         public static DataTable FindUserByUserName(string UserName)
         {
@@ -45,6 +51,8 @@ namespace BussinessLogicLayer
         {
             return clsFindUser.FindUserBy(clsFindUser.enFindUserBy.IsNOTActive, 0);
         }
+
+
 
         //////////////////////////////////////////////
 
@@ -76,8 +84,13 @@ namespace BussinessLogicLayer
             return user;
         }
 
+        public static bool DeleteUserByUserID(int UserID)
+        {
+            if (!int.TryParse(UserID.ToString(), out _) || clsCurrentLoggedInUser.User.IsActive) return false; // you cannot delete a user if the user is currently logged in and active
+            return clsDeleteUser.DeleteUserByUserID(UserID);
+        }
 
-        bool Update()
+       private bool Update()
         {
             this.Password = clsEncryptDecrypt.Encrypt(Password); // encrypt the password before updating it in the database
             return clsUpdateUser.UpdateUser(UserID: this.UserID,UserName:this.Username, Password:this.Password , this.IsActive) ;

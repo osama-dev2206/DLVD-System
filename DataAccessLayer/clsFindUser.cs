@@ -13,7 +13,7 @@ namespace DataAccessLayer
             DelfindUserBy += @SqlCmd;
         }
 
-        public enum enFindUserBy { UserName,   UserID,  PersonID , FullName , IsActive , IsNOTActive }
+        public enum enFindUserBy { UserName,   UserID, ByUserIDGetBasic,  PersonID , FullName , IsActive , IsNOTActive }
         static private SqlConnection connection = dbSettings.DbConnection();
         static DataTable dt = new DataTable();
         private   delegate void  DelFindBy(string Query, string @What, dynamic valueToPath);
@@ -25,15 +25,19 @@ namespace DataAccessLayer
             switch(enFind)
             {
                 case enFindUserBy.UserID:
-                    DelfindUserBy?.Invoke(@"Select Users.*  From Users  Where Users.UserID =  @UserID ;", "@UserID", valueToPath);
+                    DelfindUserBy?.Invoke(@"Select Users.*  From Users  Where UserID =  @UserID ;", "@UserID", valueToPath);
+                    break;
+
+                case enFindUserBy.ByUserIDGetBasic:
+                    DelfindUserBy?.Invoke(@"Select BasicUserInfo.*  From BasicUserInfo Where  UserID = @UserID  ; ", "@UserID", valueToPath);
                     break;
 
                 case enFindUserBy.PersonID:
-                    DelfindUserBy?.Invoke(@"Select Users.*  From Users Where Users.UserPersonID = @PersonID  ; ", "@PersonID", valueToPath);
+                    DelfindUserBy?.Invoke(@"Select BasicUserInfo.*  From BasicUserInfo Where  UserPersonID = @PersonID  ; ", "@PersonID", valueToPath);
                     break;
    
                     case enFindUserBy.UserName:
-                    DelfindUserBy?.Invoke(@"Select Users.*  From Users Where Users.UserName = @UserName ; ", "@UserName", valueToPath);
+                    DelfindUserBy?.Invoke(@"Select BasicUserInfo.*  From BasicUserInfo  Where UserName = @UserName ; ", "@UserName", valueToPath);
                     break;
 
                 case enFindUserBy.FullName:

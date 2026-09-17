@@ -85,6 +85,7 @@
             showDetailsToolStripMenuItem1.Name = "showDetailsToolStripMenuItem1";
             showDetailsToolStripMenuItem1.Size = new Size(168, 26);
             showDetailsToolStripMenuItem1.Text = "Show Details";
+            showDetailsToolStripMenuItem1.Click += showDetailsToolStripMenuItem1_Click;
             // 
             // toolStripSeparator3
             // 
@@ -111,6 +112,7 @@
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             deleteToolStripMenuItem.Size = new Size(168, 26);
             deleteToolStripMenuItem.Text = "Delete";
+            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // labCountOfRecords
             // 
@@ -173,6 +175,7 @@
             tbSearchBy.Size = new Size(348, 27);
             tbSearchBy.TabIndex = 13;
             tbSearchBy.TextAlign = HorizontalAlignment.Center;
+            tbSearchBy.TextChanged += tbSearchBy_TextChanged;
             // 
             // label2
             // 
@@ -218,6 +221,7 @@
             DGVUsers.RowHeadersWidth = 51;
             DGVUsers.Size = new Size(1305, 276);
             DGVUsers.TabIndex = 9;
+            DGVUsers.SelectionChanged += DGVUsersSelectionChanged;
             // 
             // label1
             // 
@@ -228,7 +232,7 @@
             label1.Name = "label1";
             label1.Size = new Size(1319, 56);
             label1.TabIndex = 12;
-            label1.Text = "People Management";
+            label1.Text = "Users Management";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
             // pictureBox1
@@ -258,6 +262,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(1319, 782);
+            ContextMenuStrip = contextMenuStrip1;
             Controls.Add(cbActiveFilter);
             Controls.Add(labCountOfRecords);
             Controls.Add(label3);
@@ -274,6 +279,7 @@
             MinimizeBox = false;
             Name = "frmManageUsers";
             ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmManageUsers";
             Load += frmManageUsers_Load;
             contextMenuStrip1.ResumeLayout(false);
