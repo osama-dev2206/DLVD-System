@@ -145,6 +145,7 @@
             pbAdd.SizeMode = PictureBoxSizeMode.StretchImage;
             pbAdd.TabIndex = 16;
             pbAdd.TabStop = false;
+            pbAdd.Click += pbAdd_Click;
             // 
             // btnClose
             // 

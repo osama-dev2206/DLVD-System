@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BussinessLogicLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,9 @@ namespace FrontEnd
             PersonID = ID;
             InitializeComponent(); // the id will be passed to the user control to determine if we are adding a new person or editing an existing one
             this.ctrlAddEditPerson2.OnPersonSaved += UpdatePersonIDAfterSaving;
+
+         this.ctrlAddEditPerson2.OnPersonSavedReturnTheObject += GetAddedUpdatedPerson;
+
             this.labFormState.Text = (PersonID == -1) ? "Add New Person" : "Edit Person";
 
         }
@@ -35,6 +39,16 @@ namespace FrontEnd
             this.Close();
         }
 
+        clsPeople tempPerson; 
+        private  void GetAddedUpdatedPerson(clsPeople person)
+        {
+            tempPerson= person;
+        }
+
+        internal clsPeople GetTempPerson()
+        {
+            return tempPerson;
+        }
 
     }
 }

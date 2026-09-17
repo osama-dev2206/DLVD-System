@@ -64,11 +64,19 @@ namespace FrontEnd
             UpdateUserControlViewingINfo();
         }
 
-        public void LoadInfoUsingPersonID(int PersonID)
+        internal void LoadInfoUsingPersonID(int PersonID)
         {
             Person = clsPeople.GetPersonObjectByPersonID(PersonID);
             UpdateUserControlViewingINfo();
         }
+
+
+        internal void LoadInfoUsingPersonObject(clsPeople Person)
+        {
+            this.Person = Person;
+            UpdateUserControlViewingINfo();
+        }
+
 
     }
 }

@@ -109,7 +109,7 @@ namespace BussinessLogicLayer
         // retrurns object of clsPeople with all properties filled from the database by PersonID
         public static clsPeople ? GetPersonObjectByPersonID(int PersonID)
         {
-            DataTable dt = clsGetDetailsPersonInfoByPersonID.GetFullPersonByPersonID(PersonID);
+            DataTable dt = clsFindPersonBy.GetPersonRecordBy(PersonID, clsFindPersonBy.enSearchPersonBy.DetailedPersonByPersonID);
             if (dt is not null) 
             {
                 clsPeople? people = null; 
@@ -142,6 +142,43 @@ namespace BussinessLogicLayer
                 return null;
         }
 
+        public static clsPeople? GetPersonObjectByNationalNo(string  NationalNo)
+        {
+            if(String.IsNullOrWhiteSpace(NationalNo)) 
+                 return null;
+
+            DataTable dt = clsFindPersonBy.GetPersonRecordBy(NationalNo, clsFindPersonBy.enSearchPersonBy.DetailedPersonByNationalNum);
+            if (dt is not null)
+            {
+                clsPeople? people = null;
+                foreach (DataRow R in dt.Rows)
+                {
+
+                    people = new clsPeople
+                        (
+                         Convert.ToInt32(R["PersonID"]),
+                         R["NationalNumber"].ToString(),
+                         R["FirstName"].ToString(),
+                         R["SecondName"].ToString(),
+                         R["ThirdName"].ToString(),
+                         R["LastName"].ToString(),
+                         R["Gender"].ToString(), // string from data view
+                         R["Nationality"].ToString(),
+                         R["Phone"].ToString(),
+                         R["Email"].ToString(),
+                        Convert.ToDateTime((R["DateOfBirth"])),
+                        R["Address"].ToString(),
+                        R["ImagePath"].ToString()
+                        );
+                }
+
+                return people;
+
+            }
+
+            else
+                return null;
+        }
 
         public static bool DeletePersonByPersonID(int PersonID)
         {

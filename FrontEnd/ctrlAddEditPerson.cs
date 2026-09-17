@@ -313,6 +313,9 @@ namespace FrontEnd
                     MessageBox.Show("Person saved successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     pbIndicator.Visible = false;
                     OnPersonSaving(); // raise the event to notify that the person has been saved and pass the person ID to the parent form
+
+                    OnPersonSavedReturnTheObject?.Invoke(this.person); // raise the event to notify that the person has been saved and pass the person object to the parent form
+
                     FormMode = enMode.Edit; // change the form mode to edit after saving
                     return; // exit the method to prevent updating the person again in the edit mode
                 }
@@ -328,6 +331,8 @@ namespace FrontEnd
                 if (this.CheckBeforeSave() && person.Save())
                 { 
                         MessageBox.Show("Person updated successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    OnPersonSavedReturnTheObject?.Invoke(this.person); // raise the event to notify that the person has been saved and pass the person object to the parent form
                 }
                 else
                 {
@@ -340,7 +345,10 @@ namespace FrontEnd
 
 
         // Event Handler To Update The person ID in another form 
-        public Action<int>? OnPersonSaved;
+        internal Action<int>? OnPersonSaved;
+        internal delegate void OnPersonSavedReturnTheObjectDelegate(clsPeople person);
+        internal OnPersonSavedReturnTheObjectDelegate OnPersonSavedReturnTheObject; // instance of delegate to return the person object to the parent form
+
         private void OnPersonSaving()
         {
             OnPersonSaved?.Invoke(this.person.PersonID);

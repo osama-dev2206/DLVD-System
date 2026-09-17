@@ -53,6 +53,16 @@ namespace FrontEnd
                     e.Handled = true;
                 }
             }
+
+            if (cbFilter.SelectedItem == "FullName")
+            {
+                // Allow only letters, digits, whitespace, and control characters
+                if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+
         }
 
         void SearchBySelectedFilter(string SearchKeyword) // this method will handle the search by selected filter
@@ -158,6 +168,8 @@ namespace FrontEnd
             }
         }
 
+        // CURD operations
+
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Are you sure you want to delete this person?", "Delete Person", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
@@ -182,16 +194,34 @@ namespace FrontEnd
             frm.Dispose();
         }
 
-        //Add
+        private void AddNewUser()
+        {
+            frmAddEditUser frm = new frmAddEditUser(  UserID: -1); // means add new user
+            frm.ShowDialog();
+            frm.Dispose();  
+        }
+
+        //Add btn
+        private void pbAdd_Click(object sender, EventArgs e)
+        {
+            AddNewUser();
+            RefreshDataGridView();
+        }
+
+        //Add cm
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            AddNewUser();
+            RefreshDataGridView();
         }
 
         // Edit 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmAddEditUser frm = new frmAddEditUser(UserID: this.selectedRowIndex); // means add new user
+            frm.ShowDialog();
+            frm.Dispose();
+            RefreshDataGridView();
         }
 
 
