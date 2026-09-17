@@ -42,16 +42,28 @@ namespace FrontEnd
 
         }
 
+
+        private void tbSearchBy_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbFilter.SelectedItem == "PersonID" || cbFilter.SelectedItem == "UserID")
+            {
+                // Allow only digits and control characters
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
         void SearchBySelectedFilter(string SearchKeyword) // this method will handle the search by selected filter
         {
-            DGVUsers.DataSource = null;
+
             switch (cbFilter.SelectedItem)
             {
                 case "PersonID":
 
                     if (int.TryParse(SearchKeyword, out int id))
                     {
-
                         DGVUsers.DataSource = clsUsers.FindUserByPersonID(id);
                     }
                     break;
@@ -119,6 +131,7 @@ namespace FrontEnd
             }
             else if (cbFilter.SelectedItem == "IsActive")
             {
+                this.tbSearchBy.Text = string.Empty;
                 tbSearchBy.Visible = false;
                 cbActiveFilter.Visible = true;
             }
@@ -131,6 +144,7 @@ namespace FrontEnd
             {
                 SearchBySelectedFilter(tbSearchBy.Text);
             }
+
             else if (tbSearchBy.Visible) // if it is visible then the user has cleared the search box so we rest the view to default 
             {
                 RefreshDataGridView(); // rest the dgv after clearing the search box 
@@ -163,9 +177,22 @@ namespace FrontEnd
 
         private void showDetailsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmShowCurrentUserInfo frm = new frmShowCurrentUserInfo(UserID:  this.selectedRowIndex , PersonID: clsUsers.FindUserByUserIDAsObj(selectedRowIndex).PersonID);
+            if (selectedRowIndex == -1) return;
+            frmShowCurrentUserInfo frm = new frmShowCurrentUserInfo(UserID: this.selectedRowIndex, PersonID: clsUsers.FindUserByUserIDAsObj(selectedRowIndex).PersonID);
             frm.ShowDialog();
             frm.Dispose();
+        }
+
+        //Add
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // Edit 
+        private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
 

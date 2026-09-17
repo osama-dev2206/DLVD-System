@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManageUsers));
             toolStripSeparator2 = new ToolStripSeparator();
             toolStripSeparator4 = new ToolStripSeparator();
@@ -47,14 +46,14 @@
             tbSearchBy = new TextBox();
             label2 = new Label();
             cbFilter = new ComboBox();
-            DGVUsers = new DataGridView();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             cbActiveFilter = new ComboBox();
+            DGVUsers = new DataGridView();
             contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbAdd).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)DGVUsers).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DGVUsers).BeginInit();
             SuspendLayout();
             // 
             // toolStripSeparator2
@@ -73,6 +72,7 @@
             showDetailsToolStripMenuItem.Name = "showDetailsToolStripMenuItem";
             showDetailsToolStripMenuItem.Size = new Size(168, 26);
             showDetailsToolStripMenuItem.Text = "Edit";
+            showDetailsToolStripMenuItem.Click += showDetailsToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
@@ -98,6 +98,7 @@
             addToolStripMenuItem.Name = "addToolStripMenuItem";
             addToolStripMenuItem.Size = new Size(168, 26);
             addToolStripMenuItem.Text = "Add";
+            addToolStripMenuItem.Click += addToolStripMenuItem_Click;
             // 
             // contextMenuStrip1
             // 
@@ -169,13 +170,14 @@
             // 
             tbSearchBy.Cursor = Cursors.IBeam;
             tbSearchBy.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            tbSearchBy.Location = new Point(360, 371);
+            tbSearchBy.Location = new Point(558, 372);
             tbSearchBy.Name = "tbSearchBy";
             tbSearchBy.PlaceholderText = "Search According To Filter";
             tbSearchBy.Size = new Size(348, 27);
             tbSearchBy.TabIndex = 13;
             tbSearchBy.TextAlign = HorizontalAlignment.Center;
             tbSearchBy.TextChanged += tbSearchBy_TextChanged;
+            tbSearchBy.KeyPress += tbSearchBy_KeyPress;
             // 
             // label2
             // 
@@ -199,29 +201,6 @@
             cbFilter.Size = new Size(230, 36);
             cbFilter.TabIndex = 11;
             cbFilter.SelectedIndexChanged += cbFilter_SelectedIndexChanged;
-            // 
-            // DGVUsers
-            // 
-            DGVUsers.AllowUserToAddRows = false;
-            DGVUsers.AllowUserToDeleteRows = false;
-            DGVUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            DGVUsers.BackgroundColor = Color.FromArgb(224, 224, 224);
-            DGVUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            DGVUsers.DefaultCellStyle = dataGridViewCellStyle1;
-            DGVUsers.Location = new Point(0, 426);
-            DGVUsers.Name = "DGVUsers";
-            DGVUsers.ReadOnly = true;
-            DGVUsers.RowHeadersWidth = 51;
-            DGVUsers.Size = new Size(1305, 276);
-            DGVUsers.TabIndex = 9;
-            DGVUsers.SelectionChanged += DGVUsersSelectionChanged;
             // 
             // label1
             // 
@@ -250,11 +229,27 @@
             cbActiveFilter.DropDownStyle = ComboBoxStyle.DropDownList;
             cbActiveFilter.FormattingEnabled = true;
             cbActiveFilter.Items.AddRange(new object[] { "All", "Yes", "No" });
-            cbActiveFilter.Location = new Point(360, 370);
+            cbActiveFilter.Location = new Point(360, 371);
             cbActiveFilter.Name = "cbActiveFilter";
             cbActiveFilter.Size = new Size(178, 28);
             cbActiveFilter.TabIndex = 19;
             cbActiveFilter.Visible = false;
+            // 
+            // DGVUsers
+            // 
+            DGVUsers.AllowUserToAddRows = false;
+            DGVUsers.AllowUserToDeleteRows = false;
+            DGVUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DGVUsers.BackgroundColor = Color.FromArgb(224, 224, 224);
+            DGVUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DGVUsers.GridColor = SystemColors.HighlightText;
+            DGVUsers.Location = new Point(18, 443);
+            DGVUsers.Name = "DGVUsers";
+            DGVUsers.ReadOnly = true;
+            DGVUsers.RowHeadersWidth = 51;
+            DGVUsers.Size = new Size(1289, 264);
+            DGVUsers.TabIndex = 20;
+            DGVUsers.SelectionChanged += DGVUsersSelectionChanged;
             // 
             // frmManageUsers
             // 
@@ -263,6 +258,7 @@
             BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(1319, 782);
             ContextMenuStrip = contextMenuStrip1;
+            Controls.Add(DGVUsers);
             Controls.Add(cbActiveFilter);
             Controls.Add(labCountOfRecords);
             Controls.Add(label3);
@@ -271,7 +267,6 @@
             Controls.Add(tbSearchBy);
             Controls.Add(label2);
             Controls.Add(cbFilter);
-            Controls.Add(DGVUsers);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -284,8 +279,8 @@
             Load += frmManageUsers_Load;
             contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbAdd).EndInit();
-            ((System.ComponentModel.ISupportInitialize)DGVUsers).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DGVUsers).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -308,9 +303,9 @@
         private TextBox tbSearchBy;
         private Label label2;
         private ComboBox cbFilter;
-        private DataGridView DGVUsers;
         private Label label1;
         private PictureBox pictureBox1;
         private ComboBox cbActiveFilter;
+        private DataGridView DGVUsers;
     }
 }

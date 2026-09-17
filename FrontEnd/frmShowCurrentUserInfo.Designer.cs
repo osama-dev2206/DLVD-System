@@ -78,6 +78,7 @@ namespace FrontEnd
             Name = "frmShowCurrentUserInfo";
             ShowIcon = false;
             ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Current User Info";
             ResumeLayout(false);
         }
