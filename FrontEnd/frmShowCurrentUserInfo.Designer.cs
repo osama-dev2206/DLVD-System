@@ -1,4 +1,6 @@
-﻿namespace FrontEnd
+﻿using BussinessLogicLayer;
+
+namespace FrontEnd
 {
     partial class frmShowCurrentUserInfo
     {
@@ -30,11 +32,12 @@
         {
             ctrlPersonInfo1 = new ctrlPersonInfo(this.UserPersonID);
             btnClose = new Button();
+            ctrlShowUserInfo1 = new ctrlShowUserInfo(this.UserID);
             SuspendLayout();
             // 
             // ctrlPersonInfo1
             // 
-            ctrlPersonInfo1.Location = new Point(12, 12);
+            ctrlPersonInfo1.Location = new Point(10, 12);
             ctrlPersonInfo1.Name = "ctrlPersonInfo1";
             ctrlPersonInfo1.Size = new Size(903, 325);
             ctrlPersonInfo1.TabIndex = 0;
@@ -55,11 +58,19 @@
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += btnClose_Click;
             // 
+            // ctrlShowUserInfo1
+            // 
+            ctrlShowUserInfo1.Location = new Point(10, 311);
+            ctrlShowUserInfo1.Name = "ctrlShowUserInfo1";
+            ctrlShowUserInfo1.Size = new Size(834, 96);
+            ctrlShowUserInfo1.TabIndex = 2;
+            // 
             // frmShowCurrentUserInfo
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(925, 477);
+            Controls.Add(ctrlShowUserInfo1);
             Controls.Add(btnClose);
             Controls.Add(ctrlPersonInfo1);
             MaximizeBox = false;
@@ -75,5 +86,8 @@
 
         private ctrlPersonInfo ctrlPersonInfo1;
         private Button btnClose;
+        private ctrlShowUserInfo ctrlShowUserInfo1;
+
+
     }
 }

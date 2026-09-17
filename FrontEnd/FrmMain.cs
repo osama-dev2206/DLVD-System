@@ -19,7 +19,7 @@ namespace FrontEnd
 
         private void showCurrentUserInfo_Click(object sender, EventArgs e)
         {
-            frmShowCurrentUserInfo frmShowCurrentUserInfo = new frmShowCurrentUserInfo(clsCurrentLoggedInUser.User.PersonID);
+            frmShowCurrentUserInfo frmShowCurrentUserInfo = new frmShowCurrentUserInfo(clsCurrentLoggedInUser.User.PersonID, clsCurrentLoggedInUser.User.UserID);
             frmShowCurrentUserInfo.ShowDialog();
         }
 
@@ -31,6 +31,10 @@ namespace FrontEnd
             this.Close();
         }
 
+        private void changeCurrentUserPasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
     }

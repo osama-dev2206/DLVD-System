@@ -7,7 +7,13 @@
     <Compile Update="ctrlPersonInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ctrlShowUserInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="frmAddEditPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="frmLogin.cs">
