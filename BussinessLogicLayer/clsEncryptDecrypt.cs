@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BussinessLogicLayer
 {
-    public static class clsEncryptDecrypt
+    internal static class clsEncryptDecrypt
     {
 
         // Fixed 32-byte key and 16-byte IV (must stay the same for encrypt/decrypt to match)
@@ -28,7 +28,7 @@ namespace BussinessLogicLayer
             return Convert.ToBase64String(ms.ToArray());
         }
 
-        public static string Decrypt(string cipherText)
+        internal static string Decrypt(string cipherText)
         {
             byte[] fullCipher = Convert.FromBase64String(cipherText);
 

@@ -141,6 +141,11 @@ namespace FrontEnd
                 errorProvider1.SetError(tbPassword, "password cannot be empty !");
                 e.Cancel = true;
             }
+            else if( this.formStatus == enFormStatus.Edit  && this.user.CheckIfNewPasswordMatchesTheOld(tbPassword.Text))
+            {
+                errorProvider1.SetError(tbPassword, "new password cannot be the same as the old password !");
+                e.Cancel = true;
+            }
             else
             {
                 errorProvider1.SetError(tbPassword, String.Empty);
