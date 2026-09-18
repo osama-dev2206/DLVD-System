@@ -16,7 +16,7 @@ Select  SCOPE_IDENTITY() ";
         public static int AddNewUser(int PersonID, string UserName, string Password, bool IsActive)
         {
             SqlConnection connection = dbSettings.DbConnection();
-             int newUserId = 0;
+             int newUserId = -1;
             try
             {
                 connection.Open();

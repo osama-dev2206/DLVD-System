@@ -11,6 +11,12 @@ namespace BussinessLogicLayer
     public partial class clsUsers 
     {
 
+
+        public clsUsers()
+        {
+            this.Mode = enMode.Add;
+        }
+
         // Find By Returns DataTable ///
         public static DataTable FindUserByUserID(int UserID)
         {
@@ -102,8 +108,8 @@ namespace BussinessLogicLayer
 
         private bool Add()
         {
-            return true;
-
+            this.Password = clsEncryptDecrypt.Encrypt(Password); // encrypt the password before updating it in the database
+            return (clsAddNewUser.AddNewUser(this.PersonID, this.Username, this.Password, this.IsActive)) != -1;
         }
 
         public bool Save()
