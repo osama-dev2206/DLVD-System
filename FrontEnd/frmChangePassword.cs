@@ -16,7 +16,7 @@ namespace FrontEnd
 
         string NewPassword { get; set; }
 
-        clsUsers user;
+        clsUsers   user;
 
         public frmChangePassword(int PersonID, int UserID)
         {
@@ -43,7 +43,7 @@ namespace FrontEnd
                 errorProvider1.SetError(tbCurrentPassword, "the current password is not valid !");
                 e.Cancel = true;
             }
-            else if(tbCurrentPassword.Text != clsEncryptDecrypt.Decrypt( this.user.Password) )
+            else if(this.user.CheckIfNewPasswordMatchesTheOld(tbCurrentPassword.Text) )
             {
                 errorProvider1.SetError(tbCurrentPassword, "the current password is not your password !");
                 e.Cancel = true;
@@ -62,7 +62,7 @@ namespace FrontEnd
                 errorProvider1.SetError(tbNewPassword, "the new password cann't be empty ! ");
                 e.Cancel = true;
             }
-            else if (tbNewPassword.Text == clsEncryptDecrypt.Decrypt( this.user.Password) )
+            else if (this.user.CheckIfNewPasswordMatchesTheOld(tbNewPassword.Text)  )
             {
                 errorProvider1.SetError(tbNewPassword, "the new password cannot be the same as old password ! ");
                 e.Cancel = true;
@@ -85,7 +85,7 @@ namespace FrontEnd
                 e.Cancel = true;
             }
 
-            else if (this.tbConfrimPassword.Text ==  clsEncryptDecrypt.Decrypt( this.user.Password) ) 
+            else if ( this.user.CheckIfNewPasswordMatchesTheOld(this.tbConfrimPassword.Text) ) 
             {
                 errorProvider1.SetError(tbConfrimPassword, "the confrimation password cannot be the same as old password ! ");
                 e.Cancel = true;

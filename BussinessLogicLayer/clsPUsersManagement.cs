@@ -148,7 +148,10 @@ namespace BussinessLogicLayer
             return false;
         }
 
-
+        public  bool CheckIfNewPasswordMatchesTheOld(string NewPassword)
+        {
+           return clsEncryptDecrypt.Encrypt(NewPassword) == this.Password;
+        }
 
     }
 }

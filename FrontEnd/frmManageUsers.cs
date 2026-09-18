@@ -224,6 +224,7 @@ namespace FrontEnd
             RefreshDataGridView();
         }
 
+        // Change Password
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmChangePassword frm = new frmChangePassword(UserID: this.selectedRowIndex, PersonID: clsUsers.FindUserByUserIDAsObj(selectedRowIndex).PersonID);
