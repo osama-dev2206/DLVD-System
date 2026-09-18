@@ -43,10 +43,10 @@ namespace FrontEnd
                 errorProvider1.SetError(tbCurrentPassword, "the current password is not valid !");
                 e.Cancel = true;
             }
-            else if(this.user.CheckIfNewPasswordMatchesTheOld(tbCurrentPassword.Text) )
+            else if(!this.user.CheckIfNewPasswordMatchesTheOld(tbCurrentPassword.Text) )
             {
-                errorProvider1.SetError(tbCurrentPassword, "");
-                e.Cancel = false;
+                errorProvider1.SetError(tbCurrentPassword, "password isnot match");
+                e.Cancel = true;
             }
             else
             {
@@ -60,6 +60,11 @@ namespace FrontEnd
             if (String.IsNullOrEmpty(tbNewPassword.Text))
             {
                 errorProvider1.SetError(tbNewPassword, "the new password cann't be empty ! ");
+                e.Cancel = true;
+            }
+            else if(tbNewPassword.Text.Length < 3)
+            {
+                errorProvider1.SetError(tbNewPassword, "the new password must be at least 3 characters long ! ");
                 e.Cancel = true;
             }
             else if (this.user.CheckIfNewPasswordMatchesTheOld(tbNewPassword.Text)  )

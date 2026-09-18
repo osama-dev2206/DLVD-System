@@ -77,3 +77,51 @@ Select R = 'T'
 from Users
 where Users.IsActive = 1
 and UserID =1 ; 
+
+
+Select Users.* 
+From Users
+Where Users.UserName = 'osama.2006';
+
+Update Users 
+Set 
+UserName = '@UserName' , Password='@Pass' , IsActive ='@IsActive'
+where UserID = 1 
+
+
+SELECT UserID , UserPersonID ,
+CONCAT(People.FirstName , ' ' , People.SecondName , ' ' , People.ThirdName , ' ' , People.LastName) As FullName
+, UserName , IsActive 
+FROM Users
+Inner Join People On People.PersonID = Users.UserPersonID
+ ;
+
+ select * from BasicUserInfo 
+ where IsActive = 1; -- Active 
+
+ delete from Users 
+ where UserID = '@'
+
+
+ Select BasicUserInfo.*  From BasicUserInfo Where  UserID = 1
+
+Select *  From BasicUserInfo Where  UserPersonID = 12;
+
+ select * from BasicUserInfo  where IsActive = 1 ;
+
+
+ select * from DetailedPersonInfo;
+
+SELECT 'T' AS R
+FROM   Users
+WHERE  UserPersonID = 12;
+
+Select * from DetailsUserInfo;
+
+Select * from Users;
+
+Insert Into Users (UserPersonID,UserName,Password,IsActive)
+values 
+( '@PersonID','@UserName' , '@Password' , '@IsActive' );
+
+Select SCOPE_IDENTITY();
