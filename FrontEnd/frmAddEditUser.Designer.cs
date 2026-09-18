@@ -140,7 +140,7 @@
             tbLoginInfo.Location = new Point(4, 29);
             tbLoginInfo.Name = "tbLoginInfo";
             tbLoginInfo.Padding = new Padding(3);
-            tbLoginInfo.Size = new Size(1017, 483);
+            tbLoginInfo.Size = new Size(977, 483);
             tbLoginInfo.TabIndex = 1;
             tbLoginInfo.Text = "LoginInfo";
             // 
@@ -174,6 +174,7 @@
             tbPassword.PasswordChar = '*';
             tbPassword.Size = new Size(181, 27);
             tbPassword.TabIndex = 2;
+
             tbPassword.Validating += tbPassword_Validating;
             // 
             // tbUserName
