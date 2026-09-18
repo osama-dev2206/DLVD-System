@@ -66,11 +66,13 @@ namespace FrontEnd
                 person = clsPeople.GetPersonObjectByNationalNo(NationalNo);
 
                 if (person == null)
-                {
-                    MessageBox.Show("No person found with the given National No.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                { 
+                    OnPersonNationalNoOrPersonIDIsNotValid?.Invoke(true, "No person found with the given National No.");
                 }
-                else 
-                OnPersonFound?.Invoke(this.person.PersonID); // invoke the event to notify that a person has been found
+                else
+                {
+                    OnPersonFound?.Invoke(this.person.PersonID); // invoke the event to notify that a person has been found
+                }
             }
 
             else if (cbFilter.SelectedItem == "PersonID" && PersonID != -1)
@@ -78,11 +80,12 @@ namespace FrontEnd
                 person = clsPeople.GetPersonObjectByPersonID(this.PersonID);
                 if (person == null)
                 {
-                    MessageBox.Show("No person found with the given PersonID.", "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                    return; // Exit the method if no person is found
+                    OnPersonNationalNoOrPersonIDIsNotValid?.Invoke(true, "No person found with the given PersonID.");
                 }
-                else 
-                OnPersonFound?.Invoke(this.person.PersonID); // invoke the event to notify that a person has been found 
+                else
+                {
+                    OnPersonFound?.Invoke(this.person.PersonID); // invoke the event to notify that a person has been found 
+                }
             }
 
         }
@@ -107,7 +110,7 @@ namespace FrontEnd
 
 
         internal Action<int> OnPersonFound; // on person found or added event to notify the parent form that a person has been found or added
-
+        internal Action<bool,string > OnPersonNationalNoOrPersonIDIsNotValid;
 
 
 

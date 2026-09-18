@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             tabControl = new TabControl();
             tabPersonInfo = new TabPage();
-            ctrlFilterFindBy2 = new ctrlFilterFindBy();
+            ctrlFilterFindBy = new ctrlFilterFindBy();
             ctrlPersonInfo1 = new ctrlPersonInfo();
             btnNext = new Button();
             tbLoginInfo = new TabPage();
@@ -70,36 +70,36 @@
             tabControl.Location = new Point(12, 76);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(1025, 516);
+            tabControl.Size = new Size(985, 516);
             tabControl.TabIndex = 0;
             tabControl.Selecting += tabControl_Selecting;
             // 
             // tabPersonInfo
             // 
             tabPersonInfo.BackColor = Color.White;
-            tabPersonInfo.Controls.Add(ctrlFilterFindBy2);
+            tabPersonInfo.Controls.Add(ctrlFilterFindBy);
             tabPersonInfo.Controls.Add(ctrlPersonInfo1);
             tabPersonInfo.Controls.Add(btnNext);
             tabPersonInfo.Location = new Point(4, 29);
             tabPersonInfo.Name = "tabPersonInfo";
             tabPersonInfo.Padding = new Padding(3);
-            tabPersonInfo.Size = new Size(1017, 483);
+            tabPersonInfo.Size = new Size(977, 483);
             tabPersonInfo.TabIndex = 0;
             tabPersonInfo.Text = "Person Info";
             // 
-            // ctrlFilterFindBy2
+            // ctrlFilterFindBy
             // 
-            ctrlFilterFindBy2.Location = new Point(16, 16);
-            ctrlFilterFindBy2.Name = "ctrlFilterFindBy2";
-            ctrlFilterFindBy2.Size = new Size(983, 112);
-            ctrlFilterFindBy2.TabIndex = 4;
+            ctrlFilterFindBy.Location = new Point(16, 16);
+            ctrlFilterFindBy.Name = "ctrlFilterFindBy";
+            ctrlFilterFindBy.Size = new Size(953, 112);
+            ctrlFilterFindBy.TabIndex = 4;
             // 
             // ctrlPersonInfo1
             // 
             ctrlPersonInfo1.BackColor = Color.White;
             ctrlPersonInfo1.Location = new Point(0, 121);
             ctrlPersonInfo1.Name = "ctrlPersonInfo1";
-            ctrlPersonInfo1.Size = new Size(1011, 304);
+            ctrlPersonInfo1.Size = new Size(981, 304);
             ctrlPersonInfo1.TabIndex = 0;
             // 
             // btnNext
@@ -113,7 +113,7 @@
             btnNext.ForeColor = Color.Black;
             btnNext.Image = Properties.Resources.Next_32;
             btnNext.ImageAlign = ContentAlignment.MiddleRight;
-            btnNext.Location = new Point(813, 431);
+            btnNext.Location = new Point(793, 431);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(176, 46);
             btnNext.TabIndex = 2;
@@ -281,7 +281,7 @@
             labFormMode.ForeColor = Color.Red;
             labFormMode.Location = new Point(0, 0);
             labFormMode.Name = "labFormMode";
-            labFormMode.Size = new Size(1043, 62);
+            labFormMode.Size = new Size(997, 62);
             labFormMode.TabIndex = 1;
             labFormMode.Text = "Add New User";
             labFormMode.TextAlign = ContentAlignment.TopCenter;
@@ -294,7 +294,7 @@
             btnSave.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
             btnSave.Image = Properties.Resources.Save_32;
             btnSave.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSave.Location = new Point(839, 612);
+            btnSave.Location = new Point(799, 612);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(176, 52);
             btnSave.TabIndex = 3;
@@ -310,7 +310,7 @@
             btnClose.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold);
             btnClose.Image = Properties.Resources.Close_321;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(629, 612);
+            btnClose.Location = new Point(589, 612);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(176, 52);
             btnClose.TabIndex = 4;
@@ -327,7 +327,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1043, 688);
+            ClientSize = new Size(997, 688);
             Controls.Add(btnClose);
             Controls.Add(btnSave);
             Controls.Add(labFormMode);
@@ -361,7 +361,7 @@
         private Button btnNext;
         private Button btnSave;
         private Button btnClose;
-        private ctrlFilterFindBy ctrlFilterFindBy2;
+        private ctrlFilterFindBy ctrlFilterFindBy; // it is used 
         private Label label5;
         private Label label4;
         private Label label3;

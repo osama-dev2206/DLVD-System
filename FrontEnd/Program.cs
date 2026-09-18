@@ -6,12 +6,16 @@ namespace FrontEnd
         ///  The main entry point for the application.
         /// </summary>
 
-       private static frmLogin login = new frmLogin();
+        private static frmLogin login = new frmLogin();
         private static frmMain main = new frmMain();
+
+        [STAThread]
         static void Main()
         {
 
             ApplicationConfiguration.Initialize();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
             // The First Time 
             login.OnUserLoggedSuccess += OnLoginSuccess;

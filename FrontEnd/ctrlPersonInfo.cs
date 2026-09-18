@@ -79,16 +79,16 @@ namespace FrontEnd
 
         internal void RestToDefault()
         {
-            this.labPersonID.Text = string.Empty;
-            this.labPersonName.Text = string.Empty;
-            this.labPersonNationalNo.Text = string.Empty;
-            this.labPersonGender.Text = string.Empty;
-            this.labPersonEmail.Text = string.Empty;
-            this.labPersonAddress.Text = string.Empty;
-            this.labDateOfBirth.Text = string.Empty;
-            this.labPersonPhone.Text = string.Empty;
-            this.labPersonCountry.Text = string.Empty;
-            this.pbPFP.Image = null;
+            this.labPersonID.Text = "??";
+            this.labPersonName.Text = "??";
+            this.labPersonNationalNo.Text = "??";
+            this.labPersonGender.Text = "??";
+            this.labPersonEmail.Text = "??";
+            this.labPersonAddress.Text = "??";
+            this.labDateOfBirth.Text = "??";
+            this.labPersonPhone.Text = "??";
+            this.labPersonCountry.Text = "??";
+            this.pbPFP.Image = Properties.Resources.Male_512;
         }
 
 

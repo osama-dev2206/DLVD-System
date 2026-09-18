@@ -28,13 +28,15 @@ namespace FrontEnd
             }
 
             InitializeComponent();
-            this.ctrlFilterFindBy2.OnPersonFound += GetPersonFoundedOrAdded; // subscribe to the event when a person is found or added in the ctrlFilterFindBy2 control
+            this.ctrlFilterFindBy.OnPersonFound += GetPersonFoundedOrAdded; // subscribe to the event when a person is found or added in the ctrlFilterFindBy2 control
+
+            this.ctrlFilterFindBy.OnPersonNationalNoOrPersonIDIsNotValid += GetPersonNotFoundError; // subscribe to the event when a person is not found in the ctrlFilterFindBy2 control
 
             if (UserID == -1)
             {
                 formStatus = enFormStatus.Add;
                 user = new clsUsers();
-                this.ctrlFilterFindBy2.Enabled = true;
+                this.ctrlFilterFindBy.Enabled = true;
                 this.labFormMode.Text = "Add New User";
 
                 // Default 
@@ -46,7 +48,7 @@ namespace FrontEnd
                 formStatus = enFormStatus.Edit;
                 user = clsUsers.FindUserByUserIDAsObj(UserID);
                 FillForm();
-                this.ctrlFilterFindBy2.Enabled = false;
+                this.ctrlFilterFindBy.Enabled = false;
                 this.labFormMode.Text = "Edit User";
             }
 
@@ -100,6 +102,12 @@ namespace FrontEnd
                 btnNext.Enabled = true;
             }
 
+        }
+
+        void GetPersonNotFoundError(bool status , string message)
+        {
+            MessageBox.Show(message , "Person Not Found Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            this.ctrlPersonInfo1.RestToDefault();
         }
 
         private void tabControl_Selecting(object sender, TabControlCancelEventArgs e) // to prevent user from going to the next tab if the person is not selected or added
@@ -202,6 +210,13 @@ namespace FrontEnd
                 }
 
             }
+
+            else
+            {
+                MessageBox.Show("Please fill in all required fields before saving.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
