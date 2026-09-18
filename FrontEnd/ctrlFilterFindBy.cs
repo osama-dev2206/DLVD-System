@@ -25,8 +25,6 @@ namespace FrontEnd
 
         private void tbSeach_TextChanged(object sender, EventArgs e)
         {
-
-
             if (!String.IsNullOrEmpty(tbSeach.Text))
             {
                 if (cbFilter.SelectedItem == "PersonID" && int.TryParse(tbSeach.Text.Trim(), out int ID))
@@ -42,7 +40,7 @@ namespace FrontEnd
 
             else
             {
-                MessageBox.Show("Please enter a value to search.");
+                MessageBox.Show("Please enter a value to search.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 
@@ -66,34 +64,34 @@ namespace FrontEnd
 
                 if (person == null)
                 {
-                    MessageBox.Show("No person found with the given National No.");
+                    MessageBox.Show("No person found with the given National No.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
                 else 
-                OnPersonFound?.Invoke(this.person); // invoke the event to notify that a person has been found or added)
+                OnPersonFound?.Invoke(this.person.PersonID); // invoke the event to notify that a person has been found
             }
 
             else if (cbFilter.SelectedItem == "PersonID" && PersonID != -1)
             {
-                person = clsPeople.GetPersonObjectByPersonID(PersonID);
-                if(person == null)
+                person = clsPeople.GetPersonObjectByPersonID(this.PersonID);
+                if (person == null)
                 {
-                    MessageBox.Show("No person found with the given PersonID.");
+                    MessageBox.Show("No person found with the given PersonID.", "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     return; // Exit the method if no person is found
                 }
                 else 
-                OnPersonFound?.Invoke(this.person); // invoke the event to notify that a person has been found or added)
+                OnPersonFound?.Invoke(this.person.PersonID); // invoke the event to notify that a person has been found 
             }
 
         }
 
         private void pbAdd_Click(object sender, EventArgs e)
         {
-            frmAddEditPerson frmAddEditPerson = new frmAddEditPerson(this.PersonID);
+            frmAddEditPerson frmAddEditPerson = new frmAddEditPerson(-1); // add new person (if it is not existing person, we will pass -1 to the form to indicate that we are adding a new person)
             frmAddEditPerson.ShowDialog();
 
-            this.person = frmAddEditPerson.GetTempPerson(); // get the person object from the form after it is closed
+                this.PersonID = frmAddEditPerson.PersonID; // update the PersonID after adding a new person( the person id will  be returned from event)
 
-            OnPersonFound?.Invoke(this.person); // invoke the event to notify that a person has been found or added)
+            OnPersonFound?.Invoke(this.PersonID); // invoke the event to notify that a person has been found or added)
 
             frmAddEditPerson.Dispose();
         }
@@ -105,10 +103,10 @@ namespace FrontEnd
         }
 
 
-        internal Action<clsPeople> OnPersonFound;
+        internal Action<int> OnPersonFound; // on person found or added event to notify the parent form that a person has been found or added
 
 
 
 
-        }
+    }
 }

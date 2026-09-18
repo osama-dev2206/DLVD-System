@@ -34,11 +34,28 @@
             ctrlPersonInfo1 = new ctrlPersonInfo();
             btnNext = new Button();
             tbLoginInfo = new TabPage();
+            tbPassword = new TextBox();
+            tbUserName = new TextBox();
+            labPersonID = new Label();
+            pictureBox4 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox1 = new PictureBox();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
             label1 = new Label();
             btnSave = new Button();
             btnClose = new Button();
+            tbPasswordConfrimation = new TextBox();
             tabControl.SuspendLayout();
             tabPersonInfo.SuspendLayout();
+            tbLoginInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // tabControl
@@ -51,6 +68,7 @@
             tabControl.SelectedIndex = 0;
             tabControl.Size = new Size(1025, 516);
             tabControl.TabIndex = 0;
+            tabControl.Selecting += tabControl_Selecting;
             // 
             // tabPersonInfo
             // 
@@ -102,12 +120,130 @@
             // tbLoginInfo
             // 
             tbLoginInfo.BackColor = Color.FromArgb(224, 224, 224);
+            tbLoginInfo.Controls.Add(tbPasswordConfrimation);
+            tbLoginInfo.Controls.Add(tbPassword);
+            tbLoginInfo.Controls.Add(tbUserName);
+            tbLoginInfo.Controls.Add(labPersonID);
+            tbLoginInfo.Controls.Add(pictureBox4);
+            tbLoginInfo.Controls.Add(pictureBox3);
+            tbLoginInfo.Controls.Add(pictureBox2);
+            tbLoginInfo.Controls.Add(pictureBox1);
+            tbLoginInfo.Controls.Add(label5);
+            tbLoginInfo.Controls.Add(label4);
+            tbLoginInfo.Controls.Add(label3);
+            tbLoginInfo.Controls.Add(label2);
             tbLoginInfo.Location = new Point(4, 29);
             tbLoginInfo.Name = "tbLoginInfo";
             tbLoginInfo.Padding = new Padding(3);
             tbLoginInfo.Size = new Size(1017, 483);
             tbLoginInfo.TabIndex = 1;
             tbLoginInfo.Text = "LoginInfo";
+            // 
+            // tbPassword
+            // 
+            tbPassword.Location = new Point(287, 214);
+            tbPassword.MaxLength = 20;
+            tbPassword.Name = "tbPassword";
+            tbPassword.PasswordChar = '*';
+            tbPassword.Size = new Size(181, 27);
+            tbPassword.TabIndex = 2;
+            // 
+            // tbUserName
+            // 
+            tbUserName.Location = new Point(287, 162);
+            tbUserName.Name = "tbUserName";
+            tbUserName.Size = new Size(181, 27);
+            tbUserName.TabIndex = 1;
+            // 
+            // labPersonID
+            // 
+            labPersonID.AutoSize = true;
+            labPersonID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            labPersonID.Location = new Point(257, 100);
+            labPersonID.Name = "labPersonID";
+            labPersonID.Size = new Size(30, 28);
+            labPersonID.TabIndex = 8;
+            labPersonID.Text = "??";
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = Properties.Resources.Password_32;
+            pictureBox4.Location = new Point(176, 204);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(63, 40);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox4.TabIndex = 7;
+            pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.Password_32;
+            pictureBox3.Location = new Point(208, 260);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(63, 40);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 6;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.Person_321;
+            pictureBox2.Location = new Point(176, 158);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(63, 40);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 5;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.Number_321;
+            pictureBox1.Location = new Point(156, 94);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(63, 40);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 4;
+            pictureBox1.TabStop = false;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label5.Location = new Point(20, 266);
+            label5.Name = "label5";
+            label5.Size = new Size(193, 28);
+            label5.TabIndex = 3;
+            label5.Text = "Confrim Password : ";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label4.Location = new Point(62, 210);
+            label4.Name = "label4";
+            label4.Size = new Size(108, 28);
+            label4.TabIndex = 2;
+            label4.Text = "Password :";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label3.Location = new Point(57, 161);
+            label3.Name = "label3";
+            label3.Size = new Size(118, 28);
+            label3.TabIndex = 1;
+            label3.Text = "UserName :";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label2.Location = new Point(71, 100);
+            label2.Name = "label2";
+            label2.Size = new Size(90, 28);
+            label2.TabIndex = 0;
+            label2.Text = "UserID : ";
             // 
             // label1
             // 
@@ -135,6 +271,7 @@
             btnSave.TabIndex = 3;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnClose
             // 
@@ -151,6 +288,15 @@
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += btnClose_Click;
+            // 
+            // tbPasswordConfrimation
+            // 
+            tbPasswordConfrimation.Location = new Point(287, 273);
+            tbPasswordConfrimation.MaxLength = 20;
+            tbPasswordConfrimation.Name = "tbPasswordConfrimation";
+            tbPasswordConfrimation.PasswordChar = '*';
+            tbPasswordConfrimation.Size = new Size(181, 27);
+            tbPasswordConfrimation.TabIndex = 3;
             // 
             // frmAddEditUser
             // 
@@ -171,6 +317,12 @@
             Text = "frmAddEditUser";
             tabControl.ResumeLayout(false);
             tabPersonInfo.ResumeLayout(false);
+            tbLoginInfo.ResumeLayout(false);
+            tbLoginInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -185,5 +337,17 @@
         private Button btnSave;
         private Button btnClose;
         private ctrlFilterFindBy ctrlFilterFindBy2;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox4;
+        private Label labPersonID;
+        private TextBox tbUserName;
+        private TextBox tbPassword;
+        private TextBox tbPasswordConfrimation;
     }
 }

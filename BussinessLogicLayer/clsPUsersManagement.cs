@@ -100,6 +100,12 @@ namespace BussinessLogicLayer
             return clsUpdateUser.UpdateUser(UserID: this.UserID,UserName:this.Username, Password:this.Password , this.IsActive) ;
         }
 
+        private bool Add()
+        {
+            return true;
+
+        }
+
         public bool Save()
         {
             switch(this.Mode)
@@ -116,6 +122,18 @@ namespace BussinessLogicLayer
                         }
                     }
 
+                    case enMode.Add:
+                    {
+                        if (Add())
+                        {
+                            this.Mode = enMode.Update;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
 
 
             }

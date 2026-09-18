@@ -77,6 +77,20 @@ namespace FrontEnd
             UpdateUserControlViewingINfo();
         }
 
+        internal void RestToDefault()
+        {
+            this.labPersonID.Text = string.Empty;
+            this.labPersonName.Text = string.Empty;
+            this.labPersonNationalNo.Text = string.Empty;
+            this.labPersonGender.Text = string.Empty;
+            this.labPersonEmail.Text = string.Empty;
+            this.labPersonAddress.Text = string.Empty;
+            this.labDateOfBirth.Text = string.Empty;
+            this.labPersonPhone.Text = string.Empty;
+            this.labPersonCountry.Text = string.Empty;
+            this.pbPFP.Image = null;
+        }
+
 
     }
 }
