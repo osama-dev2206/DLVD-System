@@ -218,7 +218,7 @@ namespace FrontEnd
         // Edit 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddEditUser frm = new frmAddEditUser(UserID: this.selectedRowIndex); // means add new user
+            frmAddEditUser frm = new frmAddEditUser(UserID: this.selectedRowIndex); // means edit  user
             frm.ShowDialog();
             frm.Dispose();
             RefreshDataGridView();

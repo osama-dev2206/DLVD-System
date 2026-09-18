@@ -12,12 +12,27 @@ namespace FrontEnd
     public partial class frmAddEditUser : Form
     {
         enum enFormStatus : byte { Add = 1, Edit = 2 }
+        enFormStatus formStatus;
 
         public frmAddEditUser(int UserID)
         {
             InitializeComponent();
             this.ctrlFilterFindBy2.OnPersonFound += GetPersonFoundedOrAdded;
+
+            if (UserID == -1)
+            {
+                formStatus = enFormStatus.Add;
+                this.ctrlFilterFindBy2.Enabled = true;
+            }
+            else
+            {
+                formStatus = enFormStatus.Edit;
+                this.ctrlFilterFindBy2.Enabled = false;
+            }
+
             btnSave.Enabled = false;
+            btnNext.Enabled = false;
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -31,25 +46,39 @@ namespace FrontEnd
 
         }
 
-        void IsThisPersonRegisteredAsUser(int PersonID )
+        bool IsThisPersonRegisteredAsUser(int PersonID)
         {
-            if (clsUsers.IsUserISAPerson(PersonID))
+            return clsUsers.IsUserISAPerson(PersonID);
+        }
+
+        void GetPersonFoundedOrAdded(int PersonID) // when a person is found or added, this method will be called
+        {
+            if (IsThisPersonRegisteredAsUser(PersonID))
             {
-                MessageBox.Show("This person is already registered as a user.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ctrlPersonInfo1.RestToDefault();
+                MessageBox.Show("This person is already registered as a user in the system. You cannot add this person as a user again.", "Person Already Registered", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Enabled = false;
+                btnNext.Enabled = false;
             }
             else
             {
+                this.ctrlPersonInfo1.LoadInfoUsingPersonID(PersonID);
                 btnSave.Enabled = true;
+                btnNext.Enabled = true;
             }
+
         }
 
-        void GetPersonFoundedOrAdded(clsPeople person)
+        private void tabControl_Selecting(object sender, TabControlCancelEventArgs e) // to prevent user from going to the next tab if the person is not selected or added
         {
-            this.ctrlPersonInfo1.LoadInfoUsingPersonObject(person);
-            IsThisPersonRegisteredAsUser(person.PersonID);
+            e.Cancel = !btnNext.Enabled; // if the next button is not enabled, cancel the tab change
         }
-       
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
 
     }
