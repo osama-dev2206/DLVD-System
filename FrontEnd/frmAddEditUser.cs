@@ -15,12 +15,12 @@ namespace FrontEnd
         enum enFormStatus : byte { Add = 1, Edit = 2 }
         enFormStatus formStatus;
 
-        clsUsers ? user;
+        clsUsers? user;
 
         public frmAddEditUser(int UserID)
         {
 
-            if(!int.TryParse(UserID.ToString(), out _))
+            if (!int.TryParse(UserID.ToString(), out _))
             {
                 MessageBox.Show("Invalid User ID. Please provide a valid User ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
@@ -61,7 +61,7 @@ namespace FrontEnd
             if (user is not null)
             {
                 this.ctrlPersonInfo1.LoadInfoUsingPersonID(user.PersonID);
-               btnNext.Enabled = true;
+                btnNext.Enabled = true;
                 btnSave.Enabled = true;
                 this.tbUserName.Text = user.Username;
                 this.cbIsActive.Checked = this.user.IsActive;
@@ -104,9 +104,9 @@ namespace FrontEnd
 
         }
 
-        void GetPersonNotFoundError(bool status , string message)
+        void GetPersonNotFoundError(bool status, string message)
         {
-            MessageBox.Show(message , "Person Not Found Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(message, "Person Not Found Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             this.ctrlPersonInfo1.RestToDefault();
         }
 
@@ -127,7 +127,7 @@ namespace FrontEnd
                 errorProvider1.SetError(tbUserName, "username cannot be empty !");
                 e.Cancel = true;
             }
-            else if ( this.formStatus==enFormStatus.Add && clsUsers.IsUserNameExist(tbUserName.Text.Trim()))
+            else if (this.formStatus == enFormStatus.Add && clsUsers.IsUserNameExist(tbUserName.Text.Trim()))
             {
                 errorProvider1.SetError(tbUserName, "this username already exists ! ");
                 e.Cancel = true;
@@ -149,9 +149,14 @@ namespace FrontEnd
                 errorProvider1.SetError(tbPassword, "password cannot be empty !");
                 e.Cancel = true;
             }
-            else if( this.formStatus == enFormStatus.Edit  && this.user.CheckIfNewPasswordMatchesTheOld(tbPassword.Text))
+            else if (this.formStatus == enFormStatus.Edit && this.user.CheckIfNewPasswordMatchesTheOld(tbPassword.Text))
             {
                 errorProvider1.SetError(tbPassword, "new password cannot be the same as the old password !");
+                e.Cancel = true;
+            }
+            else if (tbPassword.Text.Length <= 3)
+            {
+                errorProvider1.SetError(tbPassword, "password should be at least 3 chars !");
                 e.Cancel = true;
             }
             else
@@ -168,16 +173,17 @@ namespace FrontEnd
                 errorProvider1.SetError(tbPasswordConfrimation, "password cannot be empty !");
                 e.Cancel = true;
             }
-            else if(tbPasswordConfrimation.Text.Trim() != tbPassword.Text.Trim())
+            else if (tbPasswordConfrimation.Text.Trim() != tbPassword.Text.Trim())
             {
                 errorProvider1.SetError(tbPasswordConfrimation, "password confirmation does not match the password !");
                 e.Cancel = true;
             }
+
             else
             {
                 errorProvider1.SetError(tbPasswordConfrimation, String.Empty);
                 e.Cancel = false;
-                this.user.Password =  tbPasswordConfrimation.Text.Trim(); // set the password only if the confirmation matches
+                this.user.Password = tbPasswordConfrimation.Text.Trim(); // set the password only if the confirmation matches
             }
 
         }
@@ -186,7 +192,7 @@ namespace FrontEnd
         {
             return !String.IsNullOrEmpty(user.Username) && !String.IsNullOrEmpty(user.Password) && !String.IsNullOrEmpty(tbPassword.Text)
                 && !String.IsNullOrEmpty(tbPasswordConfrimation.Text)
-                && ( user.PersonID != -1 || user.PersonID != null );
+                && (user.PersonID != -1 || user.PersonID != null);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -197,7 +203,7 @@ namespace FrontEnd
                 {
                     MessageBox.Show("User saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.formStatus = enFormStatus.Edit;
-
+                    this.labFormMode.Text = "Edit User";
                 }
                 else if (this.formStatus == enFormStatus.Edit && user.Save())
                 {
@@ -224,7 +230,6 @@ namespace FrontEnd
             this.Close();
         }
 
-
-
+ 
     }
 }

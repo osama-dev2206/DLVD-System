@@ -45,8 +45,8 @@ namespace FrontEnd
             }
             else if(this.user.CheckIfNewPasswordMatchesTheOld(tbCurrentPassword.Text) )
             {
-                errorProvider1.SetError(tbCurrentPassword, "the current password is not your password !");
-                e.Cancel = true;
+                errorProvider1.SetError(tbCurrentPassword, "");
+                e.Cancel = false;
             }
             else
             {

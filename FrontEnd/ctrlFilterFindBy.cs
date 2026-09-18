@@ -46,9 +46,9 @@ namespace FrontEnd
             if (cbFilter.SelectedItem == "PersonID")
             {
                 // Allow only digits and control characters (like backspace)
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
                 {
-                    e.Handled = true; // Ignore the input
+                    e.Handled = true;
                 }
             }
         }

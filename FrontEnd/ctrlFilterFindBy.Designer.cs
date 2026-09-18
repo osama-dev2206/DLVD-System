@@ -60,6 +60,7 @@
             tbSeach.Size = new Size(250, 27);
             tbSeach.TabIndex = 4;
             tbSeach.TextChanged += tbSeach_TextChanged;
+            tbSeach.KeyPress += ctrlFilterFindBy_KeyPress;
             // 
             // pbSearch
             // 
@@ -111,7 +112,6 @@
             Controls.Add(groupBox1);
             Name = "ctrlFilterFindBy";
             Size = new Size(856, 113);
-            KeyPress += ctrlFilterFindBy_KeyPress;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbSearch).EndInit();

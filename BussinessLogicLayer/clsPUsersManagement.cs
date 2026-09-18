@@ -102,14 +102,19 @@ namespace BussinessLogicLayer
 
        private bool Update()
         {
+            if(Password.Length <3) return false; // password must be at least 3 characters long
+
             this.Password = clsEncryptDecrypt.Encrypt(Password); // encrypt the password before updating it in the database
             return clsUpdateUser.UpdateUser(UserID: this.UserID,UserName:this.Username, Password:this.Password , this.IsActive) ;
         }
 
         private bool Add()
         {
-            this.Password = clsEncryptDecrypt.Encrypt(Password); // encrypt the password before updating it in the database
-            return (clsAddNewUser.AddNewUser(this.PersonID, this.Username, this.Password, this.IsActive)) != -1;
+            if (Password.Length < 3) return false; // password must be at least 3 characters long
+
+            this.Password = clsEncryptDecrypt.Encrypt(Password); // encrypt the password before updating it in the databasec
+            this.UserID = clsAddNewUser.AddNewUser(this.PersonID, this.Username, this.Password, this.IsActive) ;
+            return (UserID != -1);
         }
 
         public bool Save()
