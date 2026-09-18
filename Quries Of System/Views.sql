@@ -29,3 +29,11 @@ Users.Password , Users.IsActive
 from DetailedPersonInfo
 Inner Join Users
 On Users.UserPersonID = DetailedPersonInfo.PersonID ;
+
+
+create view BasicUserInfo As 
+SELECT UserID , UserPersonID ,
+CONCAT(People.FirstName , ' ' , People.SecondName , ' ' , People.ThirdName , ' ' , People.LastName) As FullName
+, UserName , IsActive 
+FROM Users
+Inner Join People On People.PersonID = Users.UserPersonID;

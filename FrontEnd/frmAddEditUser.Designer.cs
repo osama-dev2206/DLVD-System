@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             tabControl = new TabControl();
             tabPersonInfo = new TabPage();
+            lblEditPerson = new LinkLabel();
             ctrlFilterFindBy = new ctrlFilterFindBy();
             ctrlPersonInfo1 = new ctrlPersonInfo();
             btnNext = new Button();
@@ -70,25 +71,37 @@
             tabControl.Location = new Point(12, 76);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(985, 516);
+            tabControl.Size = new Size(1028, 516);
             tabControl.TabIndex = 0;
             tabControl.Selecting += tabControl_Selecting;
             // 
             // tabPersonInfo
             // 
             tabPersonInfo.BackColor = Color.White;
+            tabPersonInfo.Controls.Add(lblEditPerson);
             tabPersonInfo.Controls.Add(ctrlFilterFindBy);
             tabPersonInfo.Controls.Add(ctrlPersonInfo1);
             tabPersonInfo.Controls.Add(btnNext);
             tabPersonInfo.Location = new Point(4, 29);
             tabPersonInfo.Name = "tabPersonInfo";
             tabPersonInfo.Padding = new Padding(3);
-            tabPersonInfo.Size = new Size(977, 483);
+            tabPersonInfo.Size = new Size(1020, 483);
             tabPersonInfo.TabIndex = 0;
             tabPersonInfo.Text = "Person Info";
             // 
+            // lblEditPerson
+            // 
+            lblEditPerson.Location = new Point(719, 121);
+            lblEditPerson.Name = "lblEditPerson";
+            lblEditPerson.Size = new Size(238, 33);
+            lblEditPerson.TabIndex = 5;
+            lblEditPerson.TabStop = true;
+            lblEditPerson.Text = "Edit Person";
+            lblEditPerson.LinkClicked += lblEditPerson_LinkClicked;
+            // 
             // ctrlFilterFindBy
             // 
+            ctrlFilterFindBy.AutoSize = true;
             ctrlFilterFindBy.Location = new Point(16, 16);
             ctrlFilterFindBy.Name = "ctrlFilterFindBy";
             ctrlFilterFindBy.Size = new Size(953, 112);
@@ -96,10 +109,11 @@
             // 
             // ctrlPersonInfo1
             // 
+            ctrlPersonInfo1.AutoSize = true;
             ctrlPersonInfo1.BackColor = Color.White;
-            ctrlPersonInfo1.Location = new Point(0, 121);
+            ctrlPersonInfo1.Location = new Point(16, 121);
             ctrlPersonInfo1.Name = "ctrlPersonInfo1";
-            ctrlPersonInfo1.Size = new Size(981, 304);
+            ctrlPersonInfo1.Size = new Size(997, 304);
             ctrlPersonInfo1.TabIndex = 0;
             // 
             // btnNext
@@ -140,7 +154,7 @@
             tbLoginInfo.Location = new Point(4, 29);
             tbLoginInfo.Name = "tbLoginInfo";
             tbLoginInfo.Padding = new Padding(3);
-            tbLoginInfo.Size = new Size(977, 483);
+            tbLoginInfo.Size = new Size(1020, 483);
             tbLoginInfo.TabIndex = 1;
             tbLoginInfo.Text = "LoginInfo";
             // 
@@ -174,12 +188,12 @@
             tbPassword.PasswordChar = '*';
             tbPassword.Size = new Size(181, 27);
             tbPassword.TabIndex = 2;
-
             tbPassword.Validating += tbPassword_Validating;
             // 
             // tbUserName
             // 
             tbUserName.Location = new Point(287, 162);
+            tbUserName.MaxLength = 20;
             tbUserName.Name = "tbUserName";
             tbUserName.Size = new Size(181, 27);
             tbUserName.TabIndex = 1;
@@ -282,7 +296,7 @@
             labFormMode.ForeColor = Color.Red;
             labFormMode.Location = new Point(0, 0);
             labFormMode.Name = "labFormMode";
-            labFormMode.Size = new Size(997, 62);
+            labFormMode.Size = new Size(1061, 62);
             labFormMode.TabIndex = 1;
             labFormMode.Text = "Add New User";
             labFormMode.TextAlign = ContentAlignment.TopCenter;
@@ -295,9 +309,9 @@
             btnSave.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
             btnSave.Image = Properties.Resources.Save_32;
             btnSave.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSave.Location = new Point(799, 612);
+            btnSave.Location = new Point(869, 610);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(176, 52);
+            btnSave.Size = new Size(160, 52);
             btnSave.TabIndex = 3;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
@@ -311,9 +325,9 @@
             btnClose.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold);
             btnClose.Image = Properties.Resources.Close_321;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(589, 612);
+            btnClose.Location = new Point(659, 610);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(176, 52);
+            btnClose.Size = new Size(160, 52);
             btnClose.TabIndex = 4;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
@@ -328,11 +342,12 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(997, 688);
+            ClientSize = new Size(1061, 688);
             Controls.Add(btnClose);
             Controls.Add(btnSave);
             Controls.Add(labFormMode);
             Controls.Add(tabControl);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmAddEditUser";
@@ -342,6 +357,7 @@
             Text = "frmAddEditUser";
             tabControl.ResumeLayout(false);
             tabPersonInfo.ResumeLayout(false);
+            tabPersonInfo.PerformLayout();
             tbLoginInfo.ResumeLayout(false);
             tbLoginInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
@@ -377,5 +393,6 @@
         private TextBox tbPasswordConfrimation;
         private CheckBox cbIsActive;
         private ErrorProvider errorProvider1;
+        private LinkLabel lblEditPerson;
     }
 }

@@ -11,10 +11,10 @@ namespace BussinessLogicLayer
     public partial class clsUsers 
     {
 
-
         public clsUsers()
         {
             this.Mode = enMode.Add;
+            this.UserID = -1;
         }
 
         // Find By Returns DataTable ///
@@ -119,6 +119,7 @@ namespace BussinessLogicLayer
 
         public bool Save()
         {
+            if (this.PersonID == 12) return false;
             switch(this.Mode)
             {
                      case enMode.Update:
@@ -156,6 +157,13 @@ namespace BussinessLogicLayer
         public  bool CheckIfNewPasswordMatchesTheOld(string NewPassword)
         {
            return clsEncryptDecrypt.Encrypt(NewPassword) == this.Password;
+        }
+
+        public string GetPasswordUnEncrypted()
+        {
+            // as the password is stored in the database in an encrypted format, we need to decrypt it cuz user may not update password so it will decrypt the decrypted
+            this.Password = clsEncryptDecrypt.Decrypt(this.Password); 
+            return Password;
         }
 
     }

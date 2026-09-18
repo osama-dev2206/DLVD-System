@@ -32,6 +32,8 @@ namespace FrontEnd
 
             this.ctrlFilterFindBy.OnPersonNationalNoOrPersonIDIsNotValid += GetPersonNotFoundError; // subscribe to the event when a person is not found in the ctrlFilterFindBy2 control
 
+            lblEditPerson.Visible = false;
+
             if (UserID == -1)
             {
                 formStatus = enFormStatus.Add;
@@ -42,6 +44,7 @@ namespace FrontEnd
                 // Default 
                 btnSave.Enabled = false;
                 btnNext.Enabled = false;
+   
             }
             else
             {
@@ -65,10 +68,16 @@ namespace FrontEnd
                 btnSave.Enabled = true;
                 this.tbUserName.Text = user.Username;
                 this.cbIsActive.Checked = this.user.IsActive;
+                lblEditPerson.Visible= true;
+                string PasswordUnencrypted = user.GetPasswordUnEncrypted(); // the db returns the password encrypted
+                this.tbPassword.Text = PasswordUnencrypted;
+                this.tbPasswordConfrimation.Text = PasswordUnencrypted;
+
             }
             else
             {
                 MessageBox.Show("User not found. Please provide a valid User ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lblEditPerson.Visible = false ;
                 this.Close();
             }
 
@@ -85,7 +94,7 @@ namespace FrontEnd
             return clsUsers.IsUserISAPerson(PersonID);
         }
 
-        void GetPersonFoundedOrAdded(int PersonID) // when a person is found or added, this method will be called
+        void GetPersonFoundedOrAdded(int PersonID) // EVENT when a person is found or added, this method will be called
         {
             if (IsThisPersonRegisteredAsUser(PersonID))
             {
@@ -93,6 +102,7 @@ namespace FrontEnd
                 MessageBox.Show("This person is already registered as a user in the system. You cannot add this person as a user again.", "Person Already Registered", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Enabled = false;
                 btnNext.Enabled = false;
+                lblEditPerson.Visible = false;
             }
             else
             {
@@ -100,11 +110,12 @@ namespace FrontEnd
                 user.PersonID = PersonID; // set User person ID
                 btnSave.Enabled = true;
                 btnNext.Enabled = true;
+                lblEditPerson.Visible = true; // the info has loaded, so the user can edit the person info if needed
             }
 
         }
 
-        void GetPersonNotFoundError(bool status, string message)
+        void GetPersonNotFoundError(bool status, string message) // Event 
         {
             MessageBox.Show(message, "Person Not Found Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             this.ctrlPersonInfo1.RestToDefault();
@@ -154,7 +165,7 @@ namespace FrontEnd
                 errorProvider1.SetError(tbPassword, "new password cannot be the same as the old password !");
                 e.Cancel = true;
             }
-            else if (tbPassword.Text.Length <= 3)
+            else if (tbPassword.Text.Length < 3)
             {
                 errorProvider1.SetError(tbPassword, "password should be at least 3 chars !");
                 e.Cancel = true;
@@ -225,11 +236,23 @@ namespace FrontEnd
 
         }
 
+
+        private void lblEditPerson_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmAddEditPerson frmEdit = new frmAddEditPerson(user.PersonID);
+            frmEdit.ShowDialog();
+            frmEdit.Dispose();
+            this.ctrlPersonInfo1.LoadInfoUsingPersonID(user.PersonID); // reload the person
+        }
+
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
- 
+
+
+
     }
 }
