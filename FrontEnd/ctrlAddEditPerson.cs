@@ -151,10 +151,15 @@ namespace FrontEnd
 
         private void tbAddresstbPhone_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if( !char.IsDigit(e.KeyChar) && e.KeyChar != '+' && e.KeyChar != ' ' && !char.IsLetter(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) &&
+                !char.IsLetter(e.KeyChar) &&
+                e.KeyChar != '+' &&
+                e.KeyChar != ' ' &&
+                !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
+
         }
 
         private void tbPhone_KeyPress(object sender, KeyPressEventArgs e)
@@ -306,9 +311,15 @@ namespace FrontEnd
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!CheckBeforeSave())
+            {
+                MessageBox.Show("Please Make Sure You Have Inserted All Mandatory Fields And Try Again !", "Fileds Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (this.FormMode == enMode.Add)
             {
-                if (CheckBeforeSave() && person.Save())
+                if (  person.Save())
                 {
                     MessageBox.Show("Person saved successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     pbIndicator.Visible = false;
@@ -327,7 +338,7 @@ namespace FrontEnd
             if(this.FormMode == enMode.Edit)
             {
         
-                if (this.CheckBeforeSave() && person.Save())
+                if (person.Save())
                 { 
                         MessageBox.Show("Person updated successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
