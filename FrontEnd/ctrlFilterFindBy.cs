@@ -38,10 +38,7 @@ namespace FrontEnd
                 }
             }
 
-            else
-            {
-                MessageBox.Show("Please enter a value to search.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
+
         }
 
         private void ctrlFilterFindBy_KeyPress(object sender, KeyPressEventArgs e)
@@ -58,6 +55,12 @@ namespace FrontEnd
 
         private void pbSearch_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(tbSeach.Text))
+            {
+                MessageBox.Show("Please enter a value to search.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; 
+            }    
+
             if (cbFilter.SelectedItem == "NationalNO" && !String.IsNullOrEmpty(this.NationalNo))
             {
                 person = clsPeople.GetPersonObjectByNationalNo(NationalNo);

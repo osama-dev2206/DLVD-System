@@ -196,9 +196,9 @@ namespace FrontEnd
 
         private void AddNewUser()
         {
-            frmAddEditUser frm = new frmAddEditUser(  UserID: -1); // means add new user
+            frmAddEditUser frm = new frmAddEditUser(UserID: -1); // means add new user
             frm.ShowDialog();
-            frm.Dispose();  
+            frm.Dispose();
         }
 
         //Add btn
@@ -208,7 +208,7 @@ namespace FrontEnd
             RefreshDataGridView();
         }
 
-        //Add cm
+        //Add context menu iteme 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddNewUser();
@@ -222,6 +222,13 @@ namespace FrontEnd
             frm.ShowDialog();
             frm.Dispose();
             RefreshDataGridView();
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChangePassword frm = new frmChangePassword(UserID: this.selectedRowIndex, PersonID: clsUsers.FindUserByUserIDAsObj(selectedRowIndex).PersonID);
+            frm.ShowDialog();
+            frm.Dispose();
         }
 
 

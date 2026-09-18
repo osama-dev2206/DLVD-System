@@ -10,13 +10,16 @@ using System.Text.Json;
 
 namespace BussinessLogicLayer
 {
-    public partial class clsUsers : abPerson
+    public partial class clsUsers // the relation between user and person is composition not inheitance 
     {
         public string ?Username { get; set; }
         public string ?Password { get; set; }
         public int UserID { get; private set; }
-        public bool IsActive { get; private set; }
+        public bool IsActive { get;  set; }
 
+        public  int PersonID { get; set; } 
+
+        enum enMode { Add , Update}
         enMode Mode;
 
         private clsUsers(int UserID , int UserPersonID , string UserName , string Password ,bool  IsActive )// to get user info only

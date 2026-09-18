@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tabControl = new TabControl();
             tabPersonInfo = new TabPage();
             ctrlFilterFindBy2 = new ctrlFilterFindBy();
             ctrlPersonInfo1 = new ctrlPersonInfo();
             btnNext = new Button();
             tbLoginInfo = new TabPage();
+            cbIsActive = new CheckBox();
+            tbPasswordConfrimation = new TextBox();
             tbPassword = new TextBox();
             tbUserName = new TextBox();
             labPersonID = new Label();
@@ -45,10 +48,10 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            label1 = new Label();
+            labFormMode = new Label();
             btnSave = new Button();
             btnClose = new Button();
-            tbPasswordConfrimation = new TextBox();
+            errorProvider1 = new ErrorProvider(components);
             tabControl.SuspendLayout();
             tabPersonInfo.SuspendLayout();
             tbLoginInfo.SuspendLayout();
@@ -56,6 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // tabControl
@@ -120,6 +124,7 @@
             // tbLoginInfo
             // 
             tbLoginInfo.BackColor = Color.FromArgb(224, 224, 224);
+            tbLoginInfo.Controls.Add(cbIsActive);
             tbLoginInfo.Controls.Add(tbPasswordConfrimation);
             tbLoginInfo.Controls.Add(tbPassword);
             tbLoginInfo.Controls.Add(tbUserName);
@@ -139,6 +144,28 @@
             tbLoginInfo.TabIndex = 1;
             tbLoginInfo.Text = "LoginInfo";
             // 
+            // cbIsActive
+            // 
+            cbIsActive.AutoSize = true;
+            cbIsActive.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            cbIsActive.Location = new Point(287, 327);
+            cbIsActive.Name = "cbIsActive";
+            cbIsActive.Size = new Size(125, 32);
+            cbIsActive.TabIndex = 4;
+            cbIsActive.Text = "Is Active ?";
+            cbIsActive.UseVisualStyleBackColor = true;
+            cbIsActive.CheckedChanged += cbIsActive_CheckedChanged;
+            // 
+            // tbPasswordConfrimation
+            // 
+            tbPasswordConfrimation.Location = new Point(287, 273);
+            tbPasswordConfrimation.MaxLength = 20;
+            tbPasswordConfrimation.Name = "tbPasswordConfrimation";
+            tbPasswordConfrimation.PasswordChar = '*';
+            tbPasswordConfrimation.Size = new Size(181, 27);
+            tbPasswordConfrimation.TabIndex = 3;
+            tbPasswordConfrimation.Validating += tbPasswordConfrimation_Validating;
+            // 
             // tbPassword
             // 
             tbPassword.Location = new Point(287, 214);
@@ -147,6 +174,7 @@
             tbPassword.PasswordChar = '*';
             tbPassword.Size = new Size(181, 27);
             tbPassword.TabIndex = 2;
+            tbPassword.Validating += tbPassword_Validating;
             // 
             // tbUserName
             // 
@@ -154,6 +182,7 @@
             tbUserName.Name = "tbUserName";
             tbUserName.Size = new Size(181, 27);
             tbUserName.TabIndex = 1;
+            tbUserName.Validating += tbUserName_Validating;
             // 
             // labPersonID
             // 
@@ -245,17 +274,17 @@
             label2.TabIndex = 0;
             label2.Text = "UserID : ";
             // 
-            // label1
+            // labFormMode
             // 
-            label1.Dock = DockStyle.Top;
-            label1.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Red;
-            label1.Location = new Point(0, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(1043, 62);
-            label1.TabIndex = 1;
-            label1.Text = "Add New User";
-            label1.TextAlign = ContentAlignment.TopCenter;
+            labFormMode.Dock = DockStyle.Top;
+            labFormMode.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labFormMode.ForeColor = Color.Red;
+            labFormMode.Location = new Point(0, 0);
+            labFormMode.Name = "labFormMode";
+            labFormMode.Size = new Size(1043, 62);
+            labFormMode.TabIndex = 1;
+            labFormMode.Text = "Add New User";
+            labFormMode.TextAlign = ContentAlignment.TopCenter;
             // 
             // btnSave
             // 
@@ -289,14 +318,9 @@
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += btnClose_Click;
             // 
-            // tbPasswordConfrimation
+            // errorProvider1
             // 
-            tbPasswordConfrimation.Location = new Point(287, 273);
-            tbPasswordConfrimation.MaxLength = 20;
-            tbPasswordConfrimation.Name = "tbPasswordConfrimation";
-            tbPasswordConfrimation.PasswordChar = '*';
-            tbPasswordConfrimation.Size = new Size(181, 27);
-            tbPasswordConfrimation.TabIndex = 3;
+            errorProvider1.ContainerControl = this;
             // 
             // frmAddEditUser
             // 
@@ -306,7 +330,7 @@
             ClientSize = new Size(1043, 688);
             Controls.Add(btnClose);
             Controls.Add(btnSave);
-            Controls.Add(label1);
+            Controls.Add(labFormMode);
             Controls.Add(tabControl);
             MaximizeBox = false;
             MinimizeBox = false;
@@ -323,6 +347,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -331,7 +356,7 @@
         private TabControl tabControl;
         private TabPage tabPersonInfo;
         private TabPage tbLoginInfo;
-        private Label label1;
+        private Label labFormMode;
         private ctrlPersonInfo ctrlPersonInfo1;
         private Button btnNext;
         private Button btnSave;
@@ -349,5 +374,7 @@
         private TextBox tbUserName;
         private TextBox tbPassword;
         private TextBox tbPasswordConfrimation;
+        private CheckBox cbIsActive;
+        private ErrorProvider errorProvider1;
     }
 }
