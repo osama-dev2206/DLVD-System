@@ -91,10 +91,10 @@
             // labCountOfRecords
             // 
             labCountOfRecords.AutoSize = true;
-            labCountOfRecords.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labCountOfRecords.Location = new Point(207, 650);
+            labCountOfRecords.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labCountOfRecords.Location = new Point(207, 646);
             labCountOfRecords.Name = "labCountOfRecords";
-            labCountOfRecords.Size = new Size(27, 31);
+            labCountOfRecords.Size = new Size(33, 38);
             labCountOfRecords.TabIndex = 4;
             labCountOfRecords.Text = "0";
             // 
@@ -103,13 +103,13 @@
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { editAppToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(215, 58);
+            contextMenuStrip1.Size = new Size(190, 30);
             // 
             // editAppToolStripMenuItem
             // 
             editAppToolStripMenuItem.Image = Properties.Resources.edit_321;
             editAppToolStripMenuItem.Name = "editAppToolStripMenuItem";
-            editAppToolStripMenuItem.Size = new Size(214, 26);
+            editAppToolStripMenuItem.Size = new Size(189, 26);
             editAppToolStripMenuItem.Text = "Edit Application";
             editAppToolStripMenuItem.Click += editAppToolStripMenuItem_Click;
             // 

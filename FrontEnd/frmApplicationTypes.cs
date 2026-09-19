@@ -20,7 +20,7 @@ namespace FrontEnd
 
         private void RefreshDataGridView()
         {
-            DataTable dt = clsAppTypes.GetAllAppTypes();
+            DataTable dt = clsApplicationTypes.GetAllAppTypes();
             if (dt != null && dt.Rows.Count > 0)
             {
                 this.dgvApplicationTypes.DataSource = dt;
@@ -41,10 +41,12 @@ namespace FrontEnd
             }
         }
 
-        clsAppTypes App;
+        clsApplicationTypes App;
         private void editAppToolStripMenuItem_Click(object sender, EventArgs e) // Edit the selected application type
         {
-            App = clsAppTypes.FindAppObjByAppID(selectedRowIndex);
+                frmEditApplicationType frmEdit = new frmEditApplicationType(selectedRowIndex);
+            frmEdit.ShowDialog();
+            frmEdit.Dispose();
         }
 
     }

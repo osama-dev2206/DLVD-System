@@ -38,11 +38,18 @@ namespace FrontEnd
             frmChangePassword.Dispose();
         }
 
-        private void soonToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ManageUsersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmManageUsers frmManageUsers = new frmManageUsers();
             frmManageUsers.ShowDialog();
             frmManageUsers.Dispose();
+        }
+
+        private void manageAppliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmApplicationTypes frmApplicationTypes = new frmApplicationTypes();
+            frmApplicationTypes.ShowDialog();
+            frmApplicationTypes.Dispose();  
         }
 
 
