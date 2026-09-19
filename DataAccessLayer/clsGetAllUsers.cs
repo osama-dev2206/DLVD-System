@@ -30,6 +30,9 @@ Inner Join People On People.PersonID = Users.UserPersonID;";
                 {
                     dt.Load(r);
                 }
+
+                r?.Close();
+
             }
             catch { }
             finally

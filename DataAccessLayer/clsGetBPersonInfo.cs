@@ -23,7 +23,7 @@ namespace DataAccessLayer
 
                 if (Reader.HasRows) dt.Load(Reader);
 
-                Reader.Close();
+                Reader?.Close();
             }
             catch
             {

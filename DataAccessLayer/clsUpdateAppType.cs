@@ -27,6 +27,7 @@ where ApplicationTypeID =@AppID ; ";
                 cmd.Parameters.AddWithValue("@ApplicationFees", ApplicationFees);
 
                 int ? rowsAffected = cmd.ExecuteNonQuery();
+
                 if(rowsAffected is not null && rowsAffected >0)
                 {
                     result = true;

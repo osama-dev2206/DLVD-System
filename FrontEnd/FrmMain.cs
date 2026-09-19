@@ -49,7 +49,14 @@ namespace FrontEnd
         {
             frmApplicationTypes frmApplicationTypes = new frmApplicationTypes();
             frmApplicationTypes.ShowDialog();
-            frmApplicationTypes.Dispose();  
+            frmApplicationTypes.Dispose();
+        }
+
+        private void manageTestTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageTestTypes frmManageTestTypes = new frmManageTestTypes();
+            frmManageTestTypes.ShowDialog();
+            frmManageTestTypes.Dispose();
         }
 
 
