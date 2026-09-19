@@ -11,7 +11,7 @@ namespace DataAccessLayer
 Set TestTypeTitle = @TestTypeTitle  ,
 TestTypeDescription = @TestTypeDescription ,
 TestTypeFees = @TestTypeFees
-where TestTypeID = ID ;";
+where TestTypeID = @ID ;";
 
         public static bool UpdateTestType(int TestTypeID, string TestTypeTitle, string TestTypeDescription, decimal TestTypeFees)
         {

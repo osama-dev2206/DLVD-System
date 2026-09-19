@@ -32,7 +32,28 @@ namespace BussinessLogicLayer
 
         public static DataTable GetAllTestTypes()
         {
-            return clsGetAllAppTypes.GetAllAppTypes();
+            return clsGetAllTestTypes.GetAllTestTypes();
+        }
+
+        public static clsTestTypes FindTestType(int TestTypeId)
+        {
+            if (!int.TryParse(TestTypeId.ToString(), out _)) return null;
+
+            DataTable dt = clsFindTestType.FindTestType(TestTypeId);
+            clsTestTypes testTypes = null;
+
+            foreach(DataRow R in dt.Rows)
+            {
+                testTypes = new clsTestTypes
+                    (
+                    testTypeID: Convert.ToInt32(R["TestTypeID"]) ,
+                    testTypeTitle: R["TestTypeTitle"].ToString() ,
+                    testTypeDescription : R["TestTypeDescription"].ToString() ,
+                    testTypeFee: Convert.ToDecimal(R["TestTypeFees"])
+                    );
+            }
+
+            return testTypes;
         }
 
         private bool Update()
@@ -43,7 +64,6 @@ namespace BussinessLogicLayer
         public bool Save()
         {
             return (Update());
-
         }
 
     }

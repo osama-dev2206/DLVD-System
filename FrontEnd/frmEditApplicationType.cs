@@ -28,9 +28,12 @@ namespace FrontEnd
 
         void FillForm()
         {
-            this.labAppID.Text = App.ApplicationTypeID.ToString();
-            this.tbTitle.Text = App.ApplicationTypeTitle;
-            this.tbFees.Text = App.ApplicationFees.ToString();
+            if (this.App is not null)
+            {
+                this.labAppID.Text = App.ApplicationTypeID.ToString();
+                this.tbTitle.Text = App.ApplicationTypeTitle;
+                this.tbFees.Text = App.ApplicationFees.ToString();
+            }
         }
 
         private void tbTitle_TextChanged(object sender, EventArgs e)
