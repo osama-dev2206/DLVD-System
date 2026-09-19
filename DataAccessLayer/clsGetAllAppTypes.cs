@@ -23,6 +23,8 @@ namespace DataAccessLayer
                 {
                     dt.Load(reader);
                 }
+
+                reader?.Close();
             }
             catch { }
             finally

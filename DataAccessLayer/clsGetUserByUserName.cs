@@ -32,6 +32,7 @@ where Password = @Password   and  UserName =   @Username  ; ";
                     dt.Load(reader);
                 }
 
+                reader?.Close();
             }
             catch { }
             finally

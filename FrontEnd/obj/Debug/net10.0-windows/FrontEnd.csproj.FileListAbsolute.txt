@@ -74,3 +74,4 @@ D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.ctrlFilterFindBy.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frmApplicationTypes.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frmEditApplicationType.resources
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frmManageTestTypes.resources
