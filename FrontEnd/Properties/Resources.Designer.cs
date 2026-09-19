@@ -173,6 +173,16 @@ namespace FrontEnd.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ApplicationTitle1 {
+            get {
+                object obj = ResourceManager.GetObject("ApplicationTitle1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap beautiful_shot_bridge_reflective_lake_sunset {
             get {
                 object obj = ResourceManager.GetObject("beautiful-shot-bridge-reflective-lake-sunset", resourceCulture);

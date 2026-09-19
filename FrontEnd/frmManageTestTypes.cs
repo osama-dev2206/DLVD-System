@@ -44,6 +44,7 @@ namespace FrontEnd
             frmEditTestType frmEditTest = new frmEditTestType(this.selectedRowIndex);
             frmEditTest.ShowDialog();
             frmEditTest.Dispose();
+            RefreshDataGridView();
         }
 
         private void dgvTestTypes_SelectionChanged(object sender, EventArgs e)
