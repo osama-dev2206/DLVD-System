@@ -10,9 +10,20 @@ namespace FrontEnd
 {
     public partial class frmEditTestType : Form
     {
-        public frmEditTestType()
+        public frmEditTestType(int TestTypeID)
         {
             InitializeComponent();
+
+            if(!int.TryParse(TestTypeID.ToString(),out _))
+            {
+                MessageBox.Show("Invalid Test Type ID provided.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+
         }
+
+
     }
 }
