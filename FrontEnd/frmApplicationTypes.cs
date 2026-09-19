@@ -41,9 +41,11 @@ namespace FrontEnd
             }
         }
 
+        clsAppTypes App;
         private void editAppToolStripMenuItem_Click(object sender, EventArgs e) // Edit the selected application type
         {
-
+            App = clsAppTypes.FindAppObjByAppID(selectedRowIndex);
         }
+
     }
 }
