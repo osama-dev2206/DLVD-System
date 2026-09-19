@@ -41,13 +41,17 @@ namespace FrontEnd
             }
         }
 
-        clsApplicationTypes App;
         private void editAppToolStripMenuItem_Click(object sender, EventArgs e) // Edit the selected application type
         {
-                frmEditApplicationType frmEdit = new frmEditApplicationType(selectedRowIndex);
+            frmEditApplicationType frmEdit = new frmEditApplicationType(selectedRowIndex);
             frmEdit.ShowDialog();
             frmEdit.Dispose();
+            RefreshDataGridView();
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

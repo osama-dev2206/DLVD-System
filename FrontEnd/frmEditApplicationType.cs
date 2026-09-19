@@ -16,6 +16,11 @@ namespace FrontEnd
         {
             InitializeComponent();
 
+            if(!int.TryParse(ApplicationID.ToString() , out _ ) )
+           {
+                MessageBox.Show("WRONG APPLICATION ID", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             App = clsApplicationTypes.FindAppObjByAppID(ApplicationID);
             FillForm();
         }

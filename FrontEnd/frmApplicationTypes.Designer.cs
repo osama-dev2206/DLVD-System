@@ -37,6 +37,7 @@
             labCountOfRecords = new Label();
             contextMenuStrip1 = new ContextMenuStrip(components);
             editAppToolStripMenuItem = new ToolStripMenuItem();
+            btnClose = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvApplicationTypes).BeginInit();
             contextMenuStrip1.SuspendLayout();
@@ -113,11 +114,29 @@
             editAppToolStripMenuItem.Text = "Edit Application";
             editAppToolStripMenuItem.Click += editAppToolStripMenuItem_Click;
             // 
+            // btnClose
+            // 
+            btnClose.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 192, 192);
+            btnClose.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 128);
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClose.Image = Properties.Resources.Close_32;
+            btnClose.ImageAlign = ContentAlignment.BottomLeft;
+            btnClose.Location = new Point(585, 648);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(137, 44);
+            btnClose.TabIndex = 5;
+            btnClose.Text = "Close";
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
+            // 
             // frmApplicationTypes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(734, 697);
+            ContextMenuStrip = contextMenuStrip1;
+            Controls.Add(btnClose);
             Controls.Add(labCountOfRecords);
             Controls.Add(label2);
             Controls.Add(dgvApplicationTypes);
@@ -147,5 +166,6 @@
         private Label labCountOfRecords;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem editAppToolStripMenuItem;
+        private Button btnClose;
     }
 }

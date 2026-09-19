@@ -10,8 +10,8 @@ namespace DataAccessLayer
         static string Query = @"
 Update ApplicationTypes 
 Set ApplicationTypeTitle = @ApplicationTitle  , 
-ApplicationFees= @ApplicationFees ,
-where ApplicationTypeID =@AppID ;";
+ApplicationFees= @ApplicationFees 
+where ApplicationTypeID =@AppID ; ";
 
 
         public static bool UpdateAppType(int AppID, string ApplicationTitle, decimal ApplicationFees)
