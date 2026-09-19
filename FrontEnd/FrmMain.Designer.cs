@@ -37,10 +37,10 @@
             ShowCurrentUserInfo = new ToolStripMenuItem();
             changeCurrentUserPasswordToolStripMenuItem = new ToolStripMenuItem();
             logoutToolStripMenuItem = new ToolStripMenuItem();
-            label1 = new Label();
-            label2 = new Label();
             applicationsToolStripMenuItem = new ToolStripMenuItem();
             manageAppliToolStripMenuItem = new ToolStripMenuItem();
+            label1 = new Label();
+            label2 = new Label();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -48,7 +48,7 @@
             // 
             menuStrip1.BackColor = Color.Gainsboro;
             menuStrip1.ImageScalingSize = new Size(30, 30);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { TSMPeople, soonToolStripMenuItem, accountSettToolStripMenuItem, applicationsToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { applicationsToolStripMenuItem, TSMPeople, soonToolStripMenuItem, accountSettToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1758, 39);
@@ -114,6 +114,24 @@
             logoutToolStripMenuItem.Text = "Logout";
             logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
+            // applicationsToolStripMenuItem
+            // 
+            applicationsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { manageAppliToolStripMenuItem });
+            applicationsToolStripMenuItem.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            applicationsToolStripMenuItem.Image = Properties.Resources.Applications_64;
+            applicationsToolStripMenuItem.Name = "applicationsToolStripMenuItem";
+            applicationsToolStripMenuItem.Size = new Size(193, 35);
+            applicationsToolStripMenuItem.Text = "Applications";
+            // 
+            // manageAppliToolStripMenuItem
+            // 
+            manageAppliToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            manageAppliToolStripMenuItem.Image = Properties.Resources.Application_Types_64;
+            manageAppliToolStripMenuItem.Name = "manageAppliToolStripMenuItem";
+            manageAppliToolStripMenuItem.Size = new Size(349, 36);
+            manageAppliToolStripMenuItem.Text = "Manage Application Types";
+            manageAppliToolStripMenuItem.Click += manageAppliToolStripMenuItem_Click;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -137,24 +155,6 @@
             label2.Size = new Size(1103, 48);
             label2.TabIndex = 2;
             label2.Text = "Driving and Vehicle License Department Management";
-            // 
-            // applicationsToolStripMenuItem
-            // 
-            applicationsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { manageAppliToolStripMenuItem });
-            applicationsToolStripMenuItem.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            applicationsToolStripMenuItem.Image = Properties.Resources.Applications_64;
-            applicationsToolStripMenuItem.Name = "applicationsToolStripMenuItem";
-            applicationsToolStripMenuItem.Size = new Size(193, 35);
-            applicationsToolStripMenuItem.Text = "Applications";
-            // 
-            // manageAppliToolStripMenuItem
-            // 
-            manageAppliToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            manageAppliToolStripMenuItem.Image = Properties.Resources.Application_Types_64;
-            manageAppliToolStripMenuItem.Name = "manageAppliToolStripMenuItem";
-            manageAppliToolStripMenuItem.Size = new Size(349, 36);
-            manageAppliToolStripMenuItem.Text = "Manage Application Types";
-            manageAppliToolStripMenuItem.Click += manageAppliToolStripMenuItem_Click;
             // 
             // frmMain
             // 
