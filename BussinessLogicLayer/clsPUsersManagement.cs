@@ -11,9 +11,10 @@ namespace BussinessLogicLayer
     public partial class clsUsers 
     {
 
-        public clsUsers()
+        public clsUsers() // for add new user 
         {
             this.Mode = enMode.Add;
+            this.IsEncrypted = false;
             this.UserID = -1;
         }
 
@@ -103,23 +104,35 @@ namespace BussinessLogicLayer
        private bool Update()
         {
             if(Password.Length <3) return false; // password must be at least 3 characters long
+            if(this.PersonID == 12) clsUsers.DeleteSavedLoginInfo(); // if the user is the admin user, delete the saved login info as the password has been changed
 
-            this.Password = clsEncryptDecrypt.Encrypt(Password); // encrypt the password before updating it in the database
-            return clsUpdateUser.UpdateUser(UserID: this.UserID,UserName:this.Username, Password:this.Password , this.IsActive) ;
+            string PasswordToSave = this.Password;
+
+            if (!IsEncrypted)
+            {
+                PasswordToSave = clsEncryptDecrypt.Encrypt(Password); // encrypt the password before updating it in the database
+            }
+
+            return clsUpdateUser.UpdateUser(UserID: this.UserID , UserName:this.Username ,  Password: PasswordToSave ,  this.IsActive) ;
         }
 
         private bool Add()
         {
             if (Password.Length < 3) return false; // password must be at least 3 characters long
 
-            this.Password = clsEncryptDecrypt.Encrypt(Password); // encrypt the password before updating it in the databasec
-            this.UserID = clsAddNewUser.AddNewUser(this.PersonID, this.Username, this.Password, this.IsActive) ;
+            string PasswordToSave = this.Password;
+            if (!IsEncrypted)
+            {
+                PasswordToSave = clsEncryptDecrypt.Encrypt(Password); // encrypt the password before updating it in the database
+            }
+
+            this.UserID = clsAddNewUser.AddNewUser(this.PersonID, this.Username, PasswordToSave , this.IsActive) ;
             return (UserID != -1);
         }
 
         public bool Save()
         {
-            if (this.PersonID == 12) return false;
+
             switch(this.Mode)
             {
                      case enMode.Update:
@@ -156,15 +169,10 @@ namespace BussinessLogicLayer
 
         public  bool CheckIfNewPasswordMatchesTheOld(string NewPassword)
         {
-           return clsEncryptDecrypt.Encrypt(NewPassword) == this.Password;
+           return clsEncryptDecrypt.Encrypt(NewPassword) == clsEncryptDecrypt.Encrypt(this.Password);
         }
 
-        public string GetPasswordUnEncrypted()
-        {
-            // as the password is stored in the database in an encrypted format, we need to decrypt it cuz user may not update password so it will decrypt the decrypted
-            this.Password = clsEncryptDecrypt.Decrypt(this.Password); 
-            return Password;
-        }
+
 
     }
 }

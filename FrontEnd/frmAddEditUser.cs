@@ -69,9 +69,9 @@ namespace FrontEnd
                 this.tbUserName.Text = user.Username;
                 this.cbIsActive.Checked = this.user.IsActive;
                 lblEditPerson.Visible= true;
-                string PasswordUnencrypted = user.GetPasswordUnEncrypted(); // the db returns the password encrypted
-                this.tbPassword.Text = PasswordUnencrypted;
-                this.tbPasswordConfrimation.Text = PasswordUnencrypted;
+
+                this.tbPassword.Text = this.user.Password;
+                this.tbPasswordConfrimation.Text =  this.user.Password;
 
             }
             else

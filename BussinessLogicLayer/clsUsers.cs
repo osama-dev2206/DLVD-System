@@ -13,7 +13,9 @@ namespace BussinessLogicLayer
     public partial class clsUsers // the relation between user and person is composition not inheitance 
     {
         public string ?Username { get; set; }
-        public string ?Password { get; set; }
+
+ 
+        public string ?Password  {  get;  set;  }
         public int UserID { get; private set; }
         public bool IsActive { get;  set; }
 
@@ -22,12 +24,18 @@ namespace BussinessLogicLayer
         enum enMode { Add , Update}
         enMode Mode;
 
-        private clsUsers(int UserID , int UserPersonID , string UserName , string Password ,bool  IsActive )// to get user info only
+        private bool IsEncrypted = true; 
+
+        private clsUsers(int UserID , int UserPersonID , string UserName , string Password ,bool  IsActive )// to get user info only (db will fill it)
         {
             this.UserID = UserID;
             this.PersonID = UserPersonID;
             this.Username = UserName;
-            this.Password = Password;
+            if (IsEncrypted)
+            {
+                this.Password = clsEncryptDecrypt.Decrypt(Password);
+                IsEncrypted = false; // as it has decrypted 
+            }
             this.IsActive = IsActive;
 
             Mode = enMode.Update;
