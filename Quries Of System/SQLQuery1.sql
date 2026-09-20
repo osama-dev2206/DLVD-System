@@ -125,3 +125,28 @@ values
 ( '@PersonID','@UserName' , '@Password' , '@IsActive' );
 
 Select SCOPE_IDENTITY();
+
+-- Application Types
+select * from ApplicationTypes;
+
+Update ApplicationTypes 
+Set ApplicationTypeTitle = '', 
+ApplicationFees= 1 
+where ApplicationTypeID =1 ;
+
+select * from ApplicationTypes
+where ApplicationTypeID =1 ;
+
+-- Test Types 
+alter Table TestTypes Add Constraint 
+UQ_TestTitle Unique(TestTypeTitle);
+
+Select * from TestTypes;
+
+Update TestTypes 
+Set TestTypeTitle ='' ,
+TestTypeDescription = '' ,
+TestTypeFees = '' 
+where TestTypeID =1 ;
+
+ 

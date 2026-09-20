@@ -32,6 +32,7 @@
             menuStrip1 = new MenuStrip();
             applicationsToolStripMenuItem = new ToolStripMenuItem();
             manageAppliToolStripMenuItem = new ToolStripMenuItem();
+            manageTestTypesToolStripMenuItem = new ToolStripMenuItem();
             TSMPeople = new ToolStripMenuItem();
             soonToolStripMenuItem = new ToolStripMenuItem();
             accountSettToolStripMenuItem = new ToolStripMenuItem();
@@ -41,7 +42,6 @@
             logoutToolStripMenuItem = new ToolStripMenuItem();
             label1 = new Label();
             label2 = new Label();
-            manageTestTypesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -70,13 +70,22 @@
             manageAppliToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             manageAppliToolStripMenuItem.Image = Properties.Resources.Application_Types_64;
             manageAppliToolStripMenuItem.Name = "manageAppliToolStripMenuItem";
-            manageAppliToolStripMenuItem.Size = new Size(349, 36);
+            manageAppliToolStripMenuItem.Size = new Size(339, 32);
             manageAppliToolStripMenuItem.Text = "Manage Application Types";
             manageAppliToolStripMenuItem.Click += manageAppliToolStripMenuItem_Click;
             // 
+            // manageTestTypesToolStripMenuItem
+            // 
+            manageTestTypesToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            manageTestTypesToolStripMenuItem.Image = Properties.Resources.Test_Type_64;
+            manageTestTypesToolStripMenuItem.Name = "manageTestTypesToolStripMenuItem";
+            manageTestTypesToolStripMenuItem.Size = new Size(339, 32);
+            manageTestTypesToolStripMenuItem.Text = "Manage Test Types";
+            manageTestTypesToolStripMenuItem.Click += manageTestTypesToolStripMenuItem_Click;
+            // 
             // TSMPeople
             // 
-            TSMPeople.BackColor = Color.Silver;
+            TSMPeople.BackColor = Color.Transparent;
             TSMPeople.BackgroundImageLayout = ImageLayout.Zoom;
             TSMPeople.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             TSMPeople.ForeColor = Color.Black;
@@ -156,15 +165,6 @@
             label2.Size = new Size(1103, 48);
             label2.TabIndex = 2;
             label2.Text = "Driving and Vehicle License Department Management";
-            // 
-            // manageTestTypesToolStripMenuItem
-            // 
-            manageTestTypesToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            manageTestTypesToolStripMenuItem.Image = Properties.Resources.Test_Type_64;
-            manageTestTypesToolStripMenuItem.Name = "manageTestTypesToolStripMenuItem";
-            manageTestTypesToolStripMenuItem.Size = new Size(349, 36);
-            manageTestTypesToolStripMenuItem.Text = "Manage Test Types";
-            manageTestTypesToolStripMenuItem.Click += manageTestTypesToolStripMenuItem_Click;
             // 
             // frmMain
             // 
