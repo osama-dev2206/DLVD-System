@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             menuStrip1 = new MenuStrip();
             applicationsToolStripMenuItem = new ToolStripMenuItem();
+            drivingLicensesServicesToolStripMenuItem = new ToolStripMenuItem();
+            nToolStripMenuItem = new ToolStripMenuItem();
+            LocalDrivingLicToolStripMenuItem = new ToolStripMenuItem();
             manageAppliToolStripMenuItem = new ToolStripMenuItem();
             manageTestTypesToolStripMenuItem = new ToolStripMenuItem();
             TSMPeople = new ToolStripMenuItem();
@@ -58,19 +61,43 @@
             // 
             // applicationsToolStripMenuItem
             // 
-            applicationsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { manageAppliToolStripMenuItem, manageTestTypesToolStripMenuItem });
+            applicationsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { drivingLicensesServicesToolStripMenuItem, manageAppliToolStripMenuItem, manageTestTypesToolStripMenuItem });
             applicationsToolStripMenuItem.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             applicationsToolStripMenuItem.Image = Properties.Resources.Applications_64;
             applicationsToolStripMenuItem.Name = "applicationsToolStripMenuItem";
             applicationsToolStripMenuItem.Size = new Size(193, 35);
             applicationsToolStripMenuItem.Text = "Applications";
             // 
+            // drivingLicensesServicesToolStripMenuItem
+            // 
+            drivingLicensesServicesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nToolStripMenuItem });
+            drivingLicensesServicesToolStripMenuItem.Image = Properties.Resources.Driver_License_48;
+            drivingLicensesServicesToolStripMenuItem.Name = "drivingLicensesServicesToolStripMenuItem";
+            drivingLicensesServicesToolStripMenuItem.Size = new Size(379, 36);
+            drivingLicensesServicesToolStripMenuItem.Text = "Driving Licenses Services";
+            // 
+            // nToolStripMenuItem
+            // 
+            nToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { LocalDrivingLicToolStripMenuItem });
+            nToolStripMenuItem.Image = Properties.Resources.New_Driving_License_321;
+            nToolStripMenuItem.Name = "nToolStripMenuItem";
+            nToolStripMenuItem.Size = new Size(330, 36);
+            nToolStripMenuItem.Text = "New Driving License";
+            // 
+            // LocalDrivingLicToolStripMenuItem
+            // 
+            LocalDrivingLicToolStripMenuItem.Image = Properties.Resources.Local_32;
+            LocalDrivingLicToolStripMenuItem.Name = "LocalDrivingLicToolStripMenuItem";
+            LocalDrivingLicToolStripMenuItem.Size = new Size(252, 36);
+            LocalDrivingLicToolStripMenuItem.Text = "Local License";
+            LocalDrivingLicToolStripMenuItem.Click += LocalDrivingLicToolStripMenuItem_Click;
+            // 
             // manageAppliToolStripMenuItem
             // 
             manageAppliToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             manageAppliToolStripMenuItem.Image = Properties.Resources.Application_Types_64;
             manageAppliToolStripMenuItem.Name = "manageAppliToolStripMenuItem";
-            manageAppliToolStripMenuItem.Size = new Size(339, 32);
+            manageAppliToolStripMenuItem.Size = new Size(379, 36);
             manageAppliToolStripMenuItem.Text = "Manage Application Types";
             manageAppliToolStripMenuItem.Click += manageAppliToolStripMenuItem_Click;
             // 
@@ -79,7 +106,7 @@
             manageTestTypesToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             manageTestTypesToolStripMenuItem.Image = Properties.Resources.Test_Type_64;
             manageTestTypesToolStripMenuItem.Name = "manageTestTypesToolStripMenuItem";
-            manageTestTypesToolStripMenuItem.Size = new Size(339, 32);
+            manageTestTypesToolStripMenuItem.Size = new Size(379, 36);
             manageTestTypesToolStripMenuItem.Text = "Manage Test Types";
             manageTestTypesToolStripMenuItem.Click += manageTestTypesToolStripMenuItem_Click;
             // 
@@ -203,5 +230,8 @@
         private ToolStripMenuItem applicationsToolStripMenuItem;
         private ToolStripMenuItem manageAppliToolStripMenuItem;
         private ToolStripMenuItem manageTestTypesToolStripMenuItem;
+        private ToolStripMenuItem drivingLicensesServicesToolStripMenuItem;
+        private ToolStripMenuItem nToolStripMenuItem;
+        private ToolStripMenuItem LocalDrivingLicToolStripMenuItem;
     }
 }

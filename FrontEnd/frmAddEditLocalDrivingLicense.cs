@@ -1,0 +1,88 @@
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+
+namespace FrontEnd
+{
+    public partial class frmAddEditLocalDrivingLicense : Form
+    {
+        enum enFormStatus : byte { Add = 1, Edit = 2 }
+        enFormStatus formStatus;
+
+        public frmAddEditLocalDrivingLicense(int ApplicationID)
+        {
+            if (!int.TryParse(ApplicationID.ToString(), out _))
+            {
+                MessageBox.Show("Invalid Application ID. Please provide a valid Application ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
+
+            InitializeComponent();
+
+            btnNext.Enabled = false; // disable the Next button by default
+            btnSave.Enabled = false; // disable the Save button by default
+                                     
+            this.ctrlFilterFindBy.OnPersonFound += GetPersonFoundedOrAdded; // subscribe to the event when a person is found or added in the ctrlFilterFindBy2 control
+
+            this.ctrlFilterFindBy.OnPersonNationalNoOrPersonIDIsNotValid += GetPersonNotFoundError; // subscribe to the event when a person is not found in the ctrlFilterFindBy2 control
+
+            if (ApplicationID == -1)
+            {
+                this.formStatus = enFormStatus.Add;
+            }
+            else
+            {
+                this.formStatus = enFormStatus.Edit;
+            }
+
+        }
+
+
+        void GetPersonFoundedOrAdded(int PersonID) // EVENT when a person is found or added, this method will be called
+        {
+            this.ctrlPersonInfo1.LoadInfoUsingPersonID(PersonID);
+            this.btnNext.Enabled = true; // enable the Next button when a person is found or added
+            this.btnSave.Enabled = true; // enable the Save button when a person is found or added
+        }
+
+        void GetPersonNotFoundError(bool status, string message) // Event 
+        {
+            MessageBox.Show(message, "Person Not Found Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            this.ctrlPersonInfo1.RestToDefault();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            this.tabControl.SelectedIndex = 1;
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void tabControl_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            e.Cancel = !btnNext.Enabled;
+        }
+
+        //private void lblEditPerson_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        //{
+        //    frmAddEditPerson frmEdit = new frmAddEditPerson(user.PersonID);
+        //    frmEdit.ShowDialog();
+        //    frmEdit.Dispose();
+        //    this.ctrlPersonInfo1.LoadInfoUsingPersonID(user.PersonID); // reload the person
+        //}
+
+
+
+    }
+
+}
