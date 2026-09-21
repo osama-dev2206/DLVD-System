@@ -59,6 +59,13 @@ namespace FrontEnd
             frmManageTestTypes.Dispose();
         }
 
+        private void LocalDrivingLicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddEditLocalDrivingLicense frmAddEditLocalDrivingLicense = new frmAddEditLocalDrivingLicense(-1); // Add New Local Driving License
+            frmAddEditLocalDrivingLicense.ShowDialog();
+            frmAddEditLocalDrivingLicense.Dispose();
+        }
+
 
     }
 }

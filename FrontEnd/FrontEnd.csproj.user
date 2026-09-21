@@ -13,6 +13,9 @@
     <Compile Update="ctrlShowUserInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="frmAddEditLocalDrivingLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmAddEditPerson.cs">
       <SubType>Form</SubType>
     </Compile>
