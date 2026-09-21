@@ -55,6 +55,10 @@ where People.PersonID = '@PersonID'
 
 
 ------ Users 
+update Users
+set Password ='94rQO8MpdbNKmxjSxo7NEw==' 
+where UserID =1 ;
+
 select * from Users; 
 insert into Users 
 values(12,'osama.2006',121,1);

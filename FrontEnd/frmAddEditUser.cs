@@ -215,10 +215,12 @@ namespace FrontEnd
                     MessageBox.Show("User saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.formStatus = enFormStatus.Edit;
                     this.labFormMode.Text = "Edit User";
+                    this.labUserID.Text = this.user.UserID.ToString();
                 }
                 else if (this.formStatus == enFormStatus.Edit && user.Save())
                 {
                     MessageBox.Show("User updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+ 
                 }
                 else
                 {

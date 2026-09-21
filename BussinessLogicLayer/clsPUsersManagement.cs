@@ -104,7 +104,9 @@ namespace BussinessLogicLayer
        private bool Update()
         {
             if(Password.Length <3) return false; // password must be at least 3 characters long
-            if(this.PersonID == 12) clsUsers.DeleteSavedLoginInfo(); // if the user is the admin user, delete the saved login info as the password has been changed
+
+            if(this.PersonID == clsCurrentLoggedInUser.User.PersonID) 
+                clsUsers.DeleteSavedLoginInfo(); // if the user is the admin user, delete the saved login info as the password has been changed
 
             string PasswordToSave = this.Password;
 

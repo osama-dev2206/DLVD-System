@@ -40,7 +40,7 @@
             tbPasswordConfrimation = new TextBox();
             tbPassword = new TextBox();
             tbUserName = new TextBox();
-            labPersonID = new Label();
+            labUserID = new Label();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
@@ -142,7 +142,7 @@
             tbLoginInfo.Controls.Add(tbPasswordConfrimation);
             tbLoginInfo.Controls.Add(tbPassword);
             tbLoginInfo.Controls.Add(tbUserName);
-            tbLoginInfo.Controls.Add(labPersonID);
+            tbLoginInfo.Controls.Add(labUserID);
             tbLoginInfo.Controls.Add(pictureBox4);
             tbLoginInfo.Controls.Add(pictureBox3);
             tbLoginInfo.Controls.Add(pictureBox2);
@@ -199,15 +199,15 @@
             tbUserName.TabIndex = 1;
             tbUserName.Validating += tbUserName_Validating;
             // 
-            // labPersonID
+            // labUserID
             // 
-            labPersonID.AutoSize = true;
-            labPersonID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            labPersonID.Location = new Point(257, 100);
-            labPersonID.Name = "labPersonID";
-            labPersonID.Size = new Size(30, 28);
-            labPersonID.TabIndex = 8;
-            labPersonID.Text = "??";
+            labUserID.AutoSize = true;
+            labUserID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            labUserID.Location = new Point(257, 100);
+            labUserID.Name = "labUserID";
+            labUserID.Size = new Size(30, 28);
+            labUserID.TabIndex = 8;
+            labUserID.Text = "??";
             // 
             // pictureBox4
             // 
@@ -394,5 +394,7 @@
         private CheckBox cbIsActive;
         private ErrorProvider errorProvider1;
         private LinkLabel lblEditPerson;
+        private Label labUserD;
+        private Label labUserID;
     }
 }
