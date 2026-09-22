@@ -163,7 +163,7 @@
             cbLicenseClass.FormattingEnabled = true;
             cbLicenseClass.Location = new Point(297, 191);
             cbLicenseClass.Name = "cbLicenseClass";
-            cbLicenseClass.Size = new Size(224, 28);
+            cbLicenseClass.Size = new Size(298, 28);
             cbLicenseClass.TabIndex = 19;
             cbLicenseClass.SelectedIndexChanged += cbLicenseClass_SelectedIndexChanged;
             // 

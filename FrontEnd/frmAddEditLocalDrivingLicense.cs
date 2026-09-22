@@ -36,6 +36,7 @@ namespace FrontEnd
             if (ApplicationID == -1)
             {
                 this.formStatus = enFormStatus.Add;
+      
             }
             else
             {
@@ -69,6 +70,7 @@ namespace FrontEnd
         {
             if (this.NewLocalDrivingLicenseApplication is not null)
             {
+                this.cbLicenseClass.SelectedIndex = 2; // the default is ordinary driving license class 
                 this.labDateTime.Text = this.NewLocalDrivingLicenseApplication.Application.ApplicationDateTime.ToString();
                 this.labAppFess.Text = this.NewLocalDrivingLicenseApplication.Application.PaiedFee.ToString();
                 this.labCreatedBy.Text = clsCurrentLoggedInUser.User.Username;
@@ -83,7 +85,10 @@ namespace FrontEnd
 
         private void cbLicenseClass_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if(cbLicenseClass.SelectedIndex !=-1)
+            {
+                this.NewLocalDrivingLicenseApplication.LicenseClassID = clsLicenseClasses.GetLicenseClassIDByClassName(cbLicenseClass.SelectedItem.ToString());
+            }
         }
 
 
