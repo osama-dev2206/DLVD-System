@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DataAccessLayer;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace BussinessLogicLayer
@@ -28,7 +30,7 @@ namespace BussinessLogicLayer
         }
 
         // donot forget to record the last status date time when editing the application//
-        private clsLocalDrivingLicenseApplications(int LocalDrivingLicenseApplicationID, int LicenseClassID, clsApplications Application) // Edit existing
+        private clsLocalDrivingLicenseApplications(int LocalDrivingLicenseApplicationID, int LicenseClassID, clsApplications Application  ) // Edit existing
         {
 
             mode = enMode.Edit;
@@ -45,6 +47,26 @@ namespace BussinessLogicLayer
                 DataAccessLayer.clsAddNewLocalDrivingLicense.AddNewLocalDrivingLicenseApplication(ApplicationID: this.Application.ApplicationID, LicenseClassID: this.LicenseClassID);
 
             return (LocalDrivingLicenseApplicationID != -1);
+        }
+
+        // Find the local driving license application by local driving license application id and return the object of clsLocalDrivingLicenseApplications (it will fill application object as well)
+        public static clsLocalDrivingLicenseApplications FindLocalDrivingLicenseApplicationByLocalID(int LocalDrivingLicenseApplicationID)
+        {
+            if(!int.TryParse(LocalDrivingLicenseApplicationID.ToString(), out int ID)) return null; // invalid id
+
+            clsLocalDrivingLicenseApplications local = null;
+            DataTable dt = clsGetLocalDrivingApp.GetLocalDrivingApplicationByLocalDrivingLicenseApplication(LocalDrivingLicenseApplicationID); // get local driving license application
+
+            foreach (DataRow row in dt.Rows)
+            {
+                local = new clsLocalDrivingLicenseApplications(
+                    LocalDrivingLicenseApplicationID: Convert.ToInt32(row["LocalDrivingLicenseApplicationID"]),
+                    LicenseClassID: Convert.ToInt32(row["LLicenseClassID"]),
+                    Application: clsApplications.GetApplicationObjByAppID(Convert.ToInt32(row["LApplicationID"])) // get application
+                );
+            }
+
+            return local;
         }
 
         private bool CheckBeforeSave()
