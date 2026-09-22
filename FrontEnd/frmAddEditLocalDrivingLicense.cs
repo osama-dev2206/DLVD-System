@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
+﻿using BussinessLogicLayer;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace FrontEnd
     {
         enum enFormStatus : byte { Add = 1, Edit = 2 }
         enFormStatus formStatus;
-
+        private clsLocalDrivingLicenseApplications? NewLocalDrivingLicenseApplication; // instance of the class to hold the new local driving license application data
         public frmAddEditLocalDrivingLicense(int ApplicationID)
         {
             if (!int.TryParse(ApplicationID.ToString(), out _))
@@ -27,7 +28,7 @@ namespace FrontEnd
 
             btnNext.Enabled = false; // disable the Next button by default
             btnSave.Enabled = false; // disable the Save button by default
-                                     
+
             this.ctrlFilterFindBy.OnPersonFound += GetPersonFoundedOrAdded; // subscribe to the event when a person is found or added in the ctrlFilterFindBy2 control
 
             this.ctrlFilterFindBy.OnPersonNationalNoOrPersonIDIsNotValid += GetPersonNotFoundError; // subscribe to the event when a person is not found in the ctrlFilterFindBy2 control
@@ -43,12 +44,35 @@ namespace FrontEnd
 
         }
 
+        void FillCbWithLicenseClasses() // fill the combobox with license classes
+        {
+            DataTable dt = clsLicenseClasses.GetAll_LicenseClassses();
+            foreach (DataRow R in dt.Rows)
+            {
+                this.cbLicenseClass.Items.Add(R["ClassName"]?.ToString());
+            }
+        }
 
         void GetPersonFoundedOrAdded(int PersonID) // EVENT when a person is found or added, this method will be called
         {
             this.ctrlPersonInfo1.LoadInfoUsingPersonID(PersonID);
+            FillCbWithLicenseClasses(); // as the person has found so we can fill the combobox with license classes
             this.btnNext.Enabled = true; // enable the Next button when a person is found or added
             this.btnSave.Enabled = true; // enable the Save button when a person is found or added
+
+            NewLocalDrivingLicenseApplication = new clsLocalDrivingLicenseApplications(PersonID); // create a new instance of the class to hold the new local driving license application data
+
+            FillApplicationInfo(); // fill the form with the BASIC application info 
+        }
+
+        void FillApplicationInfo()
+        {
+            if (this.NewLocalDrivingLicenseApplication is not null)
+            {
+                this.labDateTime.Text = this.NewLocalDrivingLicenseApplication.Application.ApplicationDateTime.ToString();
+                this.labAppFess.Text = this.NewLocalDrivingLicenseApplication.Application.PaiedFee.ToString();
+                this.labCreatedBy.Text = clsCurrentLoggedInUser.User.Username;
+            }
         }
 
         void GetPersonNotFoundError(bool status, string message) // Event 
@@ -56,6 +80,13 @@ namespace FrontEnd
             MessageBox.Show(message, "Person Not Found Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             this.ctrlPersonInfo1.RestToDefault();
         }
+
+        private void cbLicenseClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
 
         private void btnNext_Click(object sender, EventArgs e)
         {
@@ -72,6 +103,8 @@ namespace FrontEnd
         {
             e.Cancel = !btnNext.Enabled;
         }
+
+
 
         //private void lblEditPerson_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         //{
