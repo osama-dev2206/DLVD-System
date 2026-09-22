@@ -35,12 +35,31 @@ namespace FrontEnd
 
             if (ApplicationID == -1)
             {
+                this.labFormStatus.Text = "New Local Driving License Application";
                 this.formStatus = enFormStatus.Add;
 
             }
             else
             {
                 this.formStatus = enFormStatus.Edit;
+                this.labFormStatus.Text = "Edit Local Driving License Application";
+                this.ctrlFilterFindBy.Enabled = false;
+                FillCbWithLicenseClasses();
+                // find the local driving license application by application id
+                this.NewLocalDrivingLicenseApplication = clsLocalDrivingLicenseApplications.FindLocalDrivingLicenseApplicationByLocalID(ApplicationID);
+                
+                if(NewLocalDrivingLicenseApplication is null)
+                {
+                    MessageBox.Show("Failed To Get Form Info Please Check Your Application ID If Exists Or Not !", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                this.ctrlPersonInfo1.LoadInfoUsingPersonID(this.NewLocalDrivingLicenseApplication.Application.ApplicantPersonID);
+                FillApplicationInfo();
+                btnNext.Enabled = true;
+                btnSave.Enabled = true;
+                labEditPerson.Enabled = true;
+                this.labApplicationID = this.NewLocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID;
             }
 
         }
@@ -73,10 +92,26 @@ namespace FrontEnd
         {
             if (this.NewLocalDrivingLicenseApplication is not null)
             {
-                this.cbLicenseClass.SelectedIndex = 2; // the default is ordinary driving license class 
-                this.labDateTime.Text = this.NewLocalDrivingLicenseApplication.Application.ApplicationDateTime.ToString();
+               if(this.formStatus == enFormStatus.Add) 
+                {
+                    this.cbLicenseClass.SelectedIndex = 2; // the default is ordinary driving license class
+                 }
+               else if(this.formStatus == enFormStatus.Edit)
+                {
+                    this.cbLicenseClass.Text = clsLicenseClasses.FindLicenseClassByID(this.NewLocalDrivingLicenseApplication.LicenseClassID).ClassName;
+                }
+
+                this.labDateTime.Text = this.NewLocalDrivingLicenseApplication.Application.ApplicationDateTime.ToString(); // creation date time
                 this.labAppFess.Text = this.NewLocalDrivingLicenseApplication.Application.PaiedFee.ToString();
-                this.labCreatedBy.Text = clsCurrentLoggedInUser.User.Username;
+
+                if (this.formStatus == enFormStatus.Add)
+                {
+                    this.labCreatedBy.Text = clsCurrentLoggedInUser.User.Username;
+                }
+                else if (this.formStatus == enFormStatus.Edit)
+                {
+                    this.labCreatedBy.Text = clsUsers.FindUserByUserIDAsObj(this.NewLocalDrivingLicenseApplication.Application.CreatedByUserID).Username;
+                }
             }
         }
 
@@ -152,7 +187,18 @@ namespace FrontEnd
                     break;
                 }
 
-
+                case enFormStatus.Edit:
+                    {
+                        if(this.NewLocalDrivingLicenseApplication.SaveLocalDrivingLicenseApplication())
+                        {
+                            MessageBox.Show("Local Driving License Application updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show(this.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        break;
+                    }
             }
         }
 

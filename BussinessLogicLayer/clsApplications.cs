@@ -3,20 +3,20 @@ using System.Data;
 
 namespace BussinessLogicLayer
 {
-    public  class clsApplications
+    public sealed class clsApplications
     {
         public int ApplicationID { get;  private set; } // i will handle it here only 
         public int ApplicantPersonID { get; internal set; }
         public DateTime ApplicationDateTime { get; internal set; }
         public int ApplicationTypeID { get; internal set; } // new , renew, Other
-        public byte ApplicationStatus{ get; internal set; }  // tinyint in db
+        public byte ApplicationStatus{ get;  set; }  // tinyint in db ( completed, cancelled, new)
         public DateTime LastStatusDateTime { get; internal set; }
         public decimal PaiedFee { get; internal set; }
         public int CreatedByUserID { get; internal set; }
 
         internal enum enApplicationStatus : byte { New = 1, Cancelled = 2, Completed = 3 }
 
-        private enum enStatus { Add = 1, Edit = 2 }
+        public enum enStatus { Add = 1, Edit = 2 }
         private enStatus status;
 
         internal clsApplications() // Add new application
@@ -57,7 +57,7 @@ namespace BussinessLogicLayer
 
         private bool UpdateApplication()
         {
-            return false;
+            return clsUpdateApplication.UpdateApplication(this.ApplicationID,this.ApplicationStatus , this.LastStatusDateTime);
         }
 
         /*CUATION : DONOT DELETE THE RECORD FROM APPLICATIONS TABLE AFTER DELETING IT FROM LOCAL DRIVING LICENSE */
@@ -109,7 +109,7 @@ namespace BussinessLogicLayer
                     ApplicationDateTime: Convert.ToDateTime(R["ApplicationDateTime"]),
                     ApplicationTypeID: Convert.ToInt32(R["ApplicationTypeID"]),
                     ApplicationStatus: Convert.ToByte(R["ApplicationStatus"]),
-                    PaiedFee: Convert.ToDecimal(R["PaiedFee"]),
+                    PaiedFee: Convert.ToDecimal(R["PaidFees"]),
                     CreatedByUserID: Convert.ToInt32(R["CreatedByUserID"])
                 );
             }

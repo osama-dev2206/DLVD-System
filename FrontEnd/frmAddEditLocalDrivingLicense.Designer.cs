@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditLocalDrivingLicense));
-            label1 = new Label();
+            labFormStatus = new Label();
             tabControl = new TabControl();
             tabPage1 = new TabPage();
             labEditPerson = new LinkLabel();
@@ -64,17 +64,17 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // labFormStatus
             // 
-            label1.Dock = DockStyle.Top;
-            label1.Font = new Font("Segoe UI Semibold", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(192, 0, 0);
-            label1.Location = new Point(0, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(928, 75);
-            label1.TabIndex = 0;
-            label1.Text = "New Local Driving License Application";
-            label1.TextAlign = ContentAlignment.TopCenter;
+            labFormStatus.Dock = DockStyle.Top;
+            labFormStatus.Font = new Font("Segoe UI Semibold", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labFormStatus.ForeColor = Color.FromArgb(192, 0, 0);
+            labFormStatus.Location = new Point(0, 0);
+            labFormStatus.Name = "labFormStatus";
+            labFormStatus.Size = new Size(928, 75);
+            labFormStatus.TabIndex = 0;
+            labFormStatus.Text = "New Local Driving License Application";
+            labFormStatus.TextAlign = ContentAlignment.TopCenter;
             // 
             // tabControl
             // 
@@ -361,7 +361,7 @@
             Controls.Add(btnSave);
             Controls.Add(btnClose);
             Controls.Add(tabControl);
-            Controls.Add(label1);
+            Controls.Add(labFormStatus);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
@@ -384,7 +384,7 @@
 
         #endregion
 
-        private Label label1;
+        private Label labFormStatus;
         private TabControl tabControl;
         private TabPage tabPage1;
         private TabPage tabPage2;
