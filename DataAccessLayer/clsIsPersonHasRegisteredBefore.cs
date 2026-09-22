@@ -7,16 +7,18 @@ namespace DataAccessLayer
 {
     public static class clsIsPersonHasRegisteredBeforeInApplication
     {
-        private static string Query = @"Select ApplicationID
-From Applications
+        private static string Query = @"Select LApplicationID
+From LocalDrivingLicenseApplications as Local
+Inner Join Applications  as app
+On app.ApplicationID = local.LApplicationID
 where
-Applications.ApplicationTypeID = @AppTypeID
-and
-Applications.ApplicationStatus = 1 -- New (check on db)
+App.ApplicationStatus = 1 -- New (check on db)
 and 
-Applications.ApplicantPersonID = @PersonID ;";
+App.ApplicantPersonID =@PersonID  -- related to the same person 
+and 
+Local.LLicenseClassID = @LicenseClassID ;";
 
-        public static int IsPersonHasRegisteredBefore(int PersonID, int AppTypeID)
+        public static int IsPersonHasRegisteredBefore(int PersonID, int LicenseClassID  )
         {
             SqlConnection connection = dbSettings.DbConnection();
             int Result = -1;
@@ -25,11 +27,11 @@ Applications.ApplicantPersonID = @PersonID ;";
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(Query, connection);
                 cmd.Parameters.AddWithValue("@PersonID", PersonID);
-                cmd.Parameters.AddWithValue("@AppTypeID", AppTypeID);
+                cmd.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
 
                 object queryResult = cmd.ExecuteScalar();
 
-                if(queryResult != null && int.TryParse(queryResult.ToString() , out int ID) )
+                if(int.TryParse(queryResult?.ToString() , out int ID ) )
                 {
                     Result = ID;
                 }

@@ -40,10 +40,6 @@ namespace BussinessLogicLayer
             this.CreatedByUserID = CreatedByUserID;
         }
 
-        internal int CheckApplicationExistence() // this check if the person has applied for the same application type without finishing the previous application of the same type
-        {
-          return clsIsPersonHasRegisteredBeforeInApplication.IsPersonHasRegisteredBefore(PersonID: this.ApplicantPersonID, AppTypeID: this.ApplicationTypeID);
-        }
 
         private bool AddApplicationToApplicationTable()
         {
@@ -57,7 +53,7 @@ namespace BussinessLogicLayer
 
         private bool UpdateApplication()
         {
-            return clsUpdateApplication.UpdateApplication(this.ApplicationID,this.ApplicationStatus , this.LastStatusDateTime);
+            return clsUpdateApplication.UpdateApplication(this.ApplicationID,this.ApplicationStatus , DateTime.Now);
         }
 
         /*CUATION : DONOT DELETE THE RECORD FROM APPLICATIONS TABLE AFTER DELETING IT FROM LOCAL DRIVING LICENSE */

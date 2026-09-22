@@ -61,8 +61,8 @@ namespace FrontEnd
 
         private void LocalDrivingLicToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddEditLocalDrivingLicense frmAddEditLocalDrivingLicense = new frmAddEditLocalDrivingLicense(ApplicationID: 1); // Add New Local Driving License
-            frmAddEditLocalDrivingLicense.ShowDialog();
+            frmAddEditLocalDrivingLicense frmAddEditLocalDrivingLicense = new frmAddEditLocalDrivingLicense(ApplicationID: -1); // Add New Local Driving License
+            frmAddEditLocalDrivingLicense?.ShowDialog();
             frmAddEditLocalDrivingLicense.Dispose();
         }
 

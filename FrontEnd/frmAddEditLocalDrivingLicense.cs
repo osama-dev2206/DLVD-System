@@ -51,6 +51,7 @@ namespace FrontEnd
                 if(NewLocalDrivingLicenseApplication is null)
                 {
                     MessageBox.Show("Failed To Get Form Info Please Check Your Application ID If Exists Or Not !", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
                     return;
                 }
 
@@ -59,7 +60,7 @@ namespace FrontEnd
                 btnNext.Enabled = true;
                 btnSave.Enabled = true;
                 labEditPerson.Enabled = true;
-                this.labApplicationID = this.NewLocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID;
+                this.labApplicationID.Text = this.NewLocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID.ToString();
             }
 
         }
@@ -177,12 +178,14 @@ namespace FrontEnd
                     if (this.NewLocalDrivingLicenseApplication.SaveLocalDrivingLicenseApplication())
                     {
                         MessageBox.Show("Local Driving License Application saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.formStatus = enFormStatus.Edit; // change the form status to edit after saving
-                        
-                     }
+                            this.formStatus = enFormStatus.Edit;
+                            this.labFormStatus.Text = "Edit Local Driving License Application";
+
+                        }
                     else
                     {
                         MessageBox.Show(this.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     }
                     break;
                 }
