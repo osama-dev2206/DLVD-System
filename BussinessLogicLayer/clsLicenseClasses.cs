@@ -36,5 +36,14 @@ namespace BussinessLogicLayer
             return clsGetAllLicenseClasses.GetAllLicenseClasses();
         }
 
-    }
+        public static int GetLicenseClassIDByClassName(string ClassName)
+        {
+            if (String.IsNullOrEmpty(ClassName)) return -1; 
+            ClassName = ClassName.Trim();
+
+            return DataAccessLayer.clsGetLicenseClassIDByItsName.GetLicenseClassIDByItsName(ClassName);
+
+        }
+
+        }
 }
