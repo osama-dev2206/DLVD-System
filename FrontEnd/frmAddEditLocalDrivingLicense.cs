@@ -36,7 +36,7 @@ namespace FrontEnd
             if (ApplicationID == -1)
             {
                 this.formStatus = enFormStatus.Add;
-      
+
             }
             else
             {
@@ -60,8 +60,11 @@ namespace FrontEnd
             FillCbWithLicenseClasses(); // as the person has found so we can fill the combobox with license classes
             this.btnNext.Enabled = true; // enable the Next button when a person is found or added
             this.btnSave.Enabled = true; // enable the Save button when a person is found or added
+            this.labEditPerson.Enabled = true; // as the person has found so we can enable the edit person link label
 
             NewLocalDrivingLicenseApplication = new clsLocalDrivingLicenseApplications(PersonID); // create a new instance of the class to hold the new local driving license application data
+            NewLocalDrivingLicenseApplication.OnSaveErrorGetMessage += OnSaveGetMessage;
+            NewLocalDrivingLicenseApplication.OnSaveSuccessGetAppID += UpdateLDLAppId;
 
             FillApplicationInfo(); // fill the form with the BASIC application info 
         }
@@ -80,17 +83,17 @@ namespace FrontEnd
         void GetPersonNotFoundError(bool status, string message) // Event 
         {
             MessageBox.Show(message, "Person Not Found Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            this.labEditPerson.Enabled = false; // as the person has found so we can enable the edit person link label
             this.ctrlPersonInfo1.RestToDefault();
         }
 
         private void cbLicenseClass_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbLicenseClass.SelectedIndex !=-1)
+            if (cbLicenseClass.SelectedIndex != -1)
             {
                 this.NewLocalDrivingLicenseApplication.LicenseClassID = clsLicenseClasses.GetLicenseClassIDByClassName(cbLicenseClass.SelectedItem.ToString());
             }
         }
-
 
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -110,15 +113,48 @@ namespace FrontEnd
         }
 
 
+        private void linkLabelEditPerson_Click(object sender, EventArgs e)
+        {
+            int ID = this.NewLocalDrivingLicenseApplication.Application.ApplicantPersonID;
+            frmAddEditPerson frmEdit = new frmAddEditPerson(ID);
+            frmEdit.ShowDialog();
+            frmEdit.Dispose();
+            this.ctrlPersonInfo1.LoadInfoUsingPersonID(ID); // reload the person
+        }
 
-        //private void lblEditPerson_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        //{
-        //    frmAddEditPerson frmEdit = new frmAddEditPerson(user.PersonID);
-        //    frmEdit.ShowDialog();
-        //    frmEdit.Dispose();
-        //    this.ctrlPersonInfo1.LoadInfoUsingPersonID(user.PersonID); // reload the person
-        //}
+        string ErrorMessage = string.Empty;
+        void OnSaveGetMessage(string message) // methods that raises when the save gets error
+        {
+            ErrorMessage = message;
+        }
 
+        void UpdateLDLAppId(int AppId)
+        {
+            this.labApplicationID.Text = AppId.ToString();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            switch (this.formStatus)
+            { 
+                case enFormStatus.Add:
+                {
+                    if (this.NewLocalDrivingLicenseApplication.SaveLocalDrivingLicenseApplication())
+                    {
+                        MessageBox.Show("Local Driving License Application saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.formStatus = enFormStatus.Edit; // change the form status to edit after saving
+                        
+                     }
+                    else
+                    {
+                        MessageBox.Show(this.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
+                }
+
+
+            }
+        }
 
 
     }

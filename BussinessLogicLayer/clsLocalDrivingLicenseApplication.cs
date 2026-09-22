@@ -27,6 +27,16 @@ namespace BussinessLogicLayer
             Application.CreatedByUserID = clsCurrentLoggedInUser.User.UserID;
         }
 
+        // donot forget to record the last status date time when editing the application//
+        private clsLocalDrivingLicenseApplications(int LocalDrivingLicenseApplicationID, int LicenseClassID, clsApplications Application) // Edit existing
+        {
+
+            mode = enMode.Edit;
+            this.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
+            this.LicenseClassID = LicenseClassID;
+            this.Application = Application;
+        }
+
         private bool AddNewLocalDrivingLicenseApplicationToDB()
         {
             if(this.Application.ApplicationID ==-1) return false; // application not added to DB yet
@@ -37,28 +47,50 @@ namespace BussinessLogicLayer
             return (LocalDrivingLicenseApplicationID != -1);
         }
 
+        private bool CheckBeforeSave()
+        {
+            int ID = this.Application.CheckApplicationExistence();
+            if (ID ==-1)
+            {
+                return true;
+            }
+            else
+            {
+                OnSaveErrorGetMessage?.Invoke($"The person has already applied for the same application type with Application ID : {ID} \nwithout completing the previous application.");
+                return false;
+            }
+        }
+
         public bool SaveLocalDrivingLicenseApplication()
         {
             switch (this.mode)
             {
                 case enMode.Add:
-                    if(this.Application.SaveApplication()) // add the application to db first to get application id 
                     {
-                        if (this.AddNewLocalDrivingLicenseApplicationToDB()) // add to local driving license application table
+                        if(!CheckBeforeSave()) return false; // check if the application is valid to save
+
+                        if (this.Application.SaveApplication()) // add the application to db first to get application id 
                         {
-                            this.mode = enMode.Edit; // change mode to edit after successful addition
-                            return true;
+                            if (this.AddNewLocalDrivingLicenseApplicationToDB()) // add to local driving license application table
+                            {
+                                this.mode = enMode.Edit; // change mode to edit after successful addition
+                                OnSaveSuccessGetAppID?.Invoke(this.LocalDrivingLicenseApplicationID);
+                                return true;
+                            }
+                            else
+                            {
+                                this.Application.DeleteApplication(); //delete app lication from db if failed to add to local driving license application table
+                                OnSaveErrorGetMessage?.Invoke("failed to add to local driving license application table");
+                                return false; // 
+                            }
+
                         }
                         else
                         {
-                            this.Application.DeleteApplication(); //delete app lication from db if failed to add to local driving license application table
-                            return false; // failed to add to local driving license application table
+                            OnSaveErrorGetMessage?.Invoke("failed to add application to db");
+                            return false; // failed to add application to db
                         }
 
-                    }
-                    else
-                    {
-                        return false; // failed to add application to db
                     }
             }
 
@@ -66,9 +98,8 @@ namespace BussinessLogicLayer
         }
 
 
-
-
-
+        public Action<string> OnSaveErrorGetMessage;
+        public Action<int> OnSaveSuccessGetAppID;
 
     }
 

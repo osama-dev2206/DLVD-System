@@ -1,4 +1,6 @@
-﻿namespace BussinessLogicLayer
+﻿using DataAccessLayer;
+
+namespace BussinessLogicLayer
 {
     public  class clsApplications
     {
@@ -22,6 +24,11 @@
             this.ApplicationID = -1; // default value for new application
         }
 
+        internal int CheckApplicationExistence() // this check if the person has applied for the same application type without finishing the previous application of the same type
+        {
+          return clsIsPersonHasRegisteredBeforeInApplication.IsPersonHasRegisteredBefore(PersonID: this.ApplicantPersonID, AppTypeID: this.ApplicationTypeID);
+        }
+
         private bool AddApplicationToApplicationTable()
         {
             this.ApplicationID =  DataAccessLayer.clsAddNewApplicationToApplicationTable.AddNewApplication(
@@ -32,9 +39,20 @@
             return (ApplicationID !=-1);
         }
 
+        private bool UpdateApplication()
+        {
+            return false;
+        }
+
+        /*CUATION : DONOT DELETE THE RECORD FROM APPLICATIONS TABLE AFTER DELETING IT FROM LOCAL DRIVING LICENSE */
+         internal bool DeleteApplication()
+        {
+            return DataAccessLayer.clsDeleteApplication.DeleteApplication(this.ApplicationID);
+        }
+
         internal bool SaveApplication()
         {
-            switch(this.status)
+            switch (this.status)
             {
                 case enStatus.Add:
                     {
@@ -49,18 +67,16 @@
                         }
                     }
 
+                case enStatus.Edit:
+                    {
+                        return UpdateApplication();
+                    }
             }
 
             return false;
         }
 
-         internal bool DeleteApplication()
-        {
-            return DataAccessLayer.clsDeleteApplication.DeleteApplication(this.ApplicationID);
-        }
 
 
-
-
-        }
+    }
 }
