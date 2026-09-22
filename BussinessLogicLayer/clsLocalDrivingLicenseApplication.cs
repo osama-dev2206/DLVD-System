@@ -78,9 +78,14 @@ namespace BussinessLogicLayer
             }
             else
             {
-                OnSaveErrorGetMessage?.Invoke($"The person has already applied for the same application type with Application ID : {ID} \nwithout completing the previous application.");
+                OnSaveErrorGetMessage?.Invoke($"The person has already applied for the same application type with Application ID : {ID} .");
                 return false;
             }
+        }
+
+        private bool UpdateLocalDrivingLicenseApplicationInDB()
+        {
+            return clsUpdateLocalDrivingLic.UpdateLocalDrivingLicenseApplication(this.LocalDrivingLicenseApplicationID, this.LicenseClassID);
         }
 
         public bool SaveLocalDrivingLicenseApplication()
@@ -114,6 +119,32 @@ namespace BussinessLogicLayer
                         }
 
                     }
+
+                case enMode.Edit:
+                    {
+                      // 1. update main application 
+                      if(this.Application.SaveApplication()) // Update the application in db first
+                        {
+
+                            if(this.UpdateLocalDrivingLicenseApplicationInDB())
+                            {
+                                return true; // successfully updated
+                            }
+                            else
+                            {
+                                OnSaveErrorGetMessage?.Invoke("failed to update local driving license application in db");
+                                return false; // failed to update local driving license application in db
+                            }
+
+                        }
+                        else
+                        {
+                            OnSaveErrorGetMessage?.Invoke("failed to update application in db");
+                            return false; // failed to update application in db
+                        }
+
+                    }
+
             }
 
             return false; // default return false if mode is not add
@@ -121,7 +152,7 @@ namespace BussinessLogicLayer
 
 
         public Action<string> OnSaveErrorGetMessage;
-        public Action<int> OnSaveSuccessGetAppID;
+        public Action<int> OnSaveSuccessGetAppID; // used to get application id (local driving license application id) after successful save to db
 
     }
 
