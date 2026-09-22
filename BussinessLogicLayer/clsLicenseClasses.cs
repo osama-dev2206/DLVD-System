@@ -26,6 +26,11 @@ namespace BussinessLogicLayer
             this.ClassFees = ClassFees;
         }
 
+        public clsLicenseClasses()
+        {
+
+        }
+
         public static DataTable GetAll_LicenseClassses()
         {
             return clsGetAllLicenseClasses.GetAllLicenseClasses();
