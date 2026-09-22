@@ -32,6 +32,7 @@
             label1 = new Label();
             tabControl = new TabControl();
             tabPage1 = new TabPage();
+            labEditPerson = new LinkLabel();
             ctrlPersonInfo1 = new ctrlPersonInfo();
             btnNext = new Button();
             ctrlFilterFindBy = new ctrlFilterFindBy();
@@ -88,6 +89,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(labEditPerson);
             tabPage1.Controls.Add(ctrlPersonInfo1);
             tabPage1.Controls.Add(btnNext);
             tabPage1.Controls.Add(ctrlFilterFindBy);
@@ -98,6 +100,18 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Person Info";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // labEditPerson
+            // 
+            labEditPerson.AutoSize = true;
+            labEditPerson.Enabled = false;
+            labEditPerson.Location = new Point(736, 150);
+            labEditPerson.Name = "labEditPerson";
+            labEditPerson.Size = new Size(112, 20);
+            labEditPerson.TabIndex = 8;
+            labEditPerson.TabStop = true;
+            labEditPerson.Text = "Edit Person Info";
+            labEditPerson.Click += linkLabelEditPerson_Click;
             // 
             // ctrlPersonInfo1
             // 
@@ -321,6 +335,7 @@
             btnSave.TabIndex = 6;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnClose
             // 
@@ -356,6 +371,7 @@
             Text = "Add Edit Local Driving License";
             tabControl.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
@@ -392,5 +408,6 @@
         private Label labAppFess;
         private Label labCreatedBy;
         private ComboBox cbLicenseClass;
+        private LinkLabel labEditPerson;
     }
 }

@@ -5,9 +5,9 @@ using System.Text;
 
 namespace DataAccessLayer
 {
-    public static class clsIsPersonHasRegisteredBefore
+    public static class clsIsPersonHasRegisteredBeforeInApplication
     {
-        private static string Query = @"Select R = 'T' 
+        private static string Query = @"Select ApplicationID
 From Applications
 where
 Applications.ApplicationTypeID = @AppTypeID
@@ -16,10 +16,10 @@ Applications.ApplicationStatus = 1 -- New (check on db)
 and 
 Applications.ApplicantPersonID = @PersonID ;";
 
-        public static bool IsPersonHasRegisteredBefore(int PersonID, byte AppTypeID)
+        public static int IsPersonHasRegisteredBefore(int PersonID, int AppTypeID)
         {
             SqlConnection connection = dbSettings.DbConnection();
-            bool Result = false;
+            int Result = -1;
             try
             {
                 connection.Open();
@@ -29,9 +29,9 @@ Applications.ApplicantPersonID = @PersonID ;";
 
                 object queryResult = cmd.ExecuteScalar();
 
-                if(queryResult != null && queryResult.ToString() == "T")
+                if(queryResult != null && int.TryParse(queryResult.ToString() , out int ID) )
                 {
-                    Result = true;
+                    Result = ID;
                 }
 
             }
