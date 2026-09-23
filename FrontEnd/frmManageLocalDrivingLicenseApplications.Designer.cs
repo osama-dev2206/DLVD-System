@@ -189,6 +189,7 @@
             showApplicationDetailsToolStripMenuItem.Name = "showApplicationDetailsToolStripMenuItem";
             showApplicationDetailsToolStripMenuItem.Size = new Size(249, 26);
             showApplicationDetailsToolStripMenuItem.Text = "Show Application Details";
+            showApplicationDetailsToolStripMenuItem.Click += showApplicationDetailsToolStripMenuItem_Click;
             // 
             // editApplicationToolStripMenuItem
             // 

@@ -193,6 +193,16 @@ namespace FrontEnd.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ApplicationType {
+            get {
+                object obj = ResourceManager.GetObject("ApplicationType", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap beautiful_shot_bridge_reflective_lake_sunset {
             get {
                 object obj = ResourceManager.GetObject("beautiful-shot-bridge-reflective-lake-sunset", resourceCulture);
@@ -216,6 +226,16 @@ namespace FrontEnd.Properties {
         internal static System.Drawing.Bitmap Calendar_321 {
             get {
                 object obj = ResourceManager.GetObject("Calendar 321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Calendar_322 {
+            get {
+                object obj = ResourceManager.GetObject("Calendar 322", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -436,6 +456,16 @@ namespace FrontEnd.Properties {
         internal static System.Drawing.Bitmap Manage_Applications_321 {
             get {
                 object obj = ResourceManager.GetObject("Manage Applications 321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Manage_Applications_322 {
+            get {
+                object obj = ResourceManager.GetObject("Manage Applications 322", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
