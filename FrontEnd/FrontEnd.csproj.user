@@ -58,6 +58,9 @@
     <Compile Update="frmShowCurrentUserInfo.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmShowLocalDrivingLicApplicationDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmShowPersonDetails.cs">
       <SubType>Form</SubType>
     </Compile>

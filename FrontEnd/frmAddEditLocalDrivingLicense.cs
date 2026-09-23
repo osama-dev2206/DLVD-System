@@ -17,12 +17,7 @@ namespace FrontEnd
         private clsLocalDrivingLicenseApplications? NewLocalDrivingLicenseApplication; // instance of the class to hold the new local driving license application data
         public frmAddEditLocalDrivingLicense(int ApplicationID)
         {
-            if (!int.TryParse(ApplicationID.ToString(), out _))
-            {
-                MessageBox.Show("Invalid Application ID. Please provide a valid Application ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-                return;
-            }
+
 
             InitializeComponent();
 

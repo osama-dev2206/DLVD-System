@@ -205,7 +205,9 @@ namespace FrontEnd
 
         private void showApplicationDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmShowLocalDrivingLicApplicationDetails frmShowLocalDriving = new frmShowLocalDrivingLicApplicationDetails(this.selectedRowIndex);
+            frmShowLocalDriving?.ShowDialog();
+            frmShowLocalDriving?.Dispose();
         }
 
 

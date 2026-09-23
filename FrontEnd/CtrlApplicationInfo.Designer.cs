@@ -326,7 +326,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "CtrlApplicationInfo";
-            Size = new Size(779, 402);
+            Size = new Size(779, 354);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
