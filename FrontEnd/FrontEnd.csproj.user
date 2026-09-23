@@ -40,6 +40,9 @@
     <Compile Update="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmManageLocalDrivingLicenseApplications.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmManageTestTypes.cs">
       <SubType>Form</SubType>
     </Compile>

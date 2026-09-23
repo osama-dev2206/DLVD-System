@@ -153,4 +153,108 @@ TestTypeDescription = '' ,
 TestTypeFees = '' 
 where TestTypeID =1 ;
 
+
+--- Application - Local Driving License
+Select * from LicenseClasses
+where ClassName = '';
  
+ Select Applications.* 
+ from Applications
+ where Applications.ApplicationID =1;
+
+ /*
+ Application Status :
+1. new 
+2.cancelled
+3.completed 
+ */
+
+INSERT INTO Applications
+(
+    ApplicantPersonID,
+    ApplicationDateTime,
+    ApplicationTypeID,
+    ApplicationStatus,
+    LastStatusDateTime,
+    PaidFees,
+    CreatedByUserID
+)
+VALUES
+(
+    @ApplicantPersonID,
+    @ApplicationDateTime,
+    @ApplicationTypeID,
+    @ApplicationStatus,
+    @LastStatusDateTime,
+    @PaidFees,
+    @CreatedByUserID
+);
+Select SCOPE_IDENTITY();
+
+Select * from LocalDrivingLicenseApplications;
+
+Insert Into LocalDrivingLicenseApplications
+values ('@ApplicationID','@LicenseClassID');
+Select SCOPE_IDENTITY();
+
+Delete Applications
+where Applications.ApplicationID =1 ;
+
+Select * from ApplicationTypes;
+
+ /*
+ Application Status :
+1. new 
+2.cancelled
+3.completed 
+ */
+Select R = 'T' 
+From LocalDrivingLicenseApplications as Local
+Inner Join Applications  as app
+On app.ApplicationID = local.LApplicationID
+where
+App.ApplicationStatus = 1 -- New (check on db)
+and 
+App.ApplicantPersonID = 11 -- related to the same person 
+and 
+Local.LLicenseClassID = 3;
+
+
+
+
+Delete LocalDrivingLicenseApplications 
+where LocalDrivingLicenseApplicationID in (3) ;
+
+select * from LocalDrivingLicenseApplications
+where LocalDrivingLicenseApplicationID = 1 ;
+
+select * from Applications;
+
+delete  Applications
+truncate table LocalDrivingLicenseApplications
+
+Delete Applications
+where ApplicationID =2 ;
+
+Update LocalDrivingLicenseApplications
+Set LLicenseClassID = '@LicenseClassID'
+where LocalDrivingLicenseApplicationID =   1 ;
+
+
+Update Applications
+Set 
+ApplicationStatus = '@ApplicationStatus' ,
+LastStatusDateTime = '@LastStatusDateTime' 
+where Applications.ApplicationID = 1;
+
+Select * from LicenseClasses 
+where LicenseClassID =1 ;
+
+Select * from ApplicationTypes;
+
+
+Delete LocalDrivingLicenseApplications
+where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = 1;
+
+
+

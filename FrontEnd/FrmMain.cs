@@ -14,13 +14,15 @@ namespace FrontEnd
         private void TSMPeople_Click(object sender, EventArgs e) // manage people 
         {
             FrmPeopleManagement frmManagePeople = new FrmPeopleManagement();
-            frmManagePeople.ShowDialog();
+            frmManagePeople?.ShowDialog();
+            frmManagePeople?.Dispose();
         }
 
         private void showCurrentUserInfo_Click(object sender, EventArgs e)
         {
             frmShowCurrentUserInfo frmShowCurrentUserInfo = new frmShowCurrentUserInfo(clsCurrentLoggedInUser.User.PersonID, clsCurrentLoggedInUser.User.UserID);
-            frmShowCurrentUserInfo.ShowDialog();
+            frmShowCurrentUserInfo?.ShowDialog();
+            frmShowCurrentUserInfo?.Dispose();
         }
 
         internal Action<bool> OnUserLogOut;
@@ -34,36 +36,43 @@ namespace FrontEnd
         private void changeCurrentUserPasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmChangePassword frmChangePassword = new frmChangePassword(clsCurrentLoggedInUser.User.PersonID, clsCurrentLoggedInUser.User.UserID);
-            frmChangePassword.ShowDialog();
-            frmChangePassword.Dispose();
+            frmChangePassword?.ShowDialog();
+            frmChangePassword?.Dispose();
         }
 
         private void ManageUsersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmManageUsers frmManageUsers = new frmManageUsers();
-            frmManageUsers.ShowDialog();
-            frmManageUsers.Dispose();
+            frmManageUsers?.ShowDialog();
+            frmManageUsers?.Dispose();
         }
 
         private void manageAppliToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmApplicationTypes frmApplicationTypes = new frmApplicationTypes();
-            frmApplicationTypes.ShowDialog();
-            frmApplicationTypes.Dispose();
+            frmApplicationTypes?.ShowDialog();
+            frmApplicationTypes?.Dispose();
         }
 
         private void manageTestTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmManageTestTypes frmManageTestTypes = new frmManageTestTypes();
-            frmManageTestTypes.ShowDialog();
-            frmManageTestTypes.Dispose();
+            frmManageTestTypes?.ShowDialog();
+            frmManageTestTypes?.Dispose();
         }
 
         private void LocalDrivingLicToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAddEditLocalDrivingLicense frmAddEditLocalDrivingLicense = new frmAddEditLocalDrivingLicense(ApplicationID: -1); // Add New Local Driving License
             frmAddEditLocalDrivingLicense?.ShowDialog();
-            frmAddEditLocalDrivingLicense.Dispose();
+            frmAddEditLocalDrivingLicense?.Dispose();
+        }
+
+        private void localAppsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageLocalDrivingLicenseApplications frmManageLocal = new frmManageLocalDrivingLicenseApplications();
+            frmManageLocal?.ShowDialog();
+            frmManageLocal?.Dispose();
         }
 
 

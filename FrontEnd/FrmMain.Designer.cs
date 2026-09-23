@@ -34,6 +34,7 @@
             drivingLicensesServicesToolStripMenuItem = new ToolStripMenuItem();
             nToolStripMenuItem = new ToolStripMenuItem();
             LocalDrivingLicToolStripMenuItem = new ToolStripMenuItem();
+            manageApplicationsToolStripMenuItem = new ToolStripMenuItem();
             manageAppliToolStripMenuItem = new ToolStripMenuItem();
             manageTestTypesToolStripMenuItem = new ToolStripMenuItem();
             TSMPeople = new ToolStripMenuItem();
@@ -45,6 +46,7 @@
             logoutToolStripMenuItem = new ToolStripMenuItem();
             label1 = new Label();
             label2 = new Label();
+            localAppsToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -61,7 +63,7 @@
             // 
             // applicationsToolStripMenuItem
             // 
-            applicationsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { drivingLicensesServicesToolStripMenuItem, manageAppliToolStripMenuItem, manageTestTypesToolStripMenuItem });
+            applicationsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { drivingLicensesServicesToolStripMenuItem, manageApplicationsToolStripMenuItem, manageAppliToolStripMenuItem, manageTestTypesToolStripMenuItem });
             applicationsToolStripMenuItem.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             applicationsToolStripMenuItem.Image = Properties.Resources.Applications_64;
             applicationsToolStripMenuItem.Name = "applicationsToolStripMenuItem";
@@ -88,9 +90,18 @@
             // 
             LocalDrivingLicToolStripMenuItem.Image = Properties.Resources.Local_32;
             LocalDrivingLicToolStripMenuItem.Name = "LocalDrivingLicToolStripMenuItem";
-            LocalDrivingLicToolStripMenuItem.Size = new Size(252, 36);
+            LocalDrivingLicToolStripMenuItem.Size = new Size(242, 36);
             LocalDrivingLicToolStripMenuItem.Text = "Local License";
             LocalDrivingLicToolStripMenuItem.Click += LocalDrivingLicToolStripMenuItem_Click;
+            // 
+            // manageApplicationsToolStripMenuItem
+            // 
+            manageApplicationsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { localAppsToolStripMenuItem });
+            manageApplicationsToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            manageApplicationsToolStripMenuItem.Image = Properties.Resources.Manage_Applications_321;
+            manageApplicationsToolStripMenuItem.Name = "manageApplicationsToolStripMenuItem";
+            manageApplicationsToolStripMenuItem.Size = new Size(379, 36);
+            manageApplicationsToolStripMenuItem.Text = "Manage Applications";
             // 
             // manageAppliToolStripMenuItem
             // 
@@ -193,6 +204,14 @@
             label2.TabIndex = 2;
             label2.Text = "Driving and Vehicle License Department Management";
             // 
+            // localAppsToolStripMenuItem
+            // 
+            localAppsToolStripMenuItem.Image = Properties.Resources.Driver_License_481;
+            localAppsToolStripMenuItem.Name = "localAppsToolStripMenuItem";
+            localAppsToolStripMenuItem.Size = new Size(415, 36);
+            localAppsToolStripMenuItem.Text = "Local Driving License Applications";
+            localAppsToolStripMenuItem.Click += localAppsToolStripMenuItem_Click;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -233,5 +252,7 @@
         private ToolStripMenuItem drivingLicensesServicesToolStripMenuItem;
         private ToolStripMenuItem nToolStripMenuItem;
         private ToolStripMenuItem LocalDrivingLicToolStripMenuItem;
+        private ToolStripMenuItem manageApplicationsToolStripMenuItem;
+        private ToolStripMenuItem localAppsToolStripMenuItem;
     }
 }
