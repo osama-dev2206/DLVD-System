@@ -14,11 +14,12 @@ namespace FrontEnd
         int LApplicationID;
         string ClassName;
         int LocalApplicationID;
-        public frmShowLocalDrivingLicApplicationDetails(int LocalApplicationID) { 
-           
-            this. LocalApplicationID= LocalApplicationID;
+        public frmShowLocalDrivingLicApplicationDetails(int LocalApplicationID)
+        {
+
+            this.LocalApplicationID = LocalApplicationID;
             InitializeComponent();
-           clsLocalDrivingLicenseApplications.GetBasicInfoOfLocalLicenseApplication(LocalAppID:LocalApplicationID , out  LApplicationID , out  ClassName);
+            clsLocalDrivingLicenseApplications.GetBasicInfoOfLocalLicenseApplication(LocalAppID: LocalApplicationID, out LApplicationID, out ClassName);
             FillFormInfo();
         }
 
@@ -30,8 +31,10 @@ namespace FrontEnd
             this.labLocalAppId.Text = LocalApplicationID.ToString();
         }
 
-        
-
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
     }
 }

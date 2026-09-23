@@ -130,6 +130,10 @@ namespace BussinessLogicLayer
 
                 case enMode.Edit:
                     {
+                        if (!CheckBeforeSave())
+                        {
+                            return false; // check if the application is valid to save
+                        }
                         // 1. update main application 
                         if (this.Application.SaveApplication()) // Update the application in db first
                         {
