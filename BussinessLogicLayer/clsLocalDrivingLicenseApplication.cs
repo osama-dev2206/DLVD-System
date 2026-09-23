@@ -9,8 +9,8 @@ namespace BussinessLogicLayer
     public class clsLocalDrivingLicenseApplications // composition 
     {
         public int LocalDrivingLicenseApplicationID { get; private set; }
-        public int LicenseClassID { get;  set; }
-        public clsApplications Application { get; private set;  } // composition
+        public int LicenseClassID { get; set; }
+        public clsApplications Application { get; private set; } // composition
 
         enum enMode { Add = 1, Edit = 2 }
         enMode mode;
@@ -18,7 +18,7 @@ namespace BussinessLogicLayer
         {
             mode = enMode.Add;
             Application = new clsApplications();
-            DateTime @Now = DateTime.Now ;
+            DateTime @Now = DateTime.Now;
 
             Application.ApplicantPersonID = ApplicantPersonID;
             Application.ApplicationDateTime = @Now;
@@ -30,7 +30,7 @@ namespace BussinessLogicLayer
         }
 
         // donot forget to record the last status date time when editing the application//
-        private clsLocalDrivingLicenseApplications(int LocalDrivingLicenseApplicationID, int LicenseClassID, clsApplications Application  ) // Edit existing
+        private clsLocalDrivingLicenseApplications(int LocalDrivingLicenseApplicationID, int LicenseClassID, clsApplications Application) // Edit existing
         {
 
             mode = enMode.Edit;
@@ -41,9 +41,9 @@ namespace BussinessLogicLayer
 
         private bool AddNewLocalDrivingLicenseApplicationToDB()
         {
-            if(this.Application.ApplicationID ==-1) return false; // application not added to DB yet
+            if (this.Application.ApplicationID == -1) return false; // application not added to DB yet
 
-            this.LocalDrivingLicenseApplicationID = 
+            this.LocalDrivingLicenseApplicationID =
                 DataAccessLayer.clsAddNewLocalDrivingLicense.AddNewLocalDrivingLicenseApplication(ApplicationID: this.Application.ApplicationID, LicenseClassID: this.LicenseClassID);
 
             return (LocalDrivingLicenseApplicationID != -1);
@@ -52,7 +52,7 @@ namespace BussinessLogicLayer
         // Find the local driving license application by local driving license application id and return the object of clsLocalDrivingLicenseApplications (it will fill application object as well)
         public static clsLocalDrivingLicenseApplications FindLocalDrivingLicenseApplicationByLocalID(int LocalDrivingLicenseApplicationID)
         {
-            if(!int.TryParse(LocalDrivingLicenseApplicationID.ToString(), out int ID)) return null; // invalid id
+            if (!int.TryParse(LocalDrivingLicenseApplicationID.ToString(), out int ID)) return null; // invalid id
 
             clsLocalDrivingLicenseApplications local = null;
             DataTable dt = clsGetLocalDrivingApp.GetLocalDrivingApplicationByLocalDrivingLicenseApplication(LocalDrivingLicenseApplicationID); // get local driving license application
@@ -72,14 +72,14 @@ namespace BussinessLogicLayer
 
         private int CheckApplicationExistence() // this check if the person has applied for the same application type without finishing the previous application of the same type
         {
-            return clsIsPersonHasRegisteredBeforeInApplication.IsPersonHasRegisteredBefore(PersonID: this.Application.ApplicantPersonID, LicenseClassID:this.LicenseClassID);
+            return clsIsPersonHasRegisteredBeforeInApplication.IsPersonHasRegisteredBefore(PersonID: this.Application.ApplicantPersonID, LicenseClassID: this.LicenseClassID);
         }
 
 
         private bool CheckBeforeSave()
         {
             int ID = this.CheckApplicationExistence();
-            if (ID ==-1)
+            if (ID == -1)
             {
                 return true;
             }
@@ -101,13 +101,13 @@ namespace BussinessLogicLayer
             {
                 case enMode.Add:
                     {
-                        if(!CheckBeforeSave()) return false; // check if the application is valid to save
+                        if (!CheckBeforeSave()) return false; // check if the application is valid to save
 
                         if (this.Application.SaveApplication()) // add the application to db first to get application id 
                         {
                             if (this.AddNewLocalDrivingLicenseApplicationToDB()) // add to local driving license application table
                             {
-                              this.mode = enMode.Edit; // change mode to edit after successful addition (temp)
+                                this.mode = enMode.Edit; // change mode to edit after successful addition (temp)
                                 OnSaveSuccessGetAppID?.Invoke(this.LocalDrivingLicenseApplicationID);
                                 return true;
                             }
@@ -129,11 +129,11 @@ namespace BussinessLogicLayer
 
                 case enMode.Edit:
                     {
-                      // 1. update main application 
-                      if(this.Application.SaveApplication()) // Update the application in db first
+                        // 1. update main application 
+                        if (this.Application.SaveApplication()) // Update the application in db first
                         {
 
-                            if(this.UpdateLocalDrivingLicenseApplicationInDB())
+                            if (this.UpdateLocalDrivingLicenseApplicationInDB())
                             {
                                 return true; // successfully updated
                             }
@@ -166,9 +166,48 @@ namespace BussinessLogicLayer
         public Action<int> OnSaveSuccessGetAppID; // used to get application id (local driving license application id) after successful save to db
 
 
+        public static DataTable GetAllLocalApps()
+        {
+            return clsGetAllLocalApps.GetAllLocalDrivingLicenseApplications();
+        }
 
+        public static DataTable GetLocalAppsByNewStatus()
+        {
+            return clsFindLocalAppUsing.FindBy("New", clsFindLocalAppUsing.enSearchBy.NewStatus);
+        }
+
+        public static DataTable GetLocalAppsByCancelledStatus()
+        {
+            return clsFindLocalAppUsing.FindBy("Cancelled", clsFindLocalAppUsing.enSearchBy.CancelledStatus);
+        }
+
+
+        public static DataTable GetLocalAppsByCompletedStatus()
+        {
+            return clsFindLocalAppUsing.FindBy("Completed", clsFindLocalAppUsing.enSearchBy.CompletedStatus);
+        }
+
+        public static DataTable GetLocalAppsByFullName(string FullName)
+        {
+            if (String.IsNullOrEmpty(FullName)) return null; // invalid national number    
+            return clsFindLocalAppUsing.FindBy(FullName.Trim(), clsFindLocalAppUsing.enSearchBy.FullName);
+        }
+
+        public static DataTable GetLocalAppsByLocalDrivingLicenseApplicationID(int LocalDrivingLicenseApplicationID)
+        {
+            if(!int.TryParse(LocalDrivingLicenseApplicationID.ToString(), out int ID)) return null; // invalid id
+
+            return clsFindLocalAppUsing.FindBy(LocalDrivingLicenseApplicationID, clsFindLocalAppUsing.enSearchBy.LdLAppID);
+        }
+
+
+        public static DataTable GetLocalAppsByNationalNo(string NationalNo)
+        {
+            if(String.IsNullOrEmpty(NationalNo)) return null; // invalid national number    
+
+            return clsFindLocalAppUsing.FindBy(NationalNo.Trim(), clsFindLocalAppUsing.enSearchBy.NationalNo);
+        }
 
     }
-
 
 }

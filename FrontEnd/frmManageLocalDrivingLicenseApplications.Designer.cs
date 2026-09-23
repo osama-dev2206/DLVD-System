@@ -39,6 +39,7 @@
             label2 = new Label();
             labCountOfRecords = new Label();
             tbSearchBy = new TextBox();
+            cbStatus = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DgvLocal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAddNew).BeginInit();
@@ -78,6 +79,7 @@
             DgvLocal.RowHeadersWidth = 51;
             DgvLocal.Size = new Size(1257, 302);
             DgvLocal.TabIndex = 2;
+            DgvLocal.SelectionChanged += DGVLocalSelectionChanged;
             // 
             // cbFilter
             // 
@@ -88,6 +90,7 @@
             cbFilter.Name = "cbFilter";
             cbFilter.Size = new Size(168, 28);
             cbFilter.TabIndex = 3;
+            cbFilter.SelectedIndexChanged += cbFilter_SelectedIndexChanged;
             // 
             // labGF
             // 
@@ -150,12 +153,25 @@
             tbSearchBy.Name = "tbSearchBy";
             tbSearchBy.Size = new Size(291, 27);
             tbSearchBy.TabIndex = 9;
+            tbSearchBy.TextChanged += tbSearchBy_TextChanged;
+            // 
+            // cbStatus
+            // 
+            cbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbStatus.FormattingEnabled = true;
+            cbStatus.Items.AddRange(new object[] { "New", "Cancelled", "Completed" });
+            cbStatus.Location = new Point(350, 362);
+            cbStatus.Name = "cbStatus";
+            cbStatus.Size = new Size(168, 28);
+            cbStatus.TabIndex = 10;
+            cbStatus.SelectedIndexChanged += cbStatus_SelectedIndexChanged;
             // 
             // frmManageLocalDrivingLicenseApplications
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1281, 787);
+            Controls.Add(cbStatus);
             Controls.Add(tbSearchBy);
             Controls.Add(labCountOfRecords);
             Controls.Add(label2);
@@ -193,5 +209,6 @@
         private Label label2;
         private Label labCountOfRecords;
         private TextBox tbSearchBy;
+        private ComboBox cbStatus;
     }
 }
