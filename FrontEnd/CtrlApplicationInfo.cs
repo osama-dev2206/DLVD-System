@@ -41,11 +41,16 @@ namespace FrontEnd
                     this.labApplicationType.Text = R["ApplicationType"].ToString();
                     this.labApplicationStatus.Text = R["ApplicationStatus"].ToString();
                     this.labLastDT.Text = R["LastStatusDateTime"].ToString();
-                    this.labPaidFees.Text = R["PaiedFees"].ToString();
+                    this.labPaidFees.Text = R["PaidFees"].ToString();
                     this.labCreatedBy.Text = R["CreatedByUserName"].ToString();
 
                     break;
                 }
+
+            }
+            else
+            {
+                MessageBox.Show("Falied To Get Info", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

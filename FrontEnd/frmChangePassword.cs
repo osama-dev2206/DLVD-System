@@ -20,10 +20,7 @@ namespace FrontEnd
 
         public frmChangePassword(int PersonID, int UserID)
         {
-            if (!int.TryParse(PersonID.ToString(), out _) || !int.TryParse(UserID.ToString(), out _))
-            {
-                return;
-            }
+
 
             InitializeComponent();
 

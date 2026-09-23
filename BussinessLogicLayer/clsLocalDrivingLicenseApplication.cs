@@ -158,7 +158,7 @@ namespace BussinessLogicLayer
             return false; // default return false if mode is not add
         }
 
-        public static bool Delete(int LocalDrivingLicenseApplicationID)
+        public static bool Delete(int LocalDrivingLicenseApplicationID) // it also deletes the application from application table as well (it will delete the application from application table first then delete from local driving license application table)
         {
             return  clsDeleteLocalDrivingLicense.DeleteLocalDrivingLicenseApplication(LocalDrivingLicenseApplicationID)  ; // TSQL Method
         }
@@ -200,7 +200,6 @@ namespace BussinessLogicLayer
             return clsFindLocalAppUsing.FindBy(LocalDrivingLicenseApplicationID, clsFindLocalAppUsing.enSearchBy.LdLAppID);
         }
 
-
         public static DataTable GetLocalAppsByNationalNo(string NationalNo)
         {
             if(String.IsNullOrEmpty(NationalNo)) return null; // invalid national number    
@@ -215,6 +214,23 @@ namespace BussinessLogicLayer
                 , LastStatusDateTime: DateTime.Now);
         }
 
-    }
+        public static void GetBasicInfoOfLocalLicenseApplication(int LocalAppID,out int LApplicationID , out string ClassName)
+        {
+            LApplicationID = -1;
+            ClassName = "";
+            DataTable dt = clsGetBasicLocalLicenseApplicationInfo.GetInfo(LocalAppID);
+
+            foreach(DataRow R in dt.Rows)
+            {
+                LocalAppID = Convert.ToInt32(R["LocalDrivingLicenseApplicationID"]);
+                LApplicationID = Convert.ToInt32(R["LApplicationID"]);
+                ClassName = R["ClassName"]?.ToString();
+                break;
+            }
+            dt?.Dispose();
+        }
+
+
+        }
 
 }
