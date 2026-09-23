@@ -52,7 +52,7 @@ namespace FrontEnd
 
                     if (int.TryParse(SearchKeyword, out int id))
                     {
-                        DgvLocal.DataSource = clsLocalDrivingLicenseApplications.FindLocalDrivingLicenseApplicationByLocalID(id);
+                        DgvLocal.DataSource = clsLocalDrivingLicenseApplications.GetLocalAppsByLocalDrivingLicenseApplicationID(id);
                     }
                     break;
 
@@ -69,11 +69,11 @@ namespace FrontEnd
 
         private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbStatus.SelectedItem == "None")
+            if (cbStatus.SelectedItem == "None")
             {
                 RefreshDataGridView();
             }
-            else if(cbStatus.SelectedItem == "New")
+            else if (cbStatus.SelectedItem == "New")
             {
                 DgvLocal.DataSource = clsLocalDrivingLicenseApplications.GetLocalAppsByNewStatus();
             }
@@ -87,23 +87,16 @@ namespace FrontEnd
             }
 
         }
-        /*
-         None
-L.D.L App ID
-National No
-Full Name
-Status
-         
-         */
 
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
+            tbSearchBy.Text = String.Empty; // as you have changed the filter 
             if (cbFilter.SelectedIndex != -1 && cbFilter.SelectedItem != null && cbFilter.SelectedIndex != 0 && cbFilter.SelectedItem != "Status")
             {
                 tbSearchBy.Visible = true;
                 cbStatus.Visible = false;
             }
-            else if (cbFilter.SelectedIndex == 0) // if i set the filter to null 
+            else if (cbFilter.SelectedIndex == 0) // if i set the filter to none 
             {
                 tbSearchBy.Visible = false;
                 cbStatus.Visible = false;
@@ -140,6 +133,70 @@ Status
                 RefreshDataGridView(); // rest the dgv after clearing the search box 
             }
         }
+
+        private void tbSearchBy_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbFilter.SelectedItem == "L.D.L App ID")
+            {
+                // Allow only digits and control characters (like backspace)
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true; // Ignore the input
+                }
+            }
+            else if (cbFilter.SelectedItem == "Full Name")
+            {
+                if (!char.IsLetter(e.KeyChar) &&
+       !char.IsControl(e.KeyChar) &&
+       !char.IsWhiteSpace(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        // CURD 
+        void AddNewLocalDrivingLicenseApplication()
+        {
+            frmAddEditLocalDrivingLicense frm = new frmAddEditLocalDrivingLicense(-1);
+            frm.ShowDialog();
+            frm.Dispose();
+            RefreshDataGridView();
+        }
+        private void pbAddNew_Click(object sender, EventArgs e)
+        {
+            AddNewLocalDrivingLicenseApplication();
+        }
+
+        private void editApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddEditLocalDrivingLicense frmEdit = new frmAddEditLocalDrivingLicense(selectedRowIndex);
+            frmEdit?.ShowDialog();
+            frmEdit?.Dispose();
+            RefreshDataGridView();
+        }
+
+        private void deleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           if( clsLocalDrivingLicenseApplications.Delete(selectedRowIndex))
+          {
+                MessageBox.Show("Application deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RefreshDataGridView();
+            }
+            else
+            {
+                MessageBox.Show("Failed to delete the application.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);  
+            }
+
+
+        }
+
 
 
     }

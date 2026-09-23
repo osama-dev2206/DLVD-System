@@ -62,6 +62,9 @@ namespace BussinessLogicLayer
             return DataAccessLayer.clsDeleteApplication.DeleteApplication(this.ApplicationID);
         }
 
+
+
+
         internal bool SaveApplication()
         {
             switch (this.status)

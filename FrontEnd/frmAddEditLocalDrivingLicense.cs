@@ -44,7 +44,6 @@ namespace FrontEnd
                 this.formStatus = enFormStatus.Edit;
                 this.labFormStatus.Text = "Edit Local Driving License Application";
                 this.ctrlFilterFindBy.Enabled = false;
-                FillCbWithLicenseClasses();
                 // find the local driving license application by application id
                 this.NewLocalDrivingLicenseApplication = clsLocalDrivingLicenseApplications.FindLocalDrivingLicenseApplicationByLocalID(ApplicationID);
                 
@@ -56,6 +55,7 @@ namespace FrontEnd
                 }
 
                 this.ctrlPersonInfo1.LoadInfoUsingPersonID(this.NewLocalDrivingLicenseApplication.Application.ApplicantPersonID);
+                FillCbWithLicenseClasses();
                 FillApplicationInfo();
                 btnNext.Enabled = true;
                 btnSave.Enabled = true;

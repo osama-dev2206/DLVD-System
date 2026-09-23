@@ -7,9 +7,22 @@ namespace DataAccessLayer
 {
     public static class clsDeleteLocalDrivingLicense
     {
+        // TSQL
         private static string Query = @"
+Begin Transaction ;
+Declare @AppID Int ; 
+
+Select @AppID = LocalDrivingLicenseApplications.LApplicationID
+from LocalDrivingLicenseApplications
+where LocalDrivingLicenseApplicationID = @LocalAppID
+
 Delete LocalDrivingLicenseApplications
-where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalAppID;";
+where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalAppID
+
+Delete Applications
+where Applications.ApplicationID = @AppID 
+
+Commit  Transaction ;";
 
         public static bool DeleteLocalDrivingLicenseApplication(int LocalDrivingLicenseApplicationID)
         {
