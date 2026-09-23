@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using static BussinessLogicLayer.clsApplications;
 
 namespace BussinessLogicLayer
 {
@@ -181,7 +182,6 @@ namespace BussinessLogicLayer
             return clsFindLocalAppUsing.FindBy("Cancelled", clsFindLocalAppUsing.enSearchBy.CancelledStatus);
         }
 
-
         public static DataTable GetLocalAppsByCompletedStatus()
         {
             return clsFindLocalAppUsing.FindBy("Completed", clsFindLocalAppUsing.enSearchBy.CompletedStatus);
@@ -208,7 +208,12 @@ namespace BussinessLogicLayer
             return clsFindLocalAppUsing.FindBy(NationalNo.Trim(), clsFindLocalAppUsing.enSearchBy.NationalNo);
         }
 
-
+        public static bool UpdateApplicationStatusUsingLocalDrivingLicID(int LocalAppID, clsApplications. enApplicationStatus applicationStatus)
+        {
+           return  clsUpdateApplicationStatusUsingLocalDriving.UpdateApplicationStatus(LocalDrivingLicenseApplicationID: LocalAppID,
+                ApplicationStatus: (byte)applicationStatus
+                , LastStatusDateTime: DateTime.Now);
+        }
 
     }
 

@@ -184,17 +184,23 @@ namespace FrontEnd
 
         private void deleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           if( clsLocalDrivingLicenseApplications.Delete(selectedRowIndex))
-          {
+            if (clsLocalDrivingLicenseApplications.Delete(selectedRowIndex))
+            {
                 MessageBox.Show("Application deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 RefreshDataGridView();
             }
             else
             {
-                MessageBox.Show("Failed to delete the application.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);  
+                MessageBox.Show("Failed to delete the application.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
+        }
+
+        private void CancelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           clsLocalDrivingLicenseApplications.UpdateApplicationStatusUsingLocalDrivingLicID(selectedRowIndex, clsApplications.enApplicationStatus.Cancelled);
+            RefreshDataGridView();
         }
 
 

@@ -14,7 +14,7 @@ namespace BussinessLogicLayer
         public decimal PaiedFee { get; internal set; }
         public int CreatedByUserID { get; internal set; }
 
-        internal enum enApplicationStatus : byte { New = 1, Cancelled = 2, Completed = 3 }
+        public enum enApplicationStatus : byte { New = 1, Cancelled = 2, Completed = 3 }
 
         public enum enStatus { Add = 1, Edit = 2 }
         private enStatus status;
@@ -56,13 +56,10 @@ namespace BussinessLogicLayer
             return clsUpdateApplication.UpdateApplication(this.ApplicationID,this.ApplicationStatus , DateTime.Now);
         }
 
-        
          internal bool DeleteApplication()
         {
             return DataAccessLayer.clsDeleteApplication.DeleteApplication(this.ApplicationID);
         }
-
-
 
 
         internal bool SaveApplication()
