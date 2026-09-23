@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManageLocalDrivingLicenseApplications));
             pictureBox1 = new PictureBox();
             label1 = new Label();
@@ -40,9 +41,15 @@
             labCountOfRecords = new Label();
             tbSearchBy = new TextBox();
             cbStatus = new ComboBox();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            showApplicationDetailsToolStripMenuItem = new ToolStripMenuItem();
+            editApplicationToolStripMenuItem = new ToolStripMenuItem();
+            deleteApplicationToolStripMenuItem = new ToolStripMenuItem();
+            cancxToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DgvLocal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAddNew).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
@@ -111,6 +118,7 @@
             pbAddNew.SizeMode = PictureBoxSizeMode.Zoom;
             pbAddNew.TabIndex = 5;
             pbAddNew.TabStop = false;
+            pbAddNew.Click += pbAddNew_Click;
             // 
             // btnClose
             // 
@@ -126,6 +134,7 @@
             btnClose.TabIndex = 6;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
             // label2
             // 
@@ -141,7 +150,7 @@
             // 
             labCountOfRecords.AutoSize = true;
             labCountOfRecords.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labCountOfRecords.Location = new Point(197, 747);
+            labCountOfRecords.Location = new Point(197, 744);
             labCountOfRecords.Name = "labCountOfRecords";
             labCountOfRecords.Size = new Size(27, 31);
             labCountOfRecords.TabIndex = 8;
@@ -154,6 +163,7 @@
             tbSearchBy.Size = new Size(291, 27);
             tbSearchBy.TabIndex = 9;
             tbSearchBy.TextChanged += tbSearchBy_TextChanged;
+            tbSearchBy.KeyPress += tbSearchBy_KeyPress;
             // 
             // cbStatus
             // 
@@ -166,11 +176,49 @@
             cbStatus.TabIndex = 10;
             cbStatus.SelectedIndexChanged += cbStatus_SelectedIndexChanged;
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showApplicationDetailsToolStripMenuItem, editApplicationToolStripMenuItem, deleteApplicationToolStripMenuItem, cancxToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(250, 136);
+            // 
+            // showApplicationDetailsToolStripMenuItem
+            // 
+            showApplicationDetailsToolStripMenuItem.Image = Properties.Resources.PersonDetails_32;
+            showApplicationDetailsToolStripMenuItem.Name = "showApplicationDetailsToolStripMenuItem";
+            showApplicationDetailsToolStripMenuItem.Size = new Size(249, 26);
+            showApplicationDetailsToolStripMenuItem.Text = "Show Application Details";
+            // 
+            // editApplicationToolStripMenuItem
+            // 
+            editApplicationToolStripMenuItem.Image = Properties.Resources.edit_321;
+            editApplicationToolStripMenuItem.Name = "editApplicationToolStripMenuItem";
+            editApplicationToolStripMenuItem.Size = new Size(249, 26);
+            editApplicationToolStripMenuItem.Text = "Edit Application";
+            editApplicationToolStripMenuItem.Click += editApplicationToolStripMenuItem_Click;
+            // 
+            // deleteApplicationToolStripMenuItem
+            // 
+            deleteApplicationToolStripMenuItem.Image = Properties.Resources.Delete_32_2;
+            deleteApplicationToolStripMenuItem.Name = "deleteApplicationToolStripMenuItem";
+            deleteApplicationToolStripMenuItem.Size = new Size(249, 26);
+            deleteApplicationToolStripMenuItem.Text = "Delete Application";
+            deleteApplicationToolStripMenuItem.Click += deleteApplicationToolStripMenuItem_Click;
+            // 
+            // cancxToolStripMenuItem
+            // 
+            cancxToolStripMenuItem.Image = Properties.Resources.Delete_32;
+            cancxToolStripMenuItem.Name = "cancxToolStripMenuItem";
+            cancxToolStripMenuItem.Size = new Size(249, 26);
+            cancxToolStripMenuItem.Text = "Cancel Application";
+            // 
             // frmManageLocalDrivingLicenseApplications
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1281, 787);
+            ContextMenuStrip = contextMenuStrip1;
             Controls.Add(cbStatus);
             Controls.Add(tbSearchBy);
             Controls.Add(labCountOfRecords);
@@ -193,6 +241,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)DgvLocal).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbAddNew).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -210,5 +259,10 @@
         private Label labCountOfRecords;
         private TextBox tbSearchBy;
         private ComboBox cbStatus;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem showApplicationDetailsToolStripMenuItem;
+        private ToolStripMenuItem editApplicationToolStripMenuItem;
+        private ToolStripMenuItem deleteApplicationToolStripMenuItem;
+        private ToolStripMenuItem cancxToolStripMenuItem;
     }
 }

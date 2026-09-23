@@ -9,31 +9,7 @@ namespace DataAccessLayer
 {
     public static class clsGetAllLocalApps
     {
-        private static string Query = @" Select LocalDrivingLicenseApplications.LApplicationID as 'L.D.LAppID' ,
- LicenseClasses.ClassName as 'Driving Class' ,
- People.NationalNumber as 'National No' ,
-CONCAT( People.FirstName , ' ' , People.SecondName , ' ' , People.ThirdName ,' ' ,People.LastName) As [Full Name] ,
-Applications.ApplicationDateTime ,
-(
-Select Count(*) 
-from Test 
-Inner Join TestAppointments On TestAppointments.TestAppointmentForLocalDrivingLicenseAppID = LocalDrivingLicenseApplicationID
-where Test.TestResult=1 
-and 
-TestAppointments.TestAppointmentForLocalDrivingLicenseAppID = LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
-
-) as [Passed Tests] ,
-Status =
-Case
-When Applications.ApplicationStatus =1 then 'New' 
-When Applications.ApplicationStatus =2 then 'Cancelled'
-When Applications.ApplicationStatus =3 then 'Completed'
-End
-
-from LocalDrivingLicenseApplications
- Inner Join LicenseClasses On LocalDrivingLicenseApplications.LLicenseClassID = LicenseClasses.LicenseClassID
- Inner Join Applications On Applications.ApplicationID = LocalDrivingLicenseApplications.LApplicationID
- Inner Join People On People.PersonID = Applications.ApplicantPersonID ;";
+        private static string Query = @" select * from LocalDrivingLicenseApplicationsView;";
 
 
         public static DataTable GetAllLocalDrivingLicenseApplications()

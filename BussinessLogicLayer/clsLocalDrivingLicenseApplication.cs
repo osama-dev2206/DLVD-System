@@ -157,9 +157,9 @@ namespace BussinessLogicLayer
             return false; // default return false if mode is not add
         }
 
-        public bool Delete()
+        public static bool Delete(int LocalDrivingLicenseApplicationID)
         {
-            return clsDeleteLocalDrivingLicense.DeleteLocalDrivingLicenseApplication(this.LocalDrivingLicenseApplicationID) && this.Application.DeleteApplication();
+            return  clsDeleteLocalDrivingLicense.DeleteLocalDrivingLicenseApplication(LocalDrivingLicenseApplicationID)  ; // TSQL Method
         }
 
         public Action<string> OnSaveErrorGetMessage;
@@ -207,6 +207,8 @@ namespace BussinessLogicLayer
 
             return clsFindLocalAppUsing.FindBy(NationalNo.Trim(), clsFindLocalAppUsing.enSearchBy.NationalNo);
         }
+
+
 
     }
 
