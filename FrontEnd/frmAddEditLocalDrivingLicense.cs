@@ -18,7 +18,6 @@ namespace FrontEnd
         public frmAddEditLocalDrivingLicense(int ApplicationID)
         {
 
-
             InitializeComponent();
 
             btnNext.Enabled = false; // disable the Next button by default
@@ -50,6 +49,7 @@ namespace FrontEnd
                 }
 
                 this.ctrlPersonInfo1.LoadInfoUsingPersonID(this.NewLocalDrivingLicenseApplication.Application.ApplicantPersonID);
+                NewLocalDrivingLicenseApplication.OnSaveErrorGetMessage += OnSaveGetMessage;
                 FillCbWithLicenseClasses();
                 FillApplicationInfo();
                 btnNext.Enabled = true;
