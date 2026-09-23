@@ -78,3 +78,4 @@ D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frmEditTestType.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frmAddEditLocalDrivingLicense.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frmManageLocalDrivingLicenseApplications.resources
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.CtrlApplicationInfo.resources

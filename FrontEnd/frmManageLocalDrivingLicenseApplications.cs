@@ -199,10 +199,14 @@ namespace FrontEnd
 
         private void CancelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           clsLocalDrivingLicenseApplications.UpdateApplicationStatusUsingLocalDrivingLicID(selectedRowIndex, clsApplications.enApplicationStatus.Cancelled);
+            clsLocalDrivingLicenseApplications.UpdateApplicationStatusUsingLocalDrivingLicID(selectedRowIndex, clsApplications.enApplicationStatus.Cancelled);
             RefreshDataGridView();
         }
 
+        private void showApplicationDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
     }

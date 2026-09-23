@@ -4,6 +4,9 @@
     <Compile Update="ctrlAddEditPerson.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="CtrlApplicationInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="ctrlFilterFindBy.cs">
       <SubType>UserControl</SubType>
     </Compile>

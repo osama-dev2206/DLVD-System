@@ -88,7 +88,7 @@ namespace BussinessLogicLayer
             return false;
         }
 
-        internal static clsApplications GetApplicationObjByAppID(int AppID)
+        public static clsApplications GetApplicationObjByAppID(int AppID)
         {
             if(!int.TryParse(AppID.ToString(), out int ApplicationID))
             {
@@ -113,7 +113,10 @@ namespace BussinessLogicLayer
            return app;
         }
 
-
+        public static DataTable GetApplicationObjDetailsByApplicationID(int AppID)
+        {
+            return clsGetDetailedAppInfoByApplicationID.GetInfo(AppID);
+        }
 
     }
 }
