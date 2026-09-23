@@ -56,7 +56,7 @@ namespace BussinessLogicLayer
             return clsUpdateApplication.UpdateApplication(this.ApplicationID,this.ApplicationStatus , DateTime.Now);
         }
 
-        /*CUATION : DONOT DELETE THE RECORD FROM APPLICATIONS TABLE AFTER DELETING IT FROM LOCAL DRIVING LICENSE */
+        
          internal bool DeleteApplication()
         {
             return DataAccessLayer.clsDeleteApplication.DeleteApplication(this.ApplicationID);
@@ -112,6 +112,8 @@ namespace BussinessLogicLayer
 
            return app;
         }
+
+
 
     }
 }
