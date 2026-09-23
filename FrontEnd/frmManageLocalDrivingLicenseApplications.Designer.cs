@@ -181,7 +181,7 @@
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showApplicationDetailsToolStripMenuItem, editApplicationToolStripMenuItem, deleteApplicationToolStripMenuItem, cancxToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(250, 136);
+            contextMenuStrip1.Size = new Size(250, 108);
             // 
             // showApplicationDetailsToolStripMenuItem
             // 
@@ -212,6 +212,7 @@
             cancxToolStripMenuItem.Name = "cancxToolStripMenuItem";
             cancxToolStripMenuItem.Size = new Size(249, 26);
             cancxToolStripMenuItem.Text = "Cancel Application";
+            cancxToolStripMenuItem.Click += CancelToolStripMenuItem_Click;
             // 
             // frmManageLocalDrivingLicenseApplications
             // 
