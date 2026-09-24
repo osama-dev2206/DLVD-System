@@ -389,3 +389,38 @@ LocalDrivingLicenseApplications.LLicenseClassID;
 
 Select * from ShowBasicInfoLocalDrivingLicense
 where LocalDrivingLicenseApplicationID =11;
+
+
+select * from LocalDrivingLicenseApplicationsView where Lower([Full Name]) Like Lower('%M%');
+
+-- Get PersonID From LDLAPP
+Select Applications.ApplicantPersonID
+from Applications 
+Inner Join LocalDrivingLicenseApplications On 
+LocalDrivingLicenseApplications.LApplicationID = Applications.ApplicationID
+where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID =9;
+
+
+
+-- Test & Test Appointments 
+
+Select * from TestTypes;
+
+-- Check If The Person Has Finished vision Test Or Not (EX)
+-- Will return True If The Test Has Finished 
+Select R = 'T' 
+From TestAppointments 
+Inner Join TestTypes On TestTypes.TestTypeID = TestAppointments.AppointmentTestTypeID
+Inner Join LocalDrivingLicenseApplications On
+LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = 
+TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+Inner Join Applications On Applications.ApplicationID = LocalDrivingLicenseApplications.LApplicationID
+Inner Join Test On Test.AppointmentOfTestID = TestAppointments.TestAppointmentID
+
+where TestTypeID =1 
+And 
+Applications.ApplicantPersonID = 11
+and
+Test.TestResult =2 ;
+
+
