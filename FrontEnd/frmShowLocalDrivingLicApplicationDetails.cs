@@ -19,7 +19,7 @@ namespace FrontEnd
 
             this.LocalApplicationID = LocalApplicationID;
             InitializeComponent();
-            clsLocalDrivingLicenseApplications.GetBasicInfoOfLocalLicenseApplication(LocalAppID: LocalApplicationID, out LApplicationID, out ClassName);
+
             FillFormInfo();
         }
 
@@ -27,8 +27,7 @@ namespace FrontEnd
         private void FillFormInfo()
         {
             this.ctrlApplicationInfo1.FillCtrlInfo(this.LApplicationID);
-            this.labClassName.Text = this.ClassName;
-            this.labLocalAppId.Text = LocalApplicationID.ToString();
+             this.ctrlLcoalDrivingLicenseInfo1.FillForm(this.LocalApplicationID);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

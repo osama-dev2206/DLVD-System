@@ -10,6 +10,9 @@
     <Compile Update="ctrlFilterFindBy.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ctrlLcoalDrivingLicenseInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="ctrlPersonInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
