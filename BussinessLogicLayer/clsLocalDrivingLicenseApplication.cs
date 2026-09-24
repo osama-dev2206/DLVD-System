@@ -235,6 +235,13 @@ namespace BussinessLogicLayer
         }
 
 
+        internal static int GetApplicantPersonIDByLDLApplicationID(int LocalDrivingLicenseAppID)
+        {
+            return clsGetApplicantPersonIDByLDLAPPID.GetApplicantPersonIDByLDLAPPID(LocalDrivingLicenseAppID);
+        }
+
+
+
         }
 
 }

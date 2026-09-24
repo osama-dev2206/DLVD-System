@@ -69,11 +69,8 @@ namespace FrontEnd
 
         private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbStatus.SelectedItem == "None")
-            {
-                RefreshDataGridView();
-            }
-            else if (cbStatus.SelectedItem == "New")
+
+             if (cbStatus.SelectedItem == "New")
             {
                 DgvLocal.DataSource = clsLocalDrivingLicenseApplications.GetLocalAppsByNewStatus();
             }
@@ -112,11 +109,39 @@ namespace FrontEnd
 
         }
 
+        void CheckScheduleTestForSelectedApplication()//this function will handle the enabling and disabling of the schedule test menu items based on the status of the tests for the selected application
+        {
+           if( !clsCheckTests.CheckIfVisionTestHasCompletedOrNot(selectedRowIndex)  ) // if vision test has not been completed then we can schedule the test 
+            {
+                   this.scheduleVisionTestToolStripMenuItem.Enabled = true;
+                this.ScheduleWrittenToolStripMenuItem.Enabled = false;
+                this.ScheduleStreetToolStripMenuItem.Enabled= false;
+            }
+            else // Vision Test Has been completed so we can schedule the written test 
+            {
+                this.scheduleVisionTestToolStripMenuItem.Enabled = false;
+                this.ScheduleWrittenToolStripMenuItem.Enabled = true; // enable the written test scheduling
+                this.ScheduleStreetToolStripMenuItem.Enabled = false;
+            }
+
+            if (clsCheckTests.CheckIfWrittenTestHasCompletedOrNot(selectedRowIndex)) // if written test has not been completed then we can schedule the test 
+            {
+                this.ScheduleWrittenToolStripMenuItem.Enabled = false; // as the written has completed 
+                this.ScheduleStreetToolStripMenuItem.Enabled = true;
+            }
+            if(clsCheckTests.CheckIfStreetTestHasCompletedOrNot(selectedRowIndex)) // if street test has not been completed then we can schedule the test 
+            {
+                this.ScheduleStreetToolStripMenuItem.Enabled = false; // as the street test has completed 
+            }
+
+        }
+
         private void DGVLocalSelectionChanged(object sender, EventArgs e)
         {
             if (this.DgvLocal.CurrentRow != null && DgvLocal.CurrentRow.Cells != null && int.TryParse(DgvLocal.CurrentRow.Cells[0]?.Value?.ToString(), out int Row))
             {
                 selectedRowIndex = Row;
+                CheckScheduleTestForSelectedApplication();
             }
         }
 

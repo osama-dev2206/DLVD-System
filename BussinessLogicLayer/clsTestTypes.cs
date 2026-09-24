@@ -14,6 +14,8 @@ namespace BussinessLogicLayer
         public string TestTypeDescription { get; set; }
         public decimal TestTypeFee { get; set; }
 
+        public enum enTestTypes { VisionTest=1 , WrittenTest = 2, PracticalTest = 3 }
+
         public clsTestTypes()
         {
             this.TestTypeID = -1;

@@ -46,6 +46,11 @@
             editApplicationToolStripMenuItem = new ToolStripMenuItem();
             deleteApplicationToolStripMenuItem = new ToolStripMenuItem();
             cancxToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            toolStripMenuItem2 = new ToolStripMenuItem();
+            scheduleVisionTestToolStripMenuItem = new ToolStripMenuItem();
+            ScheduleWrittenToolStripMenuItem = new ToolStripMenuItem();
+            ScheduleStreetToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DgvLocal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAddNew).BeginInit();
@@ -179,9 +184,9 @@
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showApplicationDetailsToolStripMenuItem, editApplicationToolStripMenuItem, deleteApplicationToolStripMenuItem, cancxToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showApplicationDetailsToolStripMenuItem, editApplicationToolStripMenuItem, deleteApplicationToolStripMenuItem, cancxToolStripMenuItem, toolStripSeparator1, toolStripMenuItem2 });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(250, 108);
+            contextMenuStrip1.Size = new Size(250, 140);
             // 
             // showApplicationDetailsToolStripMenuItem
             // 
@@ -214,6 +219,40 @@
             cancxToolStripMenuItem.Size = new Size(249, 26);
             cancxToolStripMenuItem.Text = "Cancel Application";
             cancxToolStripMenuItem.Click += CancelToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(246, 6);
+            // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.DropDownItems.AddRange(new ToolStripItem[] { scheduleVisionTestToolStripMenuItem, ScheduleWrittenToolStripMenuItem, ScheduleStreetToolStripMenuItem });
+            toolStripMenuItem2.Image = Properties.Resources.Schedule_Test_32;
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(249, 26);
+            toolStripMenuItem2.Text = "Schedule Test";
+            // 
+            // scheduleVisionTestToolStripMenuItem
+            // 
+            scheduleVisionTestToolStripMenuItem.Image = Properties.Resources.Vision_Test_Schdule;
+            scheduleVisionTestToolStripMenuItem.Name = "scheduleVisionTestToolStripMenuItem";
+            scheduleVisionTestToolStripMenuItem.Size = new Size(235, 26);
+            scheduleVisionTestToolStripMenuItem.Text = "Schedule Vision Test";
+            // 
+            // ScheduleWrittenToolStripMenuItem
+            // 
+            ScheduleWrittenToolStripMenuItem.Image = Properties.Resources.Written_Test_32_Sechdule;
+            ScheduleWrittenToolStripMenuItem.Name = "ScheduleWrittenToolStripMenuItem";
+            ScheduleWrittenToolStripMenuItem.Size = new Size(235, 26);
+            ScheduleWrittenToolStripMenuItem.Text = "Schedule Written Test";
+            // 
+            // ScheduleStreetToolStripMenuItem
+            // 
+            ScheduleStreetToolStripMenuItem.Image = Properties.Resources.Street_Test_32;
+            ScheduleStreetToolStripMenuItem.Name = "ScheduleStreetToolStripMenuItem";
+            ScheduleStreetToolStripMenuItem.Size = new Size(235, 26);
+            ScheduleStreetToolStripMenuItem.Text = "Schedule Street Test";
             // 
             // frmManageLocalDrivingLicenseApplications
             // 
@@ -266,5 +305,10 @@
         private ToolStripMenuItem editApplicationToolStripMenuItem;
         private ToolStripMenuItem deleteApplicationToolStripMenuItem;
         private ToolStripMenuItem cancxToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItem2;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem scheduleVisionTestToolStripMenuItem;
+        private ToolStripMenuItem ScheduleWrittenToolStripMenuItem;
+        private ToolStripMenuItem ScheduleStreetToolStripMenuItem;
     }
 }
