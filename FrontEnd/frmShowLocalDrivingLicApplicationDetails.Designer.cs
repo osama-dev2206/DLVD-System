@@ -32,7 +32,7 @@
             label1 = new Label();
             ctrlApplicationInfo1 = new CtrlApplicationInfo();
             btnClose = new Button();
-            ctrlLcoalDrivingLicenseInfo1 = new ctrlLcoalDrivingLicenseInfo();
+            ctrlLcoalDrivingLicenseInfo1 = new ctrlLocalDrivingLicenseInfo();
             SuspendLayout();
             // 
             // label1
@@ -101,6 +101,6 @@
         private Label label1;
         private CtrlApplicationInfo ctrlApplicationInfo1;
         private Button btnClose;
-        private ctrlLcoalDrivingLicenseInfo ctrlLcoalDrivingLicenseInfo1;
+        private ctrlLocalDrivingLicenseInfo ctrlLcoalDrivingLicenseInfo1;
     }
 }
