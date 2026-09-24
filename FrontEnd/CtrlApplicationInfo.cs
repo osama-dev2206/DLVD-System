@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FrontEnd
 {
@@ -24,14 +25,40 @@ namespace FrontEnd
             }
 
             InitializeComponent();
-            FillCtrlInfo(ApplicantPersonID);
+            FillCtrlInfoByApplicationID(ApplicationID);
         }
 
         int ApplicantPersonID = -1;
-        public void FillCtrlInfo(int ApplicationID)
+        public void FillCtrlInfoByApplicationID(int ApplicationID)
         {
             DataTable dt;
             if ((dt = clsApplications.GetApplicationObjDetailsByApplicationID(ApplicationID)) is not null)
+            {
+                foreach (DataRow R in dt.Rows)
+                {
+                    this.labApplicationID.Text = R["ApplicationID"].ToString();
+                    this.ApplicantPersonID = Convert.ToInt32(R["ApplicantPersonID"]);
+                    this.labApplicationDT.Text = (R["ApplicationDateTime"]).ToString();
+                    this.labApplicationType.Text = R["ApplicationType"].ToString();
+                    this.labApplicationStatus.Text = R["ApplicationStatus"].ToString();
+                    this.labLastDT.Text = R["LastStatusDateTime"].ToString();
+                    this.labPaidFees.Text = R["PaidFees"].ToString();
+                    this.labCreatedBy.Text = R["CreatedByUserName"].ToString();
+
+                    break;
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Falied To Get Info", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void FillCtrlInfoByLocalDrivingApplicationID(int LocalDrivingLicenseAppID)
+        {
+            DataTable dt;
+            if ((dt = clsLocalDrivingLicenseApplications.GetBasicApplicationInfoByLocalLicenseApplicationID(LocalDrivingLicenseAppID)) is not null)
             {
                 foreach (DataRow R in dt.Rows)
                 {

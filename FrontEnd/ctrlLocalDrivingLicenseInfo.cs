@@ -9,14 +9,14 @@ using System.Windows.Forms;
 
 namespace FrontEnd
 {
-    public partial class ctrlLcoalDrivingLicenseInfo : UserControl
+    public partial class ctrlLocalDrivingLicenseInfo : UserControl
     {
-        public ctrlLcoalDrivingLicenseInfo()
+        public ctrlLocalDrivingLicenseInfo()
         {
             InitializeComponent();
         }
 
-        public ctrlLcoalDrivingLicenseInfo(int LocalAppID)
+        public ctrlLocalDrivingLicenseInfo(int LocalAppID)
         {
             InitializeComponent();
             FillForm(LocalAppID);

@@ -1,6 +1,6 @@
 ﻿namespace FrontEnd
 {
-    partial class ctrlLcoalDrivingLicenseInfo
+    partial class ctrlLocalDrivingLicenseInfo
     {
         /// <summary> 
         /// Required designer variable.

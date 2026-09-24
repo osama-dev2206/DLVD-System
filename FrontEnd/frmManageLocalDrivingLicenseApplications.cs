@@ -145,7 +145,6 @@ namespace FrontEnd
             }
         }
 
-
         private void tbSearchBy_TextChanged(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(tbSearchBy.Text))

@@ -11,23 +11,20 @@ namespace FrontEnd
 {
     public partial class frmShowLocalDrivingLicApplicationDetails : Form
     {
-        int LApplicationID;
-        string ClassName;
-        int LocalApplicationID;
+
         public frmShowLocalDrivingLicApplicationDetails(int LocalApplicationID)
         {
 
-            this.LocalApplicationID = LocalApplicationID;
             InitializeComponent();
 
-            FillFormInfo();
+            FillFormInfo( LocalApplicationID);
         }
 
 
-        private void FillFormInfo()
+        private void FillFormInfo(int LocalApplicationID)
         {
-            this.ctrlApplicationInfo1.FillCtrlInfo(this.LApplicationID);
-             this.ctrlLcoalDrivingLicenseInfo1.FillForm(this.LocalApplicationID);
+            this.ctrlApplicationInfo1.FillCtrlInfoByLocalDrivingApplicationID(LocalApplicationID);
+             this.ctrlLcoalDrivingLicenseInfo1.FillForm(LocalApplicationID);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
