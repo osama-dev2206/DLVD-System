@@ -70,7 +70,7 @@ namespace FrontEnd
         private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-             if (cbStatus.SelectedItem == "New")
+            if (cbStatus.SelectedItem == "New")
             {
                 DgvLocal.DataSource = clsLocalDrivingLicenseApplications.GetLocalAppsByNewStatus();
             }
@@ -111,11 +111,11 @@ namespace FrontEnd
 
         void CheckScheduleTestForSelectedApplication()//this function will handle the enabling and disabling of the schedule test menu items based on the status of the tests for the selected application
         {
-           if( !clsCheckTests.CheckIfVisionTestHasCompletedOrNot(selectedRowIndex)  ) // if vision test has not been completed then we can schedule the test 
+            if (!clsCheckTests.CheckIfVisionTestHasCompletedOrNot(selectedRowIndex)) // if vision test has not been completed then we can schedule the test 
             {
-                   this.scheduleVisionTestToolStripMenuItem.Enabled = true;
+                this.scheduleVisionTestToolStripMenuItem.Enabled = true;
                 this.ScheduleWrittenToolStripMenuItem.Enabled = false;
-                this.ScheduleStreetToolStripMenuItem.Enabled= false;
+                this.ScheduleStreetToolStripMenuItem.Enabled = false;
             }
             else // Vision Test Has been completed so we can schedule the written test 
             {
@@ -129,7 +129,7 @@ namespace FrontEnd
                 this.ScheduleWrittenToolStripMenuItem.Enabled = false; // as the written has completed 
                 this.ScheduleStreetToolStripMenuItem.Enabled = true;
             }
-            if(clsCheckTests.CheckIfStreetTestHasCompletedOrNot(selectedRowIndex)) // if street test has not been completed then we can schedule the test 
+            if (clsCheckTests.CheckIfStreetTestHasCompletedOrNot(selectedRowIndex)) // if street test has not been completed then we can schedule the test 
             {
                 this.ScheduleStreetToolStripMenuItem.Enabled = false; // as the street test has completed 
             }
@@ -232,6 +232,12 @@ namespace FrontEnd
             frmShowLocalDrivingLicApplicationDetails frmShowLocalDriving = new frmShowLocalDrivingLicApplicationDetails(this.selectedRowIndex);
             frmShowLocalDriving?.ShowDialog();
             frmShowLocalDriving?.Dispose();
+        }
+
+        // Tests Scheduling .. ................ 
+        private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
 
