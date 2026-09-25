@@ -14,7 +14,7 @@ namespace DataAccessLayer
             connection = dbSettings.DbConnection();
         }
 
-        public enum enTestType { VisionTest = 1, HearingTest = 2, DrivingTest = 3 }
+        public enum enTestType { VisionTest = 1, WrittenTest = 2, StressTest = 3 }
         private static bool ImplementQuery(enTestType testType, dynamic value)
         {
             switch (testType)
@@ -29,8 +29,25 @@ LocalDrivingLicenseApplicationID = TestAppointments.TestAppointmentForLocalDrivi
 Where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID =@LocalDrivingLicenseApplicationID
 and TestTypes.TestTypeID = 1 ;-- if has appointment (vision Test)", "@LocalDrivingLicenseApplicationID", value);
 
+                    case enTestType.WrittenTest:
+                    return @SqlCmd(@"Select R='T'
+from TestAppointments
+Inner Join TestTypes On TestTypes.TestTypeID = TestAppointments.AppointmentTestTypeID
+Inner Join LocalDrivingLicenseApplications on
+LocalDrivingLicenseApplicationID = TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
 
+Where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID =@LocalDrivingLicenseApplicationID
+and TestTypes.TestTypeID = 2 ;-- if has appointment (written Test)", "@LocalDrivingLicenseApplicationID", value);
 
+                    case enTestType.StressTest:
+                    return @SqlCmd(@"Select R='T'
+from TestAppointments
+Inner Join TestTypes On TestTypes.TestTypeID = TestAppointments.AppointmentTestTypeID
+Inner Join LocalDrivingLicenseApplications on
+LocalDrivingLicenseApplicationID = TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+
+Where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID =@LocalDrivingLicenseApplicationID
+and TestTypes.TestTypeID = 3 ;-- if has appointment (stress(practical) Test)", "@LocalDrivingLicenseApplicationID", value);
 
             }
             return false;

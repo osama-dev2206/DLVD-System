@@ -72,7 +72,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Image = Properties.Resources.Save_32;
             btnSave.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSave.Location = new Point(387, 744);
+            btnSave.Location = new Point(387, 632);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(143, 41);
             btnSave.TabIndex = 3;
@@ -87,7 +87,7 @@
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Image = Properties.Resources.Close_32;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(220, 744);
+            btnClose.Location = new Point(220, 632);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(143, 41);
             btnClose.TabIndex = 5;
@@ -99,7 +99,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(542, 797);
+            ClientSize = new Size(542, 690);
             Controls.Add(btnClose);
             Controls.Add(btnSave);
             Controls.Add(ctrlScheduleTestInfo1);
