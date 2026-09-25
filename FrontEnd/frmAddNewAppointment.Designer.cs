@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddNewAppointment));
             pictureBox1 = new PictureBox();
             label1 = new Label();
+            ctrlScheduleTestInfo1 = new ctrlScheduleTestInfo();
+            btnSave = new Button();
+            btnClose = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -55,11 +58,51 @@
             label1.TabIndex = 1;
             label1.Text = "Schedule Test ";
             // 
+            // ctrlScheduleTestInfo1
+            // 
+            ctrlScheduleTestInfo1.Location = new Point(32, 266);
+            ctrlScheduleTestInfo1.Name = "ctrlScheduleTestInfo1";
+            ctrlScheduleTestInfo1.Size = new Size(483, 335);
+            ctrlScheduleTestInfo1.TabIndex = 2;
+            // 
+            // btnSave
+            // 
+            btnSave.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
+            btnSave.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 255, 255);
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Image = Properties.Resources.Save_32;
+            btnSave.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSave.Location = new Point(387, 744);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(143, 41);
+            btnSave.TabIndex = 3;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
+            // 
+            // btnClose
+            // 
+            btnClose.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
+            btnClose.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 255, 255);
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Image = Properties.Resources.Close_32;
+            btnClose.ImageAlign = ContentAlignment.MiddleLeft;
+            btnClose.Location = new Point(220, 744);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(143, 41);
+            btnClose.TabIndex = 5;
+            btnClose.Text = "Close";
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
+            // 
             // frmAddNewAppointment
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(542, 797);
+            Controls.Add(btnClose);
+            Controls.Add(btnSave);
+            Controls.Add(ctrlScheduleTestInfo1);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -78,5 +121,8 @@
 
         private PictureBox pictureBox1;
         private Label label1;
+        private ctrlScheduleTestInfo ctrlScheduleTestInfo1;
+        private Button btnSave;
+        private Button btnClose;
     }
 }

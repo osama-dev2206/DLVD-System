@@ -79,5 +79,12 @@ namespace BussinessLogicLayer
             return clsGetNumOfTrialsOfTest.GetNumOfTrials(clsGetNumOfTrialsOfTest.enTestType.VisionTest , LocalDrivingLicenseApplicationID);
         }
 
+        public static bool LockVisionTestAppointment(int TestAppointmentID)
+        {
+            return clsLockTestAppointment.LockTestAppointment(TestAppointmentID);
+        }
+
+
+
     }
 }

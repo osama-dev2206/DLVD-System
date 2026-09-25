@@ -11,15 +11,16 @@ namespace FrontEnd
 {
     public partial class frmTestVisionAppointments : Form
     {
-
+        int LocalDrivingLicenseAppID;
         public frmTestVisionAppointments(int LocalDrivingLicense)
         {
             InitializeComponent();
             RefreshDataGridView();
+            this.LocalDrivingLicenseAppID = LocalDrivingLicense;
             this.ctrlLocalDrivingLicenseInfo2.FillForm(LocalDrivingLicense);
             this.ctrlApplicationInfo1.FillCtrlInfoByLocalDrivingApplicationID(LocalDrivingLicense);
 
-  
+
         }
 
         private void RefreshDataGridView()
@@ -41,15 +42,35 @@ namespace FrontEnd
         {
             this.Close();
         }
-        
-        void VisionTest_OnSaveGetError(string ErrorMessage)
+
+        int selectedRowIndex = -1; // appointment ID of the selected row in the DataGridView
+        private void DGVUsersSelectionChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (this.DgvVisionAppointments.CurrentRow != null && DgvVisionAppointments.CurrentRow.Cells != null && int.TryParse(DgvVisionAppointments.CurrentRow.Cells[0]?.Value?.ToString(), out int Row))
+            {
+                selectedRowIndex = Row;
+            }
         }
 
         private void pbAdd_Click(object sender, EventArgs e)
         {
+            frmAddNewAppointment frmAddNew = new frmAddNewAppointment(LocalDrivingLicenseAppID, frmAddNewAppointment.enMode.Add);
+            frmAddNew?.ShowDialog();
+            frmAddNew?.Dispose();
+            RefreshDataGridView();
+        }
 
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void takeTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTakeTest test = new frmTakeTest(LDLAPPID: this.LocalDrivingLicenseAppID, AppointmentID: selectedRowIndex);
+            test?.ShowDialog(); 
+            test?.Dispose();
+            RefreshDataGridView();
         }
 
 

@@ -1,6 +1,6 @@
 ﻿namespace FrontEnd
 {
-    partial class ctrlApplicantInfoForTest
+    partial class ctrlScheduleTestInfo
     {
         /// <summary> 
         /// Required designer variable.

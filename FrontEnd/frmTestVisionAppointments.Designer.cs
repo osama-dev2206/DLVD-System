@@ -97,6 +97,7 @@
             DgvVisionAppointments.RowHeadersWidth = 51;
             DgvVisionAppointments.Size = new Size(1107, 172);
             DgvVisionAppointments.TabIndex = 5;
+            DgvVisionAppointments.SelectionChanged += DGVUsersSelectionChanged;
             // 
             // pbAdd
             // 
@@ -167,6 +168,7 @@
             editToolStripMenuItem.Name = "editToolStripMenuItem";
             editToolStripMenuItem.Size = new Size(141, 26);
             editToolStripMenuItem.Text = "Edit";
+            editToolStripMenuItem.Click += editToolStripMenuItem_Click;
             // 
             // takeTestToolStripMenuItem
             // 
@@ -174,6 +176,7 @@
             takeTestToolStripMenuItem.Name = "takeTestToolStripMenuItem";
             takeTestToolStripMenuItem.Size = new Size(141, 26);
             takeTestToolStripMenuItem.Text = "Take Test";
+            takeTestToolStripMenuItem.Click += takeTestToolStripMenuItem_Click;
             // 
             // frmTestVisionAppointments
             // 

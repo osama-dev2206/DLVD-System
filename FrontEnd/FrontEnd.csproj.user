@@ -4,7 +4,7 @@
     <Compile Update="ctrlAddEditPerson.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="ctrlApplicantInfoForTest.cs">
+    <Compile Update="ctrlScheduleTestInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="CtrlApplicationInfo.cs">
@@ -71,6 +71,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmShowPersonDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmTakeTest.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="frmTestVisionAppointments.cs">
