@@ -10,20 +10,19 @@ namespace BussinessLogicLayer
 
         public static bool CheckIfVisionTestHasCompletedOrNot(int LocalDrivingLicenseApplication)
         {
-           int ApplicantPersonID = clsLocalDrivingLicenseApplications.GetApplicantPersonIDByLDLApplicationID(LocalDrivingLicenseAppID: LocalDrivingLicenseApplication);
-           return  clsCheckIfTestHasFinishedOrNot.CheckIfTestHasFinishedOrNot(TestTypeID:(int)clsTestTypes.enTestTypes.VisionTest, PersonID:ApplicantPersonID);
+
+            return  clsCheckIfTestHasFinishedOrNot.CheckIfTestHasFinishedOrNot(TestTypeID:(int)clsTestTypes.enTestTypes.VisionTest, LocalApplicationID: LocalDrivingLicenseApplication);
         }
 
         public static bool CheckIfWrittenTestHasCompletedOrNot(int LocalDrivingLicenseApplication)
         {
-            int ApplicantPersonID = clsLocalDrivingLicenseApplications.GetApplicantPersonIDByLDLApplicationID(LocalDrivingLicenseAppID: LocalDrivingLicenseApplication);
-            return clsCheckIfTestHasFinishedOrNot.CheckIfTestHasFinishedOrNot(TestTypeID: (int)clsTestTypes.enTestTypes.WrittenTest, PersonID: ApplicantPersonID);
+
+            return clsCheckIfTestHasFinishedOrNot.CheckIfTestHasFinishedOrNot(TestTypeID: (int)clsTestTypes.enTestTypes.WrittenTest, LocalApplicationID: LocalDrivingLicenseApplication);
         }
 
         public static bool CheckIfStreetTestHasCompletedOrNot(int LocalDrivingLicenseApplication) // street test is also known as practical test
         {
-            int ApplicantPersonID = clsLocalDrivingLicenseApplications.GetApplicantPersonIDByLDLApplicationID(LocalDrivingLicenseAppID: LocalDrivingLicenseApplication);
-            return clsCheckIfTestHasFinishedOrNot.CheckIfTestHasFinishedOrNot(TestTypeID: (int)clsTestTypes.enTestTypes.PracticalTest, PersonID: ApplicantPersonID);
+            return clsCheckIfTestHasFinishedOrNot.CheckIfTestHasFinishedOrNot(TestTypeID: (int)clsTestTypes.enTestTypes.PracticalTest, LocalApplicationID: LocalDrivingLicenseApplication);
         }
 
 

@@ -42,7 +42,7 @@ namespace BussinessLogicLayer
                         {
                             this.Mode = enMode.Update;
                             OnTestSaveGetTestID?.Invoke(this.TestID);
-                            return clsVisionTests.LockVisionTestAppointment(this.AppointmentIDOfTest);
+                            return clsVisionTests.LockVisionTestAppointment(this.AppointmentIDOfTest); // lock the test appointment after saving the test
                         }
                         else
                         {
