@@ -106,3 +106,66 @@ from LocalDrivingLicenseApplications
 Inner Join LicenseClasses on 
 LicenseClasses.LicenseClassID = 
 LocalDrivingLicenseApplications.LLicenseClassID;
+
+
+-----------------------------
+Create View NumOfTrialsForLocalDrivingLicenseApplications
+As
+Select Count(*) as NumOfTrials
+From Test
+Inner Join TestAppointments On TestAppointments.TestAppointmentID = Test.AppointmentOfTestID
+Inner Join LocalDrivingLicenseApplications On 
+LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = 
+TestAppointments.TestAppointmentForLocalDrivingLicenseAppID;
+
+Drop View NumOfTrialsForLocalDrivingLicenseApplications;
+
+drop view LocalDrivingLicenseApplicationsView;
+drop view ShowBasicInfoLocalDrivingLicense;
+
+
+
+create view LocalDrivingLicenseApplicationsView
+as 
+SELECT 
+    dbo.LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID AS [L.D.LAppID],
+    dbo.LicenseClasses.ClassName AS [Driving Class],
+    dbo.People.NationalNumber AS [National No],
+
+      CONCAT(
+        dbo.People.FirstName, ' ',
+        dbo.People.SecondName, ' ',
+        dbo.People.ThirdName, ' ',
+        dbo.People.LastName
+    )  AS [Full Name],
+
+    dbo.Applications.ApplicationDateTime,
+
+    (
+        SELECT COUNT(*)
+        FROM dbo.Test
+        INNER JOIN dbo.TestAppointments
+            ON dbo.Test.AppointmentOfTestID = dbo.TestAppointments.TestAppointmentID
+        WHERE dbo.Test.TestResult = 1
+          AND dbo.TestAppointments.TestAppointmentForLocalDrivingLicenseAppID =
+              dbo.LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+    ) AS [Passed Tests],
+
+    CASE
+        WHEN Applications.ApplicationStatus = 1 THEN 'New'
+        WHEN Applications.ApplicationStatus = 2 THEN 'Cancelled'
+        WHEN Applications.ApplicationStatus = 3 THEN 'Completed'
+    END AS Status
+
+FROM dbo.LocalDrivingLicenseApplications
+INNER JOIN dbo.LicenseClasses
+    ON dbo.LocalDrivingLicenseApplications.LLicenseClassID =
+       dbo.LicenseClasses.LicenseClassID
+
+INNER JOIN dbo.Applications
+    ON dbo.Applications.ApplicationID =
+       dbo.LocalDrivingLicenseApplications.LApplicationID
+
+INNER JOIN dbo.People
+    ON dbo.People.PersonID =
+       dbo.Applications.ApplicantPersonID;

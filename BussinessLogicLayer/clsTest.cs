@@ -9,7 +9,7 @@ namespace BussinessLogicLayer
     {
         public int TestID { get; private set; }
         public int AppointmentIDOfTest { get; private set; }
-        public byte TestResult { get;  set; }
+        public byte TestResult { get;  set; } // pass =1  , fail =0 
 
         public string ? Notes { get;  set; }
 

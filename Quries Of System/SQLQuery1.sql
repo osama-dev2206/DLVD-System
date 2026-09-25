@@ -347,6 +347,12 @@ where LocalDrivingLicenseApplicationID = '1111111'
 3.completed 
  */
 
+ Select Applications.ApplicationStatus 
+ from Applications
+ Inner Join LocalDrivingLicenseApplications On
+ LocalDrivingLicenseApplications.LApplicationID = Applications.ApplicationID
+ where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = 11;
+ 
 
 Select * from Applications;
 
@@ -400,7 +406,19 @@ Inner Join LocalDrivingLicenseApplications On
 LocalDrivingLicenseApplications.LApplicationID = Applications.ApplicationID
 where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID =9;
 
+Select * , LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID , 
+LocalDrivingLicenseApplications.LLicenseClassID
+from DetailedApplicationInfo
+Inner Join LocalDrivingLicenseApplications On LocalDrivingLicenseApplications.LApplicationID
+= DetailedApplicationInfo.ApplicationID;
 
+
+Select * from DetailedApplicationInfo
+where DetailedApplicationInfo.LocalDrivingLicenseApplicationID = 11;
+
+select * from LocalDrivingLicenseApplicationsView;
+
+select * from ShowBasicInfoLocalDrivingLicense;
 
 -- Test & Test Appointments 
 
@@ -424,3 +442,119 @@ and
 Test.TestResult =2 ;
 
 
+
+
+Select Count(*) as NumOfPassedTests 
+from Test
+Inner Join TestAppointments on Test.AppointmentOfTestID = TestAppointments.TestAppointmentID
+Inner Join LocalDrivingLicenseApplications On LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+= TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+Inner Join Applications On Applications.ApplicationID = LocalDrivingLicenseApplications.LApplicationID
+where Test.TestResult = 1 and
+Applications.ApplicantPersonID = 11;
+
+
+Select * from TestAppointments ;
+
+Insert Into TestAppointments(AppointmentTestTypeID,
+TestAppointmentForLocalDrivingLicenseAppID,
+AppointmentDateTime,
+PaidFees
+,CreatedByUserID
+,IsLocked,
+RetakeApplicationID)
+values
+(   
+'@TestTypeID', '@LocalDrivingLicenseApplicationID', '@AppointmentDateTime',
+'@PaidFees', '@CreatedByUserID', '@IsLocked', '@RetakeApplicationID'
+);
+
+Select SCOPE_IDENTITY();
+
+Select * from TestTypes
+where TestTypeID =1 ;
+
+Select * from TestAppointments
+where TestAppointments.TestAppointmentID = 1 ; -- Vision Test Appointment
+
+
+Select TestAppointments.TestAppointmentID , TestAppointments.AppointmentDateTime ,
+TestAppointments.PaidFees , TestAppointments.IsLocked 
+from TestAppointments
+where TestAppointments.TestAppointmentID = 1 ;
+
+Select * from LocalDrivingLicenseApplications
+
+Select R='T'
+from TestAppointments
+Inner Join TestTypes On TestTypes.TestTypeID = TestAppointments.AppointmentTestTypeID
+Inner Join LocalDrivingLicenseApplications on
+LocalDrivingLicenseApplicationID = TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+Where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID =11
+and TestTypes.TestTypeID = 1 ;-- if has appointment (vision Test)
+
+-- Get Num Of Trials For Vision Test ---------
+Select Count(*) as NumOfTrials
+From Test
+Inner Join TestAppointments On TestAppointments.TestAppointmentID = Test.AppointmentOfTestID
+Inner Join LocalDrivingLicenseApplications On 
+LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = 
+TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+
+where LocalDrivingLicenseApplicationID =11 -- Local Driving License Application ID
+and TestAppointments.AppointmentTestTypeID = 1 ; -- Vision Test ID
+
+
+Select * from TestTypes;
+Select * from TestAppointments;
+
+Insert Into Test(AppointmentOfTestID,TestResult,Notes,CreatedByUserID)
+values (
+'@TestAppointmentID', '@TestResult', '@Notes', '@CreatedByUserID');
+
+Select * from Test;
+
+Select * from TestAppointments;
+
+Update TestAppointments
+set IsLocked = 1
+where TestAppointments.TestAppointmentID = '@TestAppointmentID'
+and TestAppointments.AppointmentTestTypeID =1;
+
+
+Select R = 'T' 
+From TestAppointments 
+Inner Join TestTypes On TestTypes.TestTypeID = TestAppointments.AppointmentTestTypeID
+Inner Join LocalDrivingLicenseApplications On
+LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = 
+TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+Inner Join Applications On Applications.ApplicationID = LocalDrivingLicenseApplications.LApplicationID
+Inner Join Test On Test.AppointmentOfTestID = TestAppointments.TestAppointmentID
+
+where TestTypeID = @TestTypeID -- vision,written,practical 
+And 
+LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalApplicationID -- applicant person id
+and
+Test.TestResult =1 ;
+
+
+
+Select TestAppointments.TestAppointmentID , TestAppointments.AppointmentDateTime ,
+TestAppointments.PaidFees , TestAppointments.IsLocked 
+from TestAppointments
+Inner Join LocalDrivingLicenseApplications 
+On LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+where TestAppointments.TestAppointmentID = 1 
+and LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = '@LDLAppID'
+
+
+select * from LocalDrivingLicenseApplicationsView;
+
+Select Count(*) as NumOfPassedTests 
+from Test
+Inner Join TestAppointments on Test.AppointmentOfTestID = TestAppointments.TestAppointmentID
+Inner Join LocalDrivingLicenseApplications On LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+= TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+Inner Join Applications On Applications.ApplicationID = LocalDrivingLicenseApplications.LApplicationID
+where Test.TestResult = 1 and
+LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = 21
