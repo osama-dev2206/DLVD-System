@@ -16,10 +16,10 @@ Inner Join LocalDrivingLicenseApplications On LocalDrivingLicenseApplications.Lo
 = TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
 Inner Join Applications On Applications.ApplicationID = LocalDrivingLicenseApplications.LApplicationID
 where Test.TestResult = 1 and
-Applications.ApplicantPersonID = @ApplicantPersonID ;";
+LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID;";
 
 
-        public static int GetNumOfPassedTestsByLDLAppID(int ApplicantPersonID)
+        public static int GetNumOfPassedTestsByLDLAppID(int LocalDrivingLicenseApplicationID)
         {
             SqlConnection connection = dbSettings.DbConnection();
             int numOfPassedTests = 0;
@@ -27,7 +27,7 @@ Applications.ApplicantPersonID = @ApplicantPersonID ;";
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(Query, connection);
-                command.Parameters.AddWithValue("@ApplicantPersonID", ApplicantPersonID);
+                command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
 
                 object result = command.ExecuteScalar();
                 if (result != null && result != DBNull.Value)

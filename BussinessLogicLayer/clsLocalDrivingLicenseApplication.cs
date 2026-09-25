@@ -243,7 +243,7 @@ namespace BussinessLogicLayer
 
         public static int GetNumOfPassedTestsByLocalDrivingLicenseApplicationID(int LocalDrivingLicenseAppID)
         {
-            return clsGetNumOfPassedTestsByLDLAppID.GetNumOfPassedTestsByLDLAppID(ApplicantPersonID:GetApplicantPersonIDByLDLApplicationID(LocalDrivingLicenseAppID));
+            return clsGetNumOfPassedTestsByLDLAppID.GetNumOfPassedTestsByLDLAppID(LocalDrivingLicenseAppID);
         }
 
         public static DataTable GetBasicApplicationInfoByLocalLicenseApplicationID(int LocalDrivingLicenseAppID)
