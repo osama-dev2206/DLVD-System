@@ -1,6 +1,7 @@
 ﻿using DataAccessLayer;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace BussinessLogicLayer
@@ -8,7 +9,7 @@ namespace BussinessLogicLayer
     public sealed class clsVisionTests : clsAbTestAppointments
     {
         enMode Mode;
-      public clsVisionTests(int LocalDrivingLicenseApplicationID) // Add New Appointment For Vision Test
+        public clsVisionTests(int LocalDrivingLicenseApplicationID) // Add New Appointment For Vision Test
         {
             Mode = enMode.Add;
             this.TestAppointmentID = -1;
@@ -28,25 +29,38 @@ namespace BussinessLogicLayer
             return (TestAppointmentID != -1);
         }
 
+        public static DataTable GetAllVisionTestAppointements()
+        {
+            return clsGetAllVisionTestAppointments.GetAllVisionTestAppointments();
+        }
+
         public override bool Save()
         {
             switch (this.Mode)
             {
                 case enMode.Add:
-                    if(this.AddNewTestAppointment())
                     {
-                        this.Mode = enMode.Update;
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
+                        if (this.AddNewTestAppointment())
+                        {
+                            this.Mode = enMode.Update;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
 
+                   case enMode.Update:
+                    {
+                        break; // temp
+                    }
             }
 
             return false;
         }
+
+         
 
     }
 }
