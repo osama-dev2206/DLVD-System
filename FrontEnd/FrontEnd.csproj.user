@@ -67,5 +67,8 @@
     <Compile Update="FrmShowPersonDetails.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmTestVisionAppointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

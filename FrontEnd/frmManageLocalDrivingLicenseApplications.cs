@@ -237,7 +237,9 @@ namespace FrontEnd
         // Tests Scheduling .. ................ 
         private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmTestVisionAppointments frmTestVision = new frmTestVisionAppointments(this.selectedRowIndex);
+            frmTestVision?.ShowDialog();
+            frmTestVision?.Dispose();
         }
 
 
