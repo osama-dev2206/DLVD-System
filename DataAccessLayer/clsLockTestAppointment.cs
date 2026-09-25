@@ -9,10 +9,11 @@ namespace DataAccessLayer
     {
         private static string query = @"Update TestAppointments
 set IsLocked = 1
-where TestAppointments.TestAppointmentID = @TestAppointmentID ;";
+where TestAppointments.TestAppointmentID = @TestAppointmentID
+and TestAppointments.AppointmentTestTypeID = @TestTypeID ;";
 
 
-        public static bool LockTestAppointment(int TestAppointmentID)
+        public static bool LockTestAppointment(int TestAppointmentID , int TestTypeID)
         {
             SqlConnection connection = dbSettings.DbConnection();
             bool res = false;
@@ -21,6 +22,7 @@ where TestAppointments.TestAppointmentID = @TestAppointmentID ;";
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
+                command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
                 int numberOfRowsAffected = command.ExecuteNonQuery();
                 if(numberOfRowsAffected>0) res = true;
             }

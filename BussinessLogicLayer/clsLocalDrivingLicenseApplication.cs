@@ -251,6 +251,21 @@ namespace BussinessLogicLayer
             return clsGetApplicationInfoByLocalLicenseAppID.GetInfo(LocalDrivingLicenseAppID);
         }
 
+        public static clsApplications.enApplicationStatus GetApplicationStatusByLocalLicenseApplicationID(int LocalDrivingLicenseAppID)
+        {
+             switch(clsGetApplicationStatusByLocalLicenseAppID.GetApplicationStatusByLocalLicenseAppID(LocalDrivingLicenseAppID))
+            {
+                case 1:
+                    return clsApplications.enApplicationStatus.New;
+                    case 2:
+                    return clsApplications.enApplicationStatus.Cancelled;
+                    case 3:
+                    return clsApplications.enApplicationStatus.Completed;
+            }
+
+            return 0;
+        }
+
 
 
         }

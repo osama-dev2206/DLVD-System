@@ -23,9 +23,9 @@ namespace FrontEnd
 
         }
 
-        private void RefreshDataGridView()
+        private void RefreshDataGridView() // Please Note The data will be related to the LocalDrivingLicenseAppID passed in the constructor of this form
         {
-            DataTable dt = clsVisionTests.GetAllVisionTestAppointements();
+            DataTable dt = clsVisionTests.GetAllVisionTestAppointements(LocalDrivingLicenseAppID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 this.DgvVisionAppointments.DataSource = dt;
@@ -71,6 +71,7 @@ namespace FrontEnd
             test?.ShowDialog(); 
             test?.Dispose();
             RefreshDataGridView();
+            ctrlLocalDrivingLicenseInfo2.FillForm(LocalDrivingLicenseAppID); // refresh the local driving license info after taking the test
         }
 
 

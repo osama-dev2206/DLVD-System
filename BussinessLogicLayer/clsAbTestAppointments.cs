@@ -21,6 +21,16 @@ namespace BussinessLogicLayer
 
         public abstract bool Save();
 
+        protected clsAbTestAppointments(int LocalDrivingLicenseApplicationID)
+        {
+            if(clsLocalDrivingLicenseApplications.GetApplicationStatusByLocalLicenseApplicationID(LocalDrivingLicenseApplicationID) == 
+                clsApplications.enApplicationStatus.Cancelled)
+            {
+                throw new InvalidOperationException(
+           "Cannot create a test appointment for a cancelled application.");
+            }
+        }
+
 
     }
 }

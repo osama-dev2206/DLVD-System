@@ -111,6 +111,16 @@ namespace FrontEnd
 
         void CheckScheduleTestForSelectedApplication()//this function will handle the enabling and disabling of the schedule test menu items based on the status of the tests for the selected application
         {
+
+            // if the applicatioin status is cancelled then we will disable all the schedule test menu items
+            if (clsLocalDrivingLicenseApplications.GetApplicationStatusByLocalLicenseApplicationID(this.selectedRowIndex)  == clsApplications.enApplicationStatus.Cancelled)
+            {
+                this.scheduleVisionTestToolStripMenuItem.Enabled = false;
+                this.ScheduleWrittenToolStripMenuItem.Enabled = false;
+                this.ScheduleStreetToolStripMenuItem.Enabled = false;
+                return;
+            }
+
             if (!clsCheckTests.CheckIfVisionTestHasCompletedOrNot(selectedRowIndex)) // if vision test has not been completed then we can schedule the test 
             {
                 this.scheduleVisionTestToolStripMenuItem.Enabled = true;
@@ -240,6 +250,7 @@ namespace FrontEnd
             frmTestVisionAppointments frmTestVision = new frmTestVisionAppointments(this.selectedRowIndex);
             frmTestVision?.ShowDialog();
             frmTestVision?.Dispose();
+            RefreshDataGridView();
         }
 
 

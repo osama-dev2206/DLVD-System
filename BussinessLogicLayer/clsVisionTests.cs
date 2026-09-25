@@ -10,7 +10,7 @@ namespace BussinessLogicLayer
     {
         enMode Mode;
         // Add will be with local driving license application ID and update will be with  appointment ID
-        public clsVisionTests(int LocalDrivingLicenseApplicationID) // Add New Appointment For Vision Test
+        public clsVisionTests(int LocalDrivingLicenseApplicationID) : base(LocalDrivingLicenseApplicationID)// Add New Appointment For Vision Test
         {
             Mode = enMode.Add;
             this.TestAppointmentID = -1;
@@ -30,9 +30,10 @@ namespace BussinessLogicLayer
             return (TestAppointmentID != -1);
         }
 
-        public static DataTable GetAllVisionTestAppointements()
+        public static DataTable GetAllVisionTestAppointements(int LocalDrivingLicenseApplicationID)
         {
-            return clsGetAllVisionTestAppointments.GetAllVisionTestAppointments();
+            return clsGetAllTestAppointmentsForSpecificLocalDrivingLicenseAppID.GetAllVisionTestAppointments(LocalDrivingLicenseApplicationID: LocalDrivingLicenseApplicationID
+                , (int)clsTestTypes.enTestTypes.VisionTest);
         }
 
         private bool IsVisionAppointmentAlreadyExists()
@@ -81,7 +82,7 @@ namespace BussinessLogicLayer
 
         public static bool LockVisionTestAppointment(int TestAppointmentID)
         {
-            return clsLockTestAppointment.LockTestAppointment(TestAppointmentID);
+            return clsLockTestAppointment.LockTestAppointment(TestAppointmentID,(int)clsTestTypes.enTestTypes.VisionTest);
         }
 
 

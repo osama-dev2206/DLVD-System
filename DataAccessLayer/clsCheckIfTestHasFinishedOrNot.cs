@@ -7,7 +7,8 @@ namespace DataAccessLayer
 {
     public static class clsCheckIfTestHasFinishedOrNot
     {
-        private static string Query = @"Select R = 'T' 
+        private static string Query = @"
+Select R = 'T' 
 From TestAppointments 
 Inner Join TestTypes On TestTypes.TestTypeID = TestAppointments.AppointmentTestTypeID
 Inner Join LocalDrivingLicenseApplications On
@@ -18,12 +19,12 @@ Inner Join Test On Test.AppointmentOfTestID = TestAppointments.TestAppointmentID
 
 where TestTypeID = @TestTypeID -- vision,written,practical 
 And 
-Applications.ApplicantPersonID = @PersonID -- applicant person id
+LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalApplicationID --
 and
-Test.TestResult =1 ;"; // wil return  T is the person Has Completed Test and Passed It 
+Test.TestResult =1  ;"; // wil return  T is the person Has Completed Test and Passed It 
 
 
-        public static bool CheckIfTestHasFinishedOrNot(int TestTypeID, int PersonID)
+        public static bool CheckIfTestHasFinishedOrNot(int TestTypeID, int LocalApplicationID)
         {
                   bool Result = false;
             SqlConnection connection = dbSettings.DbConnection();
@@ -32,7 +33,7 @@ Test.TestResult =1 ;"; // wil return  T is the person Has Completed Test and Pas
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(Query, connection);
                 cmd.Parameters.AddWithValue("@TestTypeID", TestTypeID);
-                cmd.Parameters.AddWithValue("@PersonID", PersonID);
+                cmd.Parameters.AddWithValue("@LocalApplicationID", LocalApplicationID);
 
                 object reader = cmd.ExecuteScalar();
      

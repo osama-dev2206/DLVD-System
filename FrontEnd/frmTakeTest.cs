@@ -59,11 +59,16 @@ namespace FrontEnd
                 if(test.Save())
                 {
                     MessageBox.Show("Test Result Saved Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
                 else
                 {
                     MessageBox.Show("Error Saving Test Result", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Please Fill Correct Info", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -71,5 +76,7 @@ namespace FrontEnd
         {
             this.Close();
         }
+    
+    
     }
 }
