@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTestVisionAppointments));
             pictureBox1 = new PictureBox();
             label1 = new Label();
@@ -39,9 +40,13 @@
             btnClose = new Button();
             label3 = new Label();
             labCountOfRecords = new Label();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            editToolStripMenuItem = new ToolStripMenuItem();
+            takeTestToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DgvVisionAppointments).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbAdd).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
@@ -64,8 +69,6 @@
             label1.Size = new Size(704, 81);
             label1.TabIndex = 1;
             label1.Text = "Vision Test Appointment";
-            // 
-
             // 
             // ctrlLocalDrivingLicenseInfo2
             // 
@@ -104,6 +107,7 @@
             pbAdd.SizeMode = PictureBoxSizeMode.Zoom;
             pbAdd.TabIndex = 6;
             pbAdd.TabStop = false;
+            pbAdd.Click += pbAdd_Click;
             // 
             // label2
             // 
@@ -128,6 +132,7 @@
             btnClose.TabIndex = 8;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
             // label3
             // 
@@ -149,11 +154,33 @@
             labCountOfRecords.TabIndex = 10;
             labCountOfRecords.Text = "0";
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem, takeTestToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(142, 56);
+            // 
+            // editToolStripMenuItem
+            // 
+            editToolStripMenuItem.Image = Properties.Resources.edit_32;
+            editToolStripMenuItem.Name = "editToolStripMenuItem";
+            editToolStripMenuItem.Size = new Size(141, 26);
+            editToolStripMenuItem.Text = "Edit";
+            // 
+            // takeTestToolStripMenuItem
+            // 
+            takeTestToolStripMenuItem.Image = Properties.Resources.Test_321;
+            takeTestToolStripMenuItem.Name = "takeTestToolStripMenuItem";
+            takeTestToolStripMenuItem.Size = new Size(141, 26);
+            takeTestToolStripMenuItem.Text = "Take Test";
+            // 
             // frmTestVisionAppointments
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1130, 1204);
+            ContextMenuStrip = contextMenuStrip1;
             Controls.Add(labCountOfRecords);
             Controls.Add(label3);
             Controls.Add(btnClose);
@@ -162,7 +189,6 @@
             Controls.Add(DgvVisionAppointments);
             Controls.Add(ctrlApplicationInfo1);
             Controls.Add(ctrlLocalDrivingLicenseInfo2);
-
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -172,10 +198,10 @@
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
             Text = "Vision Test Appointments";
-            Load += frmTestVisionAppointments_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)DgvVisionAppointments).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbAdd).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -192,5 +218,8 @@
         private Button btnClose;
         private Label label3;
         private Label labCountOfRecords;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem takeTestToolStripMenuItem;
     }
 }
