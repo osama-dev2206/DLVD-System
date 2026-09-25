@@ -11,12 +11,15 @@ namespace FrontEnd
 {
     public partial class frmTestVisionAppointments : Form
     {
+
         public frmTestVisionAppointments(int LocalDrivingLicense)
         {
             InitializeComponent();
             RefreshDataGridView();
             this.ctrlLocalDrivingLicenseInfo2.FillForm(LocalDrivingLicense);
             this.ctrlApplicationInfo1.FillCtrlInfoByLocalDrivingApplicationID(LocalDrivingLicense);
+
+  
         }
 
         private void RefreshDataGridView()
@@ -34,7 +37,17 @@ namespace FrontEnd
             }
         }
 
-        private void frmTestVisionAppointments_Load(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        
+        void VisionTest_OnSaveGetError(string ErrorMessage)
+        {
+            MessageBox.Show(ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void pbAdd_Click(object sender, EventArgs e)
         {
 
         }
