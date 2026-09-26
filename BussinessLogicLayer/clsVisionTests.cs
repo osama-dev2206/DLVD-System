@@ -70,7 +70,7 @@ namespace BussinessLogicLayer
             }
         }
 
-        public static DataTable GetAllVisionTestAppointements(int LocalDrivingLicenseApplicationID)
+        public static DataTable GetAllVisionTestAppointements(int LocalDrivingLicenseApplicationID)// Get All Vision Test Appointments For Specific Local Driving License Application ID
         {
             return clsGetAllTestAppointmentsForSpecificLocalDrivingLicenseAppID.GetAllVisionTestAppointments(LocalDrivingLicenseApplicationID: LocalDrivingLicenseApplicationID
                 , (int)clsTestTypes.enTestTypes.VisionTest);
@@ -107,6 +107,24 @@ namespace BussinessLogicLayer
                             OnSaveGetError?.Invoke("This Application Has Already Successed No Need For New Test");
                             return false;
                         }
+                        else if(clsTest.GetTestResultEnum(this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.VisionTest) == clsTest.enTestResult.Fail)
+                        {
+                            // The Retake  Process
+                            //var R =GetAllVisionTestAppointements(this.LocalDrivingLicenseApplicationID).Rows[0];
+                            //R[]
+                        clsRetakeTest retakeTest = new clsRetakeTest(this.TestAppointmentID, this.TestTypeID,
+                            this.LocalDrivingLicenseApplicationID, this.AppointmentDateTime, this.PaidFees, this.CreatedByUserID, this.IsLocked);
+                            if (retakeTest.Save())
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                OnSaveGetError?.Invoke("Failed To Save The New Application And Retake Test");
+                                return false;
+                            }
+
+                        }
                         /// Already Exist will return false here as i didnot add before
                         else if (IsVisionAppointmentAlreadyExists()) // has not taken test yet
                         {
@@ -114,9 +132,7 @@ namespace BussinessLogicLayer
                             return false;
                         }
                 
-
-
-                        else if (this.AddNewTestAppointment())
+                        else if (this.AddNewTestAppointment()) // Normal Add New 
                         {
                             this.Mode = enMode.Update;
                             return true;

@@ -12,17 +12,17 @@ TestAppointmentForLocalDrivingLicenseAppID,
 AppointmentDateTime,
 PaidFees
 ,CreatedByUserID
-,IsLocked )
+,IsLocked  , RetakeApplicationID )
 values
 (   
 @TestTypeID , @LocalDrivingLicenseApplicationID, @AppointmentDateTime   ,
-@PaidFees , @CreatedByUserID , @IsLocked 
+@PaidFees , @CreatedByUserID , @IsLocked  , @RetakeApplicationID
 );
 Select SCOPE_IDENTITY();  ";
 
 
         public static int AddNewTestAppointment(int TestTypeID, int LocalDrivingLicenseApplicationID, DateTime AppointmentDateTime, decimal PaidFees, int CreatedByUserID, 
-            bool IsLocked)
+            bool IsLocked, int RetakeApplicationID = -1)
         {
             SqlConnection connection = dbSettings.DbConnection();
             int NewTestAppointmentID = -1;
@@ -37,7 +37,16 @@ Select SCOPE_IDENTITY();  ";
                 cmd.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
                 cmd.Parameters.AddWithValue("@IsLocked", IsLocked);
 
-             object r = cmd.ExecuteScalar();
+                if(RetakeApplicationID != -1) // retake test 
+                {
+                    cmd.Parameters.AddWithValue("@RetakeApplicationID", RetakeApplicationID);
+                }
+                else // normal 
+                {
+                    cmd.Parameters.AddWithValue("@RetakeApplicationID", DBNull.Value);
+                }
+
+                object r = cmd.ExecuteScalar();
                 if(r is not null && int.TryParse(r.ToString(), out int result))
                 {
                     NewTestAppointmentID = result;
