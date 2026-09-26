@@ -37,7 +37,8 @@ namespace DataAccessLayer
                     return dt;
 
                 case enSearchBy.FullName:
-                    DelsqlCmd?.Invoke(@"select * from LocalDrivingLicenseApplicationsView where Lower([Full Name]) Like Lower(%@FullName%); ", "@FullName", ValueForParamter, out dt);
+                    DelsqlCmd?.Invoke(@"select * from LocalDrivingLicenseApplicationsView where [Full Name] Like '%' + @FullName + '%'   ; " , 
+                        "@FullName", ValueForParamter, out dt);
                     return dt;
 
                 case enSearchBy.NewStatus:

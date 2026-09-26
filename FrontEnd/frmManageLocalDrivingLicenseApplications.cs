@@ -61,7 +61,7 @@ namespace FrontEnd
                     break;
 
                 case "Full Name":
-                    clsLocalDrivingLicenseApplications.GetLocalAppsByFullName(SearchKeyword);
+                    DgvLocal.DataSource = clsLocalDrivingLicenseApplications.GetLocalAppsByFullName(SearchKeyword);
                     break;
             }
 

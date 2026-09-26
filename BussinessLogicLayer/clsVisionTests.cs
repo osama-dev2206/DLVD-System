@@ -70,7 +70,6 @@ namespace BussinessLogicLayer
             }
         }
 
-
         public static DataTable GetAllVisionTestAppointements(int LocalDrivingLicenseApplicationID)
         {
             return clsGetAllTestAppointmentsForSpecificLocalDrivingLicenseAppID.GetAllVisionTestAppointments(LocalDrivingLicenseApplicationID: LocalDrivingLicenseApplicationID

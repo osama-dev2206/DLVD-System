@@ -194,7 +194,7 @@ namespace BussinessLogicLayer
         public static DataTable GetLocalAppsByFullName(string FullName)
         {
             if (String.IsNullOrEmpty(FullName)) return null; // invalid national number    
-            return clsFindLocalAppUsing.FindBy(FullName.Trim(), clsFindLocalAppUsing.enSearchBy.FullName);
+            return clsFindLocalAppUsing.FindBy(FullName.Trim(), clsFindLocalAppUsing.enSearchBy.FullName) ;
         }
 
         public static DataTable GetLocalAppsByLocalDrivingLicenseApplicationID(int LocalDrivingLicenseApplicationID)
