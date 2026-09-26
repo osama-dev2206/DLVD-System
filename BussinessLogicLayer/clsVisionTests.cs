@@ -23,9 +23,16 @@ namespace BussinessLogicLayer
         }
 
         private clsVisionTests(int TestAppointmentID, int TestTypeID,int LocalDrivingLicenseApplicationID
-            , DateTime AppointmentDateTime ,decimal PaidFees , int CreatedByUserID , bool IsLocked) : base(TestAppointmentID)// Update Existing Appointment For Vision Test(from database)
+            , DateTime AppointmentDateTime ,decimal PaidFees , int CreatedByUserID , bool IsLocked) // Update Existing Appointment For Vision Test(from database)
         {
             Mode = enMode.Update;
+            this.TestAppointmentID = TestAppointmentID;
+            this.TestTypeID = TestTypeID;
+            this.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
+            this.AppointmentDateTime = AppointmentDateTime;
+            this.PaidFees = PaidFees;
+            this.CreatedByUserID = CreatedByUserID;
+            this.IsLocked = IsLocked;
         }
 
         protected  override bool AddNewTestAppointment()
@@ -77,7 +84,7 @@ namespace BussinessLogicLayer
 
         protected override bool UpdateAppointmentDateTime()
         {
-            if(this.AppointmentDateTime is null || this.AppointmentDateTime == DateTime.MinValue)
+            if( this.AppointmentDateTime == DateTime.MinValue)
             {
                 OnSaveGetError?.Invoke("Appointment Date Time is not valid");
                 return false;

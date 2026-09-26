@@ -16,8 +16,10 @@ namespace FrontEnd
         public frmTestVisionAppointments(int LocalDrivingLicense, enMode mode)
         {
             InitializeComponent();
-            RefreshDataGridView();
             this.LocalDrivingLicenseAppID = LocalDrivingLicense;
+
+            RefreshDataGridView();
+
             this.ctrlLocalDrivingLicenseInfo2.FillForm(LocalDrivingLicense);
             this.ctrlApplicationInfo1.FillCtrlInfoByLocalDrivingApplicationID(LocalDrivingLicense);
 
@@ -55,7 +57,7 @@ namespace FrontEnd
 
         private void pbAdd_Click(object sender, EventArgs e)
         {
-            frmAddEditAppointment frmAddNew = new frmAddEditAppointment(LocalDrivingLicenseAppID, frmAddEditAppointment.enMode.Add);
+            frmAddEditAppointment frmAddNew = new frmAddEditAppointment(LocalDrivingLicenseAppID, -1,frmAddEditAppointment.enMode.Add);
             frmAddNew?.ShowDialog();
             frmAddNew?.Dispose();
             RefreshDataGridView();
@@ -63,7 +65,9 @@ namespace FrontEnd
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddEditAppointment frmAddNew = new frmAddEditAppointment(LocalDrivingLicenseAppID, frmAddEditAppointment.enMode.Update);
+            // The Edit will be with appointment id 
+            frmAddEditAppointment frmAddNew = 
+           new frmAddEditAppointment(LocalDrivingLicenseApplication: LocalDrivingLicenseAppID, AppointmentID: selectedRowIndex ,  frmAddEditAppointment.enMode.Update);
             frmAddNew?.ShowDialog();
             frmAddNew?.Dispose();
             RefreshDataGridView();
