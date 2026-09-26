@@ -81,6 +81,11 @@ namespace BussinessLogicLayer
             return clsCheckIfHasAppointmentAlreadyOrNot.HasAppointmentAlready(clsCheckIfHasAppointmentAlreadyOrNot.enTestType.VisionTest, this.LocalDrivingLicenseApplicationID);
         }
 
+        public  bool IsVisionTestHasFailed() // Get Ready For Retake 
+        {
+          return  clsCheckIfTheTestHasTakenAndFailedOrNot.HasTakenTestAndFailed(this.TestAppointmentID, (int)clsTestTypes.enTestTypes.VisionTest);
+        }
+
         protected override bool UpdateAppointmentDateTime()
         {
             if( this.AppointmentDateTime == DateTime.MinValue)
@@ -97,9 +102,9 @@ namespace BussinessLogicLayer
             {
                 case enMode.Add:
                     {
-                        if (IsVisionAppointmentAlreadyExists())
+                        if (clsTest.GetTestResultEnum(this.TestAppointmentID)== clsTest.enTestResult.None) // has not taken test yet
                         {
-                            OnSaveGetError?.Invoke("Vision Test Appointment Already Exists For This Application");
+                            OnSaveGetError?.Invoke("This Application Has Already Appointment For Vision Test");
                             return false;
                         }
 
@@ -116,7 +121,12 @@ namespace BussinessLogicLayer
 
                    case enMode.Update:
                     {
-                        return UpdateAppointmentDateTime();
+                        if(IsVisionTestAppointmentLocked(this.TestAppointmentID))
+                        {
+                            OnSaveGetError?.Invoke("The Appointment Is Locked You Cann't Edit It");
+                            return false;
+                        }
+                        else return UpdateAppointmentDateTime();
                     }
             }
 
@@ -135,7 +145,11 @@ namespace BussinessLogicLayer
             return clsLockTestAppointment.LockTestAppointment(TestAppointmentID,(int)clsTestTypes.enTestTypes.VisionTest);
         }
 
-
+        internal static bool IsVisionTestAppointmentLocked(int TestAppointmentID)
+        {
+            return clsIsTestAppointmentLocked.IsAppointmentLocked(TestAppointmentID, (int)clsTestTypes.enTestTypes.VisionTest);
+        }
+        
 
     }
 }
