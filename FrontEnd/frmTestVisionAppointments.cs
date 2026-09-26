@@ -12,7 +12,8 @@ namespace FrontEnd
     public partial class frmTestVisionAppointments : Form
     {
         int LocalDrivingLicenseAppID;
-        public frmTestVisionAppointments(int LocalDrivingLicense)
+       public enum enMode { Add = 1, Update = 2 }
+        public frmTestVisionAppointments(int LocalDrivingLicense, enMode mode)
         {
             InitializeComponent();
             RefreshDataGridView();
@@ -54,7 +55,7 @@ namespace FrontEnd
 
         private void pbAdd_Click(object sender, EventArgs e)
         {
-            frmAddNewAppointment frmAddNew = new frmAddNewAppointment(LocalDrivingLicenseAppID, frmAddNewAppointment.enMode.Add);
+            frmAddEditAppointment frmAddNew = new frmAddEditAppointment(LocalDrivingLicenseAppID, frmAddEditAppointment.enMode.Add);
             frmAddNew?.ShowDialog();
             frmAddNew?.Dispose();
             RefreshDataGridView();
@@ -62,7 +63,10 @@ namespace FrontEnd
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmAddEditAppointment frmAddNew = new frmAddEditAppointment(LocalDrivingLicenseAppID, frmAddEditAppointment.enMode.Update);
+            frmAddNew?.ShowDialog();
+            frmAddNew?.Dispose();
+            RefreshDataGridView();
         }
 
         private void takeTestToolStripMenuItem_Click(object sender, EventArgs e)

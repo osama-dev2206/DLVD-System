@@ -22,6 +22,12 @@ namespace BussinessLogicLayer
             this.IsLocked = false;
         }
 
+        private clsVisionTests(int TestAppointmentID, int TestTypeID,int LocalDrivingLicenseApplicationID
+            , DateTime AppointmentDateTime ,decimal PaidFees , int CreatedByUserID , bool IsLocked) : base(TestAppointmentID)// Update Existing Appointment For Vision Test(from database)
+        {
+            Mode = enMode.Update;
+        }
+
         protected  override bool AddNewTestAppointment()
         {
             this.TestAppointmentID = clsAddNewTestAppointment.AddNewTestAppointment(TestTypeID:this.TestTypeID , LocalDrivingLicenseApplicationID: this.LocalDrivingLicenseApplicationID,
@@ -29,6 +35,34 @@ namespace BussinessLogicLayer
 
             return (TestAppointmentID != -1);
         }
+
+        protected override DataTable GetAppointmentByAppointmentID(int TestAppointmentID)
+        {
+            return clsGetAppointmentByAppointmentID.GetAppointmentByAppointmentID(TestAppointmentID);
+        }
+
+        public static clsVisionTests GetVisionTestAppointmentByAppointmentID(int TestAppointmentID)
+        {
+            DataTable dt = clsGetAppointmentByAppointmentID.GetAppointmentByAppointmentID(TestAppointmentID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                return new clsVisionTests(
+                    TestAppointmentID: Convert.ToInt32(row["TestAppointmentID"]),
+                    TestTypeID: Convert.ToInt32(row["AppointmentTestTypeID"]),
+                    LocalDrivingLicenseApplicationID: Convert.ToInt32(row["TestAppointmentForLocalDrivingLicenseAppID"]),
+                    AppointmentDateTime: Convert.ToDateTime(row["AppointmentDateTime"]),
+                    PaidFees: Convert.ToDecimal(row["PaidFees"]),
+                    CreatedByUserID: Convert.ToInt32(row["CreatedByUserID"]),
+                    IsLocked: Convert.ToBoolean(row["IsLocked"])
+                );
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 
         public static DataTable GetAllVisionTestAppointements(int LocalDrivingLicenseApplicationID)
         {
@@ -39,6 +73,16 @@ namespace BussinessLogicLayer
         private bool IsVisionAppointmentAlreadyExists()
         {
             return clsCheckIfHasAppointmentAlreadyOrNot.HasAppointmentAlready(clsCheckIfHasAppointmentAlreadyOrNot.enTestType.VisionTest, this.LocalDrivingLicenseApplicationID);
+        }
+
+        protected override bool UpdateAppointmentDateTime()
+        {
+            if(this.AppointmentDateTime is null || this.AppointmentDateTime == DateTime.MinValue)
+            {
+                OnSaveGetError?.Invoke("Appointment Date Time is not valid");
+                return false;
+            }
+            return clsUpdateTestAppointment.UpdateTestAppointmentDateTime(this.TestAppointmentID, this.AppointmentDateTime);
         }
 
         public override bool Save()
@@ -66,7 +110,7 @@ namespace BussinessLogicLayer
 
                    case enMode.Update:
                     {
-                        break; // temp
+                        return UpdateAppointmentDateTime();
                     }
             }
 

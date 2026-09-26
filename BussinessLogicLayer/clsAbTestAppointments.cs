@@ -1,6 +1,8 @@
-﻿using System;
+﻿using DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 
 namespace BussinessLogicLayer
 {
@@ -20,6 +22,11 @@ namespace BussinessLogicLayer
        protected abstract  bool AddNewTestAppointment();
 
         public abstract bool Save();
+
+        /// will be used for update existing appointment for vision test and will be used to get the appointment details by appointment ID
+        protected abstract  DataTable GetAppointmentByAppointmentID(int TestAppointmentID);
+
+        protected abstract bool UpdateAppointmentDateTime();
 
         protected clsAbTestAppointments(int LocalDrivingLicenseApplicationID)
         {
