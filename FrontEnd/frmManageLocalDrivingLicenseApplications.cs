@@ -245,9 +245,9 @@ namespace FrontEnd
         }
 
         // Tests Scheduling .. ................ 
-        private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
+        private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e) // add 
         {
-            frmTestVisionAppointments frmTestVision = new frmTestVisionAppointments(this.selectedRowIndex);
+            frmTestVisionAppointments frmTestVision = new frmTestVisionAppointments(this.selectedRowIndex,frmTestVisionAppointments.enMode.Add);
             frmTestVision?.ShowDialog();
             frmTestVision?.Dispose();
             RefreshDataGridView();

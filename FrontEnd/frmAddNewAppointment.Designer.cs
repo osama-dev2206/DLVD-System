@@ -1,6 +1,6 @@
 ﻿namespace FrontEnd
 {
-    partial class frmAddNewAppointment
+    partial class frmAddEditAppointment
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddNewAppointment));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditAppointment));
             pictureBox1 = new PictureBox();
             label1 = new Label();
             ctrlScheduleTestInfo1 = new ctrlScheduleTestInfo();
