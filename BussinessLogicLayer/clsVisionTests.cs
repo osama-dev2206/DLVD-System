@@ -78,7 +78,7 @@ namespace BussinessLogicLayer
 
         private bool IsVisionAppointmentAlreadyExists()
         {
-            return clsCheckIfHasAppointmentAlreadyOrNot.HasAppointmentAlready(clsCheckIfHasAppointmentAlreadyOrNot.enTestType.VisionTest, this.LocalDrivingLicenseApplicationID);
+            return clsCheckIfHasAppointmentAlreadyOrNot.HasAppointmentAlready(clsCheckIfHasAppointmentAlreadyOrNot.enTestType.VisionTest, this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.VisionTest);
         }
 
         public  bool IsVisionTestHasFailed() // Get Ready For Retake 
@@ -102,13 +102,21 @@ namespace BussinessLogicLayer
             {
                 case enMode.Add:
                     {
-                        if (clsTest.GetTestResultEnum(this.TestAppointmentID)== clsTest.enTestResult.None) // has not taken test yet
+                        if (clsTest.GetTestResultEnum(this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.VisionTest) == clsTest.enTestResult.Pass)
+                        {
+                            OnSaveGetError?.Invoke("This Application Has Already Successed No Need For New Test");
+                            return false;
+                        }
+                        /// Already Exist will return false here as i didnot add before
+                        else if (IsVisionAppointmentAlreadyExists()) // has not taken test yet
                         {
                             OnSaveGetError?.Invoke("This Application Has Already Appointment For Vision Test");
                             return false;
                         }
+                
 
-                       else  if (this.AddNewTestAppointment())
+
+                        else if (this.AddNewTestAppointment())
                         {
                             this.Mode = enMode.Update;
                             return true;
