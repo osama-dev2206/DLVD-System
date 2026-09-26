@@ -63,13 +63,13 @@ namespace BussinessLogicLayer
 
         internal enum enTestResult {None =-1 , Pass = 1, Fail = 0 }
 
-        internal static enTestResult GetTestResultEnum(int  AppointmentID)
+        internal static enTestResult GetTestResultEnum(int  LocalDrivingLicenseApplication , int TestTypeID)
         {
-            if (clsGetTestResultByTestAppointmentID.GetTestResultByTestAppointmentID(AppointmentID) == null)
+            if (clsGetTestResultByTestAppointmentID.GetTestResultByTestAppointmentID(LocalDrivingLicenseApplication, TestTypeID) == null)
                 return enTestResult.None;
-            else if (clsGetTestResultByTestAppointmentID.GetTestResultByTestAppointmentID(AppointmentID) ?? true)
+            else if (clsGetTestResultByTestAppointmentID.GetTestResultByTestAppointmentID(LocalDrivingLicenseApplication, TestTypeID) ?? true)
                 return enTestResult.Pass;
-            else if (clsGetTestResultByTestAppointmentID.GetTestResultByTestAppointmentID(AppointmentID) ?? false)
+            else if (clsGetTestResultByTestAppointmentID.GetTestResultByTestAppointmentID(LocalDrivingLicenseApplication, TestTypeID) ?? false)
                 return enTestResult.Fail;
             else  return enTestResult.None;
         }

@@ -7,13 +7,20 @@ namespace DataAccessLayer
 {
     public static class clsGetTestResultByTestAppointmentID
     {
-        private static string Query = @"-- Get Test Result For Specific Test Appointment ID
-Select top 1 Test.TestResult
-from Test
-Inner Join TestAppointments On TestAppointments.TestAppointmentID = Test.AppointmentOfTestID
-where TestAppointments.TestAppointmentID = @TestAppointmentID -- Specific TestAppointment ID";
+        private static string Query = @"
+SELECT TOP 1 Test.TestResult
+FROM Test
+INNER JOIN TestAppointments
+    ON TestAppointments.TestAppointmentID = Test.AppointmentOfTestID
+INNER JOIN LocalDrivingLicenseApplications
+    ON TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+       = LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+WHERE LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+      = @LocalDrivingLicenseApplicationID
+AND TestAppointments.AppointmentTestTypeID = @TestTypeID
+ORDER BY TestAppointments.AppointmentDateTime DESC ;  -- Vision Test ID (EX)  ";
 
-        public static bool? GetTestResultByTestAppointmentID(int TestAppointmentID)
+        public static bool? GetTestResultByTestAppointmentID(int LocalDrivingLicenseApplicationID, int TestTypeID)
         {
             SqlConnection connection = dbSettings.DbConnection();
             bool? result = null;
@@ -21,13 +28,13 @@ where TestAppointments.TestAppointmentID = @TestAppointmentID -- Specific TestAp
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(Query, connection);
-                cmd.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
+                cmd.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+                cmd.Parameters.AddWithValue("@TestTypeID", TestTypeID);
                 object res = cmd.ExecuteScalar();
-                if(res != null && int.TryParse(res.ToString() , out int TestRes))
+                if(res != null )
                 {
-                    if (TestRes == 1) result = true; // pass
-                    else if (TestRes == 0) result = false; // fail
-                    else  result = null;
+                    if (Convert.ToInt32(res) == 1) result = true; // pass
+                    else if (Convert.ToInt32(res) == 0) result = false; // fail
                 }
             }
             catch { }
