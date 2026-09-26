@@ -34,6 +34,12 @@ namespace BussinessLogicLayer
 
         public bool Save()
         {
+            if(clsVisionTests.IsVisionTestAppointmentLocked(this.AppointmentIDOfTest))
+            {
+                OnTestSaveGetError?.Invoke("You cannot save the test because the appointment is locked.");
+                return false; // if the test appointment is locked, do not allow saving the test
+            }
+
             switch (this.Mode)
             {
                 case enMode.Add:
@@ -46,6 +52,7 @@ namespace BussinessLogicLayer
                         }
                         else
                         {
+                            OnTestSaveGetError?.Invoke("Failed To Save Test Results!");
                             return false;
                         }
                     }
@@ -54,8 +61,21 @@ namespace BussinessLogicLayer
             return false;
         }
 
+        internal enum enTestResult {None =-1 , Pass = 1, Fail = 0 }
+
+        internal static enTestResult GetTestResultEnum(int  AppointmentID)
+        {
+            if (clsGetTestResultByTestAppointmentID.GetTestResultByTestAppointmentID(AppointmentID) == null)
+                return enTestResult.None;
+            else if (clsGetTestResultByTestAppointmentID.GetTestResultByTestAppointmentID(AppointmentID) ?? true)
+                return enTestResult.Pass;
+            else if (clsGetTestResultByTestAppointmentID.GetTestResultByTestAppointmentID(AppointmentID) ?? false)
+                return enTestResult.Fail;
+            else  return enTestResult.None;
+        }
 
         public Action<int> OnTestSaveGetTestID; 
+        public Action<string> OnTestSaveGetError;
 
     }
 }

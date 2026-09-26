@@ -19,6 +19,7 @@ namespace FrontEnd
 
             test = new clsTest(AppointmentID);
             test.OnTestSaveGetTestID += UpdateTestIdLabel;
+            test.OnTestSaveGetError += OnTestSaveGetError;
         }
 
         private void rb_Click(object sender, EventArgs e)
@@ -43,6 +44,11 @@ namespace FrontEnd
             this.labTestID.Text = ID.ToString();
         }
 
+        void OnTestSaveGetError(string ErrorMessage)
+        {
+            MessageBox.Show(ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         bool CheckBeforeSave()
         {
             if (this.test.TestResult != 1 && this.test.TestResult != 0)
@@ -60,10 +66,6 @@ namespace FrontEnd
                 {
                     MessageBox.Show("Test Result Saved Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                }
-                else
-                {
-                    MessageBox.Show("Error Saving Test Result", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
