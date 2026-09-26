@@ -148,10 +148,10 @@
             // labCountOfRecords
             // 
             labCountOfRecords.AutoSize = true;
-            labCountOfRecords.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labCountOfRecords.Location = new Point(181, 1166);
+            labCountOfRecords.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labCountOfRecords.Location = new Point(181, 1162);
             labCountOfRecords.Name = "labCountOfRecords";
-            labCountOfRecords.Size = new Size(23, 28);
+            labCountOfRecords.Size = new Size(27, 31);
             labCountOfRecords.TabIndex = 10;
             labCountOfRecords.Text = "0";
             // 

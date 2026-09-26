@@ -18,6 +18,7 @@ where TestAppointments.TestAppointmentID = @TestAppointmentID ;";
             bool result = false;
             try
             {
+                connection.Open();
                 SqlCommand command = new SqlCommand(Query, connection);
                 command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
                 command.Parameters.AddWithValue("@AppointmentDateTime", AppointmentDateTime);

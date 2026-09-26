@@ -38,6 +38,11 @@ namespace BussinessLogicLayer
             }
         }
 
+        protected clsAbTestAppointments()
+        {
+
+        }
+
 
     }
 }
