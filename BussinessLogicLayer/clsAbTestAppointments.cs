@@ -24,7 +24,10 @@ namespace BussinessLogicLayer
         public abstract bool Save();
 
         /// will be used for update existing appointment for vision test and will be used to get the appointment details by appointment ID
-        protected abstract  DataTable GetAppointmentByAppointmentID(int TestAppointmentID);
+        protected   DataTable GetAppointmentByAppointmentID(int TestAppointmentID)
+        {
+            return clsGetAppointmentByAppointmentID.GetAppointmentByAppointmentID(TestAppointmentID);
+        }
 
         protected abstract bool UpdateAppointmentDateTime();
 

@@ -43,10 +43,6 @@ namespace BussinessLogicLayer
             return (TestAppointmentID != -1);
         }
 
-        protected override DataTable GetAppointmentByAppointmentID(int TestAppointmentID)
-        {
-            return clsGetAppointmentByAppointmentID.GetAppointmentByAppointmentID(TestAppointmentID);
-        }
 
         public static clsVisionTests GetVisionTestAppointmentByAppointmentID(int TestAppointmentID)
         {
@@ -97,6 +93,8 @@ namespace BussinessLogicLayer
         }
 
 
+        public Action<int> OnSaveGetTheRetakeID;
+
         public override bool Save()
         {
             switch (this.Mode)
@@ -117,7 +115,8 @@ namespace BussinessLogicLayer
                             this.LocalDrivingLicenseApplicationID, this.AppointmentDateTime, this.PaidFees, this.CreatedByUserID, this.IsLocked);
                             if (retakeTest.Save())
                             {
-     
+                                OnSaveGetTheRetakeID?.Invoke(retakeTest.TestAppointmentID);
+                                this.Mode = enMode.Update; 
                                 return true;
                             }
                             else

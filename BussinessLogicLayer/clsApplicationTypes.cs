@@ -64,7 +64,7 @@ namespace BussinessLogicLayer
                 return false;
         }
 
-        internal enum enApplicationTypes : byte
+        public enum enApplicationTypes : byte
         {
             NewLocalDrivingLicense = 1, RenewDrivingLicense = 2, ReplacementForLostDrivingLicense = 3 , ReplacementForDamagedDrivingLicense = 4,
             ReleaseDetainedDrivingLicense = 5, NewInternationalDrivingLicense = 6, RetakeTest = 7
