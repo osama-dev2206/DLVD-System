@@ -71,12 +71,9 @@ namespace BussinessLogicLayer
         }
 
         // Donot Care
-        protected override DataTable   GetAppointmentByAppointmentID(int TestAppointmentID)
-        {
-            return null;
-        }
 
-        internal 
+
+         
 
     }
 }

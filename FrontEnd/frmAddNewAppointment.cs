@@ -23,7 +23,7 @@ namespace FrontEnd
             if (mode == enMode.Add)
             {
                 visionTest = new clsVisionTests(LocalDrivingLicenseApplication); /// Add New 
-
+                visionTest.OnSaveGetTheRetakeID += UpdateTheRApplicationIDOnCtrlRetakeTestInfo; // on the add only (reschedule retake test)
                 visionTest.OnSaveGetError += OnSaveGetError;
             }
             else if(mode == enMode.Update && AppointmentID !=-1)
@@ -38,7 +38,8 @@ namespace FrontEnd
             if (res == true)
             {
                 this.labFormStatus.Text = "Retake Schedule Test";
-
+                this.ctrlRetakeTestInfo1.Enabled=true;
+                this.ctrlRetakeTestInfo1.Filll_Initial_CtrlInfoByLocalDrivingApplicationID(LocalDrivingLicenseApplication, BussinessLogicLayer.clsTestTypes.enTestTypes.VisionTest);
             }
 
         }
@@ -53,7 +54,10 @@ namespace FrontEnd
             MessageBox.Show(ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-
+        void UpdateTheRApplicationIDOnCtrlRetakeTestInfo(int RetakeID)
+        {
+            this.ctrlRetakeTestInfo1.UpdateRetakeIDApplicationID(RetakeID);
+        }
 
         private void btnSave_Click(object sender, EventArgs e) { 
         

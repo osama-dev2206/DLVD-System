@@ -34,13 +34,14 @@
             ctrlScheduleTestInfo1 = new ctrlScheduleTestInfo();
             btnSave = new Button();
             btnClose = new Button();
+            ctrlRetakeTestInfo1 = new ctrlRetakeTestInfo();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.Vision_512;
-            pictureBox1.Location = new Point(103, 12);
+            pictureBox1.Location = new Point(136, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(330, 134);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -60,7 +61,7 @@
             // 
             // ctrlScheduleTestInfo1
             // 
-            ctrlScheduleTestInfo1.Location = new Point(27, 230);
+            ctrlScheduleTestInfo1.Location = new Point(68, 230);
             ctrlScheduleTestInfo1.Name = "ctrlScheduleTestInfo1";
             ctrlScheduleTestInfo1.Size = new Size(483, 335);
             ctrlScheduleTestInfo1.TabIndex = 2;
@@ -72,7 +73,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Image = Properties.Resources.Save_32;
             btnSave.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSave.Location = new Point(387, 720);
+            btnSave.Location = new Point(360, 720);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(143, 41);
             btnSave.TabIndex = 3;
@@ -87,7 +88,7 @@
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Image = Properties.Resources.Close_32;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(220, 720);
+            btnClose.Location = new Point(146, 720);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(143, 41);
             btnClose.TabIndex = 5;
@@ -95,11 +96,19 @@
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += btnClose_Click;
             // 
+            // ctrlRetakeTestInfo1
+            // 
+            ctrlRetakeTestInfo1.Location = new Point(4, 553);
+            ctrlRetakeTestInfo1.Name = "ctrlRetakeTestInfo1";
+            ctrlRetakeTestInfo1.Size = new Size(621, 120);
+            ctrlRetakeTestInfo1.TabIndex = 6;
+            // 
             // frmAddEditAppointment
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(542, 773);
+            ClientSize = new Size(625, 773);
+            Controls.Add(ctrlRetakeTestInfo1);
             Controls.Add(btnClose);
             Controls.Add(btnSave);
             Controls.Add(ctrlScheduleTestInfo1);
@@ -124,5 +133,6 @@
         private ctrlScheduleTestInfo ctrlScheduleTestInfo1;
         private Button btnSave;
         private Button btnClose;
+        private ctrlRetakeTestInfo ctrlRetakeTestInfo1;
     }
 }
