@@ -19,15 +19,17 @@ namespace FrontEnd
             InitializeComponent();
             this.ctrlScheduleTestInfo1.FillCtrlInfoByLocalDrivingApplicationID(LocalDrivingLicenseApplication, BussinessLogicLayer.clsTestTypes.enTestTypes.VisionTest);
             ctrlScheduleTestInfo1.OnDateTimeSelected += VisionTest_DateTimeChanger;
-
+            
             if (mode == enMode.Add)
             {
                 visionTest = new clsVisionTests(LocalDrivingLicenseApplication); /// Add New 
+                visionTest.OnRetakeTest += OnRetakeTest;
                 visionTest.OnSaveGetError += OnSaveGetError;
             }
             else if(mode == enMode.Update && AppointmentID !=-1)
             {
                 visionTest = clsVisionTests.GetVisionTestAppointmentByAppointmentID(AppointmentID); /// Update Existing
+                visionTest.OnRetakeTest += OnRetakeTest;
                 visionTest.OnSaveGetError += OnSaveGetError;
                 this.ctrlScheduleTestInfo1.FillCtrlInfoByLocalDrivingApplicationID(LocalDrivingLicenseApplicationID: LocalDrivingLicenseApplication, BussinessLogicLayer.clsTestTypes.enTestTypes.VisionTest);
             }
@@ -42,6 +44,14 @@ namespace FrontEnd
         void OnSaveGetError(string ErrorMessage)
         {
             MessageBox.Show(ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        void OnRetakeTest(bool Res)
+        {
+            if (Res)
+            {
+                this.labFormStatus.Text = "Retake Schedule Test";
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e) { 
