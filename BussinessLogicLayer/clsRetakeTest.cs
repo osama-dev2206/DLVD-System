@@ -55,16 +55,13 @@ namespace BussinessLogicLayer
             return true;
         }
 
-
-
         public  override bool Save()
         {
             if (AddNewTestAppointment())
             {
                  UpdateAppointmentDateTime();
                 RetakeTestApplication.ApplicationStatus =(int) clsApplications.enApplicationStatus.Completed;
-                RetakeTestApplication.SaveApplication(); // save the new update 
-                return true;
+               return RetakeTestApplication.SaveApplication(); // save the new update 
             }
             else
             {

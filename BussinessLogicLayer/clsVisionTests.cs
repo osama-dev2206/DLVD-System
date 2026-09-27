@@ -96,6 +96,7 @@ namespace BussinessLogicLayer
             return clsUpdateTestAppointment.UpdateTestAppointmentDateTime(this.TestAppointmentID, this.AppointmentDateTime);
         }
 
+        public Action<bool> OnRetakeTest;
         public override bool Save()
         {
             switch (this.Mode)
@@ -110,17 +111,17 @@ namespace BussinessLogicLayer
                         else if(clsTest.GetTestResultEnum(this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.VisionTest) == clsTest.enTestResult.Fail)
                         {
                             // The Retake  Process
-                            //var R =GetAllVisionTestAppointements(this.LocalDrivingLicenseApplicationID).Rows[0];
-                            //R[]
-                        clsRetakeTest retakeTest = new clsRetakeTest(this.TestAppointmentID, this.TestTypeID,
+                            //The New Appointment Shouldnot be added to the same table as the previous appointment date time
+                            clsRetakeTest retakeTest = new clsRetakeTest(this.TestAppointmentID, this.TestTypeID,
                             this.LocalDrivingLicenseApplicationID, this.AppointmentDateTime, this.PaidFees, this.CreatedByUserID, this.IsLocked);
                             if (retakeTest.Save())
                             {
+                                OnRetakeTest?.Invoke(true);
                                 return true;
                             }
                             else
                             {
-                                OnSaveGetError?.Invoke("Failed To Save The New Application And Retake Test");
+                                OnSaveGetError?.Invoke("Failed To Save The New Application Or Retake Test Appointment");
                                 return false;
                             }
 

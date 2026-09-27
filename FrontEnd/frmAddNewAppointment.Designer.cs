@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditAppointment));
             pictureBox1 = new PictureBox();
-            label1 = new Label();
+            labFormStatus = new Label();
             ctrlScheduleTestInfo1 = new ctrlScheduleTestInfo();
             btnSave = new Button();
             btnClose = new Button();
@@ -47,16 +47,16 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // label1
+            // labFormStatus
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Red;
-            label1.Location = new Point(105, 189);
-            label1.Name = "label1";
-            label1.Size = new Size(328, 62);
-            label1.TabIndex = 1;
-            label1.Text = "Schedule Test ";
+            labFormStatus.AutoSize = true;
+            labFormStatus.Font = new Font("Segoe UI Semibold", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labFormStatus.ForeColor = Color.Red;
+            labFormStatus.Location = new Point(105, 189);
+            labFormStatus.Name = "labFormStatus";
+            labFormStatus.Size = new Size(328, 62);
+            labFormStatus.TabIndex = 1;
+            labFormStatus.Text = "Schedule Test ";
             // 
             // ctrlScheduleTestInfo1
             // 
@@ -95,7 +95,7 @@
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += btnClose_Click;
             // 
-            // frmAddNewAppointment
+            // frmAddEditAppointment
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -103,12 +103,12 @@
             Controls.Add(btnClose);
             Controls.Add(btnSave);
             Controls.Add(ctrlScheduleTestInfo1);
-            Controls.Add(label1);
+            Controls.Add(labFormStatus);
             Controls.Add(pictureBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "frmAddNewAppointment";
+            Name = "frmAddEditAppointment";
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
             Text = "Add New Appointment";
@@ -120,7 +120,7 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private Label label1;
+        private Label labFormStatus;
         private ctrlScheduleTestInfo ctrlScheduleTestInfo1;
         private Button btnSave;
         private Button btnClose;

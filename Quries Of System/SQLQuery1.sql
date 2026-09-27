@@ -397,6 +397,9 @@ Select * from ShowBasicInfoLocalDrivingLicense
 where LocalDrivingLicenseApplicationID =11;
 
 
+select * from LocalDrivingLicenseApplicationsView where [Full Name] Like ('%' + 'm' + '%');
+
+
 select * from LocalDrivingLicenseApplicationsView where Lower([Full Name]) Like Lower('%M%');
 
 -- Get PersonID From LDLAPP
@@ -557,4 +560,99 @@ Inner Join LocalDrivingLicenseApplications On LocalDrivingLicenseApplications.Lo
 = TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
 Inner Join Applications On Applications.ApplicationID = LocalDrivingLicenseApplications.LApplicationID
 where Test.TestResult = 1 and
-LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = 21
+LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = 21;
+
+
+Select * from TestAppointments;
+Select * from TestTypes;
+
+Select TestAppointments.* from TestAppointments  where TestAppointments.TestAppointmentID = 1 ;
+
+Update TestAppointments Set AppointmentDateTime
+= '@AppointmentDateTime' 
+where TestAppointments.TestAppointmentID = 1 ;
+
+Select TestAppointments.* from TestAppointments  where TestAppointments.TestAppointmentID =  25;
+-------------------------------
+
+Select R= 'T' 
+from TestAppointments
+inner Join LocalDrivingLicenseApplications on
+LocalDrivingLicenseApplicationID = TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+where TestAppointments.TestAppointmentID = 1
+and TestAppointments.IsLocked =1 -- Test Finished
+and TestAppointments.AppointmentTestTypeID = 1 -- Vision ;
+
+
+
+
+-- Has Taken Test And Failed (EX)
+Select R = 'T'
+from (
+
+Select Test.TestID,Test.TestResult , Test.AppointmentOfTestID , LocalDrivingLicenseApplicationID 
+, TestAppointments.IsLocked
+from Test 
+Inner Join TestAppointments On TestAppointments.TestAppointmentID = Test.AppointmentOfTestID
+Inner Join LocalDrivingLicenseApplications On 
+LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = 
+TestAppointments.TestAppointmentForLocalDrivingLicenseAppID  
+where TestAppointmentID = 20 -- Specific TestAppointment ID
+and Test.TestResult = 0 -- Failed 
+and TestAppointments.IsLocked = 1 -- Test Finished
+and TestAppointments.AppointmentTestTypeID = 1 -- Vision Test ID
+
+) R ;
+
+-- Get Test Result For Specific Test Appointment ID
+Select top 1 Test.TestResult
+from Test
+Inner Join TestAppointments On TestAppointments.TestAppointmentID = Test.AppointmentOfTestID
+Inner Join LocalDrivingLicenseApplications On
+TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+= LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+where LocalDrivingLicenseApplicationID = 20 -- Specific TestAppointment ID
+and TestAppointments.AppointmentTestTypeID =1 -- Vision Test ID 
+;
+
+-- Is This Local Driving License With This Type Has Taken The exam before??
+
+Select R = 'T'
+From TestAppointments
+where TestAppointments.TestAppointmentForLocalDrivingLicenseAppID =20
+and TestAppointments.AppointmentTestTypeID =1 -- vision ex
+;
+
+
+Select  top 1 Test.TestResult
+from Test
+Inner Join TestAppointments On TestAppointments.TestAppointmentID = Test.AppointmentOfTestID
+Inner Join LocalDrivingLicenseApplications On
+TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+= LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+where LocalDrivingLicenseApplicationID = 11  -- Specific TestAppointment ID
+and TestAppointments.AppointmentTestTypeID =1 
+
+
+
+SELECT TOP 1 Test.TestResult
+FROM Test
+INNER JOIN TestAppointments
+    ON TestAppointments.TestAppointmentID = Test.AppointmentOfTestID
+INNER JOIN LocalDrivingLicenseApplications
+    ON TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+       = LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+WHERE LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+      = 44
+AND TestAppointments.AppointmentTestTypeID = 1
+ORDER BY TestAppointments.AppointmentDateTime DESC;
+
+
+Select * from Applications;
+Select * from ApplicationTypes;
+
+Select  * from DetailedApplicationInfo;
+
+Select
+ TestAppointments.* from TestAppointments  
+ order by TestAppointmentID desc 
