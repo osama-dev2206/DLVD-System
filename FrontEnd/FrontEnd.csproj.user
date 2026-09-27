@@ -4,6 +4,9 @@
     <Compile Update="ctrlAddEditPerson.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ctrlRetakeTestInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="ctrlScheduleTestInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
