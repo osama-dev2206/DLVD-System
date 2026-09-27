@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BussinessLogicLayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e1b4abcb5564cffdc0a0676871616e778c4eeb53")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b76cd19417fc8b25c064cc02d048795d1009c4e8")]
 [assembly: System.Reflection.AssemblyProductAttribute("BussinessLogicLayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BussinessLogicLayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

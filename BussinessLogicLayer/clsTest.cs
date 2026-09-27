@@ -1,7 +1,4 @@
 ﻿using DataAccessLayer;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BussinessLogicLayer
 {
@@ -73,6 +70,12 @@ namespace BussinessLogicLayer
             else if (Res == false)
                 return enTestResult.Fail;
             else  return enTestResult.None;
+        }
+
+        public static bool  ? IsAplicantSuccessedBefore(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        {
+             
+            return clsGetTestResultByTestAppointmentID.GetTestResultByTestAppointmentID(LocalDrivingLicenseApplicationID, TestTypeID);
         }
 
         public Action<int> OnTestSaveGetTestID; 
