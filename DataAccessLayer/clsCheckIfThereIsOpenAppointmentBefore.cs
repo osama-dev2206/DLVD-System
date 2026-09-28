@@ -8,12 +8,15 @@ namespace DataAccessLayer
     public static class clsCheckIfThereIsOpenAppointmentBefore // if the pervious is locked you can add new 
     {
         private static string Query = @"
-Select top 1  R = 'T'
-from TestAppointments 
-where TestAppointments.TestAppointmentForLocalDrivingLicenseAppID = @LocalDrivingLicenseApplicationID
-and TestAppointments.AppointmentTestTypeID = @TestTypeID
-and TestAppointments.IsLocked = 1 -- Test Finished
-order by TestAppointmentID DESC ;
+Select top 1 Test.TestResult
+from TestAppointments
+Inner Join Test on Test.AppointmentOfTestID = TestAppointments.TestAppointmentID
+
+where 
+Test.TestResult = 0 and TestAppointments.IsLocked = 1 -- Test Finished
+and TestAppointments.TestAppointmentForLocalDrivingLicenseAppID = @LocalDrivingLicenseApplicationID
+and AppointmentTestTypeID =@TestTypeID
+order by TestAppointmentID DESC 
 ;";
 
         public static bool CheckIfThereIsRetakeApplicationBefore(int LocalDrivingLicenseApplicationID, int TestTypeID)
