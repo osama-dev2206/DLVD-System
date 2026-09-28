@@ -39,7 +39,7 @@ namespace BussinessLogicLayer
 
         // Save the retake test appointment and the new application
 
-        protected override  bool AddNewTestAppointment()
+        protected   bool AddNewTestAppointment()
         {
             this.TestAppointmentID = clsAddNewTestAppointment.AddNewTestAppointment(TestTypeID: this.TestTypeID, LocalDrivingLicenseApplicationID: this.LocalDrivingLicenseApplicationID,
                 AppointmentDateTime: this.AppointmentDateTime, PaidFees: this.PaidFees, CreatedByUserID: this.CreatedByUserID, IsLocked: this.IsLocked,

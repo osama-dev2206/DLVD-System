@@ -29,33 +29,33 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditAppointment));
-            pictureBox1 = new PictureBox();
+            pbStatusOfForm = new PictureBox();
             labFormStatus = new Label();
             ctrlScheduleTestInfo1 = new ctrlScheduleTestInfo();
             btnSave = new Button();
             btnClose = new Button();
             ctrlRetakeTestInfo1 = new ctrlRetakeTestInfo();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbStatusOfForm).BeginInit();
             SuspendLayout();
             // 
-            // pictureBox1
+            // pbStatusOfForm
             // 
-            pictureBox1.Image = Properties.Resources.Vision_512;
-            pictureBox1.Location = new Point(136, 12);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(330, 134);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            pbStatusOfForm.Image = Properties.Resources.Vision_512;
+            pbStatusOfForm.Location = new Point(136, 12);
+            pbStatusOfForm.Name = "pbStatusOfForm";
+            pbStatusOfForm.Size = new Size(330, 134);
+            pbStatusOfForm.SizeMode = PictureBoxSizeMode.Zoom;
+            pbStatusOfForm.TabIndex = 0;
+            pbStatusOfForm.TabStop = false;
             // 
             // labFormStatus
             // 
             labFormStatus.AutoSize = true;
-            labFormStatus.Font = new Font("Segoe UI Semibold", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labFormStatus.Font = new Font("Segoe UI Semibold", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labFormStatus.ForeColor = Color.Red;
-            labFormStatus.Location = new Point(103, 165);
+            labFormStatus.Location = new Point(136, 173);
             labFormStatus.Name = "labFormStatus";
-            labFormStatus.Size = new Size(260, 50);
+            labFormStatus.Size = new Size(278, 54);
             labFormStatus.TabIndex = 1;
             labFormStatus.Text = "Schedule Test ";
             // 
@@ -113,22 +113,22 @@
             Controls.Add(btnSave);
             Controls.Add(ctrlScheduleTestInfo1);
             Controls.Add(labFormStatus);
-            Controls.Add(pictureBox1);
+            Controls.Add(pbStatusOfForm);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmAddEditAppointment";
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Add New Appointment";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            Text = "Add/Edit New Appointment";
+            ((System.ComponentModel.ISupportInitialize)pbStatusOfForm).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private PictureBox pictureBox1;
+        private PictureBox pbStatusOfForm;
         private Label labFormStatus;
         private ctrlScheduleTestInfo ctrlScheduleTestInfo1;
         private Button btnSave;

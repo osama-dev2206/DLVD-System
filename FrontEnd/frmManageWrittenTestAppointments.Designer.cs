@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManageWrittenTestAppointments));
             labCountOfRecords = new Label();
             label3 = new Label();
             btnClose = new Button();
@@ -173,7 +174,7 @@
             // 
             takeTestToolStripMenuItem.Image = Properties.Resources.Test_321;
             takeTestToolStripMenuItem.Name = "takeTestToolStripMenuItem";
-            takeTestToolStripMenuItem.Size = new Size(214, 26);
+            takeTestToolStripMenuItem.Size = new Size(141, 26);
             takeTestToolStripMenuItem.Text = "Take Test";
             takeTestToolStripMenuItem.Click += takeTestToolStripMenuItem_Click;
             // 
@@ -193,6 +194,7 @@
             Controls.Add(ctrlLocalDrivingLicenseInfo2);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmManageWrittenTestAppointments";

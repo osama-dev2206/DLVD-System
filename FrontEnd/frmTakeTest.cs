@@ -19,19 +19,22 @@ namespace FrontEnd
             InitializeComponent();
             if (testTypes == clsTestTypes.enTestTypes.VisionTest) 
             {
+                this.pbFormType.Image = Properties.Resources.Vision_512;
                 this.ctrlScheduleTestInfo1.FillCtrlInfoByLocalDrivingApplicationID(LDLAPPID, BussinessLogicLayer.clsTestTypes.enTestTypes.VisionTest);
                 test = new clsTest(AppointmentID, clsTestTypes.enTestTypes.VisionTest);
             }
 
             else if (testTypes == clsTestTypes.enTestTypes.WrittenTest)
             {
+                this.pbFormType.Image = Properties.Resources.Written_Test_512;
                 this.ctrlScheduleTestInfo1.FillCtrlInfoByLocalDrivingApplicationID(LDLAPPID, BussinessLogicLayer.clsTestTypes.enTestTypes.WrittenTest);
                 test = new clsTest(AppointmentID, clsTestTypes.enTestTypes.WrittenTest);
             }
 
             else if(testTypes == clsTestTypes.enTestTypes.PracticalTest)
             {
-                // Later\
+                this.pbFormType.Image = Properties.Resources.driving_test_512;
+                this.ctrlScheduleTestInfo1.FillCtrlInfoByLocalDrivingApplicationID(LDLAPPID, BussinessLogicLayer.clsTestTypes.enTestTypes.PracticalTest);
                 test = new clsTest(AppointmentID, clsTestTypes.enTestTypes.PracticalTest);
             }
 

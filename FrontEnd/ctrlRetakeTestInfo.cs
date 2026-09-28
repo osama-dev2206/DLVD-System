@@ -25,7 +25,7 @@ namespace FrontEnd
             decimal LabApplicationFee = clsApplicationTypes.FindAppObjByAppID((int)clsApplicationTypes.enApplicationTypes.RetakeTest).ApplicationFees;
             decimal TotalApplicationFee = TestTypeFee + LabApplicationFee;
 
-            this.labApplicationFees.Text = TestTypeFee.ToString("C2");
+            this.labApplicationFees.Text = LabApplicationFee.ToString("C2");
             this.labTotalFees.Text= TotalApplicationFee.ToString("C2");
 
             

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DataAccessLayer
 {
-    public static class clsCheckIfHasAppointmentAlreadyOrNot
+    public static class clsCheckIfHasAppointmentAlreadyOrNot // if the pervious appointment is not locked then the user cannot add new appointment for the same test type and local driving license application ID
     {
         private static SqlConnection connection;
 
@@ -20,10 +20,12 @@ namespace DataAccessLayer
         {
 
                     return @SqlCmd(@"
-Select R = 'T'
-From TestAppointments
-where TestAppointments.TestAppointmentForLocalDrivingLicenseAppID =@LocalDrivingLicenseApplicationID
-and TestAppointments.AppointmentTestTypeID =@TestTypeID  -- vision ex ;", Paramter1: "@LocalDrivingLicenseApplicationID", value1:LocalLicenseApplicationID, 
+SELECT TOP 1 TestAppointmentID
+FROM TestAppointments
+WHERE TestAppointmentForLocalDrivingLicenseAppID = @LocalDrivingLicenseApplicationID
+  AND AppointmentTestTypeID = @TestTypeID
+  AND IsLocked = 0
+ORDER BY TestAppointmentID DESC ;", Paramter1: "@LocalDrivingLicenseApplicationID", value1:LocalLicenseApplicationID, 
 Paramter2: "@TestTypeID",  value2 : testTypeID);
 
 
@@ -37,7 +39,7 @@ Paramter2: "@TestTypeID",  value2 : testTypeID);
             cmd.Parameters.AddWithValue(Paramter1, value1);
             cmd.Parameters.AddWithValue(Paramter2, value2);
             object R = cmd.ExecuteScalar();
-            if (R is not null && R.ToString() == "T")
+            if (R is not null )
             {
                 return true;
             }
@@ -48,7 +50,7 @@ Paramter2: "@TestTypeID",  value2 : testTypeID);
         }
 
 
-        public static bool HasAppointmentAlready(int testTypeID,  int LocalLicenseApplicationID)
+        public static bool HasAppointmentIsNotLocked(int testTypeID,  int LocalLicenseApplicationID)
         {
             bool Result = false;
             try

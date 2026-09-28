@@ -255,6 +255,7 @@
             ScheduleStreetToolStripMenuItem.Name = "ScheduleStreetToolStripMenuItem";
             ScheduleStreetToolStripMenuItem.Size = new Size(235, 26);
             ScheduleStreetToolStripMenuItem.Text = "Schedule Street Test";
+            ScheduleStreetToolStripMenuItem.Click += ScheduleStreetToolStripMenuItem_Click;
             // 
             // frmManageLocalDrivingLicenseApplications
             // 
