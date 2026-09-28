@@ -5,14 +5,16 @@ using System.Text;
 
 namespace DataAccessLayer
 {
-    public static class clsCheckIfThereIsRetakeApplicationBefore
+    public static class clsCheckIfThereIsOpenAppointmentBefore // if the pervious is locked you can add new 
     {
-        private static string Query = @"Select top 1 TestAppointments.RetakeApplicationID
+        private static string Query = @"
+Select top 1  R = 'T'
 from TestAppointments 
-where TestAppointmentForLocalDrivingLicenseAppID = @LocalDrivingLicenseApplicationID
-and AppointmentTestTypeID =@TestTypeID -- Vision (ex)
-and TestAppointments.IsLocked =0 -- Hasnot Finished
-order by TestAppointmentID desc; ";
+where TestAppointments.TestAppointmentForLocalDrivingLicenseAppID = @LocalDrivingLicenseApplicationID
+and TestAppointments.AppointmentTestTypeID = @TestTypeID
+and TestAppointments.IsLocked = 1 -- Test Finished
+order by TestAppointmentID DESC ;
+;";
 
         public static bool CheckIfThereIsRetakeApplicationBefore(int LocalDrivingLicenseApplicationID, int TestTypeID)
         {

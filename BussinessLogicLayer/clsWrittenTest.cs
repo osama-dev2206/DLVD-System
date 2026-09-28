@@ -35,13 +35,7 @@ namespace BussinessLogicLayer
             this.IsLocked = IsLocked;
         }
 
-        protected override bool AddNewTestAppointment()
-        {
-            this.TestAppointmentID = clsAddNewTestAppointment.AddNewTestAppointment(TestTypeID: this.TestTypeID, LocalDrivingLicenseApplicationID: this.LocalDrivingLicenseApplicationID,
-                AppointmentDateTime: this.AppointmentDateTime, PaidFees: this.PaidFees, CreatedByUserID: this.CreatedByUserID, IsLocked: this.IsLocked);
 
-            return (TestAppointmentID != -1);
-        }
 
         public static clsWrittenTest GetWrittenTestAppointmentByAppointmentID(int TestAppointmentID)
         {
@@ -73,13 +67,10 @@ namespace BussinessLogicLayer
 
         private bool IsWrittenAppointmentAlreadyExists()
         {
-            return clsCheckIfHasAppointmentAlreadyOrNot.HasAppointmentAlready((int)clsTestTypes.enTestTypes.WrittenTest, this.LocalDrivingLicenseApplicationID);
+            return clsCheckIfHasAppointmentAlreadyOrNot.HasAppointmentIsNotLocked((int)clsTestTypes.enTestTypes.WrittenTest, this.LocalDrivingLicenseApplicationID);
         }
 
-        public bool IsWrittenTestHasFailed() // Get Ready For Retake 
-        {
-            return clsCheckIfTheTestHasTakenAndFailedOrNot.HasTakenTestAndFailed(this.TestAppointmentID, (int)clsTestTypes.enTestTypes.WrittenTest);
-        }
+
 
         protected override bool UpdateAppointmentDateTime()
         {
@@ -91,9 +82,9 @@ namespace BussinessLogicLayer
             return clsUpdateTestAppointment.UpdateTestAppointmentDateTime(this.TestAppointmentID, this.AppointmentDateTime);
         }
 
-        private bool IsRetakeApplicationAlreadyExists()
+        private bool IsThePerviousAppointmentHasFinished()
         {
-            return clsCheckIfThereIsRetakeApplicationBefore.CheckIfThereIsRetakeApplicationBefore(this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.WrittenTest);
+            return clsCheckIfThereIsOpenAppointmentBefore.CheckIfThereIsRetakeApplicationBefore(this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.WrittenTest);
         }
 
         public Action<int> OnSaveGetTheRetakeID;
@@ -106,13 +97,19 @@ namespace BussinessLogicLayer
                     {
                         clsTest.enTestResult Res = clsTest.GetTestResultEnum(this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.WrittenTest);
 
+                          if (IsWrittenAppointmentAlreadyExists()) // has not taken test yet
+                        {
+                            OnSaveGetError?.Invoke("This Application Has Already Appointment For Written Test");
+                            return false;
+                        }
+
                         if (Res == clsTest.enTestResult.Pass)
                         {
                             OnSaveGetError?.Invoke("This Application Has Already Successed No Need For New Test");
                             return false;
                         }
 
-                        else if (!IsRetakeApplicationAlreadyExists() && Res == clsTest.enTestResult.Fail)
+                        else if (IsThePerviousAppointmentHasFinished() && Res == clsTest.enTestResult.Fail)
                         {
                             // The Retake  Process
                             clsRetakeTest retakeTest = new clsRetakeTest(this.TestAppointmentID, this.TestTypeID,
@@ -131,12 +128,8 @@ namespace BussinessLogicLayer
 
                         }
 
-                        /// Already Exist will return false here as i didnot add before
-                        else if (IsWrittenAppointmentAlreadyExists()) // has not taken test yet
-                        {
-                            OnSaveGetError?.Invoke("This Application Has Already Appointment For Written Test");
-                            return false;
-                        }
+                        
+  
 
                         else if (this.AddNewTestAppointment()) // Normal Add New 
                         {

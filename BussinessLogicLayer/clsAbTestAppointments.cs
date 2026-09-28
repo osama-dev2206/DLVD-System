@@ -19,7 +19,16 @@ namespace BussinessLogicLayer
 
         protected enum enMode { Add =1 , Update =2 }
 
-       protected abstract  bool AddNewTestAppointment();
+        //protected abstract  bool AddNewTestAppointment();
+
+        protected  bool AddNewTestAppointment()
+        {
+            this.TestAppointmentID = clsAddNewTestAppointment.AddNewTestAppointment(TestTypeID: this.TestTypeID, LocalDrivingLicenseApplicationID: this.LocalDrivingLicenseApplicationID,
+                AppointmentDateTime: this.AppointmentDateTime, PaidFees: this.PaidFees, CreatedByUserID: this.CreatedByUserID, IsLocked: this.IsLocked);
+
+            return (TestAppointmentID != -1);
+        }
+
 
         public abstract bool Save();
 

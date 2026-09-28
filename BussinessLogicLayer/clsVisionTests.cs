@@ -35,13 +35,6 @@ namespace BussinessLogicLayer
             this.IsLocked = IsLocked;
         }
 
-        protected  override bool AddNewTestAppointment()
-        {
-            this.TestAppointmentID = clsAddNewTestAppointment.AddNewTestAppointment(TestTypeID:this.TestTypeID , LocalDrivingLicenseApplicationID: this.LocalDrivingLicenseApplicationID,
-                AppointmentDateTime: this.AppointmentDateTime , PaidFees: this.PaidFees , CreatedByUserID: this.CreatedByUserID , IsLocked: this.IsLocked);
-
-            return (TestAppointmentID != -1);
-        }
 
 
         public static clsVisionTests GetVisionTestAppointmentByAppointmentID(int TestAppointmentID)
@@ -74,13 +67,10 @@ namespace BussinessLogicLayer
 
         private bool IsVisionAppointmentAlreadyExists()
         {
-            return clsCheckIfHasAppointmentAlreadyOrNot.HasAppointmentAlready((int)clsTestTypes.enTestTypes.VisionTest, this.LocalDrivingLicenseApplicationID);
+            return clsCheckIfHasAppointmentAlreadyOrNot.HasAppointmentIsNotLocked((int)clsTestTypes.enTestTypes.VisionTest, this.LocalDrivingLicenseApplicationID);
         }
 
-        public  bool IsVisionTestHasFailed() // Get Ready For Retake 
-        {
-          return  clsCheckIfTheTestHasTakenAndFailedOrNot.HasTakenTestAndFailed(this.TestAppointmentID, (int)clsTestTypes.enTestTypes.VisionTest);
-        }
+
 
         protected override bool UpdateAppointmentDateTime()
         {
@@ -92,9 +82,9 @@ namespace BussinessLogicLayer
             return clsUpdateTestAppointment.UpdateTestAppointmentDateTime(this.TestAppointmentID, this.AppointmentDateTime);
         }
 
-        private bool IsRetakeApplicationAlreadyExists()
+        private bool IsThePerviousHasFinished()
         {
-            return clsCheckIfThereIsRetakeApplicationBefore.CheckIfThereIsRetakeApplicationBefore(this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.VisionTest);
+            return clsCheckIfThereIsOpenAppointmentBefore.CheckIfThereIsRetakeApplicationBefore(this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.VisionTest);
         }
 
         public Action<int> OnSaveGetTheRetakeID;
@@ -107,13 +97,19 @@ namespace BussinessLogicLayer
                     {
                         clsTest.enTestResult Res  = clsTest.GetTestResultEnum(this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.VisionTest);
 
-                        if (Res == clsTest.enTestResult.Pass)
+                        if (IsVisionAppointmentAlreadyExists()) // has not taken test yet , isnot locked
+                        {
+                            OnSaveGetError?.Invoke("This Application Has Already Appointment For Vision Test");
+                            return false;
+                        }
+
+                       else  if (Res == clsTest.enTestResult.Pass)
                         {
                             OnSaveGetError?.Invoke("This Application Has Already Successed No Need For New Test");
                             return false;
                         }
 
-                        else if(!IsRetakeApplicationAlreadyExists() && Res == clsTest.enTestResult.Fail)
+                        else if (IsThePerviousHasFinished() && Res == clsTest.enTestResult.Fail)
                         {
                             // The Retake  Process
                             clsRetakeTest retakeTest = new clsRetakeTest(this.TestAppointmentID, this.TestTypeID,
@@ -121,7 +117,7 @@ namespace BussinessLogicLayer
                             if (retakeTest.Save())
                             {
                                 OnSaveGetTheRetakeID?.Invoke(retakeTest.TestAppointmentID);
-                                this.Mode = enMode.Update; 
+                                this.Mode = enMode.Update;
                                 return true;
                             }
                             else
@@ -131,13 +127,8 @@ namespace BussinessLogicLayer
                             }
 
                         }
-                        /// Already Exist will return false here as i didnot add before
-                        else if (IsVisionAppointmentAlreadyExists()) // has not taken test yet
-                        {
-                            OnSaveGetError?.Invoke("This Application Has Already Appointment For Vision Test");
-                            return false;
-                        }
-                
+
+
                         else if (this.AddNewTestAppointment()) // Normal Add New 
                         {
                             this.Mode = enMode.Update;

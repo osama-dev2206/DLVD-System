@@ -260,5 +260,15 @@ namespace FrontEnd
             frmManageWritten?.Dispose();
             RefreshDataGridView();
         }
+
+        private void ScheduleStreetToolStripMenuItem_Click(object sender, EventArgs e) // practical is stre
+        {
+            frmManagePracticalTestAppointments frmManagePractical = new frmManagePracticalTestAppointments(this.selectedRowIndex);
+            frmManagePractical?.ShowDialog();
+            frmManagePractical?.Dispose();
+            RefreshDataGridView();
+        }
+
+
     }
 }

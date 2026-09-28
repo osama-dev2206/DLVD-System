@@ -13,6 +13,7 @@ namespace FrontEnd
     {
         clsVisionTests? visionTest;
         clsWrittenTest ? writtenTest;
+        clsPracticalTest  ? practicalTest;
         clsTestTypes.enTestTypes testType;
 
         public enum enMode { Add = 1, Update = 2 }
@@ -25,17 +26,23 @@ namespace FrontEnd
              
             if (testType == clsTestTypes.enTestTypes.VisionTest)
             {
+                this.pbStatusOfForm.Image = Properties.Resources.Vision_512;
                 this.ctrlScheduleTestInfo1.FillCtrlInfoByLocalDrivingApplicationID(LocalDrivingLicenseApplication, BussinessLogicLayer.clsTestTypes.enTestTypes.VisionTest);
                 ctrlScheduleTestInfo1.OnDateTimeSelected += DateTimeChanger;
             }
+
             else if (testType == clsTestTypes.enTestTypes.WrittenTest)
             {
+                this.pbStatusOfForm.Image = Properties.Resources.Written_Test_512;
                 this.ctrlScheduleTestInfo1.FillCtrlInfoByLocalDrivingApplicationID(LocalDrivingLicenseApplication, BussinessLogicLayer.clsTestTypes.enTestTypes.WrittenTest);
                 ctrlScheduleTestInfo1.OnDateTimeSelected += DateTimeChanger;
             }
+
             else if (testType == clsTestTypes.enTestTypes.PracticalTest)
             {
-                // Later
+                this.pbStatusOfForm.Image = Properties.Resources.driving_test_512;
+                this.ctrlScheduleTestInfo1.FillCtrlInfoByLocalDrivingApplicationID(LocalDrivingLicenseApplication, BussinessLogicLayer.clsTestTypes.enTestTypes.PracticalTest);
+                ctrlScheduleTestInfo1.OnDateTimeSelected += DateTimeChanger;
             }
 
 
@@ -57,7 +64,9 @@ namespace FrontEnd
                 }
                 else if (clsTestTypes.enTestTypes.PracticalTest == testType)
                 {
-                    // Later
+                    practicalTest = new clsPracticalTest(LocalDrivingLicenseApplication); /// Add New 
+                    practicalTest?.OnSaveGetTheRetakeID += UpdateTheRApplicationIDOnCtrlRetakeTestInfo; // on the add only (reschedule retake test)
+                    practicalTest?.OnSaveGetError += OnSaveGetError;
                 }
 
 
@@ -79,7 +88,9 @@ namespace FrontEnd
                 }
                 else if (clsTestTypes.enTestTypes.PracticalTest == testType)
                 {
-                    // Later
+                    practicalTest = clsPracticalTest.GetPracticalTestAppointmentByAppointmentID(AppointmentID); /// Update Existing
+                    practicalTest.OnSaveGetError += OnSaveGetError;
+                    this.ctrlScheduleTestInfo1.FillCtrlInfoByLocalDrivingApplicationID(LocalDrivingLicenseApplicationID: LocalDrivingLicenseApplication, BussinessLogicLayer.clsTestTypes.enTestTypes.PracticalTest);
                 }
 
             }
@@ -98,7 +109,7 @@ namespace FrontEnd
 
             else if (clsTestTypes.enTestTypes.PracticalTest == testType)
             {
-                // Later
+                res = !clsTest.IsAplicantSuccessedBefore(LocalDrivingLicenseApplication, (int)BussinessLogicLayer.clsTestTypes.enTestTypes.PracticalTest); // Has Failed Before
             }
 
             if (res == true)
@@ -117,7 +128,7 @@ namespace FrontEnd
 
                 else if (clsTestTypes.enTestTypes.PracticalTest == testType)
                 {
-                    // Later
+                    this.ctrlRetakeTestInfo1.Filll_Initial_CtrlInfoByLocalDrivingApplicationID(LocalDrivingLicenseApplication, BussinessLogicLayer.clsTestTypes.enTestTypes.PracticalTest);
                 }
 
             }
@@ -138,7 +149,7 @@ namespace FrontEnd
             }
             else if (clsTestTypes.enTestTypes.PracticalTest == testType)
             {
-                // Later
+                practicalTest?.AppointmentDateTime = DT;
             }
 
         }
@@ -176,7 +187,7 @@ namespace FrontEnd
 
                 case clsTestTypes.enTestTypes.WrittenTest:
                     {
-                        if (writtenTest.AppointmentDateTime == null || writtenTest.AppointmentDateTime == default)
+                        if (writtenTest?.AppointmentDateTime == null || writtenTest.AppointmentDateTime == default)
                         {
                             MessageBox.Show("Written Test Appointment Error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
@@ -190,10 +201,19 @@ namespace FrontEnd
 
                 case clsTestTypes.enTestTypes.PracticalTest:
                     {
-                        // Later
+                        if (practicalTest?.AppointmentDateTime == null || practicalTest?.AppointmentDateTime == default)
+                        {
+                            MessageBox.Show("Practical Test Appointment Error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        if (practicalTest.Save()) //add new appointment
+                        {
+                            MessageBox.Show("Practical Test Appointment Saved Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                         break;
 
                     }
+
             }
         }
 

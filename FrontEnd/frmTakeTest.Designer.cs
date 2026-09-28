@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTakeTest));
             ctrlScheduleTestInfo1 = new ctrlScheduleTestInfo();
-            pictureBox1 = new PictureBox();
+            pbFormType = new PictureBox();
             label1 = new Label();
             rbPass = new RadioButton();
             label2 = new Label();
@@ -44,7 +44,7 @@
             pictureBox3 = new PictureBox();
             btnSave = new Button();
             btnClose = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbFormType).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -57,15 +57,15 @@
             ctrlScheduleTestInfo1.Size = new Size(557, 220);
             ctrlScheduleTestInfo1.TabIndex = 0;
             // 
-            // pictureBox1
+            // pbFormType
             // 
-            pictureBox1.Image = Properties.Resources.Vision_Test_32;
-            pictureBox1.Location = new Point(307, 12);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(187, 109);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
+            pbFormType.Image = Properties.Resources.driving_test_5121;
+            pbFormType.Location = new Point(307, 12);
+            pbFormType.Name = "pbFormType";
+            pbFormType.Size = new Size(187, 109);
+            pbFormType.SizeMode = PictureBoxSizeMode.Zoom;
+            pbFormType.TabIndex = 1;
+            pbFormType.TabStop = false;
             // 
             // label1
             // 
@@ -233,7 +233,7 @@
             Controls.Add(labTestID);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(pictureBox1);
+            Controls.Add(pbFormType);
             Controls.Add(ctrlScheduleTestInfo1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -242,7 +242,7 @@
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
             Text = "Take Test";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbFormType).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -254,7 +254,7 @@
         #endregion
 
         private ctrlScheduleTestInfo ctrlScheduleTestInfo1;
-        private PictureBox pictureBox1;
+        private PictureBox pbFormType;
         private Label label1;
         private RadioButton rbPass;
         private Label label2;

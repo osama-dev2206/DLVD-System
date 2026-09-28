@@ -51,6 +51,15 @@ namespace BussinessLogicLayer
                 }
             }
 
+            else if (this.testType == clsTestTypes.enTestTypes.PracticalTest)
+            {
+                if (clsPracticalTest.IsPracticalTestAppointmentLocked(this.AppointmentIDOfTest))
+                {
+                    OnTestSaveGetError?.Invoke("You cannot save the test because the appointment is locked.");
+                    return false; // if the test appointment is locked, do not allow saving the test
+                }
+            }
+
             switch (this.Mode)
             {
                 case enMode.Add:
@@ -70,7 +79,7 @@ namespace BussinessLogicLayer
                             }
                             else if(this.testType == clsTestTypes.enTestTypes.PracticalTest)
                             {
-                                return true; // for other test types, just return true
+                                return clsPracticalTest.LockPracticalTestAppointment(this.AppointmentIDOfTest); // lock the test appointment after saving the test
                             }
                             return false;
                         }
