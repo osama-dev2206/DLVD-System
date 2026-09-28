@@ -113,7 +113,7 @@ namespace FrontEnd
         {
 
             // if the applicatioin status is cancelled then we will disable all the schedule test menu items
-            if (clsLocalDrivingLicenseApplications.GetApplicationStatusByLocalLicenseApplicationID(this.selectedRowIndex)  == clsApplications.enApplicationStatus.Cancelled)
+            if (clsLocalDrivingLicenseApplications.GetApplicationStatusByLocalLicenseApplicationID(this.selectedRowIndex) == clsApplications.enApplicationStatus.Cancelled)
             {
                 this.scheduleVisionTestToolStripMenuItem.Enabled = false;
                 this.ScheduleWrittenToolStripMenuItem.Enabled = false;
@@ -247,12 +247,18 @@ namespace FrontEnd
         // Tests Scheduling .. ................ 
         private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e) // add 
         {
-            frmTestVisionAppointments frmTestVision = new frmTestVisionAppointments(this.selectedRowIndex,frmTestVisionAppointments.enMode.Add);
+            frmTestVisionAppointments frmTestVision = new frmTestVisionAppointments(this.selectedRowIndex);
             frmTestVision?.ShowDialog();
             frmTestVision?.Dispose();
             RefreshDataGridView();
         }
 
-
+        private void ScheduleWrittenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageWrittenTestAppointments frmManageWritten = new frmManageWrittenTestAppointments(this.selectedRowIndex);
+            frmManageWritten?.ShowDialog();
+            frmManageWritten?.Dispose();
+            RefreshDataGridView();
+        }
     }
 }

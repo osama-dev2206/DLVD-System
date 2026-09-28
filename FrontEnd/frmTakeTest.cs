@@ -12,14 +12,32 @@ namespace FrontEnd
     public partial class frmTakeTest : Form
     {
         clsTest test;
-        public frmTakeTest(int AppointmentID, int LDLAPPID)
+        clsTestTypes.enTestTypes testTypes;
+        public frmTakeTest(int AppointmentID, int LDLAPPID , clsTestTypes.enTestTypes testTypes)
         {
+            this.testTypes = testTypes;
             InitializeComponent();
-            this.ctrlScheduleTestInfo1.FillCtrlInfoByLocalDrivingApplicationID(LDLAPPID, BussinessLogicLayer.clsTestTypes.enTestTypes.VisionTest);
+            if (testTypes == clsTestTypes.enTestTypes.VisionTest) 
+            {
+                this.ctrlScheduleTestInfo1.FillCtrlInfoByLocalDrivingApplicationID(LDLAPPID, BussinessLogicLayer.clsTestTypes.enTestTypes.VisionTest);
+                test = new clsTest(AppointmentID, clsTestTypes.enTestTypes.VisionTest);
+            }
 
-            test = new clsTest(AppointmentID);
-            test.OnTestSaveGetTestID += UpdateTestIdLabel;
-            test.OnTestSaveGetError += OnTestSaveGetError;
+            else if (testTypes == clsTestTypes.enTestTypes.WrittenTest)
+            {
+                this.ctrlScheduleTestInfo1.FillCtrlInfoByLocalDrivingApplicationID(LDLAPPID, BussinessLogicLayer.clsTestTypes.enTestTypes.WrittenTest);
+                test = new clsTest(AppointmentID, clsTestTypes.enTestTypes.WrittenTest);
+            }
+
+            else if(testTypes == clsTestTypes.enTestTypes.PracticalTest)
+            {
+                // Later\
+                test = new clsTest(AppointmentID, clsTestTypes.enTestTypes.PracticalTest);
+            }
+
+
+            test?.OnTestSaveGetTestID += UpdateTestIdLabel;
+            test?.OnTestSaveGetError += OnTestSaveGetError;
         }
 
         private void rb_Click(object sender, EventArgs e)
@@ -58,6 +76,8 @@ namespace FrontEnd
             }
             return true;
         }
+
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (CheckBeforeSave())

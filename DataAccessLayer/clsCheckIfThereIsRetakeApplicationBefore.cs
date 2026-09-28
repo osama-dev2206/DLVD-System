@@ -10,7 +10,7 @@ namespace DataAccessLayer
         private static string Query = @"Select top 1 TestAppointments.RetakeApplicationID
 from TestAppointments 
 where TestAppointmentForLocalDrivingLicenseAppID = @LocalDrivingLicenseApplicationID
-and AppointmentTestTypeID =@TestTypeID -- Vision 
+and AppointmentTestTypeID =@TestTypeID -- Vision (ex)
 and TestAppointments.IsLocked =0 -- Hasnot Finished
 order by TestAppointmentID desc; ";
 

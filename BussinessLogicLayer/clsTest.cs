@@ -12,12 +12,15 @@ namespace BussinessLogicLayer
 
         public int CreatedByUserID { get; private set; }
 
+        private clsTestTypes.enTestTypes testType;
+
         enum enMode { Add = 1, Update = 2 }
         enMode Mode;
 
-        public clsTest(int AppointmentIDOfTest)
+        public clsTest(int AppointmentIDOfTest , clsTestTypes.enTestTypes testTypes)
         {
             Mode = enMode.Add;
+            this.testType = testTypes;
             this.TestID = -1;
             this.AppointmentIDOfTest = AppointmentIDOfTest;
             this.CreatedByUserID = clsCurrentLoggedInUser.User.UserID;
@@ -31,10 +34,21 @@ namespace BussinessLogicLayer
 
         public bool Save()
         {
-            if(clsVisionTests.IsVisionTestAppointmentLocked(this.AppointmentIDOfTest))
+            if (this.testType == clsTestTypes.enTestTypes.VisionTest)
             {
-                OnTestSaveGetError?.Invoke("You cannot save the test because the appointment is locked.");
-                return false; // if the test appointment is locked, do not allow saving the test
+                if (clsVisionTests.IsVisionTestAppointmentLocked(this.AppointmentIDOfTest))
+                {
+                    OnTestSaveGetError?.Invoke("You cannot save the test because the appointment is locked.");
+                    return false; // if the test appointment is locked, do not allow saving the test
+                }
+            }
+            else if(this.testType == clsTestTypes.enTestTypes.WrittenTest)
+            {
+                if (clsWrittenTest.IsWrittenTestAppointmentLocked(this.AppointmentIDOfTest))
+                {
+                    OnTestSaveGetError?.Invoke("You cannot save the test because the appointment is locked.");
+                    return false; // if the test appointment is locked, do not allow saving the test
+                }
             }
 
             switch (this.Mode)
@@ -45,7 +59,20 @@ namespace BussinessLogicLayer
                         {
                             this.Mode = enMode.Update;
                             OnTestSaveGetTestID?.Invoke(this.TestID);
-                            return clsVisionTests.LockVisionTestAppointment(this.AppointmentIDOfTest); // lock the test appointment after saving the test
+
+                            if (this.testType == clsTestTypes.enTestTypes.VisionTest)
+                            {
+                                return clsVisionTests.LockVisionTestAppointment(this.AppointmentIDOfTest); // lock the test appointment after saving the test
+                            }
+                            else if(this.testType == clsTestTypes.enTestTypes.WrittenTest)
+                            {
+                                return clsWrittenTest.LockWrittenTestAppointment(this.AppointmentIDOfTest); // lock the test appointment after saving the test
+                            }
+                            else if(this.testType == clsTestTypes.enTestTypes.PracticalTest)
+                            {
+                                return true; // for other test types, just return true
+                            }
+                            return false;
                         }
                         else
                         {
