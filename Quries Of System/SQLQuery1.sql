@@ -650,9 +650,26 @@ ORDER BY TestAppointments.AppointmentDateTime DESC;
 
 Select * from Applications;
 Select * from ApplicationTypes;
+Select * from LocalDrivingLicenseApplications;
 
 Select  * from DetailedApplicationInfo;
 
 Select
  TestAppointments.* from TestAppointments  
- order by TestAppointmentID desc 
+ order by TestAppointmentID desc ;
+
+ Select * From ApplicationTypes;
+ Select * from TestTypes;
+
+ -- Get Retake Application ID By Local Driving License Application 
+ Select TestAppointments.RetakeApplicationID , 
+ ApplicationTypes.ApplicationFees as [Retake Application Fees] , 
+ [Total Application Fees] = ApplicationFees + TestTypeFees
+ from TestAppointments 
+ Inner Join LocalDrivingLicenseApplications on TestAppointments.TestAppointmentForLocalDrivingLicenseAppID = LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+ Inner Join TestTypes On TestTypes.TestTypeID = TestAppointments.AppointmentTestTypeID
+ Inner Join Applications On Applications.ApplicationID = RetakeApplicationID
+ Inner Join ApplicationTypes On Applications.ApplicationTypeID = ApplicationTypes.ApplicationTypeID
+
+ Where RetakeApplicationID is not null and TestAppointments.AppointmentTestTypeID = 1 -- vision 
+ and TestAppointments.TestAppointmentForLocalDrivingLicenseAppID  = 47 ;

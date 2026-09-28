@@ -17,6 +17,7 @@ namespace FrontEnd
         {
 
             InitializeComponent();
+            this.ctrlRetakeTestInfo1.Enabled = false;
             this.ctrlScheduleTestInfo1.FillCtrlInfoByLocalDrivingApplicationID(LocalDrivingLicenseApplication, BussinessLogicLayer.clsTestTypes.enTestTypes.VisionTest);
             ctrlScheduleTestInfo1.OnDateTimeSelected += VisionTest_DateTimeChanger;
             
