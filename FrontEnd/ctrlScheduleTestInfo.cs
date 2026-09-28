@@ -47,7 +47,7 @@ namespace FrontEnd
             {
                 this.labFees.Text = clsTestTypes.FindTestType((int)clsTestTypes.enTestTypes.WrittenTest).TestTypeFee.ToString();
 
-                this.labTrials.Text ="Not Impelemented Yet Shitty";
+                this.labTrials.Text =clsWrittenTest.GetNumOfTrialsOfWrittenTest(LocalDrivingLicenseApplicationID).ToString();
             }
             else if(testType == clsTestTypes.enTestTypes.PracticalTest)
             {

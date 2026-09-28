@@ -13,8 +13,8 @@ TestAppointments.PaidFees , TestAppointments.IsLocked
 from TestAppointments
 Inner Join LocalDrivingLicenseApplications 
 On LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
-where TestAppointments.AppointmentTestTypeID = @TestTypeID
-and LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LDLAppID ;"; // -- Vision Test Appointment
+where TestAppointments.AppointmentTestTypeID = @TestTypeID -- by Test Type ID
+and LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LDLAppID ;"; 
 
         public static DataTable GetAllVisionTestAppointments(int LocalDrivingLicenseApplicationID, int TestTypeID)
         {

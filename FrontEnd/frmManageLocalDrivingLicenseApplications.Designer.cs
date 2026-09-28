@@ -186,7 +186,7 @@
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showApplicationDetailsToolStripMenuItem, editApplicationToolStripMenuItem, deleteApplicationToolStripMenuItem, cancxToolStripMenuItem, toolStripSeparator1, toolStripMenuItem2 });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(250, 140);
+            contextMenuStrip1.Size = new Size(250, 168);
             // 
             // showApplicationDetailsToolStripMenuItem
             // 
@@ -247,6 +247,7 @@
             ScheduleWrittenToolStripMenuItem.Name = "ScheduleWrittenToolStripMenuItem";
             ScheduleWrittenToolStripMenuItem.Size = new Size(235, 26);
             ScheduleWrittenToolStripMenuItem.Text = "Schedule Written Test";
+            ScheduleWrittenToolStripMenuItem.Click += ScheduleWrittenToolStripMenuItem_Click;
             // 
             // ScheduleStreetToolStripMenuItem
             // 

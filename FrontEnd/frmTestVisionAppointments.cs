@@ -12,8 +12,8 @@ namespace FrontEnd
     public partial class frmTestVisionAppointments : Form
     {
         int LocalDrivingLicenseAppID;
-       public enum enMode { Add = 1, Update = 2 }
-        public frmTestVisionAppointments(int LocalDrivingLicense, enMode mode)
+
+        public frmTestVisionAppointments(int LocalDrivingLicense)
         {
             InitializeComponent();
             this.LocalDrivingLicenseAppID = LocalDrivingLicense;
@@ -57,7 +57,7 @@ namespace FrontEnd
 
         private void pbAdd_Click(object sender, EventArgs e)
         {
-            frmAddEditAppointment frmAddNew = new frmAddEditAppointment(LocalDrivingLicenseAppID, -1,frmAddEditAppointment.enMode.Add);
+            frmAddEditAppointment frmAddNew = new frmAddEditAppointment(LocalDrivingLicenseAppID, clsTestTypes.enTestTypes.VisionTest,-1,frmAddEditAppointment.enMode.Add);
             frmAddNew?.ShowDialog();
             frmAddNew?.Dispose();
             RefreshDataGridView();
@@ -67,7 +67,7 @@ namespace FrontEnd
         {
             // The Edit will be with appointment id 
             frmAddEditAppointment frmAddNew = 
-           new frmAddEditAppointment(LocalDrivingLicenseApplication: LocalDrivingLicenseAppID, AppointmentID: selectedRowIndex ,  frmAddEditAppointment.enMode.Update);
+           new frmAddEditAppointment(LocalDrivingLicenseApplication: LocalDrivingLicenseAppID, clsTestTypes.enTestTypes.VisionTest,AppointmentID: selectedRowIndex ,  frmAddEditAppointment.enMode.Update);
             frmAddNew?.ShowDialog();
             frmAddNew?.Dispose();
             RefreshDataGridView();
@@ -75,7 +75,7 @@ namespace FrontEnd
 
         private void takeTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmTakeTest test = new frmTakeTest(LDLAPPID: this.LocalDrivingLicenseAppID, AppointmentID: selectedRowIndex);
+            frmTakeTest test = new frmTakeTest(LDLAPPID: this.LocalDrivingLicenseAppID, AppointmentID: selectedRowIndex , testTypes: clsTestTypes.enTestTypes.VisionTest);
             test?.ShowDialog(); 
             test?.Dispose();
             RefreshDataGridView();

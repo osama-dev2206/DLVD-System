@@ -74,7 +74,7 @@ namespace BussinessLogicLayer
 
         private bool IsVisionAppointmentAlreadyExists()
         {
-            return clsCheckIfHasAppointmentAlreadyOrNot.HasAppointmentAlready(clsCheckIfHasAppointmentAlreadyOrNot.enTestType.VisionTest, this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.VisionTest);
+            return clsCheckIfHasAppointmentAlreadyOrNot.HasAppointmentAlready((int)clsTestTypes.enTestTypes.VisionTest, this.LocalDrivingLicenseApplicationID);
         }
 
         public  bool IsVisionTestHasFailed() // Get Ready For Retake 
@@ -116,8 +116,6 @@ namespace BussinessLogicLayer
                         else if(!IsRetakeApplicationAlreadyExists() && Res == clsTest.enTestResult.Fail)
                         {
                             // The Retake  Process
-                         // Fuckin new retake appointment added although i haved added one before
-                            //The New Appointment Shouldnot be added to the same table as the previous appointment date time
                             clsRetakeTest retakeTest = new clsRetakeTest(this.TestAppointmentID, this.TestTypeID,
                             this.LocalDrivingLicenseApplicationID, this.AppointmentDateTime, this.PaidFees, this.CreatedByUserID, this.IsLocked);
                             if (retakeTest.Save())

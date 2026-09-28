@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataAccessLayer
 {
-    public static class clsGetTestResultByTestAppointmentID
+    public static class clsGetTestResultByTestAppointmentID // get the last record to know he passed or not 
     {
         private static string Query = @"
 SELECT TOP 1 Test.TestResult

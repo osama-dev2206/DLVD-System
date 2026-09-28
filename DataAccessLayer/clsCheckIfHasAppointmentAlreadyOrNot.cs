@@ -15,27 +15,20 @@ namespace DataAccessLayer
             connection = dbSettings.DbConnection();
         }
 
-        public enum enTestType { VisionTest = 1, WrittenTest = 2, StressTest = 3 }
-        private static bool ImplementQuery(enTestType testType, int LocalLicenseApplicationID , dynamic TestTypeID)
+
+        private static bool ImplementQuery(int  testTypeID, int LocalLicenseApplicationID)
         {
-            switch (testType)
-            {
-                case enTestType.VisionTest:
+
                     return @SqlCmd(@"
 Select R = 'T'
 From TestAppointments
 where TestAppointments.TestAppointmentForLocalDrivingLicenseAppID =@LocalDrivingLicenseApplicationID
 and TestAppointments.AppointmentTestTypeID =@TestTypeID  -- vision ex ;", Paramter1: "@LocalDrivingLicenseApplicationID", value1:LocalLicenseApplicationID, 
-Paramter2: "@TestTypeID",  value2 : TestTypeID );
+Paramter2: "@TestTypeID",  value2 : testTypeID);
 
-                    case enTestType.WrittenTest:
-                    return false;
 
-                    case enTestType.StressTest:
-                    return false;
 
-            }
-            return false;
+
         }
 
         private static bool @SqlCmd(string Query, string Paramter1,int value1 , string Paramter2 , int value2)
@@ -55,13 +48,13 @@ Paramter2: "@TestTypeID",  value2 : TestTypeID );
         }
 
 
-        public static bool HasAppointmentAlready(enTestType testType,  int LocalLicenseApplicationID, int TestTypeID)
+        public static bool HasAppointmentAlready(int testTypeID,  int LocalLicenseApplicationID)
         {
             bool Result = false;
             try
             {
                 connection.Open();
-               Result=  ImplementQuery(enTestType.VisionTest, LocalLicenseApplicationID, TestTypeID);
+               Result=  ImplementQuery(testTypeID, LocalLicenseApplicationID);
             }
             catch { }
             finally
