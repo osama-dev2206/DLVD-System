@@ -92,6 +92,10 @@ namespace BussinessLogicLayer
             return clsUpdateTestAppointment.UpdateTestAppointmentDateTime(this.TestAppointmentID, this.AppointmentDateTime);
         }
 
+        private bool IsRetakeApplicationAlreadyExists()
+        {
+            return clsCheckIfThereIsRetakeApplicationBefore.CheckIfThereIsRetakeApplicationBefore(this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.VisionTest);
+        }
 
         public Action<int> OnSaveGetTheRetakeID;
 
@@ -101,15 +105,18 @@ namespace BussinessLogicLayer
             {
                 case enMode.Add:
                     {
-                        if (clsTest.GetTestResultEnum(this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.VisionTest) == clsTest.enTestResult.Pass)
+                        clsTest.enTestResult Res  = clsTest.GetTestResultEnum(this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.VisionTest);
+
+                        if (Res == clsTest.enTestResult.Pass)
                         {
                             OnSaveGetError?.Invoke("This Application Has Already Successed No Need For New Test");
                             return false;
                         }
-                        else if(clsTest.GetTestResultEnum(this.LocalDrivingLicenseApplicationID, (int)clsTestTypes.enTestTypes.VisionTest) == clsTest.enTestResult.Fail)
+
+                        else if(!IsRetakeApplicationAlreadyExists() && Res == clsTest.enTestResult.Fail)
                         {
                             // The Retake  Process
-               
+                         // Fuckin new retake appointment added although i haved added one before
                             //The New Appointment Shouldnot be added to the same table as the previous appointment date time
                             clsRetakeTest retakeTest = new clsRetakeTest(this.TestAppointmentID, this.TestTypeID,
                             this.LocalDrivingLicenseApplicationID, this.AppointmentDateTime, this.PaidFees, this.CreatedByUserID, this.IsLocked);
