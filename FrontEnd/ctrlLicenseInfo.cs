@@ -36,7 +36,7 @@ FileAccess.Read,
         {
             if(!clsCheckExistence.CheckIfTheLicenseHasBeenIssuedOrNot(ApplicaionID))
             {
-                MessageBox.Show("The license has not been issued yet.");
+                MessageBox.Show("The license has not been issued yet.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return;
             }
 
@@ -61,10 +61,10 @@ FileAccess.Read,
                 }
 
                 this.labIssueDate.Text = R["IssueDate"].ToString();
-                this.labExpDate.Text = R["ExpirationDate"].ToString();
+                this.labExpDate.Text = DateOnly.FromDateTime(Convert.ToDateTime( R["ExpirationDate"])).ToString("dd/MM/yyyy");
                 this.labIsActive.Text = R["IsActive"].ToString();
                 this.labDriverID.Text = R["DriverID"].ToString();
-                this.labDateOfBirth.Text = R["DateOfBirth"].ToString();
+                this.labDateOfBirth.Text = DateOnly.FromDateTime(Convert.ToDateTime(R["DateOfBirth"])).ToString("dd/MM/yyyy");
                 this.labNotes.Text = R["Notes"]?.ToString();
                 this.labIssueReason.Text = R["IssueReason"].ToString();
 

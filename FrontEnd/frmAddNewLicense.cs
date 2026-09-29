@@ -16,10 +16,13 @@ namespace FrontEnd
         public frmAddNewLicense(int LocalDrivingLicenseAppID)
         {
             InitializeComponent();
-            this.ctrlApplicationInfo1.FillCtrlInfoByApplicationID(LocalDrivingLicenseAppID);
-            this.ctrlLocalDrivingLicenseInfo1.FillForm(LocalDrivingLicenseAppID);
 
             clsLocalDrivingLicenseApplications LocalApp = clsLocalDrivingLicenseApplications.FindLocalDrivingLicenseApplicationByLocalID(LocalDrivingLicenseAppID);
+
+            this.ctrlApplicationInfo1.FillCtrlInfoByApplicationID(ApplicationID:  LocalApp.Application.ApplicationID);
+            this.ctrlLocalDrivingLicenseInfo1.FillForm(LocalDrivingLicenseAppID);
+
+       
             NewLicense = new clsLicenses(ApplicationID: LocalApp.Application.ApplicationID, LicenseClassID: LocalApp.LicenseClassID);
             NewLicense.OnSaveGetError += GetErrorMessage;
             NewLicense.GetLicenseIDAfterSaving += GetSavedLicenseID;

@@ -111,13 +111,25 @@ namespace FrontEnd
 
         void CheckScheduleTestForSelectedApplication()//this function will handle the enabling and disabling of the schedule test menu items based on the status of the tests for the selected application
         {
-
+            cancelToolStripMenuItem.Enabled = true;
+            editApplicationToolStripMenuItem.Enabled = true;
+            deleteApplicationToolStripMenuItem.Enabled = true;
+            ScheduletoolStripMenuItem.Enabled = true;
             // if the applicatioin status is cancelled then we will disable all the schedule test menu items
             if (clsLocalDrivingLicenseApplications.GetApplicationStatusByLocalLicenseApplicationID(this.selectedRowIndex) == clsApplications.enApplicationStatus.Cancelled)
             {
                 this.scheduleVisionTestToolStripMenuItem.Enabled = false;
                 this.ScheduleWrittenToolStripMenuItem.Enabled = false;
                 this.ScheduleStreetToolStripMenuItem.Enabled = false;
+                this.issueLicenseToolStripMenuItem.Enabled = false;
+                this.showLicenseHistoryToolStripMenuItem.Enabled = false;
+                this.showLicenseToolStripMenuItem.Enabled = false;
+                ScheduletoolStripMenuItem.Enabled = false;
+                cancelToolStripMenuItem.Enabled = false;
+                editApplicationToolStripMenuItem.Enabled = false;
+                deleteApplicationToolStripMenuItem.Enabled = false;
+
+
                 return;
             }
 
@@ -148,19 +160,22 @@ namespace FrontEnd
             {
                 this.ScheduletoolStripMenuItem.Enabled = false;
                 this.issueLicenseToolStripMenuItem.Enabled = true; // as all the tests have been completed we can issue the license
-            }
 
-            // If  The License has been issued then we will disable all the schedule test menu items (selectedRowIndex is LDL APP ID ) 
-            if (clsCheckExistence.CheckIfTheLicenseHasBeenIssuedOrNot( clsLocalDrivingLicenseApplications.FindLocalDrivingLicenseApplicationByLocalID( selectedRowIndex).Application.ApplicationID ))
-            {
-                this.ScheduletoolStripMenuItem.Enabled = false;
-                showLicenseToolStripMenuItem.Enabled = true; // as i has issued the licnese we can show the license
-                cancelToolStripMenuItem.Enabled = false;
-                editApplicationToolStripMenuItem.Enabled = false;
-                deleteApplicationToolStripMenuItem.Enabled = false;
-                this.issueLicenseToolStripMenuItem.Enabled = false;
-            }
 
+                // If  The License has been issued then we will disable all the schedule test menu items (selectedRowIndex is LDL APP ID ) 
+                if (clsCheckExistence.CheckIfTheLicenseHasBeenIssuedOrNot(clsLocalDrivingLicenseApplications.FindLocalDrivingLicenseApplicationByLocalID(selectedRowIndex).Application.ApplicationID))
+                {
+                    this.ScheduletoolStripMenuItem.Enabled = false;
+                    showLicenseToolStripMenuItem.Enabled = true; // as i has issued the licnese we can show the license
+                    cancelToolStripMenuItem.Enabled = false;
+                    editApplicationToolStripMenuItem.Enabled = false;
+                    deleteApplicationToolStripMenuItem.Enabled = false;
+                    this.issueLicenseToolStripMenuItem.Enabled = false;
+                    this.showLicenseHistoryToolStripMenuItem.Enabled = true;
+
+                }
+
+            }
 
         }
 
