@@ -673,3 +673,71 @@ Select
 
  Where RetakeApplicationID is not null and TestAppointments.AppointmentTestTypeID = 1 -- vision 
  and TestAppointments.TestAppointmentForLocalDrivingLicenseAppID  = 47 ;
+
+
+
+Select * from TestAppointments
+order by TestAppointmentID desc;
+
+-- Get The last inserted retake application ID for a specific local driving license application and test type (Vision Test in this case)
+Select top 1 TestAppointments.RetakeApplicationID
+from TestAppointments 
+inner Join Test on Test.TestID = TestAppointments.TestAppointmentID
+where TestAppointmentForLocalDrivingLicenseAppID = 1050
+and AppointmentTestTypeID =2 -- Written
+and TestAppointments.IsLocked =0 -- Hasnot Finished
+and Test.TestResult = 0 -- Failed
+order by TestAppointmentID desc;
+
+select * from TestTypes;
+select * from ApplicationTypes;
+
+
+
+SELECT TOP 1 Test.TestResult
+FROM TestAppointments
+inner Join Test on Test.TestID = TestAppointments.TestAppointmentID
+
+WHERE TestAppointmentForLocalDrivingLicenseAppID = 1053
+  AND AppointmentTestTypeID = 3
+ORDER BY TestAppointmentID DESC ;
+
+-- check if the pervious test has finished or not (for retake)
+
+Select top 1  R = 'T'
+from TestAppointments 
+where TestAppointments.TestAppointmentForLocalDrivingLicenseAppID = 1053
+and TestAppointments.AppointmentTestTypeID = 3
+and TestAppointments.IsLocked = 1 -- Test Finished
+order by TestAppointmentID DESC ;
+
+
+Select top 1  Test.TestResult
+from TestAppointments 
+Inner Join Test on Test.TestID = TestAppointments.TestAppointmentID
+where TestAppointments.TestAppointmentForLocalDrivingLicenseAppID = 1053
+and TestAppointments.AppointmentTestTypeID = 3
+and TestAppointments.IsLocked = 1 -- Test Finished
+order by TestAppointmentID DESC
+
+
+select * from TestAppointments
+Inner Join Test on Test.TestID = TestAppointments.TestAppointmentID
+where TestAppointments.TestAppointmentForLocalDrivingLicenseAppID = 1055
+
+Select top 1 Test.TestResult
+from TestAppointments
+Inner Join Test on Test.AppointmentOfTestID = TestAppointments.TestAppointmentID
+
+where 
+Test.TestResult = 0 and TestAppointments.IsLocked = 1 -- Test Finished
+and TestAppointments.TestAppointmentForLocalDrivingLicenseAppID = 1055
+and AppointmentTestTypeID =1
+order by TestAppointmentID DESC;
+
+Select * from Applications;
+Select * from ApplicationTypes;
+Select * from TestTypes;
+
+Select * from TestAppointments
+order by TestAppointmentID desc;

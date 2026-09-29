@@ -144,8 +144,27 @@ namespace FrontEnd
                 this.ScheduleStreetToolStripMenuItem.Enabled = false; // as the street test has completed 
             }
 
+            if (clsCheckTests.CheckIfVisionTestHasCompletedOrNot(selectedRowIndex) && clsCheckTests.CheckIfWrittenTestHasCompletedOrNot(selectedRowIndex) && clsCheckTests.CheckIfStreetTestHasCompletedOrNot(selectedRowIndex))
+            {
+                this.ScheduletoolStripMenuItem.Enabled = false;
+                this.issueLicenseToolStripMenuItem.Enabled = true; // as all the tests have been completed we can issue the license
+            }
+
+            // If  The License has been issued then we will disable all the schedule test menu items
+            if (clsCheckTests.CheckIfTheLicenseHasBeenIssuedOrNot(selectedRowIndex))
+            {
+                this.ScheduletoolStripMenuItem.Enabled = false;
+                showLicenseToolStripMenuItem.Enabled = true; // as i has issued the licnese we can show the license
+                cancelToolStripMenuItem.Enabled = false;
+                editApplicationToolStripMenuItem.Enabled = false;
+                deleteApplicationToolStripMenuItem.Enabled = false;
+                this.issueLicenseToolStripMenuItem.Enabled = false;
+            }
+
+
         }
 
+        // Local Driving License Applications DataGridView Selection Changed Event
         private void DGVLocalSelectionChanged(object sender, EventArgs e)
         {
             if (this.DgvLocal.CurrentRow != null && DgvLocal.CurrentRow.Cells != null && int.TryParse(DgvLocal.CurrentRow.Cells[0]?.Value?.ToString(), out int Row))
@@ -267,6 +286,21 @@ namespace FrontEnd
             frmManagePractical?.ShowDialog();
             frmManagePractical?.Dispose();
             RefreshDataGridView();
+        }
+
+        private void issueLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void showLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
 

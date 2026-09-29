@@ -25,7 +25,10 @@ namespace BussinessLogicLayer
             return clsCheckIfTestHasFinishedOrNot.CheckIfTestHasFinishedOrNot(TestTypeID: (int)clsTestTypes.enTestTypes.PracticalTest, LocalApplicationID: LocalDrivingLicenseApplication);
         }
 
-
+        public static bool CheckIfTheLicenseHasBeenIssuedOrNot(int LocalDrivingLicenseApplication)
+        {
+            return clsCheckIfThereIsLicenseOrNot.CheckIfThereIsLicenseOrNot(clsLocalDrivingLicenseApplications.FindLocalDrivingLicenseApplicationByLocalID(LocalDrivingLicenseApplication).Application.ApplicationID );
+        }
 
     }
 }
