@@ -74,7 +74,7 @@ namespace BussinessLogicLayer
         }
 
 
-     public   Action<string> OnSaveGetError;
+        public   Action<string> OnSaveGetError;
         public Action<int> GetLicenseIDAfterSaving;
 
         public bool Save()

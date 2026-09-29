@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BussinessLogicLayer
 {
-    public static  class clsCheckTests
+    public static  class clsCheckExistence
     {
 
         public static bool CheckIfVisionTestHasCompletedOrNot(int LocalDrivingLicenseApplication)
@@ -25,9 +25,9 @@ namespace BussinessLogicLayer
             return clsCheckIfTestHasFinishedOrNot.CheckIfTestHasFinishedOrNot(TestTypeID: (int)clsTestTypes.enTestTypes.PracticalTest, LocalApplicationID: LocalDrivingLicenseApplication);
         }
 
-        public static bool CheckIfTheLicenseHasBeenIssuedOrNot(int LocalDrivingLicenseApplication)
+        public static bool CheckIfTheLicenseHasBeenIssuedOrNot(int ApplicationID)
         {
-            return clsCheckIfThereIsLicenseOrNot.CheckIfThereIsLicenseOrNot(clsLocalDrivingLicenseApplications.FindLocalDrivingLicenseApplicationByLocalID(LocalDrivingLicenseApplication).Application.ApplicationID );
+            return clsCheckIfThereIsLicenseOrNot.CheckIfThereIsLicenseOrNot(ApplicationID);
         }
 
     }
