@@ -37,6 +37,9 @@
     <Compile Update="frmAddNewAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmAddNewLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmApplicationTypes.cs">
       <SubType>Form</SubType>
     </Compile>

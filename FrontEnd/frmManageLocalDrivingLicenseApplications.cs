@@ -290,7 +290,9 @@ namespace FrontEnd
 
         private void issueLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmAddNewLicense frmAddNewLicense = new frmAddNewLicense(this.selectedRowIndex);
+            frmAddNewLicense?.ShowDialog();
+            frmAddNewLicense?.Dispose();
         }
 
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)

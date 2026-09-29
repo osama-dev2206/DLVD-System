@@ -57,12 +57,62 @@ namespace BussinessLogicLayer
             return(LicenseID !=-1); 
         }
 
+        clsDrivers Driver = new clsDrivers();
+        private void AddNewDriver()
+        {
+            Driver.CreatedByUserID = this.CreatedByUserID;
+            Driver.DriverPersonID = this.ApplicantPersonID;
+            Driver.Save();
+        }
+
+     public   Action<string> OnSaveGetError;
+        public Action<int> GetLicenseIDAfterSaving;
 
         public bool Save()
         {
+            switch (this.Mode)
+            {
+                case enMode.Add:
+                    {
+                        if(!clsDrivers.IsDriverExists(this.ApplicantPersonID)) // if the driver does not exist, we need to add a new driver first
+                        {
+                            AddNewDriver(); //add the new driver
+                            if (Driver.DriverID != -1)
+                            {
+                                this.LicenseDriverID = Driver.DriverID; // set the LicenseDriverID to the newly created driver's ID
+                            }
+                            else
+                            {
+                                OnSaveGetError?.Invoke("Failed to add new driver.");
+                            }
 
+                        }
+
+                        else // Exists
+                        {
+                          clsDrivers  D =   clsDrivers.FindDriverByPersonID(this.ApplicantPersonID);
+                            this.LicenseDriverID = D.DriverID;
+                        }
+
+                        if (this.AddNewLicense())
+                        {
+                            this.Mode = enMode.Edit; // Change mode to Edit after successful addition
+                            GetLicenseIDAfterSaving.Invoke(this.LicenseID); // Notify the caller with the new LicenseID)
+                            return true;
+                        }
+                        else
+                        {
+                            OnSaveGetError?.Invoke("Failed to add new license.");
+                            return false;
+                        }
+
+                    
+                    }
+            }
             return false;
         }
+
+
 
     }
 
