@@ -293,6 +293,7 @@ namespace FrontEnd
             frmAddNewLicense frmAddNewLicense = new frmAddNewLicense(this.selectedRowIndex);
             frmAddNewLicense?.ShowDialog();
             frmAddNewLicense?.Dispose();
+            RefreshDataGridView();
         }
 
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
