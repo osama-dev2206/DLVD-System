@@ -52,7 +52,7 @@ namespace BussinessLogicLayer
        driver = new 
                clsDrivers(Convert.ToInt32(dr["DriverID"]), Convert.ToInt32(dr["DriverPersonID"]),
                Convert.ToInt32(dr["CreatedByUserID"]), 
-               DateOnly.FromDateTime(Convert.ToDateTime(dr["CreatedDate"])));
+               DateOnly.FromDateTime(Convert.ToDateTime(dr["CreateDate"])));
 
             
             }
