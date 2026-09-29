@@ -121,7 +121,7 @@ namespace FrontEnd
                 return;
             }
 
-            if (!clsCheckTests.CheckIfVisionTestHasCompletedOrNot(selectedRowIndex)) // if vision test has not been completed then we can schedule the test 
+            if (!clsCheckExistence.CheckIfVisionTestHasCompletedOrNot(selectedRowIndex)) // if vision test has not been completed then we can schedule the test 
             {
                 this.scheduleVisionTestToolStripMenuItem.Enabled = true;
                 this.ScheduleWrittenToolStripMenuItem.Enabled = false;
@@ -134,24 +134,24 @@ namespace FrontEnd
                 this.ScheduleStreetToolStripMenuItem.Enabled = false;
             }
 
-            if (clsCheckTests.CheckIfWrittenTestHasCompletedOrNot(selectedRowIndex)) // if written test has not been completed then we can schedule the test 
+            if (clsCheckExistence.CheckIfWrittenTestHasCompletedOrNot(selectedRowIndex)) // if written test has not been completed then we can schedule the test 
             {
                 this.ScheduleWrittenToolStripMenuItem.Enabled = false; // as the written has completed 
                 this.ScheduleStreetToolStripMenuItem.Enabled = true;
             }
-            if (clsCheckTests.CheckIfStreetTestHasCompletedOrNot(selectedRowIndex)) // if street test has not been completed then we can schedule the test 
+            if (clsCheckExistence.CheckIfStreetTestHasCompletedOrNot(selectedRowIndex)) // if street test has not been completed then we can schedule the test 
             {
                 this.ScheduleStreetToolStripMenuItem.Enabled = false; // as the street test has completed 
             }
 
-            if (clsCheckTests.CheckIfVisionTestHasCompletedOrNot(selectedRowIndex) && clsCheckTests.CheckIfWrittenTestHasCompletedOrNot(selectedRowIndex) && clsCheckTests.CheckIfStreetTestHasCompletedOrNot(selectedRowIndex))
+            if (clsCheckExistence.CheckIfVisionTestHasCompletedOrNot(selectedRowIndex) && clsCheckExistence.CheckIfWrittenTestHasCompletedOrNot(selectedRowIndex) && clsCheckExistence.CheckIfStreetTestHasCompletedOrNot(selectedRowIndex))
             {
                 this.ScheduletoolStripMenuItem.Enabled = false;
                 this.issueLicenseToolStripMenuItem.Enabled = true; // as all the tests have been completed we can issue the license
             }
 
-            // If  The License has been issued then we will disable all the schedule test menu items
-            if (clsCheckTests.CheckIfTheLicenseHasBeenIssuedOrNot(selectedRowIndex))
+            // If  The License has been issued then we will disable all the schedule test menu items (selectedRowIndex is LDL APP ID ) 
+            if (clsCheckExistence.CheckIfTheLicenseHasBeenIssuedOrNot( clsLocalDrivingLicenseApplications.FindLocalDrivingLicenseApplicationByLocalID( selectedRowIndex).Application.ApplicationID ))
             {
                 this.ScheduletoolStripMenuItem.Enabled = false;
                 showLicenseToolStripMenuItem.Enabled = true; // as i has issued the licnese we can show the license
@@ -298,7 +298,9 @@ namespace FrontEnd
 
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmShowLicense showLicense = new frmShowLicense(  clsLocalDrivingLicenseApplications.FindLocalDrivingLicenseApplicationByLocalID(  this.selectedRowIndex).Application.ApplicationID );
+            showLicense?.ShowDialog();
+            showLicense?.Dispose();
         }
 
         private void showLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)

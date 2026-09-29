@@ -4,6 +4,9 @@
     <Compile Update="ctrlAddEditPerson.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ctrlLicenseInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="ctrlRetakeTestInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -77,6 +80,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="frmShowCurrentUserInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmShowLicense.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="frmShowLocalDrivingLicApplicationDetails.cs">
