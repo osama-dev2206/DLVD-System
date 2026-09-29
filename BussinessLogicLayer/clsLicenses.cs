@@ -1,6 +1,7 @@
 ﻿using DataAccessLayer;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace BussinessLogicLayer
@@ -64,6 +65,14 @@ namespace BussinessLogicLayer
             Driver.DriverPersonID = this.ApplicantPersonID;
             Driver.Save();
         }
+        private void UpdateMainApplication()
+        {
+            clsApplications app = clsApplications.GetApplicationObjByAppID(this.LicenseApplicationID);
+            app.ApplicationStatus = (byte)clsApplications.enApplicationStatus.Completed;
+            app.LastStatusDateTime = DateTime.Now;
+            app.SaveApplication(); // update the main application
+        }
+
 
      public   Action<string> OnSaveGetError;
         public Action<int> GetLicenseIDAfterSaving;
@@ -98,6 +107,8 @@ namespace BussinessLogicLayer
                         {
                             this.Mode = enMode.Edit; // Change mode to Edit after successful addition
                             GetLicenseIDAfterSaving.Invoke(this.LicenseID); // Notify the caller with the new LicenseID)
+
+                            UpdateMainApplication(); // as the license is added successfully, we need to update the main application status to Completed
                             return true;
                         }
                         else
@@ -113,9 +124,14 @@ namespace BussinessLogicLayer
         }
 
 
+        public static DataTable GetLicenseInfoByApplicationID(int ApplicationID)
+        {
+            return clsGetDriverLicenseInfo.GetDriverLicenseInfoByApplicationID(ApplicationID);
+        }
 
-    }
 
 
+
+        }
 
 }
