@@ -149,10 +149,10 @@
             // labIssueReason
             // 
             labIssueReason.AutoSize = true;
-            labIssueReason.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labIssueReason.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labIssueReason.Location = new Point(740, 98);
             labIssueReason.Name = "labIssueReason";
-            labIssueReason.Size = new Size(20, 17);
+            labIssueReason.Size = new Size(24, 23);
             labIssueReason.TabIndex = 49;
             labIssueReason.Text = "??";
             // 
@@ -169,9 +169,9 @@
             // pbProfile
             // 
             pbProfile.Image = Properties.Resources.Female_512;
-            pbProfile.Location = new Point(868, 26);
+            pbProfile.Location = new Point(942, 33);
             pbProfile.Name = "pbProfile";
-            pbProfile.Size = new Size(238, 212);
+            pbProfile.Size = new Size(174, 189);
             pbProfile.SizeMode = PictureBoxSizeMode.Zoom;
             pbProfile.TabIndex = 46;
             pbProfile.TabStop = false;
@@ -209,10 +209,10 @@
             // labDateOfBirth
             // 
             labDateOfBirth.AutoSize = true;
-            labDateOfBirth.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labDateOfBirth.Location = new Point(743, 200);
+            labDateOfBirth.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labDateOfBirth.Location = new Point(740, 200);
             labDateOfBirth.Name = "labDateOfBirth";
-            labDateOfBirth.Size = new Size(20, 17);
+            labDateOfBirth.Size = new Size(24, 23);
             labDateOfBirth.TabIndex = 42;
             labDateOfBirth.Text = "??";
             // 
