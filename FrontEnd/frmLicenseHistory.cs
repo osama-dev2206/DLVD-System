@@ -14,7 +14,7 @@ namespace FrontEnd
         {
             InitializeComponent();
             this.ctrlPersonInfo1.LoadInfoUsingPersonID(ApplicantPersonID);
-            //this.ctrlGetLicensesHistory1.FillLicensesHistory(ApplicantPersonID);
+            this.ctrlGetLicensesHistory1.FillLicensesHistory(ApplicantPersonID);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

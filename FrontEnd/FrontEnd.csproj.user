@@ -61,6 +61,9 @@
     <Compile Update="frmLicenseHistory.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmListDrivers.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>

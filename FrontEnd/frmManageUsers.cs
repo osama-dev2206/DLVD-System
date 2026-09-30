@@ -160,6 +160,8 @@ namespace FrontEnd
             }
         }
 
+
+
         private void DGVUsersSelectionChanged(object sender, EventArgs e)
         {
             if (DGVUsers.CurrentRow != null && DGVUsers.CurrentRow.Cells != null && int.TryParse(DGVUsers.CurrentRow.Cells[0]?.Value?.ToString(), out int Row))
