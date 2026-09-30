@@ -102,6 +102,13 @@ namespace BussinessLogicLayer
             {
                 case enMode.Add:
                     {
+                        // If this person has applied for the same application before to get lic and he has it now donot allow him to apply again 
+                        if (clsLicenses.IsPersonHasThisLicenseActive(ApplicantPersonID: this.Application.ApplicantPersonID, LicenseClassID: this.LicenseClassID))
+                        {
+                            OnSaveErrorGetMessage?.Invoke("The person already has this license class and it is active. Cannot apply again.");
+                            return false;
+                        }
+
                         if (!CheckBeforeSave()) return false; // check if the application is valid to save
 
                         if (this.Application.SaveApplication()) // add the application to db first to get application id 
