@@ -1,4 +1,4 @@
-Create View ShowBasicPersonInfo
+MyCreate View ShowBasicPersonInfo
 As 
 
 Select People.PersonID , People.NationalNumber , People.FirstName , People.SecondName, People.ThirdName  ,People.LastName , 
@@ -169,3 +169,38 @@ INNER JOIN dbo.Applications
 INNER JOIN dbo.People
     ON dbo.People.PersonID =
        dbo.Applications.ApplicantPersonID;
+      
+-----------------------
+
+Create View DriverLicenseInfo As
+Select LicenseClasses.ClassName ,
+People.FirstName + ' ' + 
+People.SecondName + ' ' + People.ThirdName + ' ' + People.LastName As FullName ,
+Licenses.LicenseID , 
+People.NationalNumber ,
+Gender =
+case
+When People.Gender = 1 Then 'M'
+When People.Gender = 2 Then 'F'
+End ,
+Licenses.IssueDate , Licenses.ExpirationDate , Licenses.IsActive
+, Drivers.DriverID,
+People.DateOfBirth , Licenses.Notes ,
+IssueReason =
+Case
+ when Licenses.IssueReason = 1 Then 'First Time' 
+
+when  Licenses.IssueReason = 2 then 'Renew' 
+
+when  Licenses.IssueReason = 3 then 'Replacement For Damage' 
+
+when  Licenses.IssueReason =  4 then 'Replacement For Lost'
+End 
+
+from Applications
+Inner Join LocalDrivingLicenseApplications On 
+LocalDrivingLicenseApplications.LApplicationID = Applications.ApplicationID
+Inner Join Licenses On Licenses.LicApplicationID = Applications.ApplicationID
+Inner Join Drivers On Drivers.DriverPersonID = Applications.ApplicantPersonID
+Inner Join People On People.PersonID = Drivers.DriverPersonID
+Inner Join LicenseClasses On LicenseClasses.LicenseClassID = Licenses.ClassOfLicenseID;

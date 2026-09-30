@@ -130,6 +130,10 @@ namespace BussinessLogicLayer
         }
 
 
+        public static DataTable GetAllLicenseByApplicantID(int ApplicantID)
+        {
+            return clsLicenseHistory.GetLicenseHistoryByApplicantID(ApplicantID);
+        }
 
 
         }
