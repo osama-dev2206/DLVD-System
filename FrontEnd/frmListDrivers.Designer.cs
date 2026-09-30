@@ -69,7 +69,7 @@
             // 
             labCountOfRecords.AutoSize = true;
             labCountOfRecords.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labCountOfRecords.Location = new Point(142, 624);
+            labCountOfRecords.Location = new Point(145, 638);
             labCountOfRecords.Name = "labCountOfRecords";
             labCountOfRecords.Size = new Size(23, 28);
             labCountOfRecords.TabIndex = 26;
@@ -79,7 +79,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(6, 623);
+            label3.Location = new Point(9, 637);
             label3.Name = "label3";
             label3.Size = new Size(130, 31);
             label3.TabIndex = 25;
@@ -95,9 +95,9 @@
             btnClose.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             btnClose.Image = Properties.Resources.Close_32;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(1119, 608);
+            btnClose.Location = new Point(1143, 623);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(169, 53);
+            btnClose.Size = new Size(161, 53);
             btnClose.TabIndex = 24;
             btnClose.Text = "   Close";
             btnClose.TextAlign = ContentAlignment.MiddleLeft;
@@ -139,12 +139,13 @@
             cbFilter.Name = "cbFilter";
             cbFilter.Size = new Size(230, 36);
             cbFilter.TabIndex = 21;
+            cbFilter.SelectedIndexChanged += cbFilter_SelectedIndexChanged;
             // 
             // frmListDrivers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1316, 661);
+            ClientSize = new Size(1316, 676);
             Controls.Add(DGVDrivers);
             Controls.Add(labCountOfRecords);
             Controls.Add(label3);

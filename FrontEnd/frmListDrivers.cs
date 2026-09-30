@@ -13,6 +13,7 @@ namespace FrontEnd
     {
         public frmListDrivers()
         {
+     
             InitializeComponent();
             RefreshDataGridView();
         }
@@ -66,23 +67,23 @@ namespace FrontEnd
 
                     if (int.TryParse(SearchKeyword, out int id))
                     {
-                      
+                     this.DGVDrivers.DataSource =  clsDrivers.FindDriverByDriverID(id);
                     }
                     break;
 
                 case "Person ID":
-                    if (int.TryParse(SearchKeyword, out int userId))
+                    if (int.TryParse(SearchKeyword, out int PersonId))
                     {
-                        
+                        this.DGVDrivers.DataSource = clsDrivers.FindDriverByPersonID(PersonId);
                     }
                     break;
 
                 case "National No":
-                  
+                    this.DGVDrivers.DataSource = clsDrivers.FindDriverByNationalNo(SearchKeyword);
                     break;
 
                 case "Full Name":
-                 
+                    this.DGVDrivers.DataSource = clsDrivers.FindDriverByFullName(SearchKeyword);
                     break;
 
 
@@ -90,14 +91,6 @@ namespace FrontEnd
             }
 
         }
-
-        /*
-         None
-Driver ID
-Person ID
-National No
-Full Name
-         */
 
         // changing the filter handling only
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)

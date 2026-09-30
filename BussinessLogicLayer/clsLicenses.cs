@@ -99,7 +99,7 @@ namespace BussinessLogicLayer
 
                         else // Exists
                         {
-                          clsDrivers  D =   clsDrivers.FindDriverByPersonID(this.ApplicantPersonID);
+                          clsDrivers  D =   clsDrivers.FindDriverObjByPersonID(this.ApplicantPersonID);
                             this.LicenseDriverID = D.DriverID;
                         }
 
