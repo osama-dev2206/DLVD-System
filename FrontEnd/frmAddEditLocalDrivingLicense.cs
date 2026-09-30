@@ -170,7 +170,8 @@ namespace FrontEnd
             { 
                 case enFormStatus.Add:
                 {
-                    if (this.NewLocalDrivingLicenseApplication.SaveLocalDrivingLicenseApplication())
+                        // you mustn't save application that has license with the same new application 
+                    if (  this.NewLocalDrivingLicenseApplication.SaveLocalDrivingLicenseApplication())
                     {
                         MessageBox.Show("Local Driving License Application saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.formStatus = enFormStatus.Edit;

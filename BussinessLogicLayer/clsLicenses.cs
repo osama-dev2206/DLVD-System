@@ -83,6 +83,7 @@ namespace BussinessLogicLayer
             {
                 case enMode.Add:
                     {
+
                         if(!clsDrivers.IsDriverExists(this.ApplicantPersonID)) // if the driver does not exist, we need to add a new driver first
                         {
                             AddNewDriver(); //add the new driver
@@ -136,6 +137,11 @@ namespace BussinessLogicLayer
         }
 
 
+        // Check if the license is active or not by LicenseID
+        internal static bool IsPersonHasThisLicenseActive(int ApplicantPersonID , int LicenseClassID)
+        {
+            return clsCheckLicenseExistense.CheckIfPersonHasActiveLicenseOfClass( PersonID: ApplicantPersonID ,  LicenseClassID: LicenseClassID);
+        }
 
         }
 
