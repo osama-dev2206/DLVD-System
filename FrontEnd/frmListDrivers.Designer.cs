@@ -57,7 +57,7 @@
             DGVDrivers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGVDrivers.BackgroundColor = Color.FromArgb(224, 224, 224);
             DGVDrivers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGVDrivers.GridColor = SystemColors.HighlightText;
+            DGVDrivers.GridColor = Color.FromArgb(224, 224, 224);
             DGVDrivers.Location = new Point(12, 340);
             DGVDrivers.Name = "DGVDrivers";
             DGVDrivers.ReadOnly = true;
