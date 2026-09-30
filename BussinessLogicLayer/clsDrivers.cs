@@ -43,7 +43,7 @@ namespace BussinessLogicLayer
             return clsCheckIfThePersonIsDriverOrNot.CheckIfThePersonIsDriverOrNot(DriverPersonID);
         }
 
-        internal static clsDrivers FindDriverByPersonID(int DriverPersonID)
+        internal static clsDrivers FindDriverObjByPersonID(int DriverPersonID)
         {
             DataTable dt = clsFindDriverByPersonID.FindDriverByPersonID(DriverPersonID);
             clsDrivers driver= null;
@@ -81,6 +81,28 @@ namespace BussinessLogicLayer
             return clsListDrivers.ListAllDrivers();
         }
 
-
+        public static DataTable FindDriverByDriverID(int DriverID)
+        {
+            return clsFindDriver.FindDriver(clsFindDriver.enFindDriverBy.DriverID, DriverID);
         }
+
+        public static DataTable FindDriverByPersonID(int PersonID)
+        {
+            return clsFindDriver.FindDriver(clsFindDriver.enFindDriverBy.PersonID, PersonID);
+        }
+
+        public static DataTable FindDriverByNationalNo(string  NationalNo)
+        {
+            return clsFindDriver.FindDriver(clsFindDriver.enFindDriverBy.NationalNo, NationalNo.Trim());
+        }
+
+       public static DataTable FindDriverByFullName(string FullName)
+        {
+            return clsFindDriver.FindDriver(clsFindDriver.enFindDriverBy.FullName, FullName.Trim());
+        }
+
+
+
+    }
+
 }
