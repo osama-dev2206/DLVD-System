@@ -18,7 +18,7 @@ Licenses.ExpirationDate
 from Licenses
 Inner Join LicenseClasses On LicenseClasses.LicenseClassID = Licenses.ClassOfLicenseID
 Inner Join Applications On Applications.ApplicationID = Licenses.LicApplicationID
-where Applications.ApplicationID =  @ApplicantID  ; ";
+where Applications.ApplicantPersonID =  @ApplicantID  ; ";
 
 
         public static DataTable GetLicenseHistoryByApplicantID(int ApplicantID)

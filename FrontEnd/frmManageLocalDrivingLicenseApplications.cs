@@ -320,7 +320,9 @@ namespace FrontEnd
 
         private void showLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmLicenseHistory frmLicenseHistory = new frmLicenseHistory(clsLocalDrivingLicenseApplications.FindLocalDrivingLicenseApplicationByLocalID(this.selectedRowIndex).Application.ApplicantPersonID);
+            frmLicenseHistory?.ShowDialog();
+            frmLicenseHistory?.Dispose();
         }
 
 

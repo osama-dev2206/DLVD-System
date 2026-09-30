@@ -58,6 +58,9 @@
     <Compile Update="frmEditTestType.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmLicenseHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
