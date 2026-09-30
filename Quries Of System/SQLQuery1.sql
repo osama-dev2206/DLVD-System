@@ -741,3 +741,104 @@ Select * from TestTypes;
 
 Select * from TestAppointments
 order by TestAppointmentID desc;
+
+
+-- Driver
+Select * from Drivers;
+
+Insert Into Drivers(DriverPersonID,CreatedByUserID,CreateDate)
+values ('@PersonID','@CreatedByUserID','@CreateDate');
+
+
+--- License 
+
+-- If there is lic or not 
+Select Licenses.LicenseID
+From Licenses 
+where Licenses.LicApplicationID = 1
+
+-- is this Driver Registered Before or not
+Select *
+from Drivers
+Where Drivers.DriverPersonID = 11;
+
+
+/*
+## Issue Reason :
+
+1-first time 
+
+2-renew 
+
+3-replacement for damage 
+
+4-replacement for lost
+
+*/
+
+Select * from Licenses;
+Select SCOPE_IDENTITY(); 
+
+Insert Into Licenses
+(
+    LicApplicationID,
+    LicDriverID,
+    ClassOfLicenseID,
+    IssueDate,
+    ExpirationDate,
+    Notes,
+    PaidFees,
+    IsActive,
+    IssueReason,
+    CreatedByUserID
+)
+values 
+('@LicApplicationID', '@LicDriverID', 
+'@ClassOfLicenseID', '@IssueDate', 
+'@ExpirationDate', '@Notes', '@PaidFees', 
+'@IsActive', '@IssueReason', '@CreatedByUserID');
+
+Select * from Drivers;
+Select * from Licenses;
+
+Select LicenseClasses.ClassName ,
+People.FirstName + ' ' + 
+People.SecondName + ' ' + People.ThirdName + ' ' + People.LastName As FullName ,
+Licenses.LicenseID , 
+People.DateOfBirth , 
+People.NationalNumber ,
+Gender =
+case
+When People.Gender = 1 Then 'M'
+When People.Gender = 2 Then 'F'
+End ,
+Licenses.IssueDate , Licenses.ExpirationDate , Licenses.IsActive
+, Drivers.DriverID,
+People.DateOfBirth , Licenses.Notes ,
+IssueReason =
+Case
+ when Licenses.IssueReason = 1 Then 'First Time' 
+
+when  Licenses.IssueReason = 2 then 'Renew' 
+
+when  Licenses.IssueReason = 3 then 'Replacement For Damage' 
+
+when  Licenses.IssueReason =  4 then 'Replacement For Lost'
+End 
+
+from Applications
+Inner Join LocalDrivingLicenseApplications On 
+LocalDrivingLicenseApplications.LApplicationID = Applications.ApplicationID
+Inner Join Licenses On Licenses.LicApplicationID = Applications.ApplicationID
+Inner Join Drivers On Drivers.DriverPersonID = Applications.ApplicantPersonID
+Inner Join People On People.PersonID = Drivers.DriverPersonID
+Inner Join LicenseClasses On LicenseClasses.LicenseClassID = Licenses.ClassOfLicenseID
+
+--
+Select * From LicenseClasses;
+Select * from Licenses;
+---
+Select * from DriverLicenseInfo
+where ApplicationID =1069 ;
+
+Select * from Drivers;
