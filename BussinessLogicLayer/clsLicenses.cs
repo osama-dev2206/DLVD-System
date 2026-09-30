@@ -143,6 +143,8 @@ namespace BussinessLogicLayer
             return clsCheckLicenseExistense.CheckIfPersonHasActiveLicenseOfClass( PersonID: ApplicantPersonID ,  LicenseClassID: LicenseClassID);
         }
 
+
+
         }
 
 }
