@@ -50,7 +50,7 @@
             btnClose.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClose.Image = Properties.Resources.Close_321;
             btnClose.ImageAlign = ContentAlignment.BottomLeft;
-            btnClose.Location = new Point(779, 646);
+            btnClose.Location = new Point(858, 688);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(217, 51);
             btnClose.TabIndex = 2;
@@ -62,7 +62,7 @@
             // 
             ctrlGetLicensesHistory1.Location = new Point(15, 315);
             ctrlGetLicensesHistory1.Name = "ctrlGetLicensesHistory1";
-            ctrlGetLicensesHistory1.Size = new Size(1048, 312);
+            ctrlGetLicensesHistory1.Size = new Size(1048, 348);
             ctrlGetLicensesHistory1.TabIndex = 3;
             // 
             // frmLicenseHistory
@@ -70,7 +70,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1087, 699);
+            ClientSize = new Size(1087, 764);
             Controls.Add(ctrlGetLicensesHistory1);
             Controls.Add(btnClose);
             Controls.Add(ctrlPersonInfo1);

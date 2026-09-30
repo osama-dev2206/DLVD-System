@@ -75,6 +75,13 @@ namespace FrontEnd
             frmManageLocal?.Dispose();
         }
 
+        private void driversToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListDrivers frmListDrivers = new frmListDrivers();
+            frmListDrivers?.ShowDialog();
+            frmListDrivers?.Dispose();
+        }
+
 
     }
 }
