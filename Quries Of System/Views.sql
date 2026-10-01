@@ -204,3 +204,18 @@ Inner Join Licenses On Licenses.LicApplicationID = Applications.ApplicationID
 Inner Join Drivers On Drivers.DriverPersonID = Applications.ApplicantPersonID
 Inner Join People On People.PersonID = Drivers.DriverPersonID
 Inner Join LicenseClasses On LicenseClasses.LicenseClassID = Licenses.ClassOfLicenseID;
+
+
+Create View ListDrivers As
+Select Drivers.DriverID , People.PersonID  ,
+People.NationalNumber , 
+People.FirstName + ' ' + People.SecondName + ' ' + People.ThirdName + ' ' + People.LastName As [Full Name] ,
+Drivers.CreateDate , 
+[Active License] =
+(
+Select Count(*) From Licenses 
+where Licenses.LicDriverID = Drivers.DriverID
+)
+
+From Drivers
+Inner Join People on People.PersonID = Drivers.DriverPersonID;
