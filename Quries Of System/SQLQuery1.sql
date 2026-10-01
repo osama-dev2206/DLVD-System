@@ -842,3 +842,53 @@ Select * from DriverLicenseInfo
 where ApplicationID =1069 ;
 
 Select * from Drivers;
+
+-- Get The License History For Specific Person (By PersonID) (Local)
+Select Licenses.LicenseID ,
+Licenses.LicApplicationID  , 
+LicenseClasses.ClassName ,
+Licenses.IssueDate ,
+Licenses.ExpirationDate 
+,Licenses.IsActive
+from Licenses
+Inner Join LicenseClasses On LicenseClasses.LicenseClassID = Licenses.ClassOfLicenseID
+Inner Join Applications On Applications.ApplicationID = Licenses.LicApplicationID
+where Applications.ApplicantPersonID = 7  ;
+
+
+---------------- Drivers 
+
+-- List Drivers
+Select Drivers.DriverID , People.PersonID  ,
+People.NationalNumber , 
+People.FirstName + ' ' + People.SecondName + ' ' + People.ThirdName + ' ' + People.LastName As [Full Name] ,
+Drivers.CreateDate , 
+[Active License] =
+(
+Select Count(*) From Licenses 
+where Licenses.LicDriverID = Drivers.DriverID
+)
+
+From Drivers
+Inner Join People on People.PersonID = Drivers.DriverPersonID
+
+Select * from ListDrivers
+where DriverID =1 ;
+
+Select * from ListDrivers
+where PersonID =7 ;
+
+
+Select * from ListDrivers
+where NationalNumber =  'n1';
+
+Select * from ListDrivers
+where [Full Name] like '%' + 'M' + '%';
+
+
+Select R = 'T'
+from Licenses
+Inner join Applications on Applications.ApplicationID = Licenses.LicApplicationID
+where Applications.ApplicantPersonID =11 
+and Licenses.IsActive = 1 
+and ClassOfLicenseID =1 ;
