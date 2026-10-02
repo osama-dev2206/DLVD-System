@@ -1,6 +1,7 @@
 ﻿using DataAccessLayer;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace BussinessLogicLayer
@@ -78,10 +79,23 @@ namespace BussinessLogicLayer
              * 2. check if the license is null or not
              * 3. check if the license is active or not
              */
-            if (InternationalNewApplication is null || license is null ||
-                !clsLicenses.IsPersonHasThisLicenseActive(ApplicantPersonID: this.InternationalNewApplication.ApplicantPersonID , LicenseClassID: license.LicenseClassID )  
-                || ! clsLicenses.IsLicenseStillValid(LicenseID: this.license.LicenseID) || license.LicenseClassID != (byte)clsLicenseClasses.enLicenseClasses.Class3)
+            if (InternationalNewApplication is null || license is null  )
             {
+                return false;
+            }
+            else if(!clsLicenses.IsLicenseStillValid(LicenseID: this.license.LicenseID))
+            {
+                OnActionGetError?.Invoke("Your License Is Expired !!!");
+                return false;
+            }
+            else if (!clsLicenses.IsPersonHasThisLicenseActive(ApplicantPersonID: this.InternationalNewApplication.ApplicantPersonID, LicenseClassID: license.LicenseClassID) )
+            {
+                OnActionGetError?.Invoke("Your License Isn't Active !!!");
+                return false;
+            }
+            else if (license.LicenseClassID != (byte)clsLicenseClasses.enLicenseClasses.Class3)
+            {
+                OnActionGetError?.Invoke("Your License Class Must Be Class 3 Type !!!");
                 return false;
             }
             return true;
@@ -91,7 +105,6 @@ namespace BussinessLogicLayer
         {
             if (CheckBeforeAdd() == false)
             {
-                OnActionGetError?.Invoke("Error in checking before adding new International License");
                 return false;
             }
 
@@ -123,6 +136,10 @@ namespace BussinessLogicLayer
         }
 
 
+        public static DataTable GetInternationalLicenseDataView()
+        {
+
+        }
 
     }
 

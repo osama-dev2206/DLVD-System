@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BussinessLogicLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,9 +11,57 @@ namespace FrontEnd
 {
     public partial class frmNewInternationalLicense : Form
     {
+        clsInternationalLicense? International;
+
         public frmNewInternationalLicense()
         {
             InitializeComponent();
+            this.btnIssue.Enabled = false;
+            labLicenseHistory.Enabled = false;
+            labLicenseInfo.Enabled = false;
+
+            this.ctrlFilterFindLicenseByLicid1.OnActionGetLicenseObjByLicID += CtrlFilterFindLicenseByLicid1_OnActionGetLicenseObj;
+            this.ctrlFilterFindLicenseByLicid1.OnError += CtrlFilterFindLicenseByLicid1_OnError;
         }
+
+        // From ctrlFilterFindLicenseByLicid1 when the user enters a license id 
+        void CtrlFilterFindLicenseByLicid1_OnActionGetLicenseObj(clsLicenses Lic) // this event will be triggered when the user selects a license from the search control (and it exists)
+        {
+            this.ctrlDriverInfo1.Enabled = true;
+            this.ctrlDriverInfo1.FillForm(Lic.LicenseApplicationID);
+            this.btnIssue.Enabled = true;
+            labLicenseHistory.Enabled = true;
+
+            International = new clsInternationalLicense(Lic.LicenseID);  // الدولي
+            International.OnActionGetError += GetErrorWhenSaving;
+        }
+
+        void CtrlFilterFindLicenseByLicid1_OnError(bool Error) // From ctrlFilterFindLicenseByLicid1 when the user enters a license id 
+        {
+           this.btnIssue.Enabled = false;
+            this.ctrlDriverInfo1.Enabled= false;
+        }
+
+        void GetErrorWhenSaving(string ErrorMessage) // Error From clsInternationalLicense when saving the new international license to the database
+        {
+            MessageBox.Show(ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnIssue_Click(object sender, EventArgs e)
+        {
+            if (this.International.Save())
+            {
+                MessageBox.Show("International License Issued Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                labLicenseInfo.Enabled = true;
+                this.btnIssue.Enabled = false;
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
     }
 }
