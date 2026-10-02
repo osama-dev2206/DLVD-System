@@ -82,6 +82,13 @@ namespace FrontEnd
             frmListDrivers?.Dispose();
         }
 
+        private void InternationalToolStripMenuItem_Click(object sender, EventArgs e) // Make New Internatioanl Driving License
+        {
+            frmNewInternationalLicense newInternationalLicense = new frmNewInternationalLicense();
+            newInternationalLicense?.ShowDialog();
+            newInternationalLicense?.Dispose();
+        }
+
 
     }
 }

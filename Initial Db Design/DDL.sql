@@ -224,4 +224,19 @@ alter table LicenseClasses
 Add Constraint Default_MinAge 
 Default 18 for [MinimumAllowedAge];
 
+---- International Driving License
+
+Create Table InternationalLicenses
+(
+InternationalLicenseID int not null Primary Key Identity(1,1) ,
+IssueDate DateTime not null default GETDATE() ,
+ExpirationDate Date not null ,
+IsActive bit not null ,
+UserID int not null Foreign Key References Users(UserID) ,
+DriverID int not null Foreign Key References Drivers(DriverID) ,
+LicenseID int not null Foreign Key References Licenses(LicenseID) ,
+ApplicationID int not null Foreign Key References Applications(ApplicationID)
+);
+
+select * from InternationalLicenses ;
 

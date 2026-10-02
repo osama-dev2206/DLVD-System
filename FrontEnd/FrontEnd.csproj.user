@@ -7,7 +7,7 @@
     <Compile Update="ctrlGetLicensesHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="ctrlLicenseInfo.cs">
+    <Compile Update="ctrlDriverInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="ctrlRetakeTestInfo.cs">
@@ -83,6 +83,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="frmManageWrittenTestAppointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmNewInternationalLicense.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmPeopleManagement.cs">
