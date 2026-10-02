@@ -19,6 +19,7 @@ namespace BussinessLogicLayer
         enum enMode { Add =1 , Update = 2 }
         enMode Mode;
         clsApplications ? InternationalNewApplication = null;
+        clsLicenses ? license = null;
 
         // For Adding
         public clsInternationalLicense(int LicenseID) // send the local driving license id 
@@ -31,7 +32,7 @@ namespace BussinessLogicLayer
             this.UserID = clsCurrentLoggedInUser.User.UserID;
             this.LicenseID = LicenseID;
 
-            clsLicenses license = clsLicenses.GetLicenseObjByLicenseID(LicenseID); // to get license driver id
+            license = clsLicenses.GetLicenseObjByLicenseID(LicenseID); // to get license driver id
 
             if(license is null)
             {
@@ -48,7 +49,7 @@ namespace BussinessLogicLayer
             if(InternationalNewApplication is null)
             {
                 OnActionGetError?.Invoke("Error in creating new application for International License");
-                return;
+                return ;
             }
 
             this.InternationalNewApplication.ApplicantPersonID = clsApplications.GetApplicationObjByAppID(license.LicenseApplicationID).ApplicantPersonID; // get the applicant person id from license 
@@ -59,14 +60,40 @@ namespace BussinessLogicLayer
             this.InternationalNewApplication.PaidFee = clsApplicationTypes.FindAppObjByAppID((int)clsApplicationTypes.enApplicationTypes.NewInternationalDrivingLicense).ApplicationFees;
             this.InternationalNewApplication.CreatedByUserID = clsCurrentLoggedInUser.User.UserID;
 
-            this.InternationalNewApplication.SaveApplication(); // Save the application to get the application id
+           if( !this.InternationalNewApplication.SaveApplication()) // Save the application to get the application id
+            {
+                OnActionGetError?.Invoke("Error in saving application for International License");
+                InternationalNewApplication = null;
+                return;
+            }
+
             this.ApplicationID = this.InternationalNewApplication.ApplicationID; // set the application id to the international license
 
         }
 
+        private bool CheckBeforeAdd()
+        {
+            /*
+             * 1. check if the application has created successfully or not
+             * 2. check if the license is null or not
+             * 3. check if the license is active or not
+             */
+            if (InternationalNewApplication is null || license is null ||
+                !clsLicenses.IsPersonHasThisLicenseActive(ApplicantPersonID: this.InternationalNewApplication.ApplicantPersonID , LicenseClassID: license.LicenseClassID )  
+                || ! clsLicenses.IsLicenseStillValid(LicenseID: this.license.LicenseID) || license.LicenseClassID != (byte)clsLicenseClasses.enLicenseClasses.Class3)
+            {
+                return false;
+            }
+            return true;
+        }
+
         private bool Add()
         {
-            if (InternationalNewApplication is null) return false;
+            if (CheckBeforeAdd() == false)
+            {
+                OnActionGetError?.Invoke("Error in checking before adding new International License");
+                return false;
+            }
 
             this.InternationalLicenseID =
                 clsAddNewInternationalLicense.AddNewInternationalLicense(this.IssueDateTime , this.ExpirationDate, this.IsActive, this.UserID, this.DriverID, this.LicenseID, this.ApplicationID);

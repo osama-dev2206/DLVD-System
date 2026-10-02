@@ -103,7 +103,9 @@ namespace BussinessLogicLayer
                 case enMode.Add:
                     {
                         // If this person has applied for the same application before to get lic and he has it now donot allow him to apply again 
-                        if (clsLicenses.IsPersonHasThisLicenseActive(ApplicantPersonID: this.Application.ApplicantPersonID, LicenseClassID: this.LicenseClassID))
+                        if (clsLicenses.IsPersonHasThisLicenseActive(ApplicantPersonID: this.Application.ApplicantPersonID, LicenseClassID: this.LicenseClassID)  && 
+                            clsLicenses.IsLicenseStillValid(  LicenseID: clsLicenses.GetLicenseObjByPersonID(PersonID: this.Application.ApplicantPersonID , LicenseClassID: this.LicenseClassID).LicenseID   ) 
+                            )
                         {
                             OnSaveErrorGetMessage?.Invoke("The person already has this license class and it is active. Cannot apply again.");
                             return false;
