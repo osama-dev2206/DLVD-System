@@ -32,7 +32,7 @@ namespace FrontEnd
         public void FillCtrlInfoByApplicationID(int ApplicationID)
         {
             DataTable dt;
-            if ((dt = clsApplications.GetApplicationObjDetailsByApplicationID(ApplicationID)) is not null)
+            if ((dt = clsApplications.GetApplicationDetailsByApplicationID(ApplicationID)) is not null)
             {
                 foreach (DataRow R in dt.Rows)
                 {

@@ -98,7 +98,7 @@ namespace FrontEnd
                 }
 
                 this.labDateTime.Text = this.NewLocalDrivingLicenseApplication.Application.ApplicationDateTime.ToString(); // creation date time
-                this.labAppFess.Text = this.NewLocalDrivingLicenseApplication.Application.PaiedFee.ToString();
+                this.labAppFess.Text = this.NewLocalDrivingLicenseApplication.Application.PaidFee.ToString();
 
                 if (this.formStatus == enFormStatus.Add)
                 {

@@ -892,3 +892,34 @@ Inner join Applications on Applications.ApplicationID = Licenses.LicApplicationI
 where Applications.ApplicantPersonID =11 
 and Licenses.IsActive = 1 
 and ClassOfLicenseID =1 ;
+
+
+select * from Licenses
+where Licenses.LicenseID =1;
+
+select * from Applications;
+
+select * from ApplicationTypes;
+
+-------- International Driving License
+
+Select * from ApplicationTypes;
+Select * from LicenseClasses;
+
+Select * from InternationalLicenses;
+
+Insert Into InternationalLicenses
+(
+ IssueDateTime ,
+ ExpirationDate ,
+ IsActive , 
+ UserID , 
+ DriverID , 
+ LicenseID , 
+ ApplicationID
+)
+values
+(
+  '@IssueDateTime' , '@ExpirationDate' , 
+ '@IsActive' , '@UserID' , '@DriverID' , '@LicenseID' , '@ApplicationID'
+);
