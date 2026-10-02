@@ -149,7 +149,6 @@ namespace BussinessLogicLayer
             return clsGetDriverLicenseInfo.GetDriverLicenseInfoByApplicationID(ApplicationID);
         }
 
-
         public static DataTable GetAllLicenseByApplicantID(int ApplicantID)
         {
             return clsLicenseHistory.GetLicenseHistoryByApplicantID(ApplicantID);
@@ -177,7 +176,7 @@ namespace BussinessLogicLayer
                         IssueDate: DateOnly.FromDateTime(Convert.ToDateTime(R["IssueDate"])) ,
                         ExpirationDate: DateOnly.FromDateTime(Convert.ToDateTime(R["ExpirationDate"])),
                         Notes : R["Notes"]?.ToString() ,
-                        PaiedFees: Convert.ToDecimal(R["PaiedFees"]) ,
+                        PaiedFees: Convert.ToDecimal(R["PaidFees"]) ,
                         IsActive: Convert.ToBoolean(R["IsActive"]) ,
                         IssueReason: (enIssueReason)Convert.ToByte(R["IssueReason"]) ,
                         CreatedByUserID: Convert.ToInt32(R["CreatedByUserID"])
@@ -187,12 +186,44 @@ namespace BussinessLogicLayer
             return license;
         }
 
+        internal static clsLicenses GetLicenseObjByPersonID(int PersonID , int LicenseClassID) // the person my has multiple licenses, so we need to specify the LicenseClassID to get the specific license of that class
+        {
+            clsLicenses ? license = null;
 
-        // Check if the license is active or not by LicenseID
+            DataTable dt = clsGetLicenseByPersonID.GetData(PersonID: PersonID, LicenseClassID: LicenseClassID);
+            foreach(DataRow R in dt.Rows)
+            {
+                license = new clsLicenses
+                    (
+                    LicenseID: Convert.ToInt32(R["LicenseID"]),
+                    ApplicationID: Convert.ToInt32(R["LicApplicationID"]),
+                    DriverID: Convert.ToInt32(R["LicDriverID"]),
+                    ClassID: Convert.ToInt32(R["ClassOfLicenseID"]),
+                    IssueDate: DateOnly.FromDateTime(Convert.ToDateTime(R["IssueDate"])),
+                    ExpirationDate: DateOnly.FromDateTime(Convert.ToDateTime(R["ExpirationDate"])),
+                    Notes: R["Notes"]?.ToString(),
+                    PaiedFees: Convert.ToDecimal(R["PaidFees"]),
+                    IsActive: Convert.ToBoolean(R["IsActive"]),
+                    IssueReason: (enIssueReason)Convert.ToByte(R["IssueReason"]),
+                    CreatedByUserID: Convert.ToInt32(R["CreatedByUserID"])
+                    );
+            }
+
+            return license;
+        }
+
+
+        // Check if the license is active or not 
         internal static bool IsPersonHasThisLicenseActive(int ApplicantPersonID , int LicenseClassID)
         {
             return clsCheckLicenseExistense.CheckIfPersonHasActiveLicenseOfClass( PersonID: ApplicantPersonID ,  LicenseClassID: LicenseClassID);
         }
+
+        internal static bool IsLicenseStillValid(int LicenseID)
+        {
+            return clsCheckIfTheLicenseHasExpiredOrNot.CheckIfTheLicenseHasExpiredOrNot(LicenseID: LicenseID); // true if it isn't expired yet, false if it is expired
+        }
+
 
 
 

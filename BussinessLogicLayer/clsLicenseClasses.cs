@@ -68,6 +68,12 @@ namespace BussinessLogicLayer
 
         }
 
+        internal enum enLicenseClasses : byte
+        {
+            Class1 = 1 , Class2 = 2, Class3 = 3, Class4 = 4, Class5 = 6 , Class6 =7
+        }
+
+
 
     }
 }
