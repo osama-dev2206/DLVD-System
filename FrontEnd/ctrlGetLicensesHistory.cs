@@ -24,7 +24,7 @@ namespace FrontEnd
 
         void InternationalLicenseView(int ApplicantID)
         {
-          // Later 
+            this.DgvInternational.DataSource = clsInternationalLicense.GetInternationalLicenseDataView(ApplicantID);  // ApplicantID is the same as PersonID in this case
         }
 
         public void FillLicensesHistory(int ApplicantID)

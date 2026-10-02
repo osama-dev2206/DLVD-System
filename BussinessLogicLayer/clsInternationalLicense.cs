@@ -136,9 +136,9 @@ namespace BussinessLogicLayer
         }
 
 
-        public static DataTable GetInternationalLicenseDataView()
+        public static DataTable GetInternationalLicenseDataView(int PersonID)
         {
-
+            return clsGetInternationalLicenseInfo.GetTable(PersonID);
         }
 
     }

@@ -25,9 +25,11 @@ namespace FrontEnd
         }
 
         // From ctrlFilterFindLicenseByLicid1 when the user enters a license id 
+        int PersonID = -1;
         void CtrlFilterFindLicenseByLicid1_OnActionGetLicenseObj(clsLicenses Lic) // this event will be triggered when the user selects a license from the search control (and it exists)
         {
             this.ctrlDriverInfo1.Enabled = true;
+            PersonID = clsApplications.GetApplicationObjByAppID(Lic.LicenseApplicationID).ApplicantPersonID;
             this.ctrlDriverInfo1.FillForm(Lic.LicenseApplicationID);
             this.btnIssue.Enabled = true;
             labLicenseHistory.Enabled = true;
@@ -38,8 +40,8 @@ namespace FrontEnd
 
         void CtrlFilterFindLicenseByLicid1_OnError(bool Error) // From ctrlFilterFindLicenseByLicid1 when the user enters a license id 
         {
-           this.btnIssue.Enabled = false;
-            this.ctrlDriverInfo1.Enabled= false;
+            this.btnIssue.Enabled = false;
+            this.ctrlDriverInfo1.Enabled = false;
         }
 
         void GetErrorWhenSaving(string ErrorMessage) // Error From clsInternationalLicense when saving the new international license to the database
@@ -60,6 +62,16 @@ namespace FrontEnd
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void labLicenseHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (PersonID is not -1)
+            {
+                frmLicenseHistory frm = new frmLicenseHistory(PersonID);
+                frm?.ShowDialog();
+                frm?.Dispose();
+            }
         }
 
 
