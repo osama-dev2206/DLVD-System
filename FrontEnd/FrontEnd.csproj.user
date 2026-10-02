@@ -4,6 +4,9 @@
     <Compile Update="ctrlAddEditPerson.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ctrlFilterFindLicenseByLicID.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="ctrlGetLicensesHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
