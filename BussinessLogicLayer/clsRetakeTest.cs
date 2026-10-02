@@ -29,7 +29,7 @@ namespace BussinessLogicLayer
             RetakeTestApplication?.ApplicationTypeID = (int)clsApplicationTypes.enApplicationTypes.RetakeTest;
             RetakeTestApplication?.ApplicationStatus = (int)clsApplications.enApplicationStatus.New;
             RetakeTestApplication?.LastStatusDateTime= DateTime.Now;
-            RetakeTestApplication?.PaiedFee =clsApplicationTypes.FindAppObjByAppID((int)clsApplicationTypes.enApplicationTypes.RenewDrivingLicense).ApplicationFees;
+            RetakeTestApplication?.PaidFee =clsApplicationTypes.FindAppObjByAppID((int)clsApplicationTypes.enApplicationTypes.RenewDrivingLicense).ApplicationFees;
             RetakeTestApplication?.CreatedByUserID = clsCurrentLoggedInUser.User.UserID;
 
             RetakeTestApplication?.SaveApplication();

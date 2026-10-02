@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewInternationalLicense));
             ctrlDriverInfo1 = new ctrlDriverInfo();
-            ctrlApplicationInfo1 = new CtrlApplicationInfo();
             btnIssue = new Button();
             btnClose = new Button();
             labLicenseHistory = new LinkLabel();
@@ -43,13 +42,6 @@
             ctrlDriverInfo1.Name = "ctrlDriverInfo1";
             ctrlDriverInfo1.Size = new Size(900, 408);
             ctrlDriverInfo1.TabIndex = 0;
-            // 
-            // ctrlApplicationInfo1
-            // 
-            ctrlApplicationInfo1.Location = new Point(5, 519);
-            ctrlApplicationInfo1.Name = "ctrlApplicationInfo1";
-            ctrlApplicationInfo1.Size = new Size(928, 366);
-            ctrlApplicationInfo1.TabIndex = 1;
             // 
             // btnIssue
             // 
@@ -113,7 +105,6 @@
             Controls.Add(labLicenseHistory);
             Controls.Add(btnClose);
             Controls.Add(btnIssue);
-            Controls.Add(ctrlApplicationInfo1);
             Controls.Add(ctrlDriverInfo1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -130,7 +121,6 @@
         #endregion
 
         private ctrlDriverInfo ctrlDriverInfo1;
-        private CtrlApplicationInfo ctrlApplicationInfo1;
         private Button btnIssue;
         private Button btnClose;
         private LinkLabel labLicenseHistory;

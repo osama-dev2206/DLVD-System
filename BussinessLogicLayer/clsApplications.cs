@@ -11,7 +11,7 @@ namespace BussinessLogicLayer
         public int ApplicationTypeID { get; internal set; } // new , renew, Other
         public byte ApplicationStatus{ get;  set; }  // tinyint in db ( completed, cancelled, new)
         public DateTime LastStatusDateTime { get; internal set; }
-        public decimal PaiedFee { get; internal set; }
+        public decimal PaidFee { get; internal set; }
         public int CreatedByUserID { get; internal set; }
 
         public enum enApplicationStatus : byte { New = 1, Cancelled = 2, Completed = 3 }
@@ -36,7 +36,7 @@ namespace BussinessLogicLayer
             this.ApplicationTypeID = ApplicationTypeID;
             this.ApplicationStatus = ApplicationStatus;
             this.LastStatusDateTime = DateTime.Now;
-            this.PaiedFee = PaiedFee;
+            this.PaidFee = PaiedFee;
             this.CreatedByUserID = CreatedByUserID;
         }
 
@@ -46,7 +46,7 @@ namespace BussinessLogicLayer
             this.ApplicationID =  DataAccessLayer.clsAddNewApplicationToApplicationTable.AddNewApplication(
                  ApplicantPersonID: this.ApplicantPersonID , ApplicationDateTime: this.ApplicationDateTime , 
                  ApplicationTypeID: this.ApplicationTypeID, ApplicationStatus: this.ApplicationStatus,
-                 LastStatusDateTime: this.LastStatusDateTime, PaidFees: this.PaiedFee, CreatedByUserID: this.CreatedByUserID);
+                 LastStatusDateTime: this.LastStatusDateTime, PaidFees: this.PaidFee, CreatedByUserID: this.CreatedByUserID);
 
             return (ApplicationID !=-1);
         }
@@ -113,7 +113,7 @@ namespace BussinessLogicLayer
            return app;
         }
 
-        public static DataTable GetApplicationObjDetailsByApplicationID(int AppID)
+        public static DataTable GetApplicationDetailsByApplicationID(int AppID)
         {
             return clsGetDetailedAppInfoByApplicationID.GetInfo(AppID);
         }

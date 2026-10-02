@@ -26,7 +26,7 @@ namespace BussinessLogicLayer
             Application.ApplicationTypeID = (byte)clsApplicationTypes.enApplicationTypes.NewLocalDrivingLicense; // new local driving license application
             Application.ApplicationStatus = (byte)clsApplications.enApplicationStatus.New;
             Application.LastStatusDateTime = @Now;
-            Application.PaiedFee = clsApplicationTypes.FindAppObjByAppID((byte)clsApplicationTypes.enApplicationTypes.NewLocalDrivingLicense).ApplicationFees; // get the fees for new local driving license application
+            Application.PaidFee = clsApplicationTypes.FindAppObjByAppID((byte)clsApplicationTypes.enApplicationTypes.NewLocalDrivingLicense).ApplicationFees; // get the fees for new local driving license application
             Application.CreatedByUserID = clsCurrentLoggedInUser.User.UserID;
         }
 
