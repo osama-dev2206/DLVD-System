@@ -39,7 +39,8 @@
             manageAppliToolStripMenuItem = new ToolStripMenuItem();
             manageTestTypesToolStripMenuItem = new ToolStripMenuItem();
             TSMPeople = new ToolStripMenuItem();
-            soonToolStripMenuItem = new ToolStripMenuItem();
+            driversToolStripMenuItem = new ToolStripMenuItem();
+            UsersToolStripMenuItem = new ToolStripMenuItem();
             accountSettToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem1 = new ToolStripSeparator();
             ShowCurrentUserInfo = new ToolStripMenuItem();
@@ -47,7 +48,7 @@
             logoutToolStripMenuItem = new ToolStripMenuItem();
             label1 = new Label();
             label2 = new Label();
-            driversToolStripMenuItem = new ToolStripMenuItem();
+            InternationalToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -55,7 +56,7 @@
             // 
             menuStrip1.BackColor = Color.Gainsboro;
             menuStrip1.ImageScalingSize = new Size(30, 30);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { applicationsToolStripMenuItem, TSMPeople, driversToolStripMenuItem, soonToolStripMenuItem, accountSettToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { applicationsToolStripMenuItem, TSMPeople, driversToolStripMenuItem, UsersToolStripMenuItem, accountSettToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1758, 39);
@@ -76,22 +77,22 @@
             drivingLicensesServicesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nToolStripMenuItem });
             drivingLicensesServicesToolStripMenuItem.Image = Properties.Resources.Driver_License_48;
             drivingLicensesServicesToolStripMenuItem.Name = "drivingLicensesServicesToolStripMenuItem";
-            drivingLicensesServicesToolStripMenuItem.Size = new Size(369, 36);
+            drivingLicensesServicesToolStripMenuItem.Size = new Size(379, 36);
             drivingLicensesServicesToolStripMenuItem.Text = "Driving Licenses Services";
             // 
             // nToolStripMenuItem
             // 
-            nToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { LocalDrivingLicToolStripMenuItem });
+            nToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { LocalDrivingLicToolStripMenuItem, InternationalToolStripMenuItem });
             nToolStripMenuItem.Image = Properties.Resources.New_Driving_License_321;
             nToolStripMenuItem.Name = "nToolStripMenuItem";
-            nToolStripMenuItem.Size = new Size(320, 36);
+            nToolStripMenuItem.Size = new Size(330, 36);
             nToolStripMenuItem.Text = "New Driving License";
             // 
             // LocalDrivingLicToolStripMenuItem
             // 
             LocalDrivingLicToolStripMenuItem.Image = Properties.Resources.Local_32;
             LocalDrivingLicToolStripMenuItem.Name = "LocalDrivingLicToolStripMenuItem";
-            LocalDrivingLicToolStripMenuItem.Size = new Size(242, 36);
+            LocalDrivingLicToolStripMenuItem.Size = new Size(336, 36);
             LocalDrivingLicToolStripMenuItem.Text = "Local License";
             LocalDrivingLicToolStripMenuItem.Click += LocalDrivingLicToolStripMenuItem_Click;
             // 
@@ -101,7 +102,7 @@
             manageApplicationsToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             manageApplicationsToolStripMenuItem.Image = Properties.Resources.Manage_Applications_321;
             manageApplicationsToolStripMenuItem.Name = "manageApplicationsToolStripMenuItem";
-            manageApplicationsToolStripMenuItem.Size = new Size(369, 36);
+            manageApplicationsToolStripMenuItem.Size = new Size(379, 36);
             manageApplicationsToolStripMenuItem.Text = "Manage Applications";
             // 
             // localAppsToolStripMenuItem
@@ -117,7 +118,7 @@
             manageAppliToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             manageAppliToolStripMenuItem.Image = Properties.Resources.Application_Types_64;
             manageAppliToolStripMenuItem.Name = "manageAppliToolStripMenuItem";
-            manageAppliToolStripMenuItem.Size = new Size(369, 36);
+            manageAppliToolStripMenuItem.Size = new Size(379, 36);
             manageAppliToolStripMenuItem.Text = "Manage Application Types";
             manageAppliToolStripMenuItem.Click += manageAppliToolStripMenuItem_Click;
             // 
@@ -126,7 +127,7 @@
             manageTestTypesToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             manageTestTypesToolStripMenuItem.Image = Properties.Resources.Test_Type_64;
             manageTestTypesToolStripMenuItem.Name = "manageTestTypesToolStripMenuItem";
-            manageTestTypesToolStripMenuItem.Size = new Size(369, 36);
+            manageTestTypesToolStripMenuItem.Size = new Size(379, 36);
             manageTestTypesToolStripMenuItem.Text = "Manage Test Types";
             manageTestTypesToolStripMenuItem.Click += manageTestTypesToolStripMenuItem_Click;
             // 
@@ -142,14 +143,23 @@
             TSMPeople.Text = "People";
             TSMPeople.Click += TSMPeople_Click;
             // 
-            // soonToolStripMenuItem
+            // driversToolStripMenuItem
             // 
-            soonToolStripMenuItem.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            soonToolStripMenuItem.Image = Properties.Resources.Users_2_64;
-            soonToolStripMenuItem.Name = "soonToolStripMenuItem";
-            soonToolStripMenuItem.Size = new Size(208, 35);
-            soonToolStripMenuItem.Text = "Manage Users";
-            soonToolStripMenuItem.Click += ManageUsersToolStripMenuItem_Click;
+            driversToolStripMenuItem.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            driversToolStripMenuItem.Image = Properties.Resources.Drivers_64;
+            driversToolStripMenuItem.Name = "driversToolStripMenuItem";
+            driversToolStripMenuItem.Size = new Size(124, 35);
+            driversToolStripMenuItem.Text = "Drivers";
+            driversToolStripMenuItem.Click += driversToolStripMenuItem_Click;
+            // 
+            // UsersToolStripMenuItem
+            // 
+            UsersToolStripMenuItem.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            UsersToolStripMenuItem.Image = Properties.Resources.Users_2_64;
+            UsersToolStripMenuItem.Name = "UsersToolStripMenuItem";
+            UsersToolStripMenuItem.Size = new Size(208, 35);
+            UsersToolStripMenuItem.Text = "Manage Users";
+            UsersToolStripMenuItem.Click += ManageUsersToolStripMenuItem_Click;
             // 
             // accountSettToolStripMenuItem
             // 
@@ -213,14 +223,13 @@
             label2.TabIndex = 2;
             label2.Text = "Driving and Vehicle License Department Management";
             // 
-            // driversToolStripMenuItem
+            // InternationalToolStripMenuItem
             // 
-            driversToolStripMenuItem.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            driversToolStripMenuItem.Image = Properties.Resources.Drivers_64;
-            driversToolStripMenuItem.Name = "driversToolStripMenuItem";
-            driversToolStripMenuItem.Size = new Size(124, 35);
-            driversToolStripMenuItem.Text = "Drivers";
-            driversToolStripMenuItem.Click += driversToolStripMenuItem_Click;
+            InternationalToolStripMenuItem.Image = Properties.Resources.International_32;
+            InternationalToolStripMenuItem.Name = "InternationalToolStripMenuItem";
+            InternationalToolStripMenuItem.Size = new Size(336, 36);
+            InternationalToolStripMenuItem.Text = "International License";
+            InternationalToolStripMenuItem.Click += InternationalToolStripMenuItem_Click;
             // 
             // frmMain
             // 
@@ -250,7 +259,7 @@
         private ToolStripMenuItem TSMPeople;
         private Label label1;
         private Label label2;
-        private ToolStripMenuItem soonToolStripMenuItem;
+        private ToolStripMenuItem UsersToolStripMenuItem;
         private ToolStripMenuItem accountSettToolStripMenuItem;
         private ToolStripMenuItem ShowCurrentUserInfo;
         private ToolStripSeparator toolStripMenuItem1;
@@ -265,5 +274,6 @@
         private ToolStripMenuItem manageApplicationsToolStripMenuItem;
         private ToolStripMenuItem localAppsToolStripMenuItem;
         private ToolStripMenuItem driversToolStripMenuItem;
+        private ToolStripMenuItem InternationalToolStripMenuItem;
     }
 }

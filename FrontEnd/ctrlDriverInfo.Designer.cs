@@ -1,6 +1,6 @@
 ﻿namespace FrontEnd
 {
-    partial class ctrlLicenseInfo
+    partial class ctrlDriverInfo
     {
         /// <summary> 
         /// Required designer variable.

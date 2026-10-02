@@ -137,6 +137,8 @@ namespace BussinessLogicLayer
         }
 
 
+
+
         // Check if the license is active or not by LicenseID
         internal static bool IsPersonHasThisLicenseActive(int ApplicantPersonID , int LicenseClassID)
         {

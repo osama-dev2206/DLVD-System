@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace FrontEnd
 {
-    public partial class ctrlLicenseInfo : UserControl
+    public partial class ctrlDriverInfo : UserControl
     {
-        public ctrlLicenseInfo()
+        public ctrlDriverInfo()
         {
             InitializeComponent();
         }
