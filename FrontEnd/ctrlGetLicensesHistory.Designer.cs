@@ -163,13 +163,14 @@
             // 
             DgvInternational.AllowUserToAddRows = false;
             DgvInternational.AllowUserToDeleteRows = false;
+            DgvInternational.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DgvInternational.BackgroundColor = Color.White;
             DgvInternational.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DgvInternational.Location = new Point(9, 46);
             DgvInternational.Name = "DgvInternational";
             DgvInternational.ReadOnly = true;
             DgvInternational.RowHeadersWidth = 51;
-            DgvInternational.Size = new Size(778, 197);
+            DgvInternational.Size = new Size(1015, 197);
             DgvInternational.TabIndex = 3;
             // 
             // ctrlGetLicensesHistory

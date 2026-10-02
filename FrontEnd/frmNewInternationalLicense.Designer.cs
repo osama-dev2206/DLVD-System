@@ -87,6 +87,7 @@
             labLicenseHistory.TabIndex = 4;
             labLicenseHistory.TabStop = true;
             labLicenseHistory.Text = "Show License History";
+            labLicenseHistory.LinkClicked += labLicenseHistory_LinkClicked;
             // 
             // labLicenseInfo
             // 
