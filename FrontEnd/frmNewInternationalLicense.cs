@@ -28,11 +28,13 @@ namespace FrontEnd
         int PersonID = -1;
         void CtrlFilterFindLicenseByLicid1_OnActionGetLicenseObj(clsLicenses Lic) // this event will be triggered when the user selects a license from the search control (and it exists)
         {
+            this.ctrlInternationalAppInfo1.Enabled = true;
             this.ctrlDriverInfo1.Enabled = true;
             this.LicenseID = Lic.LicenseID;
             this.labLicenseInfo.Enabled = true;
             PersonID = clsApplications.GetApplicationObjByAppID(Lic.LicenseApplicationID).ApplicantPersonID;
             this.ctrlDriverInfo1.FillForm(Lic.LicenseApplicationID);
+            ctrlInternationalAppInfo1.FillForm(Lic.LicenseID);
             this.btnIssue.Enabled = true;
             labLicenseHistory.Enabled = true;
 
@@ -44,6 +46,7 @@ namespace FrontEnd
         {
             this.btnIssue.Enabled = false;
             this.ctrlDriverInfo1.Enabled = false;
+            this.ctrlInternationalAppInfo1.Enabled = false;
             this.labLicenseHistory.Enabled = false;
             this.labLicenseInfo.Enabled = false;
         }
@@ -82,8 +85,9 @@ namespace FrontEnd
         private void labLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             frmShowInternationalLicenseInfo licenseInfo = new frmShowInternationalLicenseInfo(this.LicenseID);
-            licenseInfo?.ShowDialog();
-            licenseInfo?.Dispose();
+                licenseInfo?.ShowDialog();
+                licenseInfo?.Dispose();
+  
 
         }
 

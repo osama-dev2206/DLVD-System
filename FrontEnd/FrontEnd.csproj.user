@@ -16,6 +16,9 @@
     <Compile Update="ctrlDriverInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ctrlInternationalAppInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="frmInternationalLicenseInfo.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -57,7 +57,6 @@ FileAccess.Read,
 
             if(dt.Columns.Count ==0 )
             {
-                MessageBox.Show("No data found for the provided LicenseID.", "Data Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 OnFailedToGetLicenseInfo?.Invoke(true);
                 return;
             }

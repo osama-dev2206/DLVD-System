@@ -35,6 +35,7 @@
             labLicenseHistory = new LinkLabel();
             labLicenseInfo = new LinkLabel();
             ctrlFilterFindLicenseByLicid1 = new ctrlFilterFindLicenseByLicID();
+            ctrlInternationalAppInfo1 = new ctrlInternationalAppInfo();
             SuspendLayout();
             // 
             // ctrlDriverInfo1
@@ -108,11 +109,19 @@
             ctrlFilterFindLicenseByLicid1.Size = new Size(881, 86);
             ctrlFilterFindLicenseByLicid1.TabIndex = 6;
             // 
+            // ctrlInternationalAppInfo1
+            // 
+            ctrlInternationalAppInfo1.Location = new Point(12, 538);
+            ctrlInternationalAppInfo1.Name = "ctrlInternationalAppInfo1";
+            ctrlInternationalAppInfo1.Size = new Size(1261, 292);
+            ctrlInternationalAppInfo1.TabIndex = 7;
+            // 
             // frmNewInternationalLicense
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1299, 950);
+            Controls.Add(ctrlInternationalAppInfo1);
             Controls.Add(ctrlFilterFindLicenseByLicid1);
             Controls.Add(labLicenseInfo);
             Controls.Add(labLicenseHistory);
@@ -139,5 +148,6 @@
         private LinkLabel labLicenseHistory;
         private LinkLabel labLicenseInfo;
         private ctrlFilterFindLicenseByLicID ctrlFilterFindLicenseByLicid1;
+        private ctrlInternationalAppInfo ctrlInternationalAppInfo1;
     }
 }
