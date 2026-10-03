@@ -901,7 +901,24 @@ select * from Applications;
 
 select * from ApplicationTypes;
 
--------- International Driving License
+ Select * from DriverLicenseInfo;
+
+--- Check IF The License Is Expired Or Not (By LicenseID)
+Select R = 'T'
+from Licenses
+where Licenses.ExpirationDate > CAST ( GETDATE() as Date )
+and Licenses.LicenseID = 1 ; 
+
+
+select * from Licenses
+Inner Join Applications On Applications.ApplicationID = Licenses.LicApplicationID
+Where Applications.ApplicantPersonID = 11 
+and Licenses.ClassOfLicenseID =1 ;
+
+
+Select * from LicenseClasses;
+
+-------- International Driving License --------------
 
 Select * from ApplicationTypes;
 Select * from LicenseClasses;
@@ -923,3 +940,19 @@ values
   '@IssueDateTime' , '@ExpirationDate' , 
  '@IsActive' , '@UserID' , '@DriverID' , '@LicenseID' , '@ApplicationID'
 );
+
+select * from InternationalLicenses;
+
+
+
+Select InternationalLicenses.InternationalLicenseID ,
+InternationalLicenses.ApplicationID ,
+LicenseClasses.ClassName ,
+InternationalLicenses.IssueDateTime,
+InternationalLicenses.ExpirationDate ,
+InternationalLicenses.IsActive 
+from InternationalLicenses
+Inner Join Licenses On Licenses.LicenseID = InternationalLicenses.LicenseID
+Inner Join LicenseClasses On LicenseClasses.LicenseClassID = Licenses.ClassOfLicenseID
+Inner Join Applications On Applications.ApplicationID = Licenses.LicApplicationID
+where ApplicantPersonID= 7 ;

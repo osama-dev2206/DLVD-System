@@ -99,6 +99,7 @@
             labLicenseInfo.TabIndex = 5;
             labLicenseInfo.TabStop = true;
             labLicenseInfo.Text = "Show License Info";
+            labLicenseInfo.LinkClicked += labLicenseInfo_LinkClicked;
             // 
             // ctrlFilterFindLicenseByLicid1
             // 
