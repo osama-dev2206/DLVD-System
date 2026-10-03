@@ -956,3 +956,57 @@ Inner Join Licenses On Licenses.LicenseID = InternationalLicenses.LicenseID
 Inner Join LicenseClasses On LicenseClasses.LicenseClassID = Licenses.ClassOfLicenseID
 Inner Join Applications On Applications.ApplicationID = Licenses.LicApplicationID
 where ApplicantPersonID= 7 ;
+
+--- Check if person has international license or not (by personID)
+Select R = 'T'
+from InternationalLicenses
+Inner Join Licenses on Licenses.LicenseID = InternationalLicenses.LicenseID
+Inner Join Applications On Applications.ApplicationID = Licenses.LicApplicationID
+where Applications.ApplicantPersonID = 7
+and InternationalLicenses.IsActive =1 ;
+
+Select People.FirstName + ' ' + People.SecondName + ' ' + People.ThirdName + ' ' + People.LastName As FullName ,
+InternationalLicenses.InternationalLicenseID ,
+Licenses.LicenseID ,
+People.NationalNumber ,
+People.Gender ,
+InternationalLicenses.IssueDateTime ,
+InternationalLicenses.ApplicationID ,
+InternationalLicenses.IsActive ,
+People.DateOfBirth ,
+InternationalLicenses.DriverID , 
+InternationalLicenses.ExpirationDate 
+from InternationalLicenses 
+Inner Join Licenses ON Licenses.LicenseID = InternationalLicenses.LicenseID
+Inner Join Applications On Applications.ApplicationID =  InternationalLicenses.ApplicationID
+Inner Join People On People.PersonID = Applications.ApplicantPersonID;
+
+
+select * from ShowInternationalLicensesInfo
+where LicenseID = 3;
+
+
+
+Select InternationalLicenses.ApplicationID ,
+Applications.ApplicationDateTime ,
+InternationalLicenses.IssueDateTime ,
+ApplicationFees = (Select ApplicationTypes.ApplicationFees  from ApplicationTypes Where ApplicationTypes.ApplicationTypeID = Applications.ApplicationTypeID) ,
+InternationalLicenses.InternationalLicenseID , 
+InternationalLicenses.LicenseID , 
+InternationalLicenses.ExpirationDate ,
+Users.UserName 
+from InternationalLicenses 
+Inner Join Licenses On Licenses.LicenseID = InternationalLicenses.LicenseID
+Inner Join Applications On Applications.ApplicationID = InternationalLicenses.ApplicationID
+Inner Join Users On Users.UserID = InternationalLicenses.UserID
+where InternationalLicenses.LicenseID = 3;
+
+
+Select * from ApplicationTypes
+
+Select * from Applications
+where ApplicationID = 1114;
+
+Select * 
+From InternationalAppInfo
+where LicenseID =  3 

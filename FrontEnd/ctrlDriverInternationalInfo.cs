@@ -69,12 +69,12 @@ FileAccess.Read,
                 labNationalNo.Text = dr["NationalNumber"].ToString();
                 labGender.Text = dr["Gender"].ToString();
                 ChangeGenderPfp();
-                labIssueDate.Text = dr["IssueDateTime"].ToString();
+                labIssueDate.Text =DateOnly.FromDateTime(Convert.ToDateTime(dr["IssueDateTime"])) .ToString();
                 labAppID.Text = dr["ApplicationID"].ToString();
                 labIsActive.Text = dr["IsActive"].ToString();
-                labDateOfBirth.Text = dr["DateOfBirth"].ToString();
+                labDateOfBirth.Text = DateOnly.FromDateTime(Convert.ToDateTime(dr["DateOfBirth"])).ToString();
                 labDriverID.Text = dr["DriverID"].ToString();
-                labExpDate.Text = dr["ExpirationDate"].ToString();
+                labExpDate.Text = DateOnly.FromDateTime(Convert.ToDateTime(dr["ExpirationDate"])).ToString();
 
                 FillPfp(dr["ImagePath"]?.ToString());
                 break;

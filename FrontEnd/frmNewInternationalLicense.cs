@@ -58,12 +58,18 @@ namespace FrontEnd
 
         private void btnIssue_Click(object sender, EventArgs e)
         {
-            if (this.International.Save())
+           DialogResult R =  MessageBox.Show("Are you sure you want to issue the International License?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (R == DialogResult.Yes)
             {
-                MessageBox.Show("International License Issued Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                labLicenseInfo.Enabled = true;
-                this.LicenseID = this.International.LicenseID;
-                this.btnIssue.Enabled = false;
+
+                if (this.International.Save())
+                {
+                    MessageBox.Show("International License Issued Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    labLicenseInfo.Enabled = true;
+                    this.LicenseID = this.International.LicenseID;
+                    this.btnIssue.Enabled = false;
+                }
+
             }
         }
 
