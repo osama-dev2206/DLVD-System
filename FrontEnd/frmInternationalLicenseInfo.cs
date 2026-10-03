@@ -13,8 +13,9 @@ namespace FrontEnd
         public frmShowInternationalLicenseInfo(int LicenseID)
         {
             InitializeComponent();
-            this.ctrlDriverInternationalInfo1.FillForm(LicenseID: LicenseID);
             this.ctrlDriverInternationalInfo1.OnFailedToGetLicenseInfo += CtrlDriverInternationalInfo1_OnFailedToGetLicenseInfo;
+            this.ctrlDriverInternationalInfo1.FillForm(LicenseID: LicenseID);
+ 
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -25,7 +26,7 @@ namespace FrontEnd
         private void CtrlDriverInternationalInfo1_OnFailedToGetLicenseInfo(bool obj)
         {
             MessageBox.Show("Failed to get international license info.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            this.Close();
+
         }
 
 

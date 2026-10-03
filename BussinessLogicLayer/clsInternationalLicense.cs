@@ -153,10 +153,18 @@ namespace BussinessLogicLayer
             return clsCheckIfThePersonHasInternationalLicenseOrNot.CheckIfThePersonHasInternationalLicenseOrNot(this.InternationalNewApplication.ApplicantPersonID);
         }
 
+        // Please Note : LicenseID --> local license id (not international license id)
+
         public static DataTable GetInternationalLicenseInfo(int LicenseID)
         {
             return clsGetInternationalLicInfo.GetInternationalLicenseInfoByLicenseID(LicenseID);
         }
+
+        public static DataTable GetInternationalApplicationInfo(int LicenseID)
+        {
+            return clsGetInternationalLicAppInfo.GetInfo(LicenseID: LicenseID);
+        }
+
 
 
         }
