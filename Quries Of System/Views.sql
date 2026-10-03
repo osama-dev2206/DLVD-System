@@ -219,3 +219,19 @@ where Licenses.LicDriverID = Drivers.DriverID
 
 From Drivers
 Inner Join People on People.PersonID = Drivers.DriverPersonID;
+
+----------------------------------------
+
+drop view ShowInternationalLicenseInfo;
+
+Create View ShowInternationalLicenseInfo As
+Select InternationalLicenses.InternationalLicenseID ,
+InternationalLicenses.ApplicationID ,
+Applications.ApplicantPersonID ,
+LicenseClasses.ClassName ,
+InternationalLicenses.IssueDateTime,
+InternationalLicenses.ExpirationDate ,
+InternationalLicenses.IsActive 
+from InternationalLicenses
+Inner Join Licenses On Licenses.LicenseID = InternationalLicenses.LicenseID
+Inner Join LicenseClasses On LicenseClasses.LicenseClassID = Licenses.ClassOfLicenseID;

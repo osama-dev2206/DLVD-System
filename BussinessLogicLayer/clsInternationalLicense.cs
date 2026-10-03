@@ -98,6 +98,12 @@ namespace BussinessLogicLayer
                 OnActionGetError?.Invoke("Your License Class Must Be Class 3 Type !!!");
                 return false;
             }
+            else if(IsPersonHasActiveInternationalLicense())
+            {
+                OnActionGetError?.Invoke("This Person Has Already International License !!!");
+                return false;
+
+            }
             return true;
         }
 
@@ -141,7 +147,19 @@ namespace BussinessLogicLayer
             return clsGetInternationalLicenseInfo.GetTable(PersonID);
         }
 
-    }
+        //  Check If There Is Active International License For This Person Or Not 
+        internal  bool IsPersonHasActiveInternationalLicense()
+        {
+            return clsCheckIfThePersonHasInternationalLicenseOrNot.CheckIfThePersonHasInternationalLicenseOrNot(this.InternationalNewApplication.ApplicantPersonID);
+        }
+
+        public static DataTable GetInternationalLicenseInfo(int LicenseID)
+        {
+            return clsGetInternationalLicInfo.GetInternationalLicenseInfoByLicenseID(LicenseID);
+        }
+
+
+        }
 
 
 }

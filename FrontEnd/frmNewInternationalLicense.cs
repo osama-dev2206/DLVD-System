@@ -12,7 +12,7 @@ namespace FrontEnd
     public partial class frmNewInternationalLicense : Form
     {
         clsInternationalLicense? International;
-
+        int LicenseID = -1;
         public frmNewInternationalLicense()
         {
             InitializeComponent();
@@ -29,6 +29,8 @@ namespace FrontEnd
         void CtrlFilterFindLicenseByLicid1_OnActionGetLicenseObj(clsLicenses Lic) // this event will be triggered when the user selects a license from the search control (and it exists)
         {
             this.ctrlDriverInfo1.Enabled = true;
+            this.LicenseID = Lic.LicenseID;
+            this.labLicenseInfo.Enabled = true;
             PersonID = clsApplications.GetApplicationObjByAppID(Lic.LicenseApplicationID).ApplicantPersonID;
             this.ctrlDriverInfo1.FillForm(Lic.LicenseApplicationID);
             this.btnIssue.Enabled = true;
@@ -42,6 +44,8 @@ namespace FrontEnd
         {
             this.btnIssue.Enabled = false;
             this.ctrlDriverInfo1.Enabled = false;
+            this.labLicenseHistory.Enabled = false;
+            this.labLicenseInfo.Enabled = false;
         }
 
         void GetErrorWhenSaving(string ErrorMessage) // Error From clsInternationalLicense when saving the new international license to the database
@@ -55,6 +59,7 @@ namespace FrontEnd
             {
                 MessageBox.Show("International License Issued Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 labLicenseInfo.Enabled = true;
+                this.LicenseID = this.International.LicenseID;
                 this.btnIssue.Enabled = false;
             }
         }
@@ -72,6 +77,14 @@ namespace FrontEnd
                 frm?.ShowDialog();
                 frm?.Dispose();
             }
+        }
+
+        private void labLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmShowInternationalLicenseInfo licenseInfo = new frmShowInternationalLicenseInfo(this.LicenseID);
+            licenseInfo?.ShowDialog();
+            licenseInfo?.Dispose();
+
         }
 
 
