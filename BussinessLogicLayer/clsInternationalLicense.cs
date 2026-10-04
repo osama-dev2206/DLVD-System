@@ -171,6 +171,27 @@ namespace BussinessLogicLayer
         }
 
 
+        public static DataTable GetLicAppByAppID(int ApplicationID)
+        {
+            return clsFindInternationalLicenseBy.GetTable(clsFindInternationalLicenseBy.enFindInternationalLicenseBy.ApplicationID, ApplicationID);
+        }
+
+        static public DataTable GetLicAppByDriverID(int DriverID)
+        {
+            return clsFindInternationalLicenseBy.GetTable(clsFindInternationalLicenseBy.enFindInternationalLicenseBy.DriverID, DriverID);
+        }
+
+        public static DataTable GetLicAppByLicenseID(int LicenseID)
+        {
+            return clsFindInternationalLicenseBy.GetTable(clsFindInternationalLicenseBy.enFindInternationalLicenseBy.LicenseID, LicenseID);
+        }
+
+        public static DataTable GetLicAppByInternationalLicenseID(int InternationalLicenseID)
+        {
+            return clsFindInternationalLicenseBy.GetTable(clsFindInternationalLicenseBy.enFindInternationalLicenseBy.InternationalLicenseID, InternationalLicenseID);
+        }
+
+
         }
 
 
