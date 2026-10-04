@@ -36,16 +36,6 @@ namespace FrontEnd
 
         }
 
-
-        /*
-         None
-None
-ApplicationID
-DriverID
-LicenseID
-InternationalLicenseID
-         */
-
         void SearchBySelectedFilter(string SearchKeyword) // this method will handle the search by selected filter
         {
 
@@ -55,20 +45,29 @@ InternationalLicenseID
 
                     if (int.TryParse(SearchKeyword, out int id))
                     {
-                        DgvInternational.DataSource = null;
+                        DgvInternational.DataSource = clsInternationalLicense.GetLicAppByAppID(id);
                     }
                     break;
 
                 case "DriverID":
-                    DgvInternational.DataSource = null;
-                    break;
+                    if (int.TryParse(SearchKeyword, out int DriverId)) 
+                    { 
+                        DgvInternational.DataSource = clsInternationalLicense.GetLicAppByDriverID(DriverId);
+                      }
+                 break;
 
                 case "LicenseID":
-                    DgvInternational.DataSource = null;
+                    if(int.TryParse(SearchKeyword, out int LicenseId))
+                    {
+                        DgvInternational.DataSource = clsInternationalLicense.GetLicAppByLicenseID(LicenseId);
+                    }
                     break;
 
                 case "InternationalLicenseID":
-                    DgvInternational.DataSource = null;
+                    if(int.TryParse(SearchKeyword, out int InternationalLicenseId))
+                    {
+                        DgvInternational.DataSource = clsInternationalLicense.GetLicAppByInternationalLicenseID(InternationalLicenseId);
+                    }
                     break;
             }
 
@@ -153,6 +152,8 @@ InternationalLicenseID
         private void showApplicationDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmShowPersonDetails frmShowPerson = new FrmShowPersonDetails(PersonID: ApplicantPersonID);
+            frmShowPerson?.ShowDialog();
+            frmShowPerson?.Dispose();
         }
 
 
