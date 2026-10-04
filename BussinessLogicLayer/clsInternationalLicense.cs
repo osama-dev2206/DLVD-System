@@ -165,6 +165,10 @@ namespace BussinessLogicLayer
             return clsGetInternationalLicAppInfo.GetInfo(LicenseID: LicenseID);
         }
 
+        public static DataTable GetInternatioanlLicensesApps()
+        {
+            return clsInternationalLicensesAppsView.GetApps();
+        }
 
 
         }

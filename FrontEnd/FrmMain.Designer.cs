@@ -34,6 +34,7 @@
             drivingLicensesServicesToolStripMenuItem = new ToolStripMenuItem();
             nToolStripMenuItem = new ToolStripMenuItem();
             LocalDrivingLicToolStripMenuItem = new ToolStripMenuItem();
+            InternationalToolStripMenuItem = new ToolStripMenuItem();
             manageApplicationsToolStripMenuItem = new ToolStripMenuItem();
             localAppsToolStripMenuItem = new ToolStripMenuItem();
             manageAppliToolStripMenuItem = new ToolStripMenuItem();
@@ -48,7 +49,7 @@
             logoutToolStripMenuItem = new ToolStripMenuItem();
             label1 = new Label();
             label2 = new Label();
-            InternationalToolStripMenuItem = new ToolStripMenuItem();
+            InternationalAppsToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -96,9 +97,17 @@
             LocalDrivingLicToolStripMenuItem.Text = "Local License";
             LocalDrivingLicToolStripMenuItem.Click += LocalDrivingLicToolStripMenuItem_Click;
             // 
+            // InternationalToolStripMenuItem
+            // 
+            InternationalToolStripMenuItem.Image = Properties.Resources.International_32;
+            InternationalToolStripMenuItem.Name = "InternationalToolStripMenuItem";
+            InternationalToolStripMenuItem.Size = new Size(336, 36);
+            InternationalToolStripMenuItem.Text = "International License";
+            InternationalToolStripMenuItem.Click += InternationalToolStripMenuItem_Click;
+            // 
             // manageApplicationsToolStripMenuItem
             // 
-            manageApplicationsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { localAppsToolStripMenuItem });
+            manageApplicationsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { localAppsToolStripMenuItem, InternationalAppsToolStripMenuItem });
             manageApplicationsToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             manageApplicationsToolStripMenuItem.Image = Properties.Resources.Manage_Applications_321;
             manageApplicationsToolStripMenuItem.Name = "manageApplicationsToolStripMenuItem";
@@ -109,7 +118,7 @@
             // 
             localAppsToolStripMenuItem.Image = Properties.Resources.Driver_License_481;
             localAppsToolStripMenuItem.Name = "localAppsToolStripMenuItem";
-            localAppsToolStripMenuItem.Size = new Size(405, 32);
+            localAppsToolStripMenuItem.Size = new Size(415, 36);
             localAppsToolStripMenuItem.Text = "Local Driving License Applications";
             localAppsToolStripMenuItem.Click += localAppsToolStripMenuItem_Click;
             // 
@@ -223,13 +232,13 @@
             label2.TabIndex = 2;
             label2.Text = "Driving and Vehicle License Department Management";
             // 
-            // InternationalToolStripMenuItem
+            // InternationalAppsToolStripMenuItem
             // 
-            InternationalToolStripMenuItem.Image = Properties.Resources.International_32;
-            InternationalToolStripMenuItem.Name = "InternationalToolStripMenuItem";
-            InternationalToolStripMenuItem.Size = new Size(336, 36);
-            InternationalToolStripMenuItem.Text = "International License";
-            InternationalToolStripMenuItem.Click += InternationalToolStripMenuItem_Click;
+            InternationalAppsToolStripMenuItem.Image = Properties.Resources.International_32;
+            InternationalAppsToolStripMenuItem.Name = "InternationalAppsToolStripMenuItem";
+            InternationalAppsToolStripMenuItem.Size = new Size(415, 36);
+            InternationalAppsToolStripMenuItem.Text = "International License Applications";
+            InternationalAppsToolStripMenuItem.Click += InternationalAppsToolStripMenuItem_Click;
             // 
             // frmMain
             // 
@@ -275,5 +284,6 @@
         private ToolStripMenuItem localAppsToolStripMenuItem;
         private ToolStripMenuItem driversToolStripMenuItem;
         private ToolStripMenuItem InternationalToolStripMenuItem;
+        private ToolStripMenuItem InternationalAppsToolStripMenuItem;
     }
 }

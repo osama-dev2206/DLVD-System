@@ -235,3 +235,41 @@ InternationalLicenses.IsActive
 from InternationalLicenses
 Inner Join Licenses On Licenses.LicenseID = InternationalLicenses.LicenseID
 Inner Join LicenseClasses On LicenseClasses.LicenseClassID = Licenses.ClassOfLicenseID;
+----------------------------------
+
+Create View ShowInternationalLicensesInfo As
+Select People.FirstName + ' ' + People.SecondName + ' ' + People.ThirdName + ' ' + People.LastName As FullName ,
+InternationalLicenses.InternationalLicenseID ,
+Licenses.LicenseID ,
+People.NationalNumber ,
+People.Gender ,
+InternationalLicenses.IssueDateTime ,
+InternationalLicenses.ApplicationID ,
+InternationalLicenses.IsActive ,
+People.DateOfBirth ,
+InternationalLicenses.DriverID , 
+InternationalLicenses.ExpirationDate 
+from InternationalLicenses 
+Inner Join Licenses ON Licenses.LicenseID = InternationalLicenses.LicenseID
+Inner Join Applications On Applications.ApplicationID = Licenses.LicApplicationID
+Inner Join People On People.PersonID = Applications.ApplicantPersonID;
+
+
+
+
+
+----------------
+
+Create View InternationalAppInfo As
+Select InternationalLicenses.ApplicationID ,
+Applications.ApplicationDateTime ,
+InternationalLicenses.IssueDateTime ,
+ApplicationFees = (Select ApplicationTypes.ApplicationFees  from ApplicationTypes Where ApplicationTypes.ApplicationTypeID = Applications.ApplicationTypeID) ,
+InternationalLicenses.InternationalLicenseID , 
+InternationalLicenses.LicenseID , 
+InternationalLicenses.ExpirationDate ,
+Users.UserName 
+from InternationalLicenses 
+Inner Join Licenses On Licenses.LicenseID = InternationalLicenses.LicenseID
+Inner Join Applications On Applications.ApplicationID = InternationalLicenses.ApplicationID
+Inner Join Users On Users.UserID = InternationalLicenses.UserID;
