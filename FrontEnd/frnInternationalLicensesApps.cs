@@ -133,6 +133,7 @@ namespace FrontEnd
             frmNewInternationalLicense frmNewInternationalLicense = new frmNewInternationalLicense();
             frmNewInternationalLicense?.ShowDialog();
             frmNewInternationalLicense?.Dispose();
+            RefreshDataGridView();
         }
 
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)

@@ -1010,3 +1010,19 @@ where ApplicationID = 1114;
 Select * 
 From InternationalAppInfo
 where LicenseID =  3 
+
+
+Select * from InternationalLicenses;
+
+Select * from ShowInternationalLicensesInfo;
+
+Select InternationalLicenses.InternationalLicenseID ,
+InternationalLicenses.ApplicationID ,
+InternationalLicenses.DriverID ,
+InternationalLicenses.IssueDateTime ,
+InternationalLicenses.ExpirationDate ,
+InternationalLicenses.IsActive 
+From InternationalLicenses;
+
+Select * From InernationalLicenseApplications
+where ApplicationID =; 
