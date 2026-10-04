@@ -95,7 +95,7 @@
             LocalDrivingLicToolStripMenuItem.Name = "LocalDrivingLicToolStripMenuItem";
             LocalDrivingLicToolStripMenuItem.Size = new Size(336, 36);
             LocalDrivingLicToolStripMenuItem.Text = "Local License";
-            LocalDrivingLicToolStripMenuItem.Click += LocalDrivingLicToolStripMenuItem_Click;
+            LocalDrivingLicToolStripMenuItem.Click += NewLocalDrivingLicToolStripMenuItem_Click;
             // 
             // InternationalToolStripMenuItem
             // 
@@ -103,7 +103,7 @@
             InternationalToolStripMenuItem.Name = "InternationalToolStripMenuItem";
             InternationalToolStripMenuItem.Size = new Size(336, 36);
             InternationalToolStripMenuItem.Text = "International License";
-            InternationalToolStripMenuItem.Click += InternationalToolStripMenuItem_Click;
+            InternationalToolStripMenuItem.Click += NewInternationalToolStripMenuItem_Click;
             // 
             // manageApplicationsToolStripMenuItem
             // 
@@ -120,7 +120,7 @@
             localAppsToolStripMenuItem.Name = "localAppsToolStripMenuItem";
             localAppsToolStripMenuItem.Size = new Size(415, 36);
             localAppsToolStripMenuItem.Text = "Local Driving License Applications";
-            localAppsToolStripMenuItem.Click += localAppsToolStripMenuItem_Click;
+            localAppsToolStripMenuItem.Click += ShowManagelocalAppsToolStripMenuItem_Click;
             // 
             // manageAppliToolStripMenuItem
             // 

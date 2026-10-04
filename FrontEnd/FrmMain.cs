@@ -61,14 +61,14 @@ namespace FrontEnd
             frmManageTestTypes?.Dispose();
         }
 
-        private void LocalDrivingLicToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NewLocalDrivingLicToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAddEditLocalDrivingLicense frmAddEditLocalDrivingLicense = new frmAddEditLocalDrivingLicense(ApplicationID: -1); // Add New Local Driving License
             frmAddEditLocalDrivingLicense?.ShowDialog();
             frmAddEditLocalDrivingLicense?.Dispose();
         }
 
-        private void localAppsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ShowManagelocalAppsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmManageLocalDrivingLicenseApplications frmManageLocal = new frmManageLocalDrivingLicenseApplications();
             frmManageLocal?.ShowDialog();
@@ -82,7 +82,7 @@ namespace FrontEnd
             frmListDrivers?.Dispose();
         }
 
-        private void InternationalToolStripMenuItem_Click(object sender, EventArgs e) // Make New Internatioanl Driving License
+        private void NewInternationalToolStripMenuItem_Click(object sender, EventArgs e) // Make New Internatioanl Driving License
         {
             frmNewInternationalLicense newInternationalLicense = new frmNewInternationalLicense();
             newInternationalLicense?.ShowDialog();
