@@ -89,9 +89,11 @@ namespace FrontEnd
             newInternationalLicense?.Dispose();
         }
 
-        private void InternationalAppsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ShowManageInternationalAppsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frnManageInternationalLicensesApps International_licensesApps = new frnManageInternationalLicensesApps();
+            International_licensesApps?.ShowDialog();
+            International_licensesApps?.Dispose();
         }
 
 
