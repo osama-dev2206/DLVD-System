@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace FrontEnd
 {
-    public partial class ctrlDriverInfo : UserControl
+    public partial class ctrlDriverLicenseInfo : UserControl
     {
-        public ctrlDriverInfo()
+        public ctrlDriverLicenseInfo()
         {
             InitializeComponent();
         }
@@ -40,7 +40,7 @@ FileAccess.Read,
                 return;
             }
 
-            DataTable License = clsLicenses.GetLicenseInfoByApplicationID(ApplicaionID);
+            DataTable License = clsLicenses.GetDriverLicenseInfoByApplicationID(ApplicaionID);
 
             foreach (DataRow R in License.Rows)
             {

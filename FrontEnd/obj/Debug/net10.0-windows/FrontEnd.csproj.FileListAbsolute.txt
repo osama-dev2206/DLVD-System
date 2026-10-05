@@ -93,7 +93,6 @@ D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.ctrlGetLicensesHistory.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frmLicenseHistory.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frmListDrivers.resources
-D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.ctrlDriverInfo.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frmNewInternationalLicense.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.ctrlFilterFindLicenseByLicID.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.ctrlDriverInternationalInfo.resources
@@ -101,3 +100,5 @@ D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.ctrlInternationalAppInfo.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frnManageInternationalLicensesApps.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frmRenewLicense.resources
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.ctrlDriverLicenseInfo.resources
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.ctrlRenewApplicationInfo.resources

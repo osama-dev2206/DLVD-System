@@ -114,6 +114,7 @@
             DgvLocal.RowHeadersWidth = 51;
             DgvLocal.Size = new Size(1018, 196);
             DgvLocal.TabIndex = 0;
+            DgvLocal.SelectionChanged += DgvLocal_SelectionChanged;
             // 
             // tabPage2
             // 
@@ -172,6 +173,7 @@
             DgvInternational.RowHeadersWidth = 51;
             DgvInternational.Size = new Size(1015, 197);
             DgvInternational.TabIndex = 3;
+            DgvInternational.SelectionChanged += DgvInternational_SelectionChanged;
             // 
             // ctrlGetLicensesHistory
             // 

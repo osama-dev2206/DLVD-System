@@ -159,6 +159,7 @@ namespace FrontEnd
             frmAddEditPerson frmAddEditPerson = new frmAddEditPerson(-1); // not implemented yet, but we will pass -1 to indicate that we are adding a new person
             frmAddEditPerson.ShowDialog();
             frmAddEditPerson.Dispose();
+            RefreshDataGridView();
         }
 
         private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
