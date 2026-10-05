@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewInternationalLicense));
-            ctrlDriverInfo1 = new ctrlDriverInfo();
+            ctrlDriverInfo1 = new ctrlDriverLicenseInfo();
             btnIssue = new Button();
             btnClose = new Button();
             labLicenseHistory = new LinkLabel();
@@ -142,7 +142,7 @@
 
         #endregion
 
-        private ctrlDriverInfo ctrlDriverInfo1;
+        private ctrlDriverLicenseInfo ctrlDriverInfo1;
         private Button btnIssue;
         private Button btnClose;
         private LinkLabel labLicenseHistory;

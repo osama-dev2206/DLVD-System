@@ -34,6 +34,21 @@ namespace FrontEnd
             InternationalLicenseView(ApplicantID);
         }
 
+        internal Action<int> OnLicIDSelection;
+        private void DgvLocal_SelectionChanged(object sender, EventArgs e)
+        {
+            if (this.DgvLocal.CurrentRow != null && DgvLocal.CurrentRow.Cells != null && int.TryParse(DgvLocal.CurrentRow.Cells[1]?.Value?.ToString(), out int Row))
+            {
+                OnLicIDSelection?.Invoke(Row);
+            }
+        }
 
+        private void DgvInternational_SelectionChanged(object sender, EventArgs e)
+        {
+            if (this.DgvLocal.CurrentRow != null && DgvLocal.CurrentRow.Cells != null && int.TryParse(DgvLocal.CurrentRow.Cells[1]?.Value?.ToString(), out int Row))
+            {
+                OnLicIDSelection?.Invoke(Row);
+            }
+        }
     }
 }

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using DataAccessLayer;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Text;
 
 namespace BussinessLogicLayer
@@ -8,9 +11,13 @@ namespace BussinessLogicLayer
     {
         private clsLicenses ?OldLicense = null;
         private clsLicenses? NewLicense = null;
-        private int ApplicationID = -1;
+        public int ApplicationID = -1;
+      public  int LicenseID { private set;  get; }
+        public string  ? Notes { set; get; } = string.Empty;
+
         public clsRenewLicense(int OldLicenseID)
         {
+            LicenseID = -1; 
             OldLicense = clsLicenses.GetLicenseObjByLicenseID(OldLicenseID); // Get the old license object by its ID
             clsApplications OldLicenseApp = clsApplications.GetApplicationObjByAppID(OldLicense.LicenseApplicationID); // Get the application object associated with the old license
             
@@ -24,6 +31,7 @@ namespace BussinessLogicLayer
                 RenewApplication.LastStatusDateTime = DateTime.Now;
                 RenewApplication.PaidFee = clsApplicationTypes.FindAppObjByAppID((byte)clsApplicationTypes.enApplicationTypes.RenewDrivingLicense).ApplicationFees;
                 RenewApplication.CreatedByUserID = clsCurrentLoggedInUser.User.UserID;
+    
 
                bool Res =  RenewApplication.SaveApplication();
                 this.ApplicationID = RenewApplication.ApplicationID;
@@ -49,13 +57,19 @@ namespace BussinessLogicLayer
         public bool Save()
         {
          
-            if( !IsTheOldLicenseExpired() && NewLicense.Save())
+            if(OldLicense.IsActive  &&IsTheOldLicenseExpired() && NewLicense.Save())
             {
-              return  clsLicenses.DisableLicenseByLicenseID(OldLicense.LicenseID); // Disable the old license
+                this.LicenseID = NewLicense.LicenseID;
+                return  clsLicenses.DisableLicenseByLicenseID(OldLicense.LicenseID); // Disable the old license
             }
             return false;
         }
 
+
+        public static DataTable LicenseSummaryInfo(int RLicenseID)
+        {
+            return clsGetSummaryInfoForRenewLicense.GetSummaryInfo(RLicenseID);
+        }
 
     }
 }

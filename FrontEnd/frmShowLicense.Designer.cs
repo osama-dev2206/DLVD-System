@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShowLicense));
             pictureBox1 = new PictureBox();
             label1 = new Label();
-            ctrlLicenseInfo1 = new ctrlDriverInfo();
+            ctrlLicenseInfo1 = new ctrlDriverLicenseInfo();
             btnClose = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -106,7 +106,7 @@
 
         private PictureBox pictureBox1;
         private Label label1;
-        private ctrlDriverInfo ctrlLicenseInfo1;
+        private ctrlDriverLicenseInfo ctrlLicenseInfo1;
         private Button btnClose;
     }
 }

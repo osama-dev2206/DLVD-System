@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLicenseHistory));
             ctrlPersonInfo1 = new ctrlPersonInfo();
             btnClose = new Button();
             ctrlGetLicensesHistory1 = new ctrlGetLicensesHistory();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            showDetailsToolStripMenuItem = new ToolStripMenuItem();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // ctrlPersonInfo1
@@ -65,12 +69,28 @@
             ctrlGetLicensesHistory1.Size = new Size(1048, 348);
             ctrlGetLicensesHistory1.TabIndex = 3;
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showDetailsToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(215, 58);
+            // 
+            // showDetailsToolStripMenuItem
+            // 
+            showDetailsToolStripMenuItem.Image = Properties.Resources.License_View_322;
+            showDetailsToolStripMenuItem.Name = "showDetailsToolStripMenuItem";
+            showDetailsToolStripMenuItem.Size = new Size(214, 26);
+            showDetailsToolStripMenuItem.Text = "Show Details";
+            showDetailsToolStripMenuItem.Click += showDetailsToolStripMenuItem_Click;
+            // 
             // frmLicenseHistory
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1087, 764);
+            ContextMenuStrip = contextMenuStrip1;
             Controls.Add(ctrlGetLicensesHistory1);
             Controls.Add(btnClose);
             Controls.Add(ctrlPersonInfo1);
@@ -81,6 +101,7 @@
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
             Text = "License History";
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -89,5 +110,7 @@
         private ctrlPersonInfo ctrlPersonInfo1;
         private Button btnClose;
         private ctrlGetLicensesHistory ctrlGetLicensesHistory1;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem showDetailsToolStripMenuItem;
     }
 }
