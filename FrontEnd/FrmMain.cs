@@ -96,7 +96,12 @@ namespace FrontEnd
             International_licensesApps?.Dispose();
         }
 
-
+        private void renewDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRenewLicense frmRenew = new frmRenewLicense();
+            frmRenew?.ShowDialog();
+            frmRenew?.Dispose();
+        }
 
     }
 }

@@ -50,6 +50,26 @@ namespace BussinessLogicLayer
             this.ApplicantPersonID = clsApplications.GetApplicationObjByAppID(ApplicationID).ApplicantPersonID; // Get the ApplicantPersonID from the application object
         }
 
+        // For Renewing 
+        internal clsLicenses(int ApplicationID, int ApplicantPersonID,int LicenseClassID , enIssueReason issueReason)
+        {
+            Mode = enMode.Add;
+
+            this.LicenseID = -1;
+            this.LicenseApplicationID = ApplicationID;
+            this.LicenseDriverID = -1; // initial value will be set later
+            this.LicenseClassID = LicenseClassID;
+            this.IssueDate = DateOnly.FromDateTime(DateTime.Now);
+            this.ExpirationDate = IssueDate.AddMonths(clsLicenseClasses.FindLicenseClassByID(LicenseClassID).DefaultValidityLength); // Set ExpirationDate based on the default validity length of the license class
+            // notes can be set later
+            this.PaiedFees = clsLicenseClasses.FindLicenseClassByID(LicenseClassID).ClassFees; // Set PaiedFees based on the default fees of the license class
+            this.IsActive = true; // New license is active by default
+            this.IssueReason = issueReason; 
+            this.CreatedByUserID = clsCurrentLoggedInUser.User.UserID; // Set CreatedByUserID to the current logged-in user's ID
+
+            this.ApplicantPersonID = ApplicantPersonID;
+        }
+
         private clsLicenses(int LicenseID, int ApplicationID, int DriverID, int ClassID, DateOnly IssueDate, DateOnly ExpirationDate, string ? Notes, decimal PaiedFees, bool IsActive, enIssueReason IssueReason, int CreatedByUserID)
         {
             Mode = enMode.Edit;
@@ -126,7 +146,7 @@ namespace BussinessLogicLayer
                         if (this.AddNewLicense())
                         {
                             this.Mode = enMode.Edit; // Change mode to Edit after successful addition
-                            GetLicenseIDAfterSaving.Invoke(this.LicenseID); // Notify the caller with the new LicenseID)
+                            GetLicenseIDAfterSaving?.Invoke(this.LicenseID); // Notify the caller with the new LicenseID)
 
                             UpdateMainApplication(); // as the license is added successfully, we need to update the main application status to Completed
                             return true;
@@ -225,6 +245,10 @@ namespace BussinessLogicLayer
         }
 
 
+        internal static bool DisableLicenseByLicenseID(int LicenseID)
+        {
+            return clsDisableLicenseByLicID.DisableLicense(LicenseID: LicenseID);
+        }
 
 
         }

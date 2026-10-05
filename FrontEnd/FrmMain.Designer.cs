@@ -37,6 +37,7 @@
             InternationalToolStripMenuItem = new ToolStripMenuItem();
             manageApplicationsToolStripMenuItem = new ToolStripMenuItem();
             localAppsToolStripMenuItem = new ToolStripMenuItem();
+            InternationalAppsToolStripMenuItem = new ToolStripMenuItem();
             manageAppliToolStripMenuItem = new ToolStripMenuItem();
             manageTestTypesToolStripMenuItem = new ToolStripMenuItem();
             TSMPeople = new ToolStripMenuItem();
@@ -49,7 +50,7 @@
             logoutToolStripMenuItem = new ToolStripMenuItem();
             label1 = new Label();
             label2 = new Label();
-            InternationalAppsToolStripMenuItem = new ToolStripMenuItem();
+            renewDrivingLicenseToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -75,7 +76,7 @@
             // 
             // drivingLicensesServicesToolStripMenuItem
             // 
-            drivingLicensesServicesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nToolStripMenuItem });
+            drivingLicensesServicesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nToolStripMenuItem, renewDrivingLicenseToolStripMenuItem });
             drivingLicensesServicesToolStripMenuItem.Image = Properties.Resources.Driver_License_48;
             drivingLicensesServicesToolStripMenuItem.Name = "drivingLicensesServicesToolStripMenuItem";
             drivingLicensesServicesToolStripMenuItem.Size = new Size(379, 36);
@@ -86,14 +87,14 @@
             nToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { LocalDrivingLicToolStripMenuItem, InternationalToolStripMenuItem });
             nToolStripMenuItem.Image = Properties.Resources.New_Driving_License_321;
             nToolStripMenuItem.Name = "nToolStripMenuItem";
-            nToolStripMenuItem.Size = new Size(330, 36);
+            nToolStripMenuItem.Size = new Size(352, 36);
             nToolStripMenuItem.Text = "New Driving License";
             // 
             // LocalDrivingLicToolStripMenuItem
             // 
             LocalDrivingLicToolStripMenuItem.Image = Properties.Resources.Local_32;
             LocalDrivingLicToolStripMenuItem.Name = "LocalDrivingLicToolStripMenuItem";
-            LocalDrivingLicToolStripMenuItem.Size = new Size(336, 36);
+            LocalDrivingLicToolStripMenuItem.Size = new Size(326, 36);
             LocalDrivingLicToolStripMenuItem.Text = "Local License";
             LocalDrivingLicToolStripMenuItem.Click += NewLocalDrivingLicToolStripMenuItem_Click;
             // 
@@ -101,7 +102,7 @@
             // 
             InternationalToolStripMenuItem.Image = Properties.Resources.International_32;
             InternationalToolStripMenuItem.Name = "InternationalToolStripMenuItem";
-            InternationalToolStripMenuItem.Size = new Size(336, 36);
+            InternationalToolStripMenuItem.Size = new Size(326, 36);
             InternationalToolStripMenuItem.Text = "International License";
             InternationalToolStripMenuItem.Click += NewInternationalToolStripMenuItem_Click;
             // 
@@ -118,9 +119,17 @@
             // 
             localAppsToolStripMenuItem.Image = Properties.Resources.Driver_License_481;
             localAppsToolStripMenuItem.Name = "localAppsToolStripMenuItem";
-            localAppsToolStripMenuItem.Size = new Size(415, 36);
+            localAppsToolStripMenuItem.Size = new Size(405, 32);
             localAppsToolStripMenuItem.Text = "Local Driving License Applications";
             localAppsToolStripMenuItem.Click += ShowManagelocalAppsToolStripMenuItem_Click;
+            // 
+            // InternationalAppsToolStripMenuItem
+            // 
+            InternationalAppsToolStripMenuItem.Image = Properties.Resources.International_32;
+            InternationalAppsToolStripMenuItem.Name = "InternationalAppsToolStripMenuItem";
+            InternationalAppsToolStripMenuItem.Size = new Size(405, 32);
+            InternationalAppsToolStripMenuItem.Text = "International License Applications";
+            InternationalAppsToolStripMenuItem.Click += ShowManageInternationalAppsToolStripMenuItem_Click;
             // 
             // manageAppliToolStripMenuItem
             // 
@@ -232,13 +241,13 @@
             label2.TabIndex = 2;
             label2.Text = "Driving and Vehicle License Department Management";
             // 
-            // InternationalAppsToolStripMenuItem
+            // renewDrivingLicenseToolStripMenuItem
             // 
-            InternationalAppsToolStripMenuItem.Image = Properties.Resources.International_32;
-            InternationalAppsToolStripMenuItem.Name = "InternationalAppsToolStripMenuItem";
-            InternationalAppsToolStripMenuItem.Size = new Size(415, 36);
-            InternationalAppsToolStripMenuItem.Text = "International License Applications";
-            InternationalAppsToolStripMenuItem.Click += ShowManageInternationalAppsToolStripMenuItem_Click;
+            renewDrivingLicenseToolStripMenuItem.Image = Properties.Resources.Renew_Driving_License_321;
+            renewDrivingLicenseToolStripMenuItem.Name = "renewDrivingLicenseToolStripMenuItem";
+            renewDrivingLicenseToolStripMenuItem.Size = new Size(352, 36);
+            renewDrivingLicenseToolStripMenuItem.Text = "Renew Driving License";
+            renewDrivingLicenseToolStripMenuItem.Click += renewDrivingLicenseToolStripMenuItem_Click;
             // 
             // frmMain
             // 
@@ -285,5 +294,6 @@
         private ToolStripMenuItem driversToolStripMenuItem;
         private ToolStripMenuItem InternationalToolStripMenuItem;
         private ToolStripMenuItem InternationalAppsToolStripMenuItem;
+        private ToolStripMenuItem renewDrivingLicenseToolStripMenuItem;
     }
 }

@@ -56,6 +56,11 @@ namespace BussinessLogicLayer
             return clsUpdateApplication.UpdateApplication(this.ApplicationID,this.ApplicationStatus , DateTime.Now);
         }
 
+        private bool UpdateApplicationStatus(enApplicationStatus enApplicationStatus)
+        {
+            return clsUpdateApplication.UpdateApplication(this.ApplicationID, Convert.ToByte(enApplicationStatus), DateTime.Now);
+        }
+
          internal bool DeleteApplication()
         {
             return DataAccessLayer.clsDeleteApplication.DeleteApplication(this.ApplicationID);
@@ -71,7 +76,8 @@ namespace BussinessLogicLayer
                         if (AddApplicationToApplicationTable())
                         {
                             this.status = enStatus.Edit;
-                            return true;
+
+                            return UpdateApplicationStatus(enApplicationStatus.Completed); // Update the status to "Completed" after adding the application
                         }
                         else
                         {
