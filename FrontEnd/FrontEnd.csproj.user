@@ -103,6 +103,9 @@
     <Compile Update="FrmPeopleManagement.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmRenewLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmShowCurrentUserInfo.cs">
       <SubType>Form</SubType>
     </Compile>

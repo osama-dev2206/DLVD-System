@@ -273,3 +273,13 @@ from InternationalLicenses
 Inner Join Licenses On Licenses.LicenseID = InternationalLicenses.LicenseID
 Inner Join Applications On Applications.ApplicationID = InternationalLicenses.ApplicationID
 Inner Join Users On Users.UserID = InternationalLicenses.UserID;
+
+-------------------------
+Create View InernationalLicenseApplications As
+Select InternationalLicenses.InternationalLicenseID ,
+InternationalLicenses.ApplicationID ,
+InternationalLicenses.DriverID ,
+InternationalLicenses.IssueDateTime ,
+InternationalLicenses.ExpirationDate ,
+InternationalLicenses.IsActive 
+From InternationalLicenses;
