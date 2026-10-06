@@ -27,6 +27,7 @@ namespace FrontEnd
                 labLicFees.Text = dr["LicenseFees"].ToString();
                 labExpDate.Text = DateOnly.FromDateTime(Convert.ToDateTime(dr["ExpirationDate"])).ToString();
                 labIssueDate.Text  = DateOnly.FromDateTime(Convert.ToDateTime(dr["IssueDate"])).ToString();
+                labTotalFees.Text = dr["TotalFees"].ToString();
                 break;
             }
 

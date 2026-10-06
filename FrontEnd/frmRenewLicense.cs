@@ -21,9 +21,11 @@ namespace FrontEnd
         clsRenewLicense Renew;
         int ApplicantPersonID = -1;
         int OldLicenseID = -1;
+        int OldApplicationID = -1;
         void CtrlFilterFindLicenseByLicid1_OnLicenseSelected(clsLicenses OldLic)
         {
             OldLicenseID = OldLic.LicenseID;
+            OldApplicationID = OldLic.LicenseApplicationID;
             ctrlRenewApplicationInfo1.Enabled = true;
             tbNotes.Enabled = true;
             this.btnRenew.Enabled = true;
@@ -33,8 +35,7 @@ namespace FrontEnd
             ctrlDriverInfo1.Enabled = true;
             this.ctrlDriverInfo1.FillForm(OldLic.LicenseApplicationID);
             Renew = new clsRenewLicense(OldLicenseID: OldLic.LicenseID);
-            ctrlApplicationInfo1.Enabled = true;
-            this.ctrlApplicationInfo1.FillCtrlInfoByApplicationID(OldLic.LicenseApplicationID);
+   
 
         }
 
@@ -47,7 +48,7 @@ namespace FrontEnd
                 labNewLicenseInfo.Enabled = false;
                 labShowLicenseHistory.Enabled = false;
                 ctrlDriverInfo1.Enabled = false;
-                ctrlApplicationInfo1.Enabled = false;
+
                 tbNotes.Enabled = false;
             }
         }
@@ -64,6 +65,8 @@ namespace FrontEnd
                 MessageBox.Show("License renewed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.btnRenew.Enabled = false;
                 ctrlRenewApplicationInfo1.FillForm(Renew.LicenseID, OldLicenseID);
+                ctrlDriverInfo1.FillForm(OldApplicationID); //refresh the old license info
+
             }
             else
             {
@@ -87,7 +90,7 @@ namespace FrontEnd
         }
 
 
-        private void btnClose_Click_1(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
