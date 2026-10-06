@@ -279,12 +279,21 @@ namespace FrontEnd
         }
 
         // Tests Scheduling .. ................ 
+        void GetTheRecordAfterRefreshing()
+        {
+            RefreshDataGridView();
+            if (!String.IsNullOrEmpty(tbSearchBy.Text))
+            {
+                SearchBySelectedFilter(tbSearchBy.Text);
+            }
+        }
+
         private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e) // add 
         {
             frmTestVisionAppointments frmTestVision = new frmTestVisionAppointments(this.selectedRowIndex);
             frmTestVision?.ShowDialog();
             frmTestVision?.Dispose();
-            RefreshDataGridView();
+            GetTheRecordAfterRefreshing();
         }
 
         private void ScheduleWrittenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -292,7 +301,7 @@ namespace FrontEnd
             frmManageWrittenTestAppointments frmManageWritten = new frmManageWrittenTestAppointments(this.selectedRowIndex);
             frmManageWritten?.ShowDialog();
             frmManageWritten?.Dispose();
-            RefreshDataGridView();
+            GetTheRecordAfterRefreshing();
         }
 
         private void ScheduleStreetToolStripMenuItem_Click(object sender, EventArgs e) // practical is stre
@@ -300,7 +309,7 @@ namespace FrontEnd
             frmManagePracticalTestAppointments frmManagePractical = new frmManagePracticalTestAppointments(this.selectedRowIndex);
             frmManagePractical?.ShowDialog();
             frmManagePractical?.Dispose();
-            RefreshDataGridView();
+            GetTheRecordAfterRefreshing();
         }
 
         private void issueLicenseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -308,7 +317,7 @@ namespace FrontEnd
             frmAddNewLicense frmAddNewLicense = new frmAddNewLicense(this.selectedRowIndex);
             frmAddNewLicense?.ShowDialog();
             frmAddNewLicense?.Dispose();
-            RefreshDataGridView();
+            GetTheRecordAfterRefreshing();
         }
 
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)

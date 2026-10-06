@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BussinessLogicLayer
 {
-    public class clsLicenses
+    public  sealed class clsLicenses
     {
         public int LicenseID { get; private set; }
         public int LicenseApplicationID { get; private set; }
@@ -50,7 +50,7 @@ namespace BussinessLogicLayer
             this.ApplicantPersonID = clsApplications.GetApplicationObjByAppID(ApplicationID).ApplicantPersonID; // Get the ApplicantPersonID from the application object
         }
 
-        // For Renewing 
+        // For Renewing (DOH
         internal clsLicenses(int ApplicationID, int ApplicantPersonID,int LicenseClassID , enIssueReason issueReason)
         {
             Mode = enMode.Add;

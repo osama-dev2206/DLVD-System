@@ -7,10 +7,11 @@ using System.Text;
 
 namespace BussinessLogicLayer
 {
-    public  class clsRenewLicense
+    public sealed class clsRenewLicense
     {
         private clsLicenses ?OldLicense = null;
         private clsLicenses? NewLicense = null;
+        private clsApplications RenewApplication;
         public int ApplicationID = -1;
       public  int LicenseID { private set;  get; }
         public string  ? Notes { set; get; } = string.Empty;
@@ -23,7 +24,7 @@ namespace BussinessLogicLayer
             
             if (OldLicense !=null && OldLicenseApp != null)
             {
-                clsApplications RenewApplication = new clsApplications();
+                RenewApplication = new clsApplications();
                 RenewApplication.ApplicantPersonID = OldLicenseApp.ApplicantPersonID;
                 RenewApplication.ApplicationDateTime = DateTime.Now;
                 RenewApplication.ApplicationTypeID = (byte)clsApplicationTypes.enApplicationTypes.RenewDrivingLicense;
@@ -56,11 +57,17 @@ namespace BussinessLogicLayer
 
         public bool Save()
         {
-         
-            if(OldLicense.IsActive  &&IsTheOldLicenseExpired() && NewLicense.Save())
+            this.NewLicense.Notes = Notes; // if there is note  
+
+ 
+
+            if (OldLicense.IsActive  &&IsTheOldLicenseExpired() && NewLicense.Save())
             {
                 this.LicenseID = NewLicense.LicenseID;
-                return  clsLicenses.DisableLicenseByLicenseID(OldLicense.LicenseID); // Disable the old license
+                clsInternationalLicense.DeactivateInternationalLicenseByLicID(LicenseID: OldLicense.LicenseID);// if there exists international license associated with the old license, we will disable it as well
+                this.RenewApplication.UpdateApplicationStatus(clsApplications.enApplicationStatus.Completed); // make the application As completed
+
+                return  clsLicenses.DisableLicenseByLicenseID(OldLicense.LicenseID) ; // Disable the old license
             }
             return false;
         }

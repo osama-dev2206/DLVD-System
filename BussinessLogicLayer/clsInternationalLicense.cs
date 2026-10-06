@@ -191,6 +191,10 @@ namespace BussinessLogicLayer
             return clsFindInternationalLicenseBy.GetTable(clsFindInternationalLicenseBy.enFindInternationalLicenseBy.InternationalLicenseID, InternationalLicenseID);
         }
 
+        internal static bool DeactivateInternationalLicenseByLicID(int LicenseID)
+        {
+            return clsDeactivateInternationalLicense.DeactivateInternationalLicense(LicenseID);
+        }
 
         }
 

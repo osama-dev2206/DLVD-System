@@ -56,7 +56,7 @@ namespace BussinessLogicLayer
             return clsUpdateApplication.UpdateApplication(this.ApplicationID,this.ApplicationStatus , DateTime.Now);
         }
 
-        private bool UpdateApplicationStatus(enApplicationStatus enApplicationStatus)
+        internal bool UpdateApplicationStatus(enApplicationStatus enApplicationStatus)
         {
             return clsUpdateApplication.UpdateApplication(this.ApplicationID, Convert.ToByte(enApplicationStatus), DateTime.Now);
         }
@@ -77,7 +77,7 @@ namespace BussinessLogicLayer
                         {
                             this.status = enStatus.Edit;
 
-                            return UpdateApplicationStatus(enApplicationStatus.Completed); // Update the status to "Completed" after adding the application
+                            return true;
                         }
                         else
                         {

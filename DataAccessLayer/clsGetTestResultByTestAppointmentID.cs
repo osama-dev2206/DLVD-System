@@ -15,10 +15,11 @@ INNER JOIN TestAppointments
 INNER JOIN LocalDrivingLicenseApplications
     ON TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
        = LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
-WHERE LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+WHERE 
+LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
       = @LocalDrivingLicenseApplicationID
 AND TestAppointments.AppointmentTestTypeID = @TestTypeID
-ORDER BY TestAppointments.AppointmentDateTime DESC ;  -- Vision Test ID (EX)  ";
+ORDER BY TestAppointments.TestAppointmentID DESC ;  -- Vision Test ID (EX)  ";
 
         public static bool? GetTestResultByTestAppointmentID(int LocalDrivingLicenseApplicationID, int TestTypeID)
         {
@@ -28,6 +29,8 @@ ORDER BY TestAppointments.AppointmentDateTime DESC ;  -- Vision Test ID (EX)  ";
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(Query, connection);
+
+
                 cmd.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
                 cmd.Parameters.AddWithValue("@TestTypeID", TestTypeID);
                 object res = cmd.ExecuteScalar();
