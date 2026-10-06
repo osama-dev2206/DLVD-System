@@ -36,11 +36,11 @@
             btnRenew = new Button();
             labShowLicenseHistory = new LinkLabel();
             labNewLicenseInfo = new LinkLabel();
-            ctrlApplicationInfo1 = new CtrlApplicationInfo();
             ctrlRenewApplicationInfo1 = new ctrlRenewApplicationInfo();
             tbNotes = new RichTextBox();
             label2 = new Label();
             pictureBox1 = new PictureBox();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -58,7 +58,7 @@
             btnClose.TabIndex = 0;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
-            btnClose.Click += btnClose_Click_1;
+            btnClose.Click += btnClose_Click;
             // 
             // label1
             // 
@@ -125,13 +125,6 @@
             labNewLicenseInfo.Text = "Show New License Info";
             labNewLicenseInfo.LinkClicked += labNewLicenseInfo_LinkClicked;
             // 
-            // ctrlApplicationInfo1
-            // 
-            ctrlApplicationInfo1.Location = new Point(20, 590);
-            ctrlApplicationInfo1.Name = "ctrlApplicationInfo1";
-            ctrlApplicationInfo1.Size = new Size(1107, 332);
-            ctrlApplicationInfo1.TabIndex = 7;
-            // 
             // ctrlRenewApplicationInfo1
             // 
             ctrlRenewApplicationInfo1.Location = new Point(12, 928);
@@ -170,16 +163,25 @@
             pictureBox1.TabIndex = 11;
             pictureBox1.TabStop = false;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(505, 596);
+            label3.Name = "label3";
+            label3.Size = new Size(656, 20);
+            label3.TabIndex = 12;
+            label3.Text = "** Please note App Info Will Be Updated After Renewing License To New Info And Driver Info Also";
+            // 
             // frmRenewLicense
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1169, 1277);
+            Controls.Add(label3);
             Controls.Add(pictureBox1);
             Controls.Add(label2);
             Controls.Add(tbNotes);
             Controls.Add(ctrlRenewApplicationInfo1);
-            Controls.Add(ctrlApplicationInfo1);
             Controls.Add(labNewLicenseInfo);
             Controls.Add(labShowLicenseHistory);
             Controls.Add(btnRenew);
@@ -208,10 +210,10 @@
         private Button btnRenew;
         private LinkLabel labShowLicenseHistory;
         private LinkLabel labNewLicenseInfo;
-        private CtrlApplicationInfo ctrlApplicationInfo1;
         private ctrlRenewApplicationInfo ctrlRenewApplicationInfo1;
         private RichTextBox tbNotes;
         private Label label2;
         private PictureBox pictureBox1;
+        private Label label3;
     }
 }

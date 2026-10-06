@@ -30,6 +30,11 @@
         {
             label1 = new Label();
             groupBox1 = new GroupBox();
+            labLicFees = new Label();
+            labIssueDate = new Label();
+            labExpDate = new Label();
+            labNewLicID = new Label();
+            labOldLicID = new Label();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
@@ -37,15 +42,14 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            labOldLicID = new Label();
-            labNewLicID = new Label();
-            labExpDate = new Label();
-            labIssueDate = new Label();
-            labLicFees = new Label();
+            labTotalFees = new Label();
+            pictureBox4 = new PictureBox();
+            label7 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -60,6 +64,9 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(labTotalFees);
+            groupBox1.Controls.Add(pictureBox4);
+            groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(labLicFees);
             groupBox1.Controls.Add(labIssueDate);
             groupBox1.Controls.Add(labExpDate);
@@ -79,6 +86,56 @@
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Renew Info";
+            // 
+            // labLicFees
+            // 
+            labLicFees.AutoSize = true;
+            labLicFees.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labLicFees.Location = new Point(568, 63);
+            labLicFees.Name = "labLicFees";
+            labLicFees.Size = new Size(24, 23);
+            labLicFees.TabIndex = 12;
+            labLicFees.Text = "??";
+            // 
+            // labIssueDate
+            // 
+            labIssueDate.AutoSize = true;
+            labIssueDate.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labIssueDate.Location = new Point(544, 102);
+            labIssueDate.Name = "labIssueDate";
+            labIssueDate.Size = new Size(24, 23);
+            labIssueDate.TabIndex = 11;
+            labIssueDate.Text = "??";
+            // 
+            // labExpDate
+            // 
+            labExpDate.AutoSize = true;
+            labExpDate.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labExpDate.Location = new Point(156, 137);
+            labExpDate.Name = "labExpDate";
+            labExpDate.Size = new Size(24, 23);
+            labExpDate.TabIndex = 10;
+            labExpDate.Text = "??";
+            // 
+            // labNewLicID
+            // 
+            labNewLicID.AutoSize = true;
+            labNewLicID.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labNewLicID.Location = new Point(170, 89);
+            labNewLicID.Name = "labNewLicID";
+            labNewLicID.Size = new Size(24, 23);
+            labNewLicID.TabIndex = 9;
+            labNewLicID.Text = "??";
+            // 
+            // labOldLicID
+            // 
+            labOldLicID.AutoSize = true;
+            labOldLicID.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labOldLicID.Location = new Point(170, 41);
+            labOldLicID.Name = "labOldLicID";
+            labOldLicID.Size = new Size(24, 23);
+            labOldLicID.TabIndex = 8;
+            labOldLicID.Text = "??";
             // 
             // pictureBox3
             // 
@@ -150,55 +207,35 @@
             label2.TabIndex = 1;
             label2.Text = "New License ID : ";
             // 
-            // labOldLicID
+            // labTotalFees
             // 
-            labOldLicID.AutoSize = true;
-            labOldLicID.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labOldLicID.Location = new Point(170, 41);
-            labOldLicID.Name = "labOldLicID";
-            labOldLicID.Size = new Size(24, 23);
-            labOldLicID.TabIndex = 8;
-            labOldLicID.Text = "??";
+            labTotalFees.AutoSize = true;
+            labTotalFees.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labTotalFees.Location = new Point(544, 137);
+            labTotalFees.Name = "labTotalFees";
+            labTotalFees.Size = new Size(24, 23);
+            labTotalFees.TabIndex = 15;
+            labTotalFees.Text = "??";
             // 
-            // labNewLicID
+            // pictureBox4
             // 
-            labNewLicID.AutoSize = true;
-            labNewLicID.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labNewLicID.Location = new Point(170, 89);
-            labNewLicID.Name = "labNewLicID";
-            labNewLicID.Size = new Size(24, 23);
-            labNewLicID.TabIndex = 9;
-            labNewLicID.Text = "??";
+            pictureBox4.Image = Properties.Resources.money_321;
+            pictureBox4.Location = new Point(497, 137);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(41, 23);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox4.TabIndex = 14;
+            pictureBox4.TabStop = false;
             // 
-            // labExpDate
+            // label7
             // 
-            labExpDate.AutoSize = true;
-            labExpDate.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labExpDate.Location = new Point(156, 137);
-            labExpDate.Name = "labExpDate";
-            labExpDate.Size = new Size(24, 23);
-            labExpDate.TabIndex = 10;
-            labExpDate.Text = "??";
-            // 
-            // labIssueDate
-            // 
-            labIssueDate.AutoSize = true;
-            labIssueDate.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labIssueDate.Location = new Point(544, 102);
-            labIssueDate.Name = "labIssueDate";
-            labIssueDate.Size = new Size(24, 23);
-            labIssueDate.TabIndex = 11;
-            labIssueDate.Text = "??";
-            // 
-            // labLicFees
-            // 
-            labLicFees.AutoSize = true;
-            labLicFees.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labLicFees.Location = new Point(568, 63);
-            labLicFees.Name = "labLicFees";
-            labLicFees.Size = new Size(24, 23);
-            labLicFees.TabIndex = 12;
-            labLicFees.Text = "??";
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(402, 137);
+            label7.Name = "label7";
+            label7.Size = new Size(94, 23);
+            label7.TabIndex = 13;
+            label7.Text = "Total Fees :";
             // 
             // ctrlRenewApplicationInfo
             // 
@@ -212,6 +249,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
         }
 
@@ -231,5 +269,8 @@
         private Label labExpDate;
         private Label labIssueDate;
         private Label labLicFees;
+        private Label labTotalFees;
+        private PictureBox pictureBox4;
+        private Label label7;
     }
 }

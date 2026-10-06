@@ -14,10 +14,15 @@ namespace DataAccessLayer
      (
      Select LicenseClasses.ClassFees from LicenseClasses
      where LicenseClasses.LicenseClassID = Licenses.ClassOfLicenseID
+     ) ,
+     TotalFees =
+     (
+     Licenses.PaidFees + ApplicationFees
      )
      from Licenses
-     where LicenseID = @LicenseID
-";
+     Inner Join Applications On Applications.ApplicationID = Licenses.LicApplicationID
+     Inner Join ApplicationTypes on Applications.ApplicationTypeID = ApplicationTypes.ApplicationTypeID
+     where LicenseID = @LicenseID ";
         public static DataTable GetSummaryInfo(int RLicenseID)
         {
             DataTable dt = new DataTable();
