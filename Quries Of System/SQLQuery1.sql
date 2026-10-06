@@ -1024,5 +1024,94 @@ InternationalLicenses.ExpirationDate ,
 InternationalLicenses.IsActive 
 From InternationalLicenses;
 
-Select * From InernationalLicenseApplications
-where ApplicationID =; 
+Select * From InernationalLicenseApplications;
+
+
+Select * from LicenseClasses;
+
+Select * From ApplicationTypes;
+
+
+
+
+INSERT INTO Applications
+(
+    ApplicantPersonID,
+    ApplicationDateTime,
+    ApplicationTypeID,
+    ApplicationStatus,
+    LastStatusDateTime,
+    PaidFees,
+    CreatedByUserID
+)
+VALUES
+(
+    @ApplicantPersonID,
+    @ApplicationDateTime,
+    @ApplicationTypeID,
+    @ApplicationStatus,
+    @LastStatusDateTime,
+    @PaidFees,
+    @CreatedByUserID
+);
+Select SCOPE_IDENTITY(); 
+
+
+
+------- Renew License 
+Update Licenses 
+Set IsActive = 0
+where Licenses.LicenseID = 1;
+
+Select * from Licenses
+where Licenses.LicenseID = 1;
+
+Select * from Licenses
+where LicenseID = 1005;
+
+
+Select * From ApplicationTypes;
+Select top 2 * from Applications order by ApplicationID Desc;
+
+Select * from DriverLicenseInfo;
+
+
+Select * from ApplicationTypes;
+
+SELECT dbo.LicenseClasses.ClassName, dbo.People.FirstName + ' ' + dbo.People.SecondName + ' ' + dbo.People.ThirdName + ' ' + dbo.People.LastName AS FullName, dbo.Licenses.LicenseID, dbo.People.NationalNumber, 
+                  CASE WHEN People.Gender = 1 THEN 'M' WHEN People.Gender = 2 THEN 'F' END AS Gender, dbo.Licenses.IssueDate, dbo.Licenses.ExpirationDate, dbo.Licenses.IsActive, dbo.Drivers.DriverID, dbo.People.DateOfBirth, 
+                  dbo.Licenses.Notes, 
+                  CASE WHEN Licenses.IssueReason = 1 THEN 'First Time' WHEN Licenses.IssueReason = 2 THEN 'Renew' WHEN Licenses.IssueReason = 3 THEN 'Replacement For Damage' WHEN Licenses.IssueReason = 4 THEN 'Replacement For Lost' END
+                   AS IssueReason, dbo.People.ImagePath, dbo.Applications.ApplicationID
+FROM     dbo.Applications INNER JOIN
+                  dbo.Licenses ON dbo.Licenses.LicApplicationID = dbo.Applications.ApplicationID INNER JOIN
+                  dbo.Drivers ON dbo.Drivers.DriverPersonID = dbo.Applications.ApplicantPersonID INNER JOIN
+                  dbo.People ON dbo.People.PersonID = dbo.Drivers.DriverPersonID INNER JOIN
+                  dbo.LicenseClasses ON dbo.LicenseClasses.LicenseClassID = dbo.Licenses.ClassOfLicenseID;
+
+
+     Select Licenses.LicenseID ,
+     Licenses.IssueDate,Licenses.ExpirationDate , LicenseFees = 
+     (
+     Select LicenseClasses.ClassFees from LicenseClasses
+     where LicenseClasses.LicenseClassID = Licenses.ClassOfLicenseID
+     )
+     from Licenses
+     where LicenseID =1 
+
+
+     Select ApplicationTypes.ApplicationTypeTitle,Applications.* 
+     from Applications
+     Inner Join ApplicationTypes On ApplicationTypes.ApplicationTypeID = Applications.ApplicationTypeID
+     where Applications.ApplicationID = 1162;
+
+
+     select * from ApplicationTypes;
+
+     Select top 1 Applications.*
+     from Applications
+     order by ApplicationID desc;
+
+
+
+     Select * from ListDrivers;

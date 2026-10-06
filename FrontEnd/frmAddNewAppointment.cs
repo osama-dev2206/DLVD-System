@@ -99,20 +99,21 @@ namespace FrontEnd
 
             if (clsTestTypes.enTestTypes.VisionTest == testType)
             {
-                res = !clsTest.IsAplicantSuccessedBefore(LocalDrivingLicenseApplication, (int)BussinessLogicLayer.clsTestTypes.enTestTypes.VisionTest); // Has Failed Before
+                // Success ---> Not Success
+                res = clsTest.IsAplicantSuccessedBefore(LocalDrivingLicenseApplication, (int)BussinessLogicLayer.clsTestTypes.enTestTypes.VisionTest); // Has Failed Before
             }
 
             else if (clsTestTypes.enTestTypes.WrittenTest == testType)
             {
-                res = !clsTest.IsAplicantSuccessedBefore(LocalDrivingLicenseApplication, (int)BussinessLogicLayer.clsTestTypes.enTestTypes.WrittenTest); // Has Failed Before
+                res = clsTest.IsAplicantSuccessedBefore(LocalDrivingLicenseApplication, (int)BussinessLogicLayer.clsTestTypes.enTestTypes.WrittenTest); // Has Failed Before
             }
 
             else if (clsTestTypes.enTestTypes.PracticalTest == testType)
             {
-                res = !clsTest.IsAplicantSuccessedBefore(LocalDrivingLicenseApplication, (int)BussinessLogicLayer.clsTestTypes.enTestTypes.PracticalTest); // Has Failed Before
+                res = clsTest.IsAplicantSuccessedBefore(LocalDrivingLicenseApplication, (int)BussinessLogicLayer.clsTestTypes.enTestTypes.PracticalTest); // Has Failed Before
             }
 
-            if (res == true)
+            if (res == false)
             {
                 this.labFormStatus.Text = "Retake Schedule Test";
                 this.ctrlRetakeTestInfo1.Enabled = true;

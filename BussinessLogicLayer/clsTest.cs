@@ -105,12 +105,12 @@ namespace BussinessLogicLayer
                 return enTestResult.Pass;
             else if (Res == false)
                 return enTestResult.Fail;
+
             else  return enTestResult.None;
         }
 
         public static bool  ? IsAplicantSuccessedBefore(int LocalDrivingLicenseApplicationID, int TestTypeID)
         {
-             
             return clsGetTestResultByTestAppointmentID.GetTestResultByTestAppointmentID(LocalDrivingLicenseApplicationID, TestTypeID);
         }
 

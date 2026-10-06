@@ -10,10 +10,7 @@ namespace DataAccessLayer
     {
         private static SqlConnection connection;
 
-        static clsCheckIfHasAppointmentAlreadyOrNot()
-        {
-            connection = dbSettings.DbConnection();
-        }
+
 
 
         private static bool ImplementQuery(int  testTypeID, int LocalLicenseApplicationID)
@@ -52,6 +49,7 @@ Paramter2: "@TestTypeID",  value2 : testTypeID);
 
         public static bool HasAppointmentIsNotLocked(int testTypeID,  int LocalLicenseApplicationID)
         {
+            connection = dbSettings.DbConnection();
             bool Result = false;
             try
             {
