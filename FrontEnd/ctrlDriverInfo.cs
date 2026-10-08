@@ -60,7 +60,7 @@ FileAccess.Read,
                     this.pbGender.Image = Properties.Resources.Woman_32;
                 }
 
-                this.labIssueDate.Text = R["IssueDate"].ToString();
+                this.labIssueDate.Text = DateOnly.FromDateTime(Convert.ToDateTime(R["IssueDate"])).ToString();
                 this.labExpDate.Text = DateOnly.FromDateTime(Convert.ToDateTime( R["ExpirationDate"])).ToString("dd/MM/yyyy");
                 this.labIsActive.Text = R["IsActive"].ToString();
                 this.labDriverID.Text = R["DriverID"].ToString();

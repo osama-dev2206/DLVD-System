@@ -16,24 +16,25 @@ namespace FrontEnd
             InitializeComponent();
         }
 
-        internal void FillForm(int LicenseID)
+
+        internal void FillForm(ref clsInternationalLicense internationalLicense , int LocalLicenseID)
         {
-            DataTable International = clsInternationalLicense.GetInternationalApplicationInfo(LicenseID);
 
+            internationalLicense?.OnSaveGetInterLicID += UpdateLabels;
 
-            foreach(DataRow R in International.Rows)
-            {
-                labAppID.Text = R["ApplicationID"].ToString();
-                labAppDate.Text = R["ApplicationDateTime"].ToString();
-                labIssueDate.Text = R["IssueDateTime"].ToString();
-                labFees.Text = R["ApplicationFees"].ToString();
-                labInternationalLicID.Text = R["InternationalLicenseID"].ToString();
-                labLocalLicID.Text = R["LicenseID"].ToString();
-                labExpDate.Text = DateOnly.FromDateTime(Convert.ToDateTime(R["ExpirationDate"])).ToString();
-                labCreatedBy.Text = R["UserName"].ToString();
-            }
+                labAppDate.Text = internationalLicense.IssueDateTime.ToString("dd/MM/yyyy");
+            labIssueDate.Text = internationalLicense.IssueDateTime.ToString("dd/MM/yyyy");
+            labFees.Text = clsApplicationTypes.FindAppObjByAppID((byte)clsApplicationTypes.enApplicationTypes.NewInternationalDrivingLicense).ApplicationFees.ToString("C");
+            labLocalLicID.Text = LocalLicenseID.ToString();
+            labExpDate.Text = internationalLicense.ExpirationDate.ToString("dd/MM/yyyy");
+            labCreatedBy.Text = clsCurrentLoggedInUser.User.Username;
 
+        }
 
+       private  void UpdateLabels(int InternationalLicenseID , int ApplicationID)
+        {
+            labInternationalLicID.Text = InternationalLicenseID.ToString();
+            labAppID.Text = ApplicationID.ToString();
         }
 
     }

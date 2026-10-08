@@ -27,6 +27,9 @@ namespace FrontEnd
             this.labOldLicID.Text = OldLicenseID.ToString();
             this.labCreatedBy.Text = clsCurrentLoggedInUser.User.Username;
 
+            decimal LicFees = clsLicenseClasses.FindLicenseClassByID(clsLicenses.GetLicenseObjByLicenseID(OldLicenseID).LicenseClassID).ClassFees;
+            this.labLicFees.Text = LicFees.ToString();
+            this.labTotalFees.Text = (LicFees + LocalRenewLicense.RenewApplication.PaidFee).ToString();
         }
 
         private void UpdateRenewInfo(int ApplicationID, int LicenseID)
@@ -34,14 +37,8 @@ namespace FrontEnd
             this.labRenewAppID.Text = ApplicationID.ToString();
             this.labNewLicID.Text = LicenseID.ToString();
 
-            this.labLicFees.Text = LocalRenewLicense.NewLicense.PaiedFees.ToString();
-
             this.labIssueDate.Text = LocalRenewLicense.NewLicense.IssueDate.ToString();
             this.labExpDate.Text = LocalRenewLicense.NewLicense.ExpirationDate.ToString();
-            this.labTotalFees.Text = (LocalRenewLicense.NewLicense.PaiedFees + LocalRenewLicense.RenewApplication.PaidFee).ToString();
-
-
-
         }
 
         internal Action<string> OnNoteChange;
@@ -53,5 +50,7 @@ namespace FrontEnd
                 OnNoteChange?.Invoke(tbNotes.Text);
             }
         }
+
+
     }
 }

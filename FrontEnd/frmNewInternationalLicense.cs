@@ -34,11 +34,16 @@ namespace FrontEnd
             this.labLicenseInfo.Enabled = true;
             PersonID = clsApplications.GetApplicationObjByAppID(Lic.LicenseApplicationID).ApplicantPersonID;
             this.ctrlDriverInfo1.FillForm(Lic.LicenseApplicationID);
-            ctrlInternationalAppInfo1.FillForm(Lic.LicenseID);
+
+       
+
             this.btnIssue.Enabled = true;
             labLicenseHistory.Enabled = true;
 
             International = new clsInternationalLicense(Lic.LicenseID);  // الدولي
+
+            ctrlInternationalAppInfo1.FillForm(internationalLicense: ref this.International, LocalLicenseID: Lic.LicenseID);
+
             International.OnActionGetError += GetErrorWhenSaving;
         }
 

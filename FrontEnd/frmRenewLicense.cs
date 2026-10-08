@@ -37,7 +37,11 @@ namespace FrontEnd
             this.ctrlDriverInfo1.FillForm(OldLic.LicenseApplicationID);
             Renew = new clsRenewLicense(OldLicenseID: OldLic.LicenseID);
             this.ctrlApplicationNewRenewLicInfo1.Enabled = true;
-            ctrlApplicationNewRenewLicInfo1.FillForm(ref Renew , OldLicenseID);
+
+            if (OldLic.IsActive)
+            {
+                ctrlApplicationNewRenewLicInfo1.FillForm(ref Renew, OldLicenseID);
+            }
 
         }
 
