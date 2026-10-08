@@ -16,6 +16,7 @@ namespace FrontEnd
             InitializeComponent();
             this.ctrlFilterFindLicenseByLicid1.OnActionGetLicenseObjByLicID += CtrlFilterFindLicenseByLicid1_OnLicenseSelected;
             this.ctrlFilterFindLicenseByLicid1.OnError += CtrlFilterFindLicenseByLicid1_OnError;
+            this.ctrlApplicationNewRenewLicInfo1.OnNoteChange += SetNote;
         }
 
         clsRenewLicense Renew;
@@ -26,8 +27,8 @@ namespace FrontEnd
         {
             OldLicenseID = OldLic.LicenseID;
             OldApplicationID = OldLic.LicenseApplicationID;
-            ctrlRenewApplicationInfo1.Enabled = true;
-            tbNotes.Enabled = true;
+
+
             this.btnRenew.Enabled = true;
             ApplicantPersonID = clsApplications.GetApplicationObjByAppID(OldLic.LicenseApplicationID).ApplicantPersonID;
             labNewLicenseInfo.Enabled = true;
@@ -35,7 +36,8 @@ namespace FrontEnd
             ctrlDriverInfo1.Enabled = true;
             this.ctrlDriverInfo1.FillForm(OldLic.LicenseApplicationID);
             Renew = new clsRenewLicense(OldLicenseID: OldLic.LicenseID);
-   
+            this.ctrlApplicationNewRenewLicInfo1.Enabled = true;
+            ctrlApplicationNewRenewLicInfo1.FillForm(ref Renew , OldLicenseID);
 
         }
 
@@ -43,13 +45,13 @@ namespace FrontEnd
         {
             if (error)
             {
-                ctrlRenewApplicationInfo1.Enabled = false;
+                
                 this.btnRenew.Enabled = false;
                 labNewLicenseInfo.Enabled = false;
                 labShowLicenseHistory.Enabled = false;
                 ctrlDriverInfo1.Enabled = false;
+                this.ctrlApplicationNewRenewLicInfo1.Enabled = false;
 
-                tbNotes.Enabled = false;
             }
         }
 
@@ -64,7 +66,6 @@ namespace FrontEnd
             {
                 MessageBox.Show("License renewed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.btnRenew.Enabled = false;
-                ctrlRenewApplicationInfo1.FillForm(Renew.LicenseID, OldLicenseID);
                 ctrlDriverInfo1.FillForm(OldApplicationID); //refresh the old license info
 
             }
@@ -90,18 +91,17 @@ namespace FrontEnd
         }
 
 
+        private void SetNote(string Note)
+        {
+            this.Renew.Notes = Note;
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void tbNotes_TextChanged(object sender, EventArgs e)
-        {
-            if(!string.IsNullOrWhiteSpace(tbNotes.Text))
-            {
-                Renew.Notes = tbNotes.Text;
-            }
-        }
+
 
 
     }

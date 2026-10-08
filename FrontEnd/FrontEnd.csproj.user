@@ -19,7 +19,7 @@
     <Compile Update="ctrlInternationalAppInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="ctrlRenewApplicationInfo.cs">
+    <Compile Update="ctrlApplicationNewRenewLicInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="frmInternationalLicenseInfo.cs">

@@ -10,11 +10,11 @@ namespace BussinessLogicLayer
     public sealed class clsRenewLicense
     {
         private clsLicenses ?OldLicense = null;
-        private clsLicenses? NewLicense = null;
-        private clsApplications RenewApplication;
+        public clsLicenses? NewLicense { private set; get; } 
+        public clsApplications RenewApplication { private set;  get; }
         public int ApplicationID = -1;
       public  int LicenseID { private set;  get; }
-        public string  ? Notes { set; get; } = string.Empty;
+        public string  ? Notes { set; get; } 
 
         public clsRenewLicense(int OldLicenseID)
         {
@@ -32,43 +32,47 @@ namespace BussinessLogicLayer
                 RenewApplication.LastStatusDateTime = DateTime.Now;
                 RenewApplication.PaidFee = clsApplicationTypes.FindAppObjByAppID((byte)clsApplicationTypes.enApplicationTypes.RenewDrivingLicense).ApplicationFees;
                 RenewApplication.CreatedByUserID = clsCurrentLoggedInUser.User.UserID;
-    
-
-               bool Res =  RenewApplication.SaveApplication();
-                this.ApplicationID = RenewApplication.ApplicationID;
-
-                if(!Res)
-                {
-                    throw new Exception("Error in saving the new application for license renewal.");
-                }
-
-                NewLicense = 
-                    new clsLicenses(ApplicationID: ApplicationID , ApplicantPersonID: RenewApplication.ApplicantPersonID,
-                    LicenseClassID: OldLicense.LicenseClassID , issueReason: clsLicenses.enIssueReason.Renew); // Create a new license (with the same info of old Lic) 
-                
             }
 
-
         }
+
+
         private bool IsTheOldLicenseExpired()
         {
             return OldLicense.ExpirationDate < DateOnly.FromDateTime(DateTime.Now);
         }
 
+        public Action<int, int> OnSavingGetInfo; 
+
         public bool Save()
         {
-            this.NewLicense.Notes = Notes; // if there is note  
+     
 
- 
+            bool Res = RenewApplication.SaveApplication(); // make new application when saving the renewed license only 
+            this.ApplicationID = RenewApplication.ApplicationID;
 
-            if (OldLicense.IsActive  &&IsTheOldLicenseExpired() && NewLicense.Save())
+            if (Res)
             {
-                this.LicenseID = NewLicense.LicenseID;
-                clsInternationalLicense.DeactivateInternationalLicenseByLicID(LicenseID: OldLicense.LicenseID);// if there exists international license associated with the old license, we will disable it as well
-                this.RenewApplication.UpdateApplicationStatus(clsApplications.enApplicationStatus.Completed); // make the application As completed
+                NewLicense =
+                    new clsLicenses(ApplicationID: ApplicationID, ApplicantPersonID: RenewApplication.ApplicantPersonID,
+                    LicenseClassID: OldLicense.LicenseClassID, issueReason: clsLicenses.enIssueReason.Renew); // Create a new license (with the same info of old Lic) 
 
-                return  clsLicenses.DisableLicenseByLicenseID(OldLicense.LicenseID) ; // Disable the old license
+                this.NewLicense.Notes = Notes; // if there is note  
+
+                if (OldLicense.IsActive && IsTheOldLicenseExpired() && NewLicense.Save())
+                {
+                    this.LicenseID = NewLicense.LicenseID;
+                    clsInternationalLicense.DeactivateInternationalLicenseByLicID(LicenseID: OldLicense.LicenseID);// if there exists international license associated with the old license, we will disable it as well
+                    this.RenewApplication.UpdateApplicationStatus(clsApplications.enApplicationStatus.Completed); // make the application As completed
+
+                    OnSavingGetInfo(ApplicationID, NewLicense.LicenseID); // send the new license ID and the application ID to the caller
+
+
+                    return clsLicenses.DisableLicenseByLicenseID(OldLicense.LicenseID); // Disable the old license
+                }
+
             }
+
             return false;
         }
 
@@ -77,6 +81,8 @@ namespace BussinessLogicLayer
         {
             return clsGetSummaryInfoForRenewLicense.GetSummaryInfo(RLicenseID);
         }
+
+
 
     }
 }
