@@ -47,7 +47,6 @@ namespace BussinessLogicLayer
         public bool Save()
         {
      
-
             bool Res = RenewApplication.SaveApplication(); // make new application when saving the renewed license only 
             this.ApplicationID = RenewApplication.ApplicationID;
 

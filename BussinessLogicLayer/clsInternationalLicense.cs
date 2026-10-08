@@ -19,7 +19,7 @@ namespace BussinessLogicLayer
 
         enum enMode { Add =1 , Update = 2 }
         enMode Mode;
-        clsApplications ? InternationalNewApplication = null;
+      public clsApplications? InternationalNewApplication { private set; get; }
         clsLicenses ? license = null;
 
         // For Adding
@@ -61,14 +61,7 @@ namespace BussinessLogicLayer
             this.InternationalNewApplication.PaidFee = clsApplicationTypes.FindAppObjByAppID((int)clsApplicationTypes.enApplicationTypes.NewInternationalDrivingLicense).ApplicationFees;
             this.InternationalNewApplication.CreatedByUserID = clsCurrentLoggedInUser.User.UserID;
 
-           if( !this.InternationalNewApplication.SaveApplication()) // Save the application to get the application id
-            {
-                OnActionGetError?.Invoke("Error in saving application for International License");
-                InternationalNewApplication = null;
-                return;
-            }
 
-            this.ApplicationID = this.InternationalNewApplication.ApplicationID; // set the application id to the international license
 
         }
 
@@ -120,15 +113,24 @@ namespace BussinessLogicLayer
         }
 
         public Action<string> OnActionGetError;
-
+        public Action<int,int> OnSaveGetInterLicID;
         public bool Save()
         {
-            switch(this.Mode)
+            if (!this.InternationalNewApplication.SaveApplication()) // Save the application to get the application id
+            {
+                OnActionGetError?.Invoke("Error in saving application for International License");
+                return false;
+            }
+
+            this.ApplicationID = this.InternationalNewApplication.ApplicationID; // set the application id to the international license
+
+            switch (this.Mode)
             {
                 case enMode.Add:
                     if (this.Add())
                     {
                         this.Mode = enMode.Update;
+                        OnSaveGetInterLicID?.Invoke(this.InternationalLicenseID , this.ApplicationID);
                         return true;
                     }
                     else
