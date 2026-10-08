@@ -1090,15 +1090,23 @@ FROM     dbo.Applications INNER JOIN
                   dbo.LicenseClasses ON dbo.LicenseClasses.LicenseClassID = dbo.Licenses.ClassOfLicenseID;
 
 
-     Select Licenses.LicenseID ,
+     Select Licenses.LicenseID , ApplicationTypes.ApplicationTypeID , 
      Licenses.IssueDate,Licenses.ExpirationDate , LicenseFees = 
      (
      Select LicenseClasses.ClassFees from LicenseClasses
      where LicenseClasses.LicenseClassID = Licenses.ClassOfLicenseID
+     ) ,
+     TotalFees =
+     (
+     Licenses.PaidFees + ApplicationFees
      )
      from Licenses
-     where LicenseID =1 
+     Inner Join Applications On Applications.ApplicationID = Licenses.LicApplicationID
+     Inner Join ApplicationTypes on Applications.ApplicationTypeID = ApplicationTypes.ApplicationTypeID
+     where LicenseID =1018 ;
 
+
+     Select ApplicationTypes.* from ApplicationTypes;
 
      Select ApplicationTypes.ApplicationTypeTitle,Applications.* 
      from Applications
@@ -1113,5 +1121,36 @@ FROM     dbo.Applications INNER JOIN
      order by ApplicationID desc;
 
 
+     Select * from InternationalLicenses
 
-     Select * from ListDrivers;
+     Update InternationalLicenses
+     Set IsActive = 1
+     where LicenseID = 1014; 
+
+
+     Select * from InternationalLicenses
+
+ SELECT TOP 1 Test.TestResult
+FROM Test
+INNER JOIN TestAppointments
+    ON TestAppointments.TestAppointmentID = Test.AppointmentOfTestID
+INNER JOIN LocalDrivingLicenseApplications
+    ON TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+       = LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+WHERE 
+LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+      = 2066
+AND TestAppointments.AppointmentTestTypeID = 3
+ORDER BY TestAppointments.TestAppointmentID DESC
+
+
+Select top 2 * from Test
+order by TestID desc;
+
+
+Select top 1 *
+From Licenses
+Order by LicenseID desc;
+
+
+
