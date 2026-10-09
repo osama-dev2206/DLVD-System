@@ -164,7 +164,7 @@ namespace BussinessLogicLayer
         }
 
 
-        public static DataTable GetDriverLicenseInfoByApplicationID(int ApplicationID)
+        public static DataTable GetLicenseInfoByApplicationID(int ApplicationID)
         {
             return clsGetDriverLicenseInfo.GetDriverLicenseInfoByApplicationID(ApplicationID);
         }

@@ -13,7 +13,7 @@
     <Compile Update="ctrlGetLicensesHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="ctrlDriverInfo.cs">
+    <Compile Update="ctrlDriverLicenseInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="ctrlInternationalAppInfo.cs">

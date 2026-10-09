@@ -13,6 +13,7 @@ namespace FrontEnd
     {
         clsInternationalLicense? International;
         int LicenseID = -1;
+        int PersonID = -1;
         public frmNewInternationalLicense()
         {
             InitializeComponent();
@@ -24,27 +25,44 @@ namespace FrontEnd
             this.ctrlFilterFindLicenseByLicid1.OnError += CtrlFilterFindLicenseByLicid1_OnError;
         }
 
+        void ShowInfoIfLicenseExist(clsLicenses Lic)
+        {
+            this.International = clsInternationalLicense.GetObjInternationalLicByLocalLicenseID(Lic.LicenseID);
+            this.btnIssue.Enabled = false;
+            ctrlInternationalAppInfo1.FillFormIfTheLicenseExists(internationalLicense: ref this.International, LocalLicenseID: Lic.LicenseID);
+
+            this.ctrlDriverInfo1.FillForm(Lic.LicenseApplicationID);
+        }
+
+
         // From ctrlFilterFindLicenseByLicid1 when the user enters a license id 
-        int PersonID = -1;
         void CtrlFilterFindLicenseByLicid1_OnActionGetLicenseObj(clsLicenses Lic) // this event will be triggered when the user selects a license from the search control (and it exists)
         {
+            labLicenseHistory.Enabled = true;
+            this.labLicenseInfo.Enabled = true;
             this.ctrlInternationalAppInfo1.Enabled = true;
             this.ctrlDriverInfo1.Enabled = true;
             this.LicenseID = Lic.LicenseID;
-            this.labLicenseInfo.Enabled = true;
             PersonID = clsApplications.GetApplicationObjByAppID(Lic.LicenseApplicationID).ApplicantPersonID;
+
+
+            // if the person Has an active International License , Show Its Info
+            if (clsInternationalLicense.IsPersonHasActiveInternationalLicenseByLicenseID(Lic.LicenseID))
+            {
+                ShowInfoIfLicenseExist(Lic);
+                return; 
+            }
+
+            // Otherwise , Enable the controls to allow the user to issue a new International License
             this.ctrlDriverInfo1.FillForm(Lic.LicenseApplicationID);
-
-       
-
             this.btnIssue.Enabled = true;
-            labLicenseHistory.Enabled = true;
-
+   
             International = new clsInternationalLicense(Lic.LicenseID);  // الدولي
 
             ctrlInternationalAppInfo1.FillForm(internationalLicense: ref this.International, LocalLicenseID: Lic.LicenseID);
 
             International.OnActionGetError += GetErrorWhenSaving;
+
         }
 
         void CtrlFilterFindLicenseByLicid1_OnError(bool Error) // From ctrlFilterFindLicenseByLicid1 when the user enters a license id 
