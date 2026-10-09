@@ -1152,5 +1152,25 @@ Select top 1 *
 From Licenses
 Order by LicenseID desc;
 
+select * from ApplicationTypes
+
+Select * from Applications;
+
+Update Applications
+Set ApplicationDateTime = '2022-06-01 10:00:00.000'
+
+where ApplicationID = 3109;
 
 
+Select R = 'T'     
+from InternationalLicenses
+where LicenseID = 3;
+
+Select * from InternationalLicenses
+
+Select * from DriverLicenseInfo;
+
+
+select * from ShowInternationalLicensesInfo;
+
+select * from InternationalLicenses;

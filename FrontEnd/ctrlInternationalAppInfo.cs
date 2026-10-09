@@ -37,5 +37,12 @@ namespace FrontEnd
             labAppID.Text = ApplicationID.ToString();
         }
 
+
+       internal void FillFormIfTheLicenseExists(ref clsInternationalLicense internationalLicense, int LocalLicenseID)
+        {
+            FillForm(ref internationalLicense, LocalLicenseID);
+            UpdateLabels(internationalLicense.InternationalLicenseID, internationalLicense.ApplicationID);
+        }
+
     }
 }

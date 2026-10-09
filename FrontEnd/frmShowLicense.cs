@@ -10,15 +10,20 @@ namespace FrontEnd
 {
     public partial class frmShowLicense : Form
     {
+
         public frmShowLicense( int MainApplicaionID)
         {
             InitializeComponent();
-            this.ctrlLicenseInfo1.FillForm(ApplicaionID: MainApplicaionID );
+
+            this.ctrlLicenseInfo1.FillForm(ApplicaionID: MainApplicaionID);
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+
     }
 }

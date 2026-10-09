@@ -116,6 +116,7 @@ namespace BussinessLogicLayer
         public Action<int,int> OnSaveGetInterLicID;
         public bool Save()
         {
+
             if (!this.InternationalNewApplication.SaveApplication()) // Save the application to get the application id
             {
                 OnActionGetError?.Invoke("Error in saving application for International License");
@@ -153,6 +154,11 @@ namespace BussinessLogicLayer
         internal  bool IsPersonHasActiveInternationalLicense()
         {
             return clsCheckIfThePersonHasInternationalLicenseOrNot.CheckIfThePersonHasInternationalLicenseOrNot(this.InternationalNewApplication.ApplicantPersonID);
+        }
+
+        public static bool IsPersonHasActiveInternationalLicenseByLicenseID(int LicenseID)
+        {
+            return clsIsInternatioalLicenseExistsByLocalLicenseID.IsExists(LicenseID);
         }
 
         // Please Note : LicenseID --> local license id (not international license id)
@@ -196,6 +202,30 @@ namespace BussinessLogicLayer
         internal static bool DeactivateInternationalLicenseByLicID(int LicenseID)
         {
             return clsDeactivateInternationalLicense.DeactivateInternationalLicense(LicenseID);
+        }
+
+        public static clsInternationalLicense GetObjInternationalLicByLocalLicenseID(int LicenseID)
+        {
+            DataTable dt = clsGetBasicInternationalLicInfo.GetInfo(LicenseID);
+            if (dt == null)
+                return null;
+
+            clsInternationalLicense ?International = null;
+
+            foreach(DataRow row in dt.Rows)
+            {
+                International = new clsInternationalLicense(LicenseID);
+                International.InternationalLicenseID = Convert.ToInt32(row["InternationalLicenseID"]);
+                International.IssueDateTime = Convert.ToDateTime(row["IssueDateTime"]);
+                International.ExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(row["ExpirationDate"]));
+                International.IsActive = Convert.ToBoolean(row["IsActive"]);
+                International.UserID = Convert.ToInt32(row["UserID"]);
+                International.DriverID = Convert.ToInt32(row["DriverID"]);
+                International.LicenseID = Convert.ToInt32(row["LicenseID"]);
+                International.ApplicationID = Convert.ToInt32(row["ApplicationID"]);
+            }
+
+            return International;
         }
 
         }

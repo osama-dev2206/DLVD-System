@@ -10,6 +10,7 @@ namespace DataAccessLayer
     {
         private static string Query = @"Select InternationalLicenses.InternationalLicenseID ,
 InternationalLicenses.ApplicationID ,
+InternationalLicenses.LicenseID, 
 LicenseClasses.ClassName ,
 InternationalLicenses.IssueDateTime,
 InternationalLicenses.ExpirationDate ,

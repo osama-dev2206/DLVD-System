@@ -32,15 +32,11 @@ FileAccess.Read,
             
         }
 
-        public void FillForm(int ApplicaionID)
-        {
-            if(!clsCheckExistence.CheckIfTheLicenseHasBeenIssuedOrNot(ApplicaionID))
-            {
-                MessageBox.Show("The license has not been issued yet.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                return;
-            }
 
-            DataTable License = clsLicenses.GetDriverLicenseInfoByApplicationID(ApplicaionID);
+        void FillLocal(int ApplicaionID)
+        {
+
+            DataTable License = clsLicenses.GetLicenseInfoByApplicationID(ApplicaionID); // Local Driving License
 
             foreach (DataRow R in License.Rows)
             {
@@ -53,7 +49,7 @@ FileAccess.Read,
 
                 if (labGender.Text == "M")
                 {
-                   this.pbGender.Image = Properties.Resources.Man_32;
+                    this.pbGender.Image = Properties.Resources.Man_32;
                 }
                 else
                 {
@@ -61,7 +57,7 @@ FileAccess.Read,
                 }
 
                 this.labIssueDate.Text = DateOnly.FromDateTime(Convert.ToDateTime(R["IssueDate"])).ToString();
-                this.labExpDate.Text = DateOnly.FromDateTime(Convert.ToDateTime( R["ExpirationDate"])).ToString("dd/MM/yyyy");
+                this.labExpDate.Text = DateOnly.FromDateTime(Convert.ToDateTime(R["ExpirationDate"])).ToString("dd/MM/yyyy");
                 this.labIsActive.Text = R["IsActive"].ToString();
                 this.labDriverID.Text = R["DriverID"].ToString();
                 this.labDateOfBirth.Text = DateOnly.FromDateTime(Convert.ToDateTime(R["DateOfBirth"])).ToString("dd/MM/yyyy");
@@ -71,7 +67,18 @@ FileAccess.Read,
                 break;
             }
 
+        }
 
+        /// FOR LOCAL LICENSE ONLY
+        public void FillForm(int ApplicaionID )
+        {
+            if(!clsCheckExistence.CheckIfTheLicenseHasBeenIssuedOrNot(ApplicaionID)) // check the local license Only 
+            {
+                MessageBox.Show("The license has not been issued yet.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
+
+            FillLocal(ApplicaionID);
         }
 
 

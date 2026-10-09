@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tabControl1 = new TabControl();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            toolStripMenuItem2 = new ToolStripMenuItem();
             tabPage1 = new TabPage();
             label2 = new Label();
             labCountOfRecordsLocal = new Label();
@@ -40,6 +43,7 @@
             label3 = new Label();
             DgvInternational = new DataGridView();
             tabControl1.SuspendLayout();
+            contextMenuStrip1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DgvLocal).BeginInit();
             tabPage2.SuspendLayout();
@@ -48,6 +52,7 @@
             // 
             // tabControl1
             // 
+            tabControl1.ContextMenuStrip = contextMenuStrip1;
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -56,6 +61,22 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(1038, 327);
             tabControl1.TabIndex = 0;
+            tabControl1.Selecting += tabControl1_Selecting;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem2 });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(169, 30);
+            // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.Image = Properties.Resources.Driver_License_48;
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(168, 26);
+            toolStripMenuItem2.Text = "Show Details";
+            toolStripMenuItem2.Click += ShowLicensetoolStripMenuItem2_Click;
             // 
             // tabPage1
             // 
@@ -183,6 +204,7 @@
             Name = "ctrlGetLicensesHistory";
             Size = new Size(1044, 333);
             tabControl1.ResumeLayout(false);
+            contextMenuStrip1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DgvLocal).EndInit();
@@ -205,5 +227,7 @@
         private DataGridView DgvInternational;
         private Label label2;
         private Label label4;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem toolStripMenuItem2;
     }
 }
