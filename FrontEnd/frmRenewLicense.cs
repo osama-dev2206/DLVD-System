@@ -25,9 +25,9 @@ namespace FrontEnd
         int OldApplicationID = -1;
         void CtrlFilterFindLicenseByLicid1_OnLicenseSelected(clsLicenses OldLic)
         {
+
             OldLicenseID = OldLic.LicenseID;
             OldApplicationID = OldLic.LicenseApplicationID;
-
 
             this.btnRenew.Enabled = true;
             ApplicantPersonID = clsApplications.GetApplicationObjByAppID(OldLic.LicenseApplicationID).ApplicantPersonID;
@@ -41,6 +41,10 @@ namespace FrontEnd
             if (OldLic.IsActive)
             {
                 ctrlApplicationNewRenewLicInfo1.FillForm(ref Renew, OldLicenseID);
+            }
+            else
+            {
+                this.ctrlApplicationNewRenewLicInfo1.Enabled = false;
             }
 
         }
@@ -64,6 +68,7 @@ namespace FrontEnd
             if (Renew is null)
             {
                 MessageBox.Show("Invalid License", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; 
             }
 
             if (Renew.Save())
@@ -75,7 +80,7 @@ namespace FrontEnd
             }
             else
             {
-                MessageBox.Show("Error in renewing the license(Check Expire Date and make sure it is active license).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error in renewing the license Check Expire Date and make sure it is active license.", "Error In Renewing", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
