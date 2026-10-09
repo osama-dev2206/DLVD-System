@@ -37,6 +37,7 @@
             labShowLicenseHistory = new LinkLabel();
             labNewLicenseInfo = new LinkLabel();
             ctrlApplicationNewRenewLicInfo1 = new ctrlApplicationNewRenewLicInfo();
+            label2 = new Label();
             SuspendLayout();
             // 
             // btnClose
@@ -47,7 +48,7 @@
             btnClose.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClose.Image = Properties.Resources.Close_32;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(819, 1001);
+            btnClose.Location = new Point(815, 1034);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(156, 49);
             btnClose.TabIndex = 0;
@@ -88,7 +89,7 @@
             btnRenew.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRenew.Image = Properties.Resources.Renew_Driving_License_322;
             btnRenew.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRenew.Location = new Point(1001, 1001);
+            btnRenew.Location = new Point(997, 1034);
             btnRenew.Name = "btnRenew";
             btnRenew.Size = new Size(156, 49);
             btnRenew.TabIndex = 4;
@@ -100,7 +101,7 @@
             // 
             labShowLicenseHistory.AutoSize = true;
             labShowLicenseHistory.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labShowLicenseHistory.Location = new Point(17, 1010);
+            labShowLicenseHistory.Location = new Point(13, 1043);
             labShowLicenseHistory.Name = "labShowLicenseHistory";
             labShowLicenseHistory.Size = new Size(235, 31);
             labShowLicenseHistory.TabIndex = 5;
@@ -112,7 +113,7 @@
             // 
             labNewLicenseInfo.AutoSize = true;
             labNewLicenseInfo.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labNewLicenseInfo.Location = new Point(271, 1010);
+            labNewLicenseInfo.Location = new Point(267, 1043);
             labNewLicenseInfo.Name = "labNewLicenseInfo";
             labNewLicenseInfo.Size = new Size(253, 31);
             labNewLicenseInfo.TabIndex = 6;
@@ -122,16 +123,28 @@
             // 
             // ctrlApplicationNewRenewLicInfo1
             // 
-            ctrlApplicationNewRenewLicInfo1.Location = new Point(20, 617);
+            ctrlApplicationNewRenewLicInfo1.Location = new Point(20, 658);
             ctrlApplicationNewRenewLicInfo1.Name = "ctrlApplicationNewRenewLicInfo1";
-            ctrlApplicationNewRenewLicInfo1.Size = new Size(1103, 361);
+            ctrlApplicationNewRenewLicInfo1.Size = new Size(811, 370);
             ctrlApplicationNewRenewLicInfo1.TabIndex = 12;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Red;
+            label2.Location = new Point(20, 609);
+            label2.Name = "label2";
+            label2.Size = new Size(671, 46);
+            label2.TabIndex = 13;
+            label2.Text = "Please Note That 'Renew Info' Is Only Showing When You Renew License\r\nand the old license is active it is not indicating the info of current searched License\r\n";
             // 
             // frmRenewLicense
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1169, 1063);
+            ClientSize = new Size(1169, 1095);
+            Controls.Add(label2);
             Controls.Add(ctrlApplicationNewRenewLicInfo1);
             Controls.Add(labNewLicenseInfo);
             Controls.Add(labShowLicenseHistory);
@@ -162,5 +175,6 @@
         private LinkLabel labNewLicenseInfo;
         private ctrlApplicationNewRenewLicInfo ctrlRenewApplicationInfo1;
         private ctrlApplicationNewRenewLicInfo ctrlApplicationNewRenewLicInfo1;
+        private Label label2;
     }
 }
