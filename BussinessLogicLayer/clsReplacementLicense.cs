@@ -4,17 +4,17 @@ using System.Text;
 
 namespace BussinessLogicLayer
 {
-    public sealed class clsReplacementForDamagedLicense
+    public sealed class clsReplacementLicense
     {
         public enum enReplacementFor { DamagedLicense = 1, LostLicense = 2 }
         enReplacementFor ReplacementFor;
-        public clsApplications ?ApplicationForReplacement { private get; set; }
+        public clsApplications ?ApplicationForReplacement {  get; private set; }
         public clsLicenses ? OldLicense { get; private set; }
         public clsLicenses? NewLicense { get; private set; }
         public int ApplicationID { get; private set; }
         
 
-        public clsReplacementForDamagedLicense(enReplacementFor @For , int OldLicenseID)
+        public clsReplacementLicense(enReplacementFor @For , int OldLicenseID)
         {
             OldLicense = clsLicenses.GetLicenseObjByLicenseID(OldLicenseID);
             this.ReplacementFor = @For;
@@ -53,13 +53,16 @@ namespace BussinessLogicLayer
             if (ReplacementFor == enReplacementFor.DamagedLicense)
             {
                 this.NewLicense = new clsLicenses(ApplicationID: this.ApplicationID,
-               ApplicantPersonID: ApplicationForReplacement.ApplicantPersonID, LicenseClassID: this.OldLicense.LicenseClassID, clsLicenses.enIssueReason.ReplacementForDamage);
+               ApplicantPersonID: ApplicationForReplacement.ApplicantPersonID, LicenseClassID: this.OldLicense.LicenseClassID, clsLicenses.enIssueReason.ReplacementForDamage,
+               this.OldLicense.IssueDate , this.OldLicense.ExpirationDate);
             }
              if(ReplacementFor == enReplacementFor.LostLicense)
             {
                 this.NewLicense = new clsLicenses(ApplicationID: this.ApplicationID,
-            ApplicantPersonID: ApplicationForReplacement.ApplicantPersonID, LicenseClassID: this.OldLicense.LicenseClassID, clsLicenses.enIssueReason.ReplacementForLost);
+            ApplicantPersonID: ApplicationForReplacement.ApplicantPersonID, LicenseClassID: this.OldLicense.LicenseClassID, clsLicenses.enIssueReason.ReplacementForLost,
+            this.OldLicense.IssueDate, this.OldLicense.ExpirationDate);
             }
+          
         }
 
         public bool Save()
@@ -75,8 +78,10 @@ namespace BussinessLogicLayer
 
                 SetNewLicense(); // set the new license based on the replacement type
 
-                if(NewLicense != null && NewLicense.Save() // save the new license to the database
+                if( this.OldLicense.IsActive && clsLicenses.IsLicenseStillValid(this.OldLicense.LicenseID)&&
+                    NewLicense != null && NewLicense.Save() )// save the new license to the database
                 {
+                    clsInternationalLicense.DeactivateInternationalLicenseByLicID(this.OldLicense.LicenseID);
                     ApplicationForReplacement.UpdateApplicationStatus(clsApplications.enApplicationStatus.Completed); // update the application status to completed
                     return clsLicenses.DisableLicenseByLicenseID(OldLicense.LicenseID); // disable the old license
                      

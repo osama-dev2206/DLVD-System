@@ -29,47 +29,29 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReplacementForDamagedLic));
-            ctrlFilterFindBy1 = new ctrlFilterFindBy();
-            groupBox1 = new GroupBox();
-            rbDamagedLic = new RadioButton();
+            grbReplacementFor = new GroupBox();
             rbLostLic = new RadioButton();
+            rbDamagedLic = new RadioButton();
             ctrlDriverLicenseInfo1 = new ctrlDriverLicenseInfo();
             btnIssue = new Button();
             btnClose = new Button();
             labLicHistory = new LinkLabel();
             labNewLicenseInfo = new LinkLabel();
-            groupBox1.SuspendLayout();
+            ctrlFilterFindLicenseByLicid1 = new ctrlFilterFindLicenseByLicID();
+            grbReplacementFor.SuspendLayout();
             SuspendLayout();
             // 
-            // ctrlFilterFindBy1
+            // grbReplacementFor
             // 
-            ctrlFilterFindBy1.Location = new Point(12, 12);
-            ctrlFilterFindBy1.Name = "ctrlFilterFindBy1";
-            ctrlFilterFindBy1.Size = new Size(851, 116);
-            ctrlFilterFindBy1.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
-            groupBox1.Controls.Add(rbLostLic);
-            groupBox1.Controls.Add(rbDamagedLic);
-            groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox1.Location = new Point(868, 30);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(284, 105);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Replacement For";
-            // 
-            // rbDamagedLic
-            // 
-            rbDamagedLic.AutoSize = true;
-            rbDamagedLic.Location = new Point(24, 36);
-            rbDamagedLic.Name = "rbDamagedLic";
-            rbDamagedLic.Size = new Size(149, 24);
-            rbDamagedLic.TabIndex = 0;
-            rbDamagedLic.TabStop = true;
-            rbDamagedLic.Text = "Damaged License";
-            rbDamagedLic.UseVisualStyleBackColor = true;
+            grbReplacementFor.Controls.Add(rbLostLic);
+            grbReplacementFor.Controls.Add(rbDamagedLic);
+            grbReplacementFor.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grbReplacementFor.Location = new Point(868, 30);
+            grbReplacementFor.Name = "grbReplacementFor";
+            grbReplacementFor.Size = new Size(284, 105);
+            grbReplacementFor.TabIndex = 1;
+            grbReplacementFor.TabStop = false;
+            grbReplacementFor.Text = "Replacement For";
             // 
             // rbLostLic
             // 
@@ -81,10 +63,23 @@
             rbLostLic.TabStop = true;
             rbLostLic.Text = "Lost License";
             rbLostLic.UseVisualStyleBackColor = true;
+            rbLostLic.CheckedChanged += rbDamagedOrLostLic_CheckedChanged;
+            // 
+            // rbDamagedLic
+            // 
+            rbDamagedLic.AutoSize = true;
+            rbDamagedLic.Location = new Point(24, 36);
+            rbDamagedLic.Name = "rbDamagedLic";
+            rbDamagedLic.Size = new Size(149, 24);
+            rbDamagedLic.TabIndex = 0;
+            rbDamagedLic.TabStop = true;
+            rbDamagedLic.Text = "Damaged License";
+            rbDamagedLic.UseVisualStyleBackColor = true;
+            rbDamagedLic.CheckedChanged += rbDamagedOrLostLic_CheckedChanged;
             // 
             // ctrlDriverLicenseInfo1
             // 
-            ctrlDriverLicenseInfo1.Location = new Point(16, 134);
+            ctrlDriverLicenseInfo1.Location = new Point(16, 141);
             ctrlDriverLicenseInfo1.Name = "ctrlDriverLicenseInfo1";
             ctrlDriverLicenseInfo1.Size = new Size(1136, 401);
             ctrlDriverLicenseInfo1.TabIndex = 2;
@@ -104,6 +99,7 @@
             btnIssue.TabIndex = 3;
             btnIssue.Text = "Issue Replacement";
             btnIssue.UseVisualStyleBackColor = true;
+            btnIssue.Click += btnIssue_Click;
             // 
             // btnClose
             // 
@@ -119,6 +115,7 @@
             btnClose.TabIndex = 4;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
             // labLicHistory
             // 
@@ -130,6 +127,7 @@
             labLicHistory.TabIndex = 5;
             labLicHistory.TabStop = true;
             labLicHistory.Text = "Show License History";
+            labLicHistory.LinkClicked += labLicHistory_LinkClicked;
             // 
             // labNewLicenseInfo
             // 
@@ -141,19 +139,27 @@
             labNewLicenseInfo.TabIndex = 6;
             labNewLicenseInfo.TabStop = true;
             labNewLicenseInfo.Text = "Show New License Info";
+            labNewLicenseInfo.LinkClicked += this.labNewLicenseInfo_LinkClicked;
+            // 
+            // ctrlFilterFindLicenseByLicid1
+            // 
+            ctrlFilterFindLicenseByLicid1.Location = new Point(16, 20);
+            ctrlFilterFindLicenseByLicid1.Name = "ctrlFilterFindLicenseByLicid1";
+            ctrlFilterFindLicenseByLicid1.Size = new Size(831, 108);
+            ctrlFilterFindLicenseByLicid1.TabIndex = 7;
             // 
             // frmReplacementForDamagedLic
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1170, 887);
+            Controls.Add(ctrlFilterFindLicenseByLicid1);
             Controls.Add(labNewLicenseInfo);
             Controls.Add(labLicHistory);
             Controls.Add(btnClose);
             Controls.Add(btnIssue);
             Controls.Add(ctrlDriverLicenseInfo1);
-            Controls.Add(groupBox1);
-            Controls.Add(ctrlFilterFindBy1);
+            Controls.Add(grbReplacementFor);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
@@ -162,16 +168,14 @@
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
             Text = "Replacement For Damaged License";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            grbReplacementFor.ResumeLayout(false);
+            grbReplacementFor.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private ctrlFilterFindBy ctrlFilterFindBy1;
-        private GroupBox groupBox1;
+        private GroupBox grbReplacementFor;
         private RadioButton rbLostLic;
         private RadioButton rbDamagedLic;
         private ctrlDriverLicenseInfo ctrlDriverLicenseInfo1;
@@ -179,5 +183,6 @@
         private Button btnClose;
         private LinkLabel labLicHistory;
         private LinkLabel labNewLicenseInfo;
+        private ctrlFilterFindLicenseByLicID ctrlFilterFindLicenseByLicid1;
     }
 }
