@@ -323,6 +323,16 @@ namespace FrontEnd.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Damaged_Driving_License_32 {
+            get {
+                object obj = ResourceManager.GetObject("Damaged Driving License 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Delete_32 {
             get {
                 object obj = ResourceManager.GetObject("Delete 32", resourceCulture);
@@ -916,6 +926,16 @@ namespace FrontEnd.Properties {
         internal static System.Drawing.Bitmap Renew_Driving_License_322 {
             get {
                 object obj = ResourceManager.GetObject("Renew Driving License 322", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Renew_Driving_License_323 {
+            get {
+                object obj = ResourceManager.GetObject("Renew Driving License 323", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

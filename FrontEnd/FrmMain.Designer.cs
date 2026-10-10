@@ -35,6 +35,7 @@
             nToolStripMenuItem = new ToolStripMenuItem();
             LocalDrivingLicToolStripMenuItem = new ToolStripMenuItem();
             InternationalToolStripMenuItem = new ToolStripMenuItem();
+            renewDrivingLicenseToolStripMenuItem = new ToolStripMenuItem();
             manageApplicationsToolStripMenuItem = new ToolStripMenuItem();
             localAppsToolStripMenuItem = new ToolStripMenuItem();
             InternationalAppsToolStripMenuItem = new ToolStripMenuItem();
@@ -50,7 +51,7 @@
             logoutToolStripMenuItem = new ToolStripMenuItem();
             label1 = new Label();
             label2 = new Label();
-            renewDrivingLicenseToolStripMenuItem = new ToolStripMenuItem();
+            ReplacementOrDamageToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -76,7 +77,7 @@
             // 
             // drivingLicensesServicesToolStripMenuItem
             // 
-            drivingLicensesServicesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nToolStripMenuItem, renewDrivingLicenseToolStripMenuItem });
+            drivingLicensesServicesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nToolStripMenuItem, renewDrivingLicenseToolStripMenuItem, ReplacementOrDamageToolStripMenuItem });
             drivingLicensesServicesToolStripMenuItem.Image = Properties.Resources.Driver_License_48;
             drivingLicensesServicesToolStripMenuItem.Name = "drivingLicensesServicesToolStripMenuItem";
             drivingLicensesServicesToolStripMenuItem.Size = new Size(379, 36);
@@ -87,7 +88,7 @@
             nToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { LocalDrivingLicToolStripMenuItem, InternationalToolStripMenuItem });
             nToolStripMenuItem.Image = Properties.Resources.New_Driving_License_321;
             nToolStripMenuItem.Name = "nToolStripMenuItem";
-            nToolStripMenuItem.Size = new Size(352, 36);
+            nToolStripMenuItem.Size = new Size(576, 36);
             nToolStripMenuItem.Text = "New Driving License";
             // 
             // LocalDrivingLicToolStripMenuItem
@@ -105,6 +106,14 @@
             InternationalToolStripMenuItem.Size = new Size(326, 36);
             InternationalToolStripMenuItem.Text = "International License";
             InternationalToolStripMenuItem.Click += NewInternationalToolStripMenuItem_Click;
+            // 
+            // renewDrivingLicenseToolStripMenuItem
+            // 
+            renewDrivingLicenseToolStripMenuItem.Image = Properties.Resources.Renew_Driving_License_321;
+            renewDrivingLicenseToolStripMenuItem.Name = "renewDrivingLicenseToolStripMenuItem";
+            renewDrivingLicenseToolStripMenuItem.Size = new Size(576, 36);
+            renewDrivingLicenseToolStripMenuItem.Text = "Renew Driving License";
+            renewDrivingLicenseToolStripMenuItem.Click += renewDrivingLicenseToolStripMenuItem_Click;
             // 
             // manageApplicationsToolStripMenuItem
             // 
@@ -241,13 +250,13 @@
             label2.TabIndex = 2;
             label2.Text = "Driving and Vehicle License Department Management";
             // 
-            // renewDrivingLicenseToolStripMenuItem
+            // ReplacementOrDamageToolStripMenuItem
             // 
-            renewDrivingLicenseToolStripMenuItem.Image = Properties.Resources.Renew_Driving_License_321;
-            renewDrivingLicenseToolStripMenuItem.Name = "renewDrivingLicenseToolStripMenuItem";
-            renewDrivingLicenseToolStripMenuItem.Size = new Size(352, 36);
-            renewDrivingLicenseToolStripMenuItem.Text = "Renew Driving License";
-            renewDrivingLicenseToolStripMenuItem.Click += renewDrivingLicenseToolStripMenuItem_Click;
+            ReplacementOrDamageToolStripMenuItem.Image = Properties.Resources.Damaged_Driving_License_32;
+            ReplacementOrDamageToolStripMenuItem.Name = "ReplacementOrDamageToolStripMenuItem";
+            ReplacementOrDamageToolStripMenuItem.Size = new Size(576, 36);
+            ReplacementOrDamageToolStripMenuItem.Text = "Replacement For Lost Or Damaged Licenses";
+            ReplacementOrDamageToolStripMenuItem.Click += ReplacementOrDamageToolStripMenuItem_Click;
             // 
             // frmMain
             // 
@@ -295,5 +304,6 @@
         private ToolStripMenuItem InternationalToolStripMenuItem;
         private ToolStripMenuItem InternationalAppsToolStripMenuItem;
         private ToolStripMenuItem renewDrivingLicenseToolStripMenuItem;
+        private ToolStripMenuItem ReplacementOrDamageToolStripMenuItem;
     }
 }

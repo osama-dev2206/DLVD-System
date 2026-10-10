@@ -103,5 +103,14 @@ namespace FrontEnd
             frmRenew?.Dispose();
         }
 
+        private void ReplacementOrDamageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReplacementForDamagedLic replacementOrDamaged = new frmReplacementForDamagedLic();
+            replacementOrDamaged?.ShowDialog();
+            replacementOrDamaged?.Dispose();
+        }
+
+
+
     }
 }

@@ -130,5 +130,8 @@
     <Compile Update="frnInternationalLicensesApps.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmReplacementForDamagedLic.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
