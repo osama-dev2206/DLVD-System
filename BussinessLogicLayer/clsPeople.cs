@@ -184,7 +184,7 @@ namespace BussinessLogicLayer
         {
             string Path = ImagePathFromDB(PersonID);
          
-            return (DeleteImageFromDir(Path) && clsDeletePerson.DeletePerson(PersonID) );
+            return ( clsDeletePerson.DeletePerson(PersonID) && DeleteImageFromDir(Path));
         }
 
         public static DataTable GetAllCountries()

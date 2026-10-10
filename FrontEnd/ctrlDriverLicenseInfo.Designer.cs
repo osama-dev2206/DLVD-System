@@ -150,7 +150,7 @@
             // 
             labIssueReason.AutoSize = true;
             labIssueReason.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labIssueReason.Location = new Point(740, 98);
+            labIssueReason.Location = new Point(730, 100);
             labIssueReason.Name = "labIssueReason";
             labIssueReason.Size = new Size(24, 23);
             labIssueReason.TabIndex = 49;
@@ -537,12 +537,12 @@
             label1.TabIndex = 0;
             label1.Text = "Class :";
             // 
-            // ctrlLicenseInfo
+            // ctrlDriverLicenseInfo
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(groupBox1);
-            Name = "ctrlLicenseInfo";
+            Name = "ctrlDriverLicenseInfo";
             Size = new Size(1122, 412);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

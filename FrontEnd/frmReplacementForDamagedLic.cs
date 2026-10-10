@@ -19,6 +19,7 @@ namespace FrontEnd
         }
 
         int OldLicenseID = -1 ;
+        int OldLicAppID = -1;
         clsReplacementLicense ? ReplacementForDamagedOrLost; 
         void CtrlFilterFindBy1_OnPersonFound(clsLicenses Lic)
         {
@@ -29,7 +30,8 @@ namespace FrontEnd
             this.grbReplacementFor.Enabled = true;
             ctrlDriverLicenseInfo1.FillForm(ApplicaionID:Lic.LicenseApplicationID);
             OldLicenseID = Lic.LicenseID;
-          
+            OldLicAppID = Lic.LicenseApplicationID;
+
 
             ReplacementForDamagedOrLost = new clsReplacementLicense(clsReplacementLicense.enReplacementFor.DamagedLicense, this.OldLicenseID); // Default 
         }
@@ -53,12 +55,12 @@ namespace FrontEnd
                 if (rbDamagedLic.Checked)
                 {
                     ReplacementForDamagedOrLost = new clsReplacementLicense(clsReplacementLicense.enReplacementFor.DamagedLicense, this.OldLicenseID);
-                    return;
+                    
                 }
                 if (rbLostLic.Checked)
                 {
                     ReplacementForDamagedOrLost = new clsReplacementLicense(clsReplacementLicense.enReplacementFor.LostLicense, this.OldLicenseID);
-                    return; 
+                   
                 }
             }
         }
@@ -80,9 +82,17 @@ namespace FrontEnd
 
         void btnIssue_Click(object sender, EventArgs e)
         {
+            if(ReplacementForDamagedOrLost is null)
+            {
+                MessageBox.Show("Error Issuing Replacement License", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             if(this.ReplacementForDamagedOrLost.Save())
             {
                 MessageBox.Show("Replacement License Issued Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.ctrlDriverLicenseInfo1.FillForm(OldLicAppID); // update driver's info
+                 btnIssue.Enabled = false;
+                grbReplacementFor.Enabled = false;
+                ctrlFilterFindLicenseByLicid1.Enabled = false;
             }
             else
             {
