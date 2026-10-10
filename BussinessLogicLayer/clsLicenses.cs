@@ -50,7 +50,7 @@ namespace BussinessLogicLayer
             this.ApplicantPersonID = clsApplications.GetApplicationObjByAppID(ApplicationID).ApplicantPersonID; // Get the ApplicantPersonID from the application object
         }
 
-        // For Renewing (DOH
+        // For Renewing 
         internal clsLicenses(int ApplicationID, int ApplicantPersonID,int LicenseClassID , enIssueReason issueReason)
         {
             Mode = enMode.Add;
@@ -69,6 +69,28 @@ namespace BussinessLogicLayer
 
             this.ApplicantPersonID = ApplicantPersonID;
         }
+
+        // For Replacement (Damaged or Lost)
+        internal clsLicenses(int ApplicationID, int ApplicantPersonID, int LicenseClassID, enIssueReason issueReason , DateOnly IssueDateOfOldLicense , DateOnly ExpDateOfOldLicense)
+        {
+            Mode = enMode.Add;
+
+            this.LicenseID = -1;
+            this.LicenseApplicationID = ApplicationID;
+            this.LicenseDriverID = -1; // initial value will be set later
+            this.LicenseClassID = LicenseClassID;
+            this.IssueDate = IssueDateOfOldLicense;
+            this.ExpirationDate = ExpDateOfOldLicense;
+            // notes can be set later
+            this.PaiedFees = clsLicenseClasses.FindLicenseClassByID(LicenseClassID).ClassFees; // Set PaiedFees based on the default fees of the license class
+            this.IsActive = true; // New license is active by default
+            this.IssueReason = issueReason;
+            this.CreatedByUserID = clsCurrentLoggedInUser.User.UserID; // Set CreatedByUserID to the current logged-in user's ID
+
+            this.ApplicantPersonID = ApplicantPersonID;
+        }
+
+
 
         private clsLicenses(int LicenseID, int ApplicationID, int DriverID, int ClassID, DateOnly IssueDate, DateOnly ExpirationDate, string ? Notes, decimal PaiedFees, bool IsActive, enIssueReason IssueReason, int CreatedByUserID)
         {
