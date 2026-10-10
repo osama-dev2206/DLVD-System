@@ -55,7 +55,7 @@
             groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(868, 30);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(182, 98);
+            groupBox1.Size = new Size(284, 105);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Replacement For";
