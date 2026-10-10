@@ -18,16 +18,23 @@ namespace FrontEnd
 
         private void FillPfp(string Path)
         {
-            using (var stream = new FileStream(
-Path,
-FileMode.Open,
-FileAccess.Read,
-   FileShare.Read))
+            try
             {
-                using (var temp = Image.FromStream(stream))
+                using (var stream = new FileStream(
+    Path,
+    FileMode.Open,
+    FileAccess.Read,
+       FileShare.Read))
                 {
-                    this.pbProfile.Image = new Bitmap(temp);
+                    using (var temp = Image.FromStream(stream))
+                    {
+                        this.pbProfile.Image = new Bitmap(temp);
+                    }
                 }
+            }
+            catch
+            {
+                this.pbProfile.Image = null;
             }
             
         }

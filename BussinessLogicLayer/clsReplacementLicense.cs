@@ -13,11 +13,13 @@ namespace BussinessLogicLayer
         public clsLicenses? NewLicense { get; private set; }
         public int ApplicationID { get; private set; }
         
-
+        enum enReplacementTime { First =1 , Second =2 } // we will use his to avoid duplicate replacement applications for the same license in the same session (as the object will still in memory and the user can click the issue button again)
+        enReplacementTime replacementTime;
         public clsReplacementLicense(enReplacementFor @For , int OldLicenseID)
         {
             OldLicense = clsLicenses.GetLicenseObjByLicenseID(OldLicenseID);
             this.ReplacementFor = @For;
+            replacementTime = enReplacementTime.First; // default value
 
             if (OldLicense != null)
             {
@@ -48,7 +50,7 @@ namespace BussinessLogicLayer
 
         }
 
-        void SetNewLicense()
+        private void SetNewLicense()
         {
             if (ReplacementFor == enReplacementFor.DamagedLicense)
             {
@@ -72,7 +74,7 @@ namespace BussinessLogicLayer
                 return false;
             }
 
-            if(ApplicationForReplacement.SaveApplication())
+            if(replacementTime == enReplacementTime.First && ApplicationForReplacement.SaveApplication())
             {
                 this.ApplicationID = ApplicationForReplacement.ApplicationID; // after saving the application, we can get the ApplicationID
 
@@ -83,6 +85,9 @@ namespace BussinessLogicLayer
                 {
                     clsInternationalLicense.DeactivateInternationalLicenseByLicID(this.OldLicense.LicenseID);
                     ApplicationForReplacement.UpdateApplicationStatus(clsApplications.enApplicationStatus.Completed); // update the application status to completed
+
+                    this.replacementTime = enReplacementTime.Second; // set the replacement time to second to avoid duplicate replacement applications for the same license in the same session
+
                     return clsLicenses.DisableLicenseByLicenseID(OldLicense.LicenseID); // disable the old license
                      
                 }
