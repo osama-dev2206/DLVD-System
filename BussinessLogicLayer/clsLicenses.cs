@@ -71,7 +71,7 @@ namespace BussinessLogicLayer
         }
 
         // For Replacement (Damaged or Lost)
-        internal clsLicenses(int ApplicationID, int ApplicantPersonID, int LicenseClassID, enIssueReason issueReason , DateOnly IssueDateOfOldLicense , DateOnly ExpDateOfOldLicense)
+        internal clsLicenses(int ApplicationID, int ApplicantPersonID, int LicenseClassID, enIssueReason issueReason , DateOnly IssueDateOfReplacedLicense , DateOnly ExpDateOfOldLicense)
         {
             Mode = enMode.Add;
 
@@ -79,7 +79,7 @@ namespace BussinessLogicLayer
             this.LicenseApplicationID = ApplicationID;
             this.LicenseDriverID = -1; // initial value will be set later
             this.LicenseClassID = LicenseClassID;
-            this.IssueDate = IssueDateOfOldLicense;
+            this.IssueDate = IssueDateOfReplacedLicense;
             this.ExpirationDate = ExpDateOfOldLicense;
             // notes can be set later
             this.PaiedFees = clsLicenseClasses.FindLicenseClassByID(LicenseClassID).ClassFees; // Set PaiedFees based on the default fees of the license class
