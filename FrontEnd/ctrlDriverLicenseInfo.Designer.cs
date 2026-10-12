@@ -139,7 +139,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.Notes_321;
-            pictureBox2.Location = new Point(688, 95);
+            pictureBox2.Location = new Point(676, 95);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(36, 28);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -150,7 +150,7 @@
             // 
             labIssueReason.AutoSize = true;
             labIssueReason.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labIssueReason.Location = new Point(730, 100);
+            labIssueReason.Location = new Point(717, 97);
             labIssueReason.Name = "labIssueReason";
             labIssueReason.Size = new Size(24, 23);
             labIssueReason.TabIndex = 49;

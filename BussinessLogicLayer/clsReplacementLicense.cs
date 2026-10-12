@@ -67,6 +67,7 @@ namespace BussinessLogicLayer
           
         }
 
+        public Action<int, int> OnSaveGetInfo;
         public bool Save()
         { 
             if(ApplicationForReplacement is null || OldLicense is null )
@@ -87,6 +88,8 @@ namespace BussinessLogicLayer
                     ApplicationForReplacement.UpdateApplicationStatus(clsApplications.enApplicationStatus.Completed); // update the application status to completed
 
                     this.replacementTime = enReplacementTime.Second; // set the replacement time to second to avoid duplicate replacement applications for the same license in the same session
+
+                    OnSaveGetInfo?.Invoke(this.ApplicationID, this.NewLicense.LicenseID); // return the ApplicationID and NewLicenseID to the caller
 
                     return clsLicenses.DisableLicenseByLicenseID(OldLicense.LicenseID); // disable the old license
                      

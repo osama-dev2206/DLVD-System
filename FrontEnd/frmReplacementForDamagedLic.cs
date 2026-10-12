@@ -24,6 +24,7 @@ namespace FrontEnd
         void CtrlFilterFindBy1_OnPersonFound(clsLicenses Lic)
         {
             btnIssue.Enabled = true;
+            this.ctrlReplacementAppInfo1.Enabled = true;
             this.labLicHistory.Enabled = true;
             this.labNewLicenseInfo.Enabled = true;
             this.ctrlDriverLicenseInfo1.Enabled = true;
@@ -31,15 +32,16 @@ namespace FrontEnd
             ctrlDriverLicenseInfo1.FillForm(ApplicaionID:Lic.LicenseApplicationID);
             OldLicenseID = Lic.LicenseID;
             OldLicAppID = Lic.LicenseApplicationID;
-
-
+      
             ReplacementForDamagedOrLost = new clsReplacementLicense(clsReplacementLicense.enReplacementFor.DamagedLicense, this.OldLicenseID); // Default 
+            ctrlReplacementAppInfo1.FillForm(ReplacementForDamagedOrLost, Lic.LicenseID);
         }
         
         void CtrlFilterFindBy1_OnError(bool Error)
         {
             if (Error)
             {
+                this.ctrlReplacementAppInfo1.Enabled = false;
                 btnIssue.Enabled = false;
                 this.labLicHistory.Enabled = false;
                 this.labNewLicenseInfo.Enabled = false;
@@ -55,12 +57,12 @@ namespace FrontEnd
                 if (rbDamagedLic.Checked)
                 {
                     ReplacementForDamagedOrLost = new clsReplacementLicense(clsReplacementLicense.enReplacementFor.DamagedLicense, this.OldLicenseID);
-                    
+                    ctrlReplacementAppInfo1.FillForm(ReplacementForDamagedOrLost, OldLicenseID);
                 }
                 if (rbLostLic.Checked)
                 {
                     ReplacementForDamagedOrLost = new clsReplacementLicense(clsReplacementLicense.enReplacementFor.LostLicense, this.OldLicenseID);
-                   
+                    ctrlReplacementAppInfo1.FillForm(ReplacementForDamagedOrLost, OldLicenseID);
                 }
             }
         }

@@ -1058,7 +1058,7 @@ Select SCOPE_IDENTITY();
 
 
 
-------- Renew License 
+------- Renew License  and Some Random Queries
 Update Licenses 
 Set IsActive = 0
 where Licenses.LicenseID = 1;
@@ -1174,3 +1174,28 @@ Select * from DriverLicenseInfo;
 select * from ShowInternationalLicensesInfo;
 
 select * from InternationalLicenses;
+
+
+---- Replacement License 
+Select * from ApplicationTypes;
+
+Select top 1 * 
+from Licenses
+order by LicenseID Desc ;
+
+Select top 1 * ,
+ApplicationTypes.ApplicationTypeTitle
+from Applications 
+Inner Join ApplicationTypes On ApplicationTypes.ApplicationTypeID = Applications.ApplicationTypeID
+order by ApplicationID DESC;
+
+Select *
+from ApplicationTypes;
+
+delete Licenses
+where Licenses.LicenseID = 3017;
+
+select Licenses.LicenseID
+from Licenses
+Inner Join Applications On Applications.ApplicationID = Licenses.LicApplicationID
+where Applications.ApplicantPersonID = 3014;
