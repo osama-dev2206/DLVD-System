@@ -263,6 +263,16 @@ namespace FrontEnd.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Calendar_324 {
+            get {
+                object obj = ResourceManager.GetObject("Calendar 324", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Close_32 {
             get {
                 object obj = ResourceManager.GetObject("Close 32", resourceCulture);
@@ -623,6 +633,16 @@ namespace FrontEnd.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LocalDriving_License1 {
+            get {
+                object obj = ResourceManager.GetObject("LocalDriving License1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Login_photo {
             get {
                 object obj = ResourceManager.GetObject("Login photo", resourceCulture);
@@ -943,6 +963,16 @@ namespace FrontEnd.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Renew_Driving_License_324 {
+            get {
+                object obj = ResourceManager.GetObject("Renew Driving License 324", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ResizedMainFormImagejpg {
             get {
                 object obj = ResourceManager.GetObject("ResizedMainFormImagejpg", resourceCulture);
@@ -1096,6 +1126,16 @@ namespace FrontEnd.Properties {
         internal static System.Drawing.Bitmap User_32__22 {
             get {
                 object obj = ResourceManager.GetObject("User 32 -22", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap User_32__23 {
+            get {
+                object obj = ResourceManager.GetObject("User 32 -23", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

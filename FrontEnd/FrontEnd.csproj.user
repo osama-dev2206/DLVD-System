@@ -22,6 +22,9 @@
     <Compile Update="ctrlApplicationNewRenewLicInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ctrlReplacementAppInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="frmInternationalLicenseInfo.cs">
       <SubType>Form</SubType>
     </Compile>

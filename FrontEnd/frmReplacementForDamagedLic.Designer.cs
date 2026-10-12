@@ -38,6 +38,7 @@
             labLicHistory = new LinkLabel();
             labNewLicenseInfo = new LinkLabel();
             ctrlFilterFindLicenseByLicid1 = new ctrlFilterFindLicenseByLicID();
+            ctrlReplacementAppInfo1 = new ctrlReplacementAppInfo();
             grbReplacementFor.SuspendLayout();
             SuspendLayout();
             // 
@@ -93,7 +94,7 @@
             btnIssue.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnIssue.Image = Properties.Resources.Renew_Driving_License_323;
             btnIssue.ImageAlign = ContentAlignment.BottomLeft;
-            btnIssue.Location = new Point(908, 832);
+            btnIssue.Location = new Point(909, 749);
             btnIssue.Name = "btnIssue";
             btnIssue.Size = new Size(250, 50);
             btnIssue.TabIndex = 3;
@@ -109,7 +110,7 @@
             btnClose.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClose.Image = Properties.Resources.Close_321;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(745, 832);
+            btnClose.Location = new Point(746, 749);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(146, 48);
             btnClose.TabIndex = 4;
@@ -121,7 +122,7 @@
             // 
             labLicHistory.AutoSize = true;
             labLicHistory.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            labLicHistory.Location = new Point(14, 842);
+            labLicHistory.Location = new Point(15, 759);
             labLicHistory.Name = "labLicHistory";
             labLicHistory.Size = new Size(214, 28);
             labLicHistory.TabIndex = 5;
@@ -133,13 +134,13 @@
             // 
             labNewLicenseInfo.AutoSize = true;
             labNewLicenseInfo.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            labNewLicenseInfo.Location = new Point(263, 842);
+            labNewLicenseInfo.Location = new Point(264, 759);
             labNewLicenseInfo.Name = "labNewLicenseInfo";
             labNewLicenseInfo.Size = new Size(231, 28);
             labNewLicenseInfo.TabIndex = 6;
             labNewLicenseInfo.TabStop = true;
             labNewLicenseInfo.Text = "Show New License Info";
-            labNewLicenseInfo.LinkClicked += this.labNewLicenseInfo_LinkClicked;
+            labNewLicenseInfo.LinkClicked += labNewLicenseInfo_LinkClicked;
             // 
             // ctrlFilterFindLicenseByLicid1
             // 
@@ -148,11 +149,19 @@
             ctrlFilterFindLicenseByLicid1.Size = new Size(831, 108);
             ctrlFilterFindLicenseByLicid1.TabIndex = 7;
             // 
+            // ctrlReplacementAppInfo1
+            // 
+            ctrlReplacementAppInfo1.Location = new Point(16, 548);
+            ctrlReplacementAppInfo1.Name = "ctrlReplacementAppInfo1";
+            ctrlReplacementAppInfo1.Size = new Size(763, 186);
+            ctrlReplacementAppInfo1.TabIndex = 8;
+            // 
             // frmReplacementForDamagedLic
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1170, 887);
+            ClientSize = new Size(1170, 811);
+            Controls.Add(ctrlReplacementAppInfo1);
             Controls.Add(ctrlFilterFindLicenseByLicid1);
             Controls.Add(labNewLicenseInfo);
             Controls.Add(labLicHistory);
@@ -184,5 +193,6 @@
         private LinkLabel labLicHistory;
         private LinkLabel labNewLicenseInfo;
         private ctrlFilterFindLicenseByLicID ctrlFilterFindLicenseByLicid1;
+        private ctrlReplacementAppInfo ctrlReplacementAppInfo1;
     }
 }
