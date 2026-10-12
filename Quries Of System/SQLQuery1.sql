@@ -1199,3 +1199,10 @@ select Licenses.LicenseID
 from Licenses
 Inner Join Applications On Applications.ApplicationID = Licenses.LicApplicationID
 where Applications.ApplicantPersonID = 3014;
+
+
+select top 2 *
+from Licenses
+Order By LicenseID DESC;
+
+select * from ApplicationTypes;

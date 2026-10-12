@@ -55,14 +55,20 @@ namespace BussinessLogicLayer
             if (ReplacementFor == enReplacementFor.DamagedLicense)
             {
                 this.NewLicense = new clsLicenses(ApplicationID: this.ApplicationID,
-               ApplicantPersonID: ApplicationForReplacement.ApplicantPersonID, LicenseClassID: this.OldLicense.LicenseClassID, clsLicenses.enIssueReason.ReplacementForDamage,
-               this.OldLicense.IssueDate , this.OldLicense.ExpirationDate);
+               ApplicantPersonID: ApplicationForReplacement.ApplicantPersonID, 
+               LicenseClassID: this.OldLicense.LicenseClassID, 
+               issueReason: clsLicenses.enIssueReason.ReplacementForDamage,
+               IssueDateOfReplacedLicense:DateOnly.FromDateTime(DateTime.Now) ,
+               ExpDateOfOldLicense: this.OldLicense.ExpirationDate);
             }
              if(ReplacementFor == enReplacementFor.LostLicense)
             {
                 this.NewLicense = new clsLicenses(ApplicationID: this.ApplicationID,
-            ApplicantPersonID: ApplicationForReplacement.ApplicantPersonID, LicenseClassID: this.OldLicense.LicenseClassID, clsLicenses.enIssueReason.ReplacementForLost,
-            this.OldLicense.IssueDate, this.OldLicense.ExpirationDate);
+            ApplicantPersonID: ApplicationForReplacement.ApplicantPersonID, 
+            LicenseClassID: this.OldLicense.LicenseClassID, 
+            issueReason: clsLicenses.enIssueReason.ReplacementForLost,
+             IssueDateOfReplacedLicense: DateOnly.FromDateTime(DateTime.Now), 
+             ExpDateOfOldLicense: this.OldLicense.ExpirationDate);
             }
           
         }
@@ -84,7 +90,8 @@ namespace BussinessLogicLayer
                 if( this.OldLicense.IsActive && clsLicenses.IsLicenseStillValid(this.OldLicense.LicenseID)&&
                     NewLicense != null && NewLicense.Save() )// save the new license to the database
                 {
-                    clsInternationalLicense.DeactivateInternationalLicenseByLicID(this.OldLicense.LicenseID);
+                    clsInternationalLicense.DeactivateInternationalLicenseByLicID(this.OldLicense.LicenseID); // deactivate the international license if it exists for the old license
+
                     ApplicationForReplacement.UpdateApplicationStatus(clsApplications.enApplicationStatus.Completed); // update the application status to completed
 
                     this.replacementTime = enReplacementTime.Second; // set the replacement time to second to avoid duplicate replacement applications for the same license in the same session
