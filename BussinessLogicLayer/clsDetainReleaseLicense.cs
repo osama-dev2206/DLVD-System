@@ -19,16 +19,13 @@ namespace BussinessLogicLayer
 
         private clsLicenses ? license = null;
 
-        enum enMode { Add = 1 , Update =2 }
+        enum enMode { Detain = 1 , Release =2 }
         enMode Mode;
 
-      //public  enum enDetainReleaseLicenseStatus { Detain = 1 , Release = 2}
-      //  enDetainReleaseLicenseStatus DetainReleaseLicense;
-
-        // ADD = Means you want to detain license,detain license doesnot require any applications //
+        // Detain = Means you want to detain license,detain license doesnot require any applications //
         public clsDetainReleaseLicense(int LicenseID )
         {
-            this.Mode = enMode.Add;
+            this.Mode = enMode.Detain;
 
             this.LicenseID = LicenseID;
             this.license = clsLicenses.GetLicenseObjByLicenseID(LicenseID: LicenseID);
@@ -76,11 +73,10 @@ namespace BussinessLogicLayer
         {
             switch (this.Mode)
             {
-                case enMode.Add:
+                case enMode.Detain:
                     {
                         if (CheckBeforeSave()) // if the check is ok then .......
                         {
-                            this.Mode = enMode.Update;
                            return Add(); // add new license as detained license 
                         }
                         else
