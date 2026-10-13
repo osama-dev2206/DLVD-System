@@ -1206,3 +1206,27 @@ from Licenses
 Order By LicenseID DESC;
 
 select * from ApplicationTypes;
+
+-----------
+-- Detained Licenses
+
+-- Detain Only Now 
+Insert Into DetainedLicenses
+( DLicenseID , DetainDateTime , FineFees , ISReleased , CreatedByUserID )
+values ('@DLicenseID' , '@DetainDateTime' , '@FineFees' , '@ISReleased' , '@CreatedByUserID' );
+Select Scope_Identity();
+
+alter table DetainedLicenses
+add Constraint Chk_FineFees CHECK (FineFees > 0);
+
+Select * from Licenses;
+-- return t if it is not released yet (still detained) 
+Select R = 'T'
+from DetainedLicenses
+where DetainedLicenses.DLicenseID = 1 
+and 
+DetainedLicenses.ISReleased = 0;
+
+select * from DetainedLicenses;
+
+delete from DetainedLicenses;
