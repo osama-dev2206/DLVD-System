@@ -128,7 +128,12 @@ namespace BussinessLogicLayer
             switch (this.Mode)
             {
                 case enMode.Add:
-                    if (this.Add())
+                    if (clsDetainReleaseLicense.IsLicenseDetained(this.LicenseID)) // if license is detained then we cannot add international license for this person
+                    {
+                        OnActionGetError?.Invoke("The Local License Is Detained Ask For Releasing It At First Then Try Again");
+                        return false;
+                    }
+                    if ( this.Add() )
                     {
                         this.Mode = enMode.Update;
                         OnSaveGetInterLicID?.Invoke(this.InternationalLicenseID , this.ApplicationID);

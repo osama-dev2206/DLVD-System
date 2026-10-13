@@ -52,6 +52,7 @@ namespace FrontEnd
                 this.labLicenseID.Text = R["LicenseID"].ToString();
                 this.labNationalNum.Text = R["NationalNumber"].ToString();
                 this.labGender.Text = R["Gender"].ToString();
+                this.labIsDetained.Text = (R["IsDetained"]?.ToString() == "1")? "True": "False";
                 FillPfp(R["ImagePath"].ToString());
 
                 if (labGender.Text == "M")
