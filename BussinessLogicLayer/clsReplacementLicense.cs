@@ -81,7 +81,7 @@ namespace BussinessLogicLayer
                 return false;
             }
 
-            if(replacementTime == enReplacementTime.First && ApplicationForReplacement.SaveApplication())
+            if( !clsDetainReleaseLicense.IsLicenseDetained(this.OldLicense.LicenseID) && replacementTime == enReplacementTime.First && ApplicationForReplacement.SaveApplication())
             {
                 this.ApplicationID = ApplicationForReplacement.ApplicationID; // after saving the application, we can get the ApplicationID
 

@@ -21,17 +21,20 @@ namespace FrontEnd
         int LicenseID = -1;
         int PersonID = -1;
         int ApplicaionID = -1;
+        clsDetainReleaseLicense DetainLicense;
         void CtrlFilterFindLicenseByLicid1_OnActionGetLicenseObjByLicID(clsLicenses Lic)
         {
             LicenseID = Lic.LicenseID;
             ApplicaionID = Lic.LicenseApplicationID;
             PersonID = clsApplications.GetApplicationObjByAppID(Lic.LicenseApplicationID).ApplicantPersonID;
             this.ctrlDriverLicenseInfo1.Enabled = true;
-            labLicenseHistory.Enabled = true; 
+            labLicenseHistory.Enabled = true;
             labShowLic.Enabled = true;
             btnDetain.Enabled = true;
 
             ctrlDriverLicenseInfo1.FillForm(ApplicaionID: Lic.LicenseApplicationID);
+            DetainLicense = new clsDetainReleaseLicense(LicenseID: LicenseID); // get object ready for detain license 
+            DetainLicense.FineFees = 150;// temp  for testing only !! 
         }
 
         void CtrlFilterFindLicenseByLicid1_OnError(bool Error)
@@ -59,7 +62,26 @@ namespace FrontEnd
             frm?.Dispose();
         }
 
+        private void btnDetain_Click(object sender, EventArgs e)
+        {
+            if(this.DetainLicense.Save())
+            {
+                MessageBox.Show("The License Has Detained Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.btnDetain.Enabled = false;
 
+                ctrlDriverLicenseInfo1.FillForm(ApplicaionID: this.ApplicaionID);// Refresh 
+                this.ctrlFilterFindLicenseByLicid1.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("This License Cannot Be Detained It May Be Detained Before Or The License Isnot Valid ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
 
     }

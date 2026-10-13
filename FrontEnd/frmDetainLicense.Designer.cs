@@ -101,6 +101,7 @@
             btnClose.TabIndex = 5;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
             // btnDetain
             // 
@@ -116,6 +117,7 @@
             btnDetain.TabIndex = 6;
             btnDetain.Text = "Detain";
             btnDetain.UseVisualStyleBackColor = true;
+            btnDetain.Click += btnDetain_Click;
             // 
             // frmDetainLicense
             // 
