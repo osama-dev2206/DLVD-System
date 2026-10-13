@@ -110,6 +110,12 @@ namespace FrontEnd
             replacementOrDamaged?.Dispose();
         }
 
+        private void detainLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDetainLicense detainLicense = new frmDetainLicense();
+            detainLicense?.ShowDialog();
+            detainLicense?.Dispose();
+        }
 
 
     }
