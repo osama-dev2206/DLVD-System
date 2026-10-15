@@ -1229,4 +1229,4 @@ DetainedLicenses.ISReleased = 0;
 
 select * from DetainedLicenses;
 
-delete from DetainedLicenses;
+-- 1 (D,R) ,(D,R)

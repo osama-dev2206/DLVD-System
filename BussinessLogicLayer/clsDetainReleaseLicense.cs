@@ -69,6 +69,7 @@ namespace BussinessLogicLayer
                 return false; 
         }
 
+        public Action<int> OnSaveGetDetainInfo;
         public bool Save()
         {
             switch (this.Mode)
@@ -77,7 +78,8 @@ namespace BussinessLogicLayer
                     {
                         if (CheckBeforeSave()) // if the check is ok then .......
                         {
-                           return Add(); // add new license as detained license 
+                            OnSaveGetDetainInfo?.Invoke(this.LicenseID);
+                          return  Add(); // add new license as detained license 
                         }
                         else
                             return false;
