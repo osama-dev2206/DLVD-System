@@ -73,7 +73,6 @@ namespace FrontEnd
                 labShowLic.Enabled = true;
 
                 ctrlDriverLicenseInfo1.FillForm(ApplicaionID: this.ApplicaionID);// Refresh 
-                this.ctrlDetainAppInfo1.FillForm(ref DetainLicense, OGLicenseId: LicenseID);// Refresh 
                 this.ctrlFilterFindLicenseByLicid1.Enabled = false;
             }
             else

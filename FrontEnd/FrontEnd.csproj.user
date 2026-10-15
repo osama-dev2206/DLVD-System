@@ -25,6 +25,9 @@
     <Compile Update="ctrlApplicationNewRenewLicInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ctrlReleaseAppInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="ctrlReplacementAppInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
