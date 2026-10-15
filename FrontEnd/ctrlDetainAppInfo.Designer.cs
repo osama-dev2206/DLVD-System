@@ -135,7 +135,6 @@
             pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox6.TabIndex = 12;
             pictureBox6.TabStop = false;
-            pictureBox6.Click += pictureBox6_Click;
             // 
             // label6
             // 
@@ -146,7 +145,7 @@
             label6.Size = new Size(98, 25);
             label6.TabIndex = 11;
             label6.Text = "Fine Fees :";
-
+            // 
             // tbFineFees
             // 
             tbFineFees.BorderStyle = BorderStyle.FixedSingle;

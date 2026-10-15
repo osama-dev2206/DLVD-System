@@ -19,29 +19,30 @@ namespace FrontEnd
 
         private void tbFineFees_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Allow digits, decimal point, and control keys (Backspace, etc.)
-            if (!char.IsControl(e.KeyChar) &&
-                !char.IsDigit(e.KeyChar) &&
-                e.KeyChar != '.')
+            System.Windows.Forms.TextBox textBox = sender as System.Windows.Forms.TextBox;
+
+            if (char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar))
             {
-                e.Handled = true;
+                return;
             }
 
-            // Allow only one decimal point
-            if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains('.'))
+            if (e.KeyChar == '.' && textBox != null &&
+                !textBox.Text.Contains(".") &&
+                textBox.SelectionStart != 0)
             {
-                e.Handled = true;
+                return;
             }
+
+            e.Handled = true;
         }
-
+        decimal FineFees;
+        clsDetainReleaseLicense LdetainLicense;
         internal void FillForm(ref clsDetainReleaseLicense detainLicense, int OGLicenseId)
         {
+            LdetainLicense = detainLicense;
             detainLicense.OnSaveGetDetainInfo += UpdateForm;
             this.labDetainDate.Text = detainLicense.DetainDateTime.ToString("d-MM-yyyy");
-            if (!string.IsNullOrEmpty(this.tbFineFees.Text))
-            {
-                detainLicense.FineFees = Convert.ToDecimal(this.tbFineFees.Text);
-            }
+
             this.labLicenseID.Text = OGLicenseId.ToString();
             this.labCreatedBy.Text = clsCurrentLoggedInUser.User.Username;
 
@@ -54,12 +55,10 @@ namespace FrontEnd
 
         private void tbFineFees_TextChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-
+            if(!string.IsNullOrEmpty(this.tbFineFees.Text))
+            {
+                LdetainLicense.FineFees = Convert.ToDecimal(tbFineFees.Text); 
+            }    
         }
     }
 }
