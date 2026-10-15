@@ -36,6 +36,7 @@
             labShowNewLicense = new LinkLabel();
             btnClose = new Button();
             btnRelease = new Button();
+            ctrlReleaseAppInfo1 = new ctrlReleaseAppInfo();
             SuspendLayout();
             // 
             // label1
@@ -120,11 +121,19 @@
             btnRelease.UseVisualStyleBackColor = true;
             btnRelease.Click += btnRelease_Click;
             // 
+            // ctrlReleaseAppInfo1
+            // 
+            ctrlReleaseAppInfo1.Location = new Point(17, 628);
+            ctrlReleaseAppInfo1.Name = "ctrlReleaseAppInfo1";
+            ctrlReleaseAppInfo1.Size = new Size(1137, 211);
+            ctrlReleaseAppInfo1.TabIndex = 7;
+            // 
             // frmReleaseLicense
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1181, 954);
+            Controls.Add(ctrlReleaseAppInfo1);
             Controls.Add(btnRelease);
             Controls.Add(btnClose);
             Controls.Add(labShowNewLicense);
@@ -153,5 +162,6 @@
         private LinkLabel labShowNewLicense;
         private Button btnClose;
         private Button btnRelease;
+        private ctrlReleaseAppInfo ctrlReleaseAppInfo1;
     }
 }

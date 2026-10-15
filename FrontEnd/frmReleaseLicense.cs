@@ -14,6 +14,10 @@ namespace FrontEnd
         public frmReleaseLicense()
         {
             InitializeComponent();
+            this.btnRelease.Enabled = false;
+            this.labLisHistory.Enabled = false;
+            this.labShowNewLicense.Enabled = false;
+
             this.ctrlFilterFindLicenseByLicid1.OnActionGetLicenseObjByLicID += CtrlFilterFindLicenseByLicid1_OnActionGetLicenseObjByLicID;
             this.ctrlFilterFindLicenseByLicid1.OnError += CtrlFilterFindLicenseByLicid1_OnError;
         }
@@ -35,6 +39,8 @@ namespace FrontEnd
                 this.btnRelease.Enabled = true;
                 this.labLisHistory.Enabled = true;
                 this.labShowNewLicense.Enabled = false;
+                ctrlReleaseAppInfo1.Enabled = true;
+                this.ctrlReleaseAppInfo1.FillForm(releaseLicense);
             }
             else
             {
@@ -42,6 +48,7 @@ namespace FrontEnd
                 this.btnRelease.Enabled = false;
                 this.labLisHistory.Enabled = true;
                 this.labShowNewLicense.Enabled = false;
+                this.ctrlReleaseAppInfo1.Enabled = false;
             }
 
 
@@ -52,7 +59,8 @@ namespace FrontEnd
             if (error)
             {
                 this.btnRelease.Enabled = false;
-                this.labLisHistory.Enabled = false;
+                this.labLisHistory.Enabled = false; 
+                ctrlReleaseAppInfo1.Enabled = false;
                 this.labShowNewLicense.Enabled = false;
                 this.ctrlDriverLicenseInfo1.Enabled = false;
             }
@@ -93,6 +101,8 @@ namespace FrontEnd
                     this.labShowNewLicense.Enabled = true;
                     this.ctrlDriverLicenseInfo1.FillForm(ApplicationID); // refresh the license info after release
                     this.btnRelease.Enabled = false; // disable the release button after release
+                    this.ctrlFilterFindLicenseByLicid1.Enabled = false;
+
                 }
                 else
                 {

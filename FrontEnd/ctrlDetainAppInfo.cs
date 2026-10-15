@@ -60,5 +60,9 @@ namespace FrontEnd
                 LdetainLicense.FineFees = Convert.ToDecimal(tbFineFees.Text); 
             }    
         }
+
+
+
+
     }
 }

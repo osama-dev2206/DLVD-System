@@ -136,13 +136,11 @@ namespace BussinessLogicLayer
                 this.ReleasedDateTime = DateTime.Now;
                 this.ReleasedByUserID = clsCurrentLoggedInUser.User.UserID;
                 this.ReleaseApplicationID = this.ReleaseApplication.ApplicationID;
-              
 
-               bool R =  clsReleaseLicnese.ReleaseLicense(LicenseID: this.LicenseID, ReleasedDateTime: this.ReleasedDateTime,
+
+                if (clsReleaseLicnese.ReleaseLicense(LicenseID: this.LicenseID, ReleasedDateTime: this.ReleasedDateTime,
            ReleasedByUserID: ReleasedByUserID,
-           ReleaseApplicationID: ReleaseApplicationID);
-
-                if(R)
+           ReleaseApplicationID: ReleaseApplicationID))
                 {
                     this.IsReleased = true;
                     return true; // if the license is released successfully then return true
@@ -159,6 +157,7 @@ namespace BussinessLogicLayer
         }
 
         public Action<int> OnSaveGetDetainInfo;
+
         public bool Save()
         {
             switch (this.Mode)
@@ -167,8 +166,15 @@ namespace BussinessLogicLayer
                     {
                         if (CheckBeforeSave()) // if the check is ok then .......
                         {
-                            OnSaveGetDetainInfo?.Invoke(this.DetainID);
-                          return  Add(); // add new license as detained license 
+                          
+                           
+                            if (Add())// add new license as detained license 
+                            {
+                                OnSaveGetDetainInfo?.Invoke(this.DetainID);
+                                return true;
+                            }
+                            else
+                                return false;
                         }
                         else
                             return false;
@@ -176,11 +182,16 @@ namespace BussinessLogicLayer
 
                 case enMode.Release:
                     {
-                        if(this.IsReleased) // if the license is already released then return false
+                        if (this.IsReleased) // if the license is already released then return false
                         {
                             return false;
                         }
-                        else return ReleaseLicense();
+                        else {
+                          
+                            bool R =  ReleaseLicense();
+                            if (ReleaseApplicationID.HasValue) OnSaveGetDetainInfo?.Invoke(this.ReleaseApplicationID.Value);
+                            return R;
+                        }
                     }
 
             }
