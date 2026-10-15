@@ -167,7 +167,6 @@ namespace BussinessLogicLayer
                         if (CheckBeforeSave()) // if the check is ok then .......
                         {
                           
-                           
                             if (Add())// add new license as detained license 
                             {
                                 OnSaveGetDetainInfo?.Invoke(this.DetainID);
@@ -187,10 +186,15 @@ namespace BussinessLogicLayer
                             return false;
                         }
                         else {
-                          
-                            bool R =  ReleaseLicense();
-                            if (ReleaseApplicationID.HasValue) OnSaveGetDetainInfo?.Invoke(this.ReleaseApplicationID.Value);
-                            return R;
+
+                            if (ReleaseLicense())
+                            {
+                                if (ReleaseApplicationID.HasValue) OnSaveGetDetainInfo?.Invoke(this.ReleaseApplicationID.Value);
+                                this.ReleaseApplication?.UpdateApplicationStatus(clsApplications.enApplicationStatus.Completed); // make the app as completed
+                                return true;
+                            }
+                            else
+                                return false;
                         }
                     }
 

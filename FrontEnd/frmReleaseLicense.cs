@@ -29,6 +29,7 @@ namespace FrontEnd
         void CtrlFilterFindLicenseByLicid1_OnActionGetLicenseObjByLicID(clsLicenses Lic)
         {
             ApplicationID = Lic.LicenseApplicationID;
+            ctrlDriverLicenseInfo1.Enabled = true;
             this.ctrlDriverLicenseInfo1.FillForm(ApplicationID);
             PersonID = clsApplications.GetApplicationObjByAppID(Lic.LicenseApplicationID).ApplicantPersonID;
 
@@ -93,6 +94,7 @@ namespace FrontEnd
                 MessageBox.Show("This license is not detained before, so it cannot be released.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+
             else
             {
                 if(this.releaseLicense.Save())

@@ -23,8 +23,11 @@ namespace FrontEnd
 
             this.labDetainID.Text = Lic.DetainID.ToString();
             this.labDetainDate.Text = Lic.DetainDateTime.ToString("dd/MM/yyyy");
-            this.labAppFees.Text = Lic.FineFees.ToString("N2");
-            this.labTotalFees.Text = (Lic.FineFees + Lic.FineFees).ToString("N2");
+
+            decimal AppFees = clsApplicationTypes.FindAppObjByAppID((int)clsApplicationTypes.enApplicationTypes.ReleaseDetainedDrivingLicense).ApplicationFees; 
+
+            this.labAppFees.Text = AppFees.ToString();
+            this.labTotalFees.Text = (Lic.FineFees + AppFees).ToString("N2");
 
             this.labLicenseID.Text = Lic.LicenseID.ToString();
             this.labCreatedBy.Text = clsCurrentLoggedInUser.User.Username;
