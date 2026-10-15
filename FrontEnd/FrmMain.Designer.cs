@@ -40,6 +40,10 @@
             manageApplicationsToolStripMenuItem = new ToolStripMenuItem();
             localAppsToolStripMenuItem = new ToolStripMenuItem();
             InternationalAppsToolStripMenuItem = new ToolStripMenuItem();
+            detainLicensesToolStripMenuItem = new ToolStripMenuItem();
+            manageDetainedLicensesToolStripMenuItem = new ToolStripMenuItem();
+            detainLicenseToolStripMenuItem = new ToolStripMenuItem();
+            ReleaseDetainedLicToolStripMenuItem = new ToolStripMenuItem();
             manageAppliToolStripMenuItem = new ToolStripMenuItem();
             manageTestTypesToolStripMenuItem = new ToolStripMenuItem();
             TSMPeople = new ToolStripMenuItem();
@@ -52,10 +56,6 @@
             logoutToolStripMenuItem = new ToolStripMenuItem();
             label1 = new Label();
             label2 = new Label();
-            detainLicensesToolStripMenuItem = new ToolStripMenuItem();
-            manageDetainedLicensesToolStripMenuItem = new ToolStripMenuItem();
-            detainLicenseToolStripMenuItem = new ToolStripMenuItem();
-            ReleaseDetainedLicToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -151,6 +151,38 @@
             InternationalAppsToolStripMenuItem.Size = new Size(405, 32);
             InternationalAppsToolStripMenuItem.Text = "International License Applications";
             InternationalAppsToolStripMenuItem.Click += ShowManageInternationalAppsToolStripMenuItem_Click;
+            // 
+            // detainLicensesToolStripMenuItem
+            // 
+            detainLicensesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { manageDetainedLicensesToolStripMenuItem, detainLicenseToolStripMenuItem, ReleaseDetainedLicToolStripMenuItem });
+            detainLicensesToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            detainLicensesToolStripMenuItem.Image = Properties.Resources.Detain_64;
+            detainLicensesToolStripMenuItem.Name = "detainLicensesToolStripMenuItem";
+            detainLicensesToolStripMenuItem.Size = new Size(379, 36);
+            detainLicensesToolStripMenuItem.Text = "Detain Licenses";
+            // 
+            // manageDetainedLicensesToolStripMenuItem
+            // 
+            manageDetainedLicensesToolStripMenuItem.Image = Properties.Resources.Detain_32;
+            manageDetainedLicensesToolStripMenuItem.Name = "manageDetainedLicensesToolStripMenuItem";
+            manageDetainedLicensesToolStripMenuItem.Size = new Size(351, 36);
+            manageDetainedLicensesToolStripMenuItem.Text = "Manage Detained Licenses";
+            // 
+            // detainLicenseToolStripMenuItem
+            // 
+            detainLicenseToolStripMenuItem.Image = Properties.Resources.Detain_32;
+            detainLicenseToolStripMenuItem.Name = "detainLicenseToolStripMenuItem";
+            detainLicenseToolStripMenuItem.Size = new Size(351, 36);
+            detainLicenseToolStripMenuItem.Text = "Detain License";
+            detainLicenseToolStripMenuItem.Click += detainLicenseToolStripMenuItem_Click;
+            // 
+            // ReleaseDetainedLicToolStripMenuItem
+            // 
+            ReleaseDetainedLicToolStripMenuItem.Image = Properties.Resources.Release_Detained_License_32;
+            ReleaseDetainedLicToolStripMenuItem.Name = "ReleaseDetainedLicToolStripMenuItem";
+            ReleaseDetainedLicToolStripMenuItem.Size = new Size(351, 36);
+            ReleaseDetainedLicToolStripMenuItem.Text = "Release Detained License";
+            ReleaseDetainedLicToolStripMenuItem.Click += ReleaseDetainedLicToolStripMenuItem_Click;
             // 
             // manageAppliToolStripMenuItem
             // 
@@ -261,37 +293,6 @@
             label2.Size = new Size(1103, 48);
             label2.TabIndex = 2;
             label2.Text = "Driving and Vehicle License Department Management";
-            // 
-            // detainLicensesToolStripMenuItem
-            // 
-            detainLicensesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { manageDetainedLicensesToolStripMenuItem, detainLicenseToolStripMenuItem, ReleaseDetainedLicToolStripMenuItem });
-            detainLicensesToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            detainLicensesToolStripMenuItem.Image = Properties.Resources.Detain_64;
-            detainLicensesToolStripMenuItem.Name = "detainLicensesToolStripMenuItem";
-            detainLicensesToolStripMenuItem.Size = new Size(379, 36);
-            detainLicensesToolStripMenuItem.Text = "Detain Licenses";
-            // 
-            // manageDetainedLicensesToolStripMenuItem
-            // 
-            manageDetainedLicensesToolStripMenuItem.Image = Properties.Resources.Detain_32;
-            manageDetainedLicensesToolStripMenuItem.Name = "manageDetainedLicensesToolStripMenuItem";
-            manageDetainedLicensesToolStripMenuItem.Size = new Size(351, 36);
-            manageDetainedLicensesToolStripMenuItem.Text = "Manage Detained Licenses";
-            // 
-            // detainLicenseToolStripMenuItem
-            // 
-            detainLicenseToolStripMenuItem.Image = Properties.Resources.Detain_32;
-            detainLicenseToolStripMenuItem.Name = "detainLicenseToolStripMenuItem";
-            detainLicenseToolStripMenuItem.Size = new Size(351, 36);
-            detainLicenseToolStripMenuItem.Text = "Detain License";
-            detainLicenseToolStripMenuItem.Click += detainLicenseToolStripMenuItem_Click;
-            // 
-            // ReleaseDetainedLicToolStripMenuItem
-            // 
-            ReleaseDetainedLicToolStripMenuItem.Image = Properties.Resources.Release_Detained_License_32;
-            ReleaseDetainedLicToolStripMenuItem.Name = "ReleaseDetainedLicToolStripMenuItem";
-            ReleaseDetainedLicToolStripMenuItem.Size = new Size(351, 36);
-            ReleaseDetainedLicToolStripMenuItem.Text = "Release Detained License";
             // 
             // frmMain
             // 

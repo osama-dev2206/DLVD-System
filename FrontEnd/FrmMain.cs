@@ -117,6 +117,11 @@ namespace FrontEnd
             detainLicense?.Dispose();
         }
 
-
+        private void ReleaseDetainedLicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReleaseLicense frmRelease = new frmReleaseLicense();
+            frmRelease?.ShowDialog();
+            frmRelease?.Dispose();
+        }
     }
 }

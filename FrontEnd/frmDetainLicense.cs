@@ -29,11 +29,12 @@ namespace FrontEnd
             PersonID = clsApplications.GetApplicationObjByAppID(Lic.LicenseApplicationID).ApplicantPersonID;
             this.ctrlDriverLicenseInfo1.Enabled = true;
             labLicenseHistory.Enabled = true;
-            labShowLic.Enabled = true;
+            labShowLic.Enabled = false;
             btnDetain.Enabled = true;
 
             ctrlDriverLicenseInfo1.FillForm(ApplicaionID: Lic.LicenseApplicationID);
             DetainLicense = new clsDetainReleaseLicense(LicenseID: LicenseID); // get object ready for detain license 
+            ctrlDetainAppInfo1.Enabled = true;
              this.ctrlDetainAppInfo1.FillForm(ref DetainLicense, OGLicenseId: LicenseID);
         }
 
@@ -44,6 +45,7 @@ namespace FrontEnd
                 this.ctrlDriverLicenseInfo1.Enabled = false;
                 labLicenseHistory.Enabled = false;
                 labShowLic.Enabled = false;
+                ctrlDetainAppInfo1.Enabled = false;
                 btnDetain.Enabled = false;
             }
         }
@@ -68,6 +70,7 @@ namespace FrontEnd
             {
                 MessageBox.Show("The License Has Detained Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.btnDetain.Enabled = false;
+                labShowLic.Enabled = true;
 
                 ctrlDriverLicenseInfo1.FillForm(ApplicaionID: this.ApplicaionID);// Refresh 
                 this.ctrlDetainAppInfo1.FillForm(ref DetainLicense, OGLicenseId: LicenseID);// Refresh 
