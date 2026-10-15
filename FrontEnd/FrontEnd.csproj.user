@@ -4,6 +4,9 @@
     <Compile Update="ctrlAddEditPerson.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ctrlDetainAppInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="ctrlDriverInternationalInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>

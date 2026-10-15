@@ -105,3 +105,4 @@ D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frmReplacementForDamagedLic.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.ctrlReplacementAppInfo.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frmDetainLicense.resources
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.ctrlDetainAppInfo.resources

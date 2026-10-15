@@ -34,7 +34,7 @@ namespace FrontEnd
 
             ctrlDriverLicenseInfo1.FillForm(ApplicaionID: Lic.LicenseApplicationID);
             DetainLicense = new clsDetainReleaseLicense(LicenseID: LicenseID); // get object ready for detain license 
-            DetainLicense.FineFees = 150;// temp  for testing only !! 
+             this.ctrlDetainAppInfo1.FillForm(ref DetainLicense, OGLicenseId: LicenseID);
         }
 
         void CtrlFilterFindLicenseByLicid1_OnError(bool Error)
@@ -70,6 +70,7 @@ namespace FrontEnd
                 this.btnDetain.Enabled = false;
 
                 ctrlDriverLicenseInfo1.FillForm(ApplicaionID: this.ApplicaionID);// Refresh 
+                this.ctrlDetainAppInfo1.FillForm(ref DetainLicense, OGLicenseId: LicenseID);// Refresh 
                 this.ctrlFilterFindLicenseByLicid1.Enabled = false;
             }
             else

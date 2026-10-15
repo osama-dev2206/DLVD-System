@@ -36,6 +36,7 @@
             labShowLic = new LinkLabel();
             btnClose = new Button();
             btnDetain = new Button();
+            ctrlDetainAppInfo1 = new ctrlDetainAppInfo();
             SuspendLayout();
             // 
             // ctrlFilterFindLicenseByLicid1
@@ -119,11 +120,19 @@
             btnDetain.UseVisualStyleBackColor = true;
             btnDetain.Click += btnDetain_Click;
             // 
+            // ctrlDetainAppInfo1
+            // 
+            ctrlDetainAppInfo1.Location = new Point(10, 596);
+            ctrlDetainAppInfo1.Name = "ctrlDetainAppInfo1";
+            ctrlDetainAppInfo1.Size = new Size(1159, 192);
+            ctrlDetainAppInfo1.TabIndex = 7;
+            // 
             // frmDetainLicense
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1199, 858);
+            Controls.Add(ctrlDetainAppInfo1);
             Controls.Add(btnDetain);
             Controls.Add(btnClose);
             Controls.Add(labShowLic);
@@ -152,5 +161,6 @@
         private LinkLabel labShowLic;
         private Button btnClose;
         private Button btnDetain;
+        private ctrlDetainAppInfo ctrlDetainAppInfo1;
     }
 }
