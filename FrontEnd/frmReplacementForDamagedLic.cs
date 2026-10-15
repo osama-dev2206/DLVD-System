@@ -88,6 +88,7 @@ namespace FrontEnd
             {
                 MessageBox.Show("Error Issuing Replacement License", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
             if(this.ReplacementForDamagedOrLost.Save())
             {
                 MessageBox.Show("Replacement License Issued Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

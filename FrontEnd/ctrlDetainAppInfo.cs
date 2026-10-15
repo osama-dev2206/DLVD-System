@@ -35,14 +35,14 @@ namespace FrontEnd
 
             e.Handled = true;
         }
-        decimal FineFees;
+
         clsDetainReleaseLicense LdetainLicense;
         internal void FillForm(ref clsDetainReleaseLicense detainLicense, int OGLicenseId)
         {
             LdetainLicense = detainLicense;
             detainLicense.OnSaveGetDetainInfo += UpdateForm;
             this.labDetainDate.Text = detainLicense.DetainDateTime.ToString("d-MM-yyyy");
-
+            LdetainLicense.FineFees = Convert.ToDecimal(tbFineFees?.Text); // intilize the FineFees property with the value from the TextBox
             this.labLicenseID.Text = OGLicenseId.ToString();
             this.labCreatedBy.Text = clsCurrentLoggedInUser.User.Username;
 
