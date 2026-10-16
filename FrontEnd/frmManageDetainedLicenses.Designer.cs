@@ -46,6 +46,7 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             pictureBox1 = new PictureBox();
             pbReleaseLic = new PictureBox();
+            releaseDetanedLicenseToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pbDetainLic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DgvLicenses).BeginInit();
             contextMenuStrip1.SuspendLayout();
@@ -57,20 +58,20 @@
             // 
             showLicenseHistoryToolStripMenuItem.Image = Properties.Resources.PersonLicenseHistory_32;
             showLicenseHistoryToolStripMenuItem.Name = "showLicenseHistoryToolStripMenuItem";
-            showLicenseHistoryToolStripMenuItem.Size = new Size(221, 26);
+            showLicenseHistoryToolStripMenuItem.Size = new Size(246, 26);
             showLicenseHistoryToolStripMenuItem.Text = "Show License History";
             showLicenseHistoryToolStripMenuItem.Click += showLicenseHistoryToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(218, 6);
+            toolStripSeparator2.Size = new Size(243, 6);
             // 
             // showLicenseToolStripMenuItem
             // 
             showLicenseToolStripMenuItem.Image = Properties.Resources.License_View_32;
             showLicenseToolStripMenuItem.Name = "showLicenseToolStripMenuItem";
-            showLicenseToolStripMenuItem.Size = new Size(221, 26);
+            showLicenseToolStripMenuItem.Size = new Size(246, 26);
             showLicenseToolStripMenuItem.Text = "Show License";
             showLicenseToolStripMenuItem.Click += showLicenseToolStripMenuItem_Click;
             // 
@@ -78,7 +79,7 @@
             // 
             showPersonDetailsToolStripMenuItem.Image = Properties.Resources.PersonDetails_32;
             showPersonDetailsToolStripMenuItem.Name = "showPersonDetailsToolStripMenuItem";
-            showPersonDetailsToolStripMenuItem.Size = new Size(221, 26);
+            showPersonDetailsToolStripMenuItem.Size = new Size(246, 26);
             showPersonDetailsToolStripMenuItem.Text = "Show Person Details";
             showPersonDetailsToolStripMenuItem.Click += showPersonDetailsToolStripMenuItem_Click;
             // 
@@ -130,12 +131,13 @@
             // pbDetainLic
             // 
             pbDetainLic.Image = Properties.Resources.Detain_641;
-            pbDetainLic.Location = new Point(1164, 341);
+            pbDetainLic.Location = new Point(1159, 341);
             pbDetainLic.Name = "pbDetainLic";
             pbDetainLic.Size = new Size(90, 72);
             pbDetainLic.SizeMode = PictureBoxSizeMode.Zoom;
             pbDetainLic.TabIndex = 16;
             pbDetainLic.TabStop = false;
+            pbDetainLic.Click += pbDetainLic_Click;
             // 
             // labGF
             // 
@@ -187,9 +189,9 @@
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showPersonDetailsToolStripMenuItem, toolStripSeparator2, showLicenseToolStripMenuItem, showLicenseHistoryToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showPersonDetailsToolStripMenuItem, toolStripSeparator2, showLicenseToolStripMenuItem, showLicenseHistoryToolStripMenuItem, releaseDetanedLicenseToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(222, 88);
+            contextMenuStrip1.Size = new Size(247, 142);
             // 
             // pictureBox1
             // 
@@ -210,6 +212,15 @@
             pbReleaseLic.SizeMode = PictureBoxSizeMode.Zoom;
             pbReleaseLic.TabIndex = 21;
             pbReleaseLic.TabStop = false;
+            pbReleaseLic.Click += pbReleaseLic_Click;
+            // 
+            // releaseDetanedLicenseToolStripMenuItem
+            // 
+            releaseDetanedLicenseToolStripMenuItem.Image = Properties.Resources.Release_Detained_License_32;
+            releaseDetanedLicenseToolStripMenuItem.Name = "releaseDetanedLicenseToolStripMenuItem";
+            releaseDetanedLicenseToolStripMenuItem.Size = new Size(246, 26);
+            releaseDetanedLicenseToolStripMenuItem.Text = "Release Detaned License";
+            releaseDetanedLicenseToolStripMenuItem.Click += releaseDetanedLicenseToolStripMenuItem_Click;
             // 
             // frmManageDetainedLicenses
             // 
@@ -264,5 +275,6 @@
         private ContextMenuStrip contextMenuStrip1;
         private PictureBox pictureBox1;
         private PictureBox pbReleaseLic;
+        private ToolStripMenuItem releaseDetanedLicenseToolStripMenuItem;
     }
 }
