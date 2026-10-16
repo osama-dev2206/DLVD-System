@@ -73,9 +73,35 @@ namespace BussinessLogicLayer
 
             if (dt is null || dt.Rows.Count <= 0) return null;
 
-            clsDetainReleaseLicense obj = new clsDetainReleaseLicense(LicenseID: LicenseID);
+            clsDetainReleaseLicense ?obj =null ;
 
             foreach(DataRow R in dt.Rows)
+            {
+                obj = new clsDetainReleaseLicense(
+                     DetainID: Convert.ToInt32(R["DetainID"]),
+                    LicenseID: Convert.ToInt32(R["DLicenseID"]),
+                    DetainDateTime: Convert.ToDateTime(R["DetainDateTime"]),
+                    FineFees: Convert.ToDecimal(R["FineFees"]),
+                    IsReleased: Convert.ToBoolean(R["IsReleased"]),
+                    CreatedByUserID: Convert.ToInt32(R["CreatedByUserID"]),
+                    ReleasedDateTime: R["ReleasedDateTime"] is DBNull ? null : (DateTime?)Convert.ToDateTime(R["ReleasedDateTime"]),
+                    ReleasedByUserID: R["ReleasedByUserID"] is DBNull ? null : (int?)Convert.ToInt32(R["ReleasedByUserID"]),
+                    ReleaseApplicationID: R["ReleaseApplicationID"] is DBNull ? null : (int?)Convert.ToInt32(R["ReleaseApplicationID"])
+                );
+            }
+            return obj;
+        }
+
+        public static clsDetainReleaseLicense? GetDetainReleaseLicenseObjByDetainID(int DetainID)
+        {
+            var dt = clsGetDetainedLicenseByDetainID.GetDetainedLicenseByDetainID (DetainID);
+
+            if (dt is null || dt.Rows.Count <= 0) 
+                return null;
+
+            clsDetainReleaseLicense ? obj = null ;
+
+            foreach (DataRow R in dt.Rows)
             {
                 obj = new clsDetainReleaseLicense(
                      DetainID: Convert.ToInt32(R["DetainID"]),

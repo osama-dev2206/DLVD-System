@@ -119,7 +119,13 @@ ReleaseAppID
 
         private void EnableDisableReleaseOption()
         {
-            if (!clsDetainReleaseLicense.GetDetainReleaseLicenseObjByLicenseID(selectedRowIndex).IsReleased)
+            if(DetainID ==-1)
+            {
+                return;
+            }
+
+            var Lic = clsDetainReleaseLicense.GetDetainReleaseLicenseObjByDetainID(DetainID);
+            if (Lic is not null && ! Lic.IsReleased )
             {
                 releaseDetanedLicenseToolStripMenuItem.Enabled = true;
             }
@@ -130,12 +136,15 @@ ReleaseAppID
         }
 
         //  Driving License Applications DataGridView Selection Changed Event
+        int DetainID = -1;
         private void DGVLicSelectionChanged(object sender, EventArgs e)
         {
             // license Id
             if (this.DgvLicenses.CurrentRow != null && DgvLicenses.CurrentRow.Cells != null && int.TryParse(DgvLicenses.CurrentRow.Cells[1]?.Value?.ToString(), out int Row))
             {
                 selectedRowIndex = Row;
+                DetainID = (DgvLicenses.CurrentRow.Cells[0]?.Value != null )? Convert.ToInt32(DgvLicenses.CurrentRow.Cells[0].Value) : -1 ;
+
                 PersonID = clsApplications.GetApplicationObjByAppID(clsLicenses.GetLicenseObjByLicenseID(selectedRowIndex).LicenseApplicationID).ApplicantPersonID;
                 EnableDisableReleaseOption();
             }
@@ -228,6 +237,8 @@ ReleaseAppID
             }
             RefreshDataGridView();
         }
+
+
     }
 
 
