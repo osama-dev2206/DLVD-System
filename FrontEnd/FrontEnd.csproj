@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="FastUI.WinForms" Version="1.1.0" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="9.0.13" />
   </ItemGroup>
 
   <ItemGroup>

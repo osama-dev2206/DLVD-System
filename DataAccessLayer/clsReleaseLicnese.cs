@@ -12,9 +12,9 @@ Set ISReleased = 1 ,
 ReleasedDateTime = @ReleasedDateTime , 
 ReleasedByUserID = @ReleasedByUserID , 
 ReleaseApplicationID = @ReleaseApplicationID
-where DLicenseID = @LicenseID ;";
+where DetainID = @LicenseID ;";
 
-        public static bool ReleaseLicense(int LicenseID, DateTime ?ReleasedDateTime, int? ReleasedByUserID, int ?ReleaseApplicationID)
+        public static bool ReleaseLicense(int DetainedLicenseID, DateTime ?ReleasedDateTime, int? ReleasedByUserID, int ?ReleaseApplicationID)
         {
             SqlConnection connection = dbSettings.DbConnection();
             bool res = false;
@@ -23,7 +23,7 @@ where DLicenseID = @LicenseID ;";
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(Query, connection);
-                cmd.Parameters.AddWithValue("@LicenseID", LicenseID);
+                cmd.Parameters.AddWithValue("@LicenseID", DetainedLicenseID);
                 cmd.Parameters.AddWithValue("@ReleasedDateTime", ReleasedDateTime);
                 cmd.Parameters.AddWithValue("@ReleasedByUserID", ReleasedByUserID);
                 cmd.Parameters.AddWithValue("@ReleaseApplicationID", ReleaseApplicationID);

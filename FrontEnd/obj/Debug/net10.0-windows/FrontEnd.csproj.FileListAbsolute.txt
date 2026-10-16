@@ -108,3 +108,5 @@ D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.ctrlDetainAppInfo.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frmReleaseLicense.resources
 D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.ctrlReleaseAppInfo.resources
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\bin\Debug\net10.0-windows\System.Threading.RateLimiting.dll
+D:\Self-Study\C#\Projects (Windows Forms)\DLVD - Full Project\FrontEnd\obj\Debug\net10.0-windows\FrontEnd.frmManageDetainedLicenses.resources

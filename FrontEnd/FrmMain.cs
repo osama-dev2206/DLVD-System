@@ -123,5 +123,13 @@ namespace FrontEnd
             frmRelease?.ShowDialog();
             frmRelease?.Dispose();
         }
+
+        private void manageDetainedLicensesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageDetainedLicenses frmManageDetained = new frmManageDetainedLicenses();
+            frmManageDetained?.ShowDialog();
+            frmManageDetained?.Dispose();
+
+        }
     }
 }

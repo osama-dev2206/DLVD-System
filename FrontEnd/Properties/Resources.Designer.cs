@@ -383,9 +383,29 @@ namespace FrontEnd.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Detain_5121 {
+            get {
+                object obj = ResourceManager.GetObject("Detain 5121", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Detain_64 {
             get {
                 object obj = ResourceManager.GetObject("Detain 64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Detain_641 {
+            get {
+                object obj = ResourceManager.GetObject("Detain 641", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -976,6 +996,16 @@ namespace FrontEnd.Properties {
         internal static System.Drawing.Bitmap Release_Detained_License_321 {
             get {
                 object obj = ResourceManager.GetObject("Release Detained License 321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Release_Detained_License_64 {
+            get {
+                object obj = ResourceManager.GetObject("Release Detained License 64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
