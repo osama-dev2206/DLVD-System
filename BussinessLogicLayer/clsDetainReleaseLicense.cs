@@ -29,7 +29,7 @@ namespace BussinessLogicLayer
         public clsDetainReleaseLicense(int LicenseID )
         {
             this.Mode = enMode.Detain;
-            ReleaseApplication = null; // as it is detained now so no release application is created yet
+
 
             this.LicenseID = LicenseID;
             this.license = clsLicenses.GetLicenseObjByLicenseID(LicenseID: LicenseID);
@@ -138,7 +138,7 @@ namespace BussinessLogicLayer
                 this.ReleaseApplicationID = this.ReleaseApplication.ApplicationID;
 
 
-                if (clsReleaseLicnese.ReleaseLicense(LicenseID: this.LicenseID, ReleasedDateTime: this.ReleasedDateTime,
+                if (clsReleaseLicnese.ReleaseLicense(DetainedLicenseID: this.DetainID, ReleasedDateTime: this.ReleasedDateTime,
            ReleasedByUserID: ReleasedByUserID,
            ReleaseApplicationID: ReleaseApplicationID))
                 {
@@ -156,7 +156,7 @@ namespace BussinessLogicLayer
 
         }
 
-        public Action<int> OnSaveGetDetainInfo;
+        public Action<int> ?OnSaveGetDetainInfo;
 
         public bool Save()
         {
@@ -202,8 +202,14 @@ namespace BussinessLogicLayer
             return false;
         }
 
+        // Search (DT)
+        public static DataTable GetAllDetainedLicenses()
+        {
+            return clsGetAllDetainedILic.GetAllDetainedLicenses();
+        }
 
-    }
+
+        }
 
     
 }

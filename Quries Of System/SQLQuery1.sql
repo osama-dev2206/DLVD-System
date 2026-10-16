@@ -1229,4 +1229,26 @@ DetainedLicenses.ISReleased = 0;
 
 select * from DetainedLicenses;
 
+delete DetainedLicenses
+where DetainID = 11;
+
 -- 1 (D,R) ,(D,R)
+
+select * from Licenses;
+
+-- if it isnot released yet then it is still detained you cannot add another detain for the same license
+select * from DetainedLicenses
+where ISReleased =0  and DLicenseID = 3022;
+
+Update DetainedLicenses
+Set ISReleased = 1 , 
+ReleasedDateTime = '@ReleasedDateTime' , 
+ReleasedByUserID = '@ReleasedByUserID' , 
+ReleaseApplicationID = '@ReleaseApplicationID'
+where DetainID = 3022;
+
+select * from DetainedLicenses
+where ISReleased =1  and DLicenseID = 3022;
+
+select * from Licenses
+where IsActive =1 ;

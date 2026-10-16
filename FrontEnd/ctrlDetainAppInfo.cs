@@ -42,7 +42,8 @@ namespace FrontEnd
             LdetainLicense = detainLicense;
             detainLicense.OnSaveGetDetainInfo += UpdateForm;
             this.labDetainDate.Text = detainLicense.DetainDateTime.ToString("d-MM-yyyy");
-            LdetainLicense.FineFees = Convert.ToDecimal(tbFineFees?.Text); // intilize the FineFees property with the value from the TextBox
+            if(!string.IsNullOrEmpty(tbFineFees.Text))
+            LdetainLicense.FineFees = Convert.ToDecimal(tbFineFees.Text); // intilize the FineFees property with the value from the TextBox
             this.labLicenseID.Text = OGLicenseId.ToString();
             this.labCreatedBy.Text = clsCurrentLoggedInUser.User.Username;
 

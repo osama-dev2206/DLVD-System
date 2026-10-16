@@ -97,6 +97,9 @@
     <Compile Update="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmManageDetainedLicenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmManageLocalDrivingLicenseApplications.cs">
       <SubType>Form</SubType>
     </Compile>

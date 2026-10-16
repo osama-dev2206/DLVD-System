@@ -1,22 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "z39HJaAs7Wo=",
+  "dgSpecHash": "k7bVAW5DmeA=",
   "success": true,
   "projectFilePath": "D:\\Self-Study\\C#\\Projects (Windows Forms)\\DLVD - Full Project\\FrontEnd\\FrontEnd.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MSI\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",
     "C:\\Users\\MSI\\.nuget\\packages\\fastui.winforms\\1.1.0\\fastui.winforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.13\\microsoft.bcl.cryptography.9.0.13.nupkg.sha512",
-    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.data.sqlclient\\7.0.3\\microsoft.data.sqlclient.7.0.3.nupkg.sha512",
-    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.data.sqlclient.extensions.abstractions\\7.0.3\\microsoft.data.sqlclient.extensions.abstractions.7.0.3.nupkg.sha512",
-    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.data.sqlclient.internal.logging\\7.0.3\\microsoft.data.sqlclient.internal.logging.7.0.3.nupkg.sha512",
-    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\6.0.3\\microsoft.data.sqlclient.sni.runtime.6.0.3.nupkg.sha512",
-    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.13\\microsoft.extensions.caching.abstractions.9.0.13.nupkg.sha512",
-    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.13\\microsoft.extensions.caching.memory.9.0.13.nupkg.sha512",
+    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.18\\microsoft.bcl.cryptography.9.0.18.nupkg.sha512",
+    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.data.sqlclient\\7.1.1\\microsoft.data.sqlclient.7.1.1.nupkg.sha512",
+    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.data.sqlclient.extensions.abstractions\\7.1.1\\microsoft.data.sqlclient.extensions.abstractions.7.1.1.nupkg.sha512",
+    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.data.sqlclient.internal.logging\\7.1.1\\microsoft.data.sqlclient.internal.logging.7.1.1.nupkg.sha512",
+    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\7.1.0\\microsoft.data.sqlclient.sni.runtime.7.1.0.nupkg.sha512",
+    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.18\\microsoft.extensions.caching.abstractions.9.0.18.nupkg.sha512",
+    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.18\\microsoft.extensions.caching.memory.9.0.18.nupkg.sha512",
     "C:\\Users\\MSI\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.0\\microsoft.extensions.dependencyinjection.abstractions.10.0.0.nupkg.sha512",
     "C:\\Users\\MSI\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.0\\microsoft.extensions.logging.abstractions.10.0.0.nupkg.sha512",
-    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.extensions.options\\9.0.13\\microsoft.extensions.options.9.0.13.nupkg.sha512",
-    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.13\\microsoft.extensions.primitives.9.0.13.nupkg.sha512",
+    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.extensions.options\\9.0.18\\microsoft.extensions.options.9.0.18.nupkg.sha512",
+    "C:\\Users\\MSI\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.18\\microsoft.extensions.primitives.9.0.18.nupkg.sha512",
     "C:\\Users\\MSI\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.16.0\\microsoft.identitymodel.abstractions.8.16.0.nupkg.sha512",
     "C:\\Users\\MSI\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.16.0\\microsoft.identitymodel.jsonwebtokens.8.16.0.nupkg.sha512",
     "C:\\Users\\MSI\\.nuget\\packages\\microsoft.identitymodel.logging\\8.16.0\\microsoft.identitymodel.logging.8.16.0.nupkg.sha512",
@@ -24,7 +24,46 @@
     "C:\\Users\\MSI\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\8.16.0\\microsoft.identitymodel.protocols.openidconnect.8.16.0.nupkg.sha512",
     "C:\\Users\\MSI\\.nuget\\packages\\microsoft.identitymodel.tokens\\8.16.0\\microsoft.identitymodel.tokens.8.16.0.nupkg.sha512",
     "C:\\Users\\MSI\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
-    "C:\\Users\\MSI\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.16.0\\system.identitymodel.tokens.jwt.8.16.0.nupkg.sha512"
+    "C:\\Users\\MSI\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.16.0\\system.identitymodel.tokens.jwt.8.16.0.nupkg.sha512",
+    "C:\\Users\\MSI\\.nuget\\packages\\system.security.cryptography.pkcs\\9.0.13\\system.security.cryptography.pkcs.9.0.13.nupkg.sha512",
+    "C:\\Users\\MSI\\.nuget\\packages\\system.threading.ratelimiting\\9.0.18\\system.threading.ratelimiting.9.0.18.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1510",
+      "level": "Warning",
+      "message": "PackageReference System.Security.Cryptography.Pkcs will not be pruned. This package is automatically available and does not need to be referenced explicitly. Remove the PackageReference item.",
+      "projectPath": "D:\\Self-Study\\C#\\Projects (Windows Forms)\\DLVD - Full Project\\FrontEnd\\FrontEnd.csproj",
+      "warningLevel": 1,
+      "filePath": "D:\\Self-Study\\C#\\Projects (Windows Forms)\\DLVD - Full Project\\FrontEnd\\FrontEnd.csproj",
+      "libraryId": "System.Security.Cryptography.Pkcs",
+      "targetGraphs": [
+        "net10.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'System.Security.Cryptography.Pkcs' 9.0.13 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-2fmv-rv2c-59x7",
+      "projectPath": "D:\\Self-Study\\C#\\Projects (Windows Forms)\\DLVD - Full Project\\FrontEnd\\FrontEnd.csproj",
+      "warningLevel": 1,
+      "filePath": "D:\\Self-Study\\C#\\Projects (Windows Forms)\\DLVD - Full Project\\FrontEnd\\FrontEnd.csproj",
+      "libraryId": "System.Security.Cryptography.Pkcs",
+      "targetGraphs": [
+        "net10.0-windows"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'System.Security.Cryptography.Pkcs' 9.0.13 has a known high severity vulnerability, https://github.com/advisories/GHSA-846f-f764-76mx",
+      "projectPath": "D:\\Self-Study\\C#\\Projects (Windows Forms)\\DLVD - Full Project\\FrontEnd\\FrontEnd.csproj",
+      "warningLevel": 1,
+      "filePath": "D:\\Self-Study\\C#\\Projects (Windows Forms)\\DLVD - Full Project\\FrontEnd\\FrontEnd.csproj",
+      "libraryId": "System.Security.Cryptography.Pkcs",
+      "targetGraphs": [
+        "net10.0-windows"
+      ]
+    }
+  ]
 }
