@@ -1003,6 +1003,16 @@ namespace FrontEnd.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Release_Detained_License_322 {
+            get {
+                object obj = ResourceManager.GetObject("Release Detained License 322", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Release_Detained_License_64 {
             get {
                 object obj = ResourceManager.GetObject("Release Detained License 64", resourceCulture);
@@ -1076,6 +1086,16 @@ namespace FrontEnd.Properties {
         internal static System.Drawing.Bitmap ResizedMainFormImagejpg1 {
             get {
                 object obj = ResourceManager.GetObject("ResizedMainFormImagejpg1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Retake_Test_32 {
+            get {
+                object obj = ResourceManager.GetObject("Retake Test 32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
