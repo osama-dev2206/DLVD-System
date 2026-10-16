@@ -131,5 +131,20 @@ namespace FrontEnd
             frmManageDetained?.Dispose();
 
         }
+
+        private void ReleaseLicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReleaseLicense frmRelease = new frmReleaseLicense();
+            frmRelease?.ShowDialog();
+            frmRelease?.Dispose();
+        }
+
+        private void retakeTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageLocalDrivingLicenseApplications manageLocalDrivingLicenseApplications = new frmManageLocalDrivingLicenseApplications();
+            manageLocalDrivingLicenseApplications?.ShowDialog();
+            manageLocalDrivingLicenseApplications?.Dispose();
+        }
+
     }
 }
