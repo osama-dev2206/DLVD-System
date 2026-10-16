@@ -22,6 +22,26 @@ namespace FrontEnd
             this.ctrlFilterFindLicenseByLicid1.OnError += CtrlFilterFindLicenseByLicid1_OnError;
         }
 
+        public frmReleaseLicense(int LicenseID)
+        {
+            InitializeComponent();
+            this.btnRelease.Enabled = false;
+            this.labLisHistory.Enabled = false;
+            this.labShowNewLicense.Enabled = false;
+
+            clsLicenses lic = clsLicenses.GetLicenseObjByLicenseID(LicenseID);
+            if(lic is not null)
+            {
+                this.ctrlFilterFindLicenseByLicid1.Enabled = false; // disable the search control as we already have the license ID
+                CtrlFilterFindLicenseByLicid1_OnActionGetLicenseObjByLicID(lic);
+            }
+            else
+            {
+                CtrlFilterFindLicenseByLicid1_OnError(true); 
+            }
+
+        }
+
         clsDetainReleaseLicense? releaseLicense = null;
 
         int PersonID = -1;

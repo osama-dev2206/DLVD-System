@@ -117,6 +117,17 @@ ReleaseAppID
 
         }
 
+        private void EnableDisableReleaseOption()
+        {
+            if (!clsDetainReleaseLicense.GetDetainReleaseLicenseObjByLicenseID(selectedRowIndex).IsReleased)
+            {
+                releaseDetanedLicenseToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                releaseDetanedLicenseToolStripMenuItem.Enabled = false;
+            }
+        }
 
         //  Driving License Applications DataGridView Selection Changed Event
         private void DGVLicSelectionChanged(object sender, EventArgs e)
@@ -125,7 +136,8 @@ ReleaseAppID
             if (this.DgvLicenses.CurrentRow != null && DgvLicenses.CurrentRow.Cells != null && int.TryParse(DgvLicenses.CurrentRow.Cells[1]?.Value?.ToString(), out int Row))
             {
                 selectedRowIndex = Row;
-               PersonID= clsApplications.GetApplicationObjByAppID(clsLicenses.GetLicenseObjByLicenseID(selectedRowIndex).LicenseApplicationID).ApplicantPersonID;
+                PersonID = clsApplications.GetApplicationObjByAppID(clsLicenses.GetLicenseObjByLicenseID(selectedRowIndex).LicenseApplicationID).ApplicantPersonID;
+                EnableDisableReleaseOption();
             }
         }
 
@@ -169,7 +181,7 @@ ReleaseAppID
             this.Close();
         }
 
-        private int PersonID; 
+        private int PersonID;
         private void showPersonDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmShowPersonDetails frmShowPerson = new FrmShowPersonDetails(PersonID);
@@ -188,6 +200,33 @@ ReleaseAppID
             frmLicenseHistory licenseHistory = new frmLicenseHistory(PersonID);
             licenseHistory?.ShowDialog();
             licenseHistory?.Dispose();
+        }
+
+        private void pbDetainLic_Click(object sender, EventArgs e)
+        {
+            using (frmDetainLicense frmDetainLicense = new frmDetainLicense())
+            {
+                frmDetainLicense?.ShowDialog();
+            }
+            RefreshDataGridView();
+        }
+
+        private void pbReleaseLic_Click(object sender, EventArgs e)
+        {
+            using (frmReleaseLicense frmRelease = new frmReleaseLicense())
+            {
+                frmRelease?.ShowDialog();
+            }
+            RefreshDataGridView();
+        }
+
+        private void releaseDetanedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (frmReleaseLicense frmRelease = new frmReleaseLicense(selectedRowIndex))
+            {
+                frmRelease?.ShowDialog();
+            }
+            RefreshDataGridView();
         }
     }
 

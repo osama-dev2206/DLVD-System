@@ -18,6 +18,21 @@ namespace FrontEnd
             this.ctrlFilterFindLicenseByLicid1.OnError += CtrlFilterFindLicenseByLicid1_OnError;
         }
 
+        public frmDetainLicense(int LicenseID)
+        {
+            InitializeComponent();
+            this.ctrlFilterFindLicenseByLicid1.Enabled = false;
+            clsLicenses lic = clsLicenses.GetLicenseObjByLicenseID(LicenseID);
+            if (lic is not null)
+            {
+                CtrlFilterFindLicenseByLicid1_OnActionGetLicenseObjByLicID(lic);
+            }
+            else
+            {
+                CtrlFilterFindLicenseByLicid1_OnError(true);
+            }
+        }
+
         int LicenseID = -1;
         int PersonID = -1;
         int ApplicaionID = -1;
