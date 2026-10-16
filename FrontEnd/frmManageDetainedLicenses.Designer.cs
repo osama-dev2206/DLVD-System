@@ -31,18 +31,9 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManageDetainedLicenses));
             showLicenseHistoryToolStripMenuItem = new ToolStripMenuItem();
-            issueLicenseToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
-            ScheduleStreetToolStripMenuItem = new ToolStripMenuItem();
-            ScheduleWrittenToolStripMenuItem = new ToolStripMenuItem();
-            scheduleVisionTestToolStripMenuItem = new ToolStripMenuItem();
-            ScheduletoolStripMenuItem = new ToolStripMenuItem();
-            toolStripSeparator1 = new ToolStripSeparator();
-            cancelToolStripMenuItem = new ToolStripMenuItem();
-            deleteApplicationToolStripMenuItem = new ToolStripMenuItem();
-            editApplicationToolStripMenuItem = new ToolStripMenuItem();
             showLicenseToolStripMenuItem = new ToolStripMenuItem();
-            showApplicationDetailsToolStripMenuItem = new ToolStripMenuItem();
+            showPersonDetailsToolStripMenuItem = new ToolStripMenuItem();
             tbSearchBy = new TextBox();
             labCountOfRecords = new Label();
             label2 = new Label();
@@ -66,91 +57,30 @@
             // 
             showLicenseHistoryToolStripMenuItem.Image = Properties.Resources.PersonLicenseHistory_32;
             showLicenseHistoryToolStripMenuItem.Name = "showLicenseHistoryToolStripMenuItem";
-            showLicenseHistoryToolStripMenuItem.Size = new Size(249, 26);
+            showLicenseHistoryToolStripMenuItem.Size = new Size(221, 26);
             showLicenseHistoryToolStripMenuItem.Text = "Show License History";
-            // 
-            // issueLicenseToolStripMenuItem
-            // 
-            issueLicenseToolStripMenuItem.Enabled = false;
-            issueLicenseToolStripMenuItem.Image = Properties.Resources.New_Driving_License_322;
-            issueLicenseToolStripMenuItem.Name = "issueLicenseToolStripMenuItem";
-            issueLicenseToolStripMenuItem.Size = new Size(249, 26);
-            issueLicenseToolStripMenuItem.Text = "Issue License (First Time) ";
+            showLicenseHistoryToolStripMenuItem.Click += showLicenseHistoryToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(246, 6);
-            // 
-            // ScheduleStreetToolStripMenuItem
-            // 
-            ScheduleStreetToolStripMenuItem.Image = Properties.Resources.Street_Test_32;
-            ScheduleStreetToolStripMenuItem.Name = "ScheduleStreetToolStripMenuItem";
-            ScheduleStreetToolStripMenuItem.Size = new Size(235, 26);
-            ScheduleStreetToolStripMenuItem.Text = "Schedule Street Test";
-            // 
-            // ScheduleWrittenToolStripMenuItem
-            // 
-            ScheduleWrittenToolStripMenuItem.Image = Properties.Resources.Written_Test_32_Sechdule;
-            ScheduleWrittenToolStripMenuItem.Name = "ScheduleWrittenToolStripMenuItem";
-            ScheduleWrittenToolStripMenuItem.Size = new Size(235, 26);
-            ScheduleWrittenToolStripMenuItem.Text = "Schedule Written Test";
-            // 
-            // scheduleVisionTestToolStripMenuItem
-            // 
-            scheduleVisionTestToolStripMenuItem.Image = Properties.Resources.Vision_Test_Schdule;
-            scheduleVisionTestToolStripMenuItem.Name = "scheduleVisionTestToolStripMenuItem";
-            scheduleVisionTestToolStripMenuItem.Size = new Size(235, 26);
-            scheduleVisionTestToolStripMenuItem.Text = "Schedule Vision Test";
-            // 
-            // ScheduletoolStripMenuItem
-            // 
-            ScheduletoolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { scheduleVisionTestToolStripMenuItem, ScheduleWrittenToolStripMenuItem, ScheduleStreetToolStripMenuItem });
-            ScheduletoolStripMenuItem.Image = Properties.Resources.Schedule_Test_32;
-            ScheduletoolStripMenuItem.Name = "ScheduletoolStripMenuItem";
-            ScheduletoolStripMenuItem.Size = new Size(249, 26);
-            ScheduletoolStripMenuItem.Text = "Schedule Test";
-            // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(246, 6);
-            // 
-            // cancelToolStripMenuItem
-            // 
-            cancelToolStripMenuItem.Image = Properties.Resources.Delete_32;
-            cancelToolStripMenuItem.Name = "cancelToolStripMenuItem";
-            cancelToolStripMenuItem.Size = new Size(249, 26);
-            cancelToolStripMenuItem.Text = "Cancel Application";
-            // 
-            // deleteApplicationToolStripMenuItem
-            // 
-            deleteApplicationToolStripMenuItem.Image = Properties.Resources.Delete_32_2;
-            deleteApplicationToolStripMenuItem.Name = "deleteApplicationToolStripMenuItem";
-            deleteApplicationToolStripMenuItem.Size = new Size(249, 26);
-            deleteApplicationToolStripMenuItem.Text = "Delete Application";
-            // 
-            // editApplicationToolStripMenuItem
-            // 
-            editApplicationToolStripMenuItem.Image = Properties.Resources.edit_321;
-            editApplicationToolStripMenuItem.Name = "editApplicationToolStripMenuItem";
-            editApplicationToolStripMenuItem.Size = new Size(249, 26);
-            editApplicationToolStripMenuItem.Text = "Edit Application";
+            toolStripSeparator2.Size = new Size(218, 6);
             // 
             // showLicenseToolStripMenuItem
             // 
-            showLicenseToolStripMenuItem.Enabled = false;
             showLicenseToolStripMenuItem.Image = Properties.Resources.License_View_32;
             showLicenseToolStripMenuItem.Name = "showLicenseToolStripMenuItem";
-            showLicenseToolStripMenuItem.Size = new Size(249, 26);
+            showLicenseToolStripMenuItem.Size = new Size(221, 26);
             showLicenseToolStripMenuItem.Text = "Show License";
+            showLicenseToolStripMenuItem.Click += showLicenseToolStripMenuItem_Click;
             // 
-            // showApplicationDetailsToolStripMenuItem
+            // showPersonDetailsToolStripMenuItem
             // 
-            showApplicationDetailsToolStripMenuItem.Image = Properties.Resources.PersonDetails_32;
-            showApplicationDetailsToolStripMenuItem.Name = "showApplicationDetailsToolStripMenuItem";
-            showApplicationDetailsToolStripMenuItem.Size = new Size(249, 26);
-            showApplicationDetailsToolStripMenuItem.Text = "Show Application Details";
+            showPersonDetailsToolStripMenuItem.Image = Properties.Resources.PersonDetails_32;
+            showPersonDetailsToolStripMenuItem.Name = "showPersonDetailsToolStripMenuItem";
+            showPersonDetailsToolStripMenuItem.Size = new Size(221, 26);
+            showPersonDetailsToolStripMenuItem.Text = "Show Person Details";
+            showPersonDetailsToolStripMenuItem.Click += showPersonDetailsToolStripMenuItem_Click;
             // 
             // tbSearchBy
             // 
@@ -257,9 +187,9 @@
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showApplicationDetailsToolStripMenuItem, editApplicationToolStripMenuItem, deleteApplicationToolStripMenuItem, cancelToolStripMenuItem, toolStripSeparator1, ScheduletoolStripMenuItem, toolStripSeparator2, issueLicenseToolStripMenuItem, showLicenseToolStripMenuItem, showLicenseHistoryToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showPersonDetailsToolStripMenuItem, toolStripSeparator2, showLicenseToolStripMenuItem, showLicenseHistoryToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(250, 224);
+            contextMenuStrip1.Size = new Size(222, 88);
             // 
             // pictureBox1
             // 
@@ -319,18 +249,9 @@
         #endregion
 
         private ToolStripMenuItem showLicenseHistoryToolStripMenuItem;
-        private ToolStripMenuItem issueLicenseToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator2;
-        private ToolStripMenuItem ScheduleStreetToolStripMenuItem;
-        private ToolStripMenuItem ScheduleWrittenToolStripMenuItem;
-        private ToolStripMenuItem scheduleVisionTestToolStripMenuItem;
-        private ToolStripMenuItem ScheduletoolStripMenuItem;
-        private ToolStripSeparator toolStripSeparator1;
-        private ToolStripMenuItem cancelToolStripMenuItem;
-        private ToolStripMenuItem deleteApplicationToolStripMenuItem;
-        private ToolStripMenuItem editApplicationToolStripMenuItem;
         private ToolStripMenuItem showLicenseToolStripMenuItem;
-        private ToolStripMenuItem showApplicationDetailsToolStripMenuItem;
+        private ToolStripMenuItem showPersonDetailsToolStripMenuItem;
         private TextBox tbSearchBy;
         private Label labCountOfRecords;
         private Label label2;
