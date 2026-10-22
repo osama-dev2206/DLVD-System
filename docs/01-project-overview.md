@@ -128,3 +128,11 @@ The FrontEnd project references only the BLL; the BLL references only the DAL; t
 5. After every operation the calling form refreshes its DataGridView
    to reflect current database state.
 ```
+
+---
+
+## 8. Requirements & Design Decisions References
+
+- **Functional Requirements:** The system's complete business rules, workflow specifications, and service fees are derived from the official requirements document in [Requirements Specification (Arabic)](./Requirements.md).
+- **Architecture & Design Decisions:** Comprehensive technical rationale, patterns, and trade-offs for all design choices (layering, supertype inheritance, retake test composite billing, state machine, etc.) are documented in [09 – Design Decisions](./09-design-decisions.md).
+

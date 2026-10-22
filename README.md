@@ -13,12 +13,16 @@
 | [06 – DAL Documentation](./docs/06-dal.md) | Every DAL class: queries, parameters, connection management |
 | [07 – Frontend Documentation](./docs/07-frontend.md) | Forms, User Controls, navigation, component map |
 | [08 – Cross-Layer Traceability](./docs/08-traceability.md) | Requirement to Form to BLL to DAL to Table mapping |
+| [09 – Design Decisions](./docs/09-design-decisions.md) | Technical rationale, architectural trade-offs, and design patterns |
+| [Requirements Specification](./docs/Requirements.md) | Original system requirements and functional specifications (Arabic) |
 
 ---
 
 ## Project at a Glance
 
 **DVLD** is a desktop Windows Forms application written in C# / .NET that automates a driving-license authority's operations. It replaces paper-based processes for managing people, system users, license applications, test scheduling, license issuance, and license lifecycle events (renew, replace, detain, release, international issuance).
+
+All business workflows and regulatory constraints are implemented in accordance with the official functional requirements in [Requirements.md](./docs/Requirements.md), with full architectural rationale documented in [09 – Design Decisions](./docs/09-design-decisions.md).
 
 ### Core Capabilities
 
