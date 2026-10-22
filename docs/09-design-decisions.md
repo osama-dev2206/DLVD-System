@@ -167,7 +167,7 @@ Implement an automated Retake Test workflow:
 3. The system automatically creates a new parent application in `Applications` with `ApplicationTypeID = 7` ("Retake Test") charging the statutory retake fee ($5).
 4. The newly created `ApplicationID` is linked to the new `TestAppointment` record via the foreign key `RetakeApplicationID`.
 5. The total payable fee is dynamically calculated and displayed as:
-   $$\text{Total Fee} = \text{Retake Application Fee (\$5)} + \text{Test Type Schedule Fee}$$
+   `$$\text{Total Fee} = \text{Retake Application Fee (\$5)} + \text{Test Type Schedule Fee}$$`
 
 #### Rationale & Benefits
 - Guarantees 100% financial compliance and prevents revenue leakage from unbilled retakes.
