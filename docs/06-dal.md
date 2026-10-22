@@ -1,6 +1,6 @@
 # 06 – Data Access Layer (DAL) Documentation
 
-[← Back to Index](./README.md)
+[← Back to Index](../README.md)
 
 ---
 

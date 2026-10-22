@@ -1,6 +1,6 @@
 # 07 – Frontend / Presentation Layer Documentation
 
-[← Back to Index](./README.md)
+[← Back to Index](../README.md)
 
 ---
 

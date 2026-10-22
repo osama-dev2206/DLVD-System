@@ -1,6 +1,6 @@
 # 08 – Cross-Layer Traceability Matrix
 
-[← Back to Index](./README.md)
+[← Back to Index](../README.md)
 
 ---
 

@@ -1,6 +1,6 @@
 # 02 – Feature Documentation
 
-[← Back to Index](./README.md)
+[← Back to Index](../README.md)
 
 ---
 

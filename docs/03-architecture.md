@@ -1,6 +1,6 @@
 # 03 – System Architecture
 
-[← Back to Index](./README.md)
+[← Back to Index](../README.md)
 
 ---
 
