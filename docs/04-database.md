@@ -25,10 +25,10 @@ The database is designed to enforce strict legal integrity rules required of a g
 The repository contains two original database design documents created in [draw.io](https://app.diagrams.net/):
 
 1. **Entity-Relationship Diagram (ERD):**
-   - **Original File:** [`../Initial Db Design/ERD.drawio`](file:///m:/Temp%20Comparison/My%20Solution/Initial%20Db%20Design/ERD.drawio)
+   - **Original File:** [`../Db Design/ERD.drawio`](../Db%20Design/ERD.drawio)
    - **Purpose:** Conceptual model illustrating the core entities (`Person`, `User`, `Driver`, `Application`, `ApplicationType`, `LicenseClass`, `LocalDrivingLicenseApplication`, `TestType`, `TestAppointment`, `Test`, `License`, `DetainedLicense`, `InternationalLicense`) and their cardinalities.
 2. **Relational Schema Diagram:**
-   - **Original File:** [`../Initial Db Design/Relational Schema.drawio`](file:///m:/Temp%20Comparison/My%20Solution/Initial%20Db%20Design/Relational%20Schema.drawio)
+   - **Original File:** [`../Db Design/Relational Schema.drawio`](../Db%20Design/Relational%20Schema.drawio)
    - **Purpose:** Physical relational representation displaying primary keys, foreign keys, table columns, and constraint linkages.
 
 > [!NOTE]
@@ -665,3 +665,773 @@ Primary keys across all tables are auto-incrementing identity columns (`IDENTITY
 | License replacement (Lost/Damaged) | `Licenses`, `Applications` | Expiration date preserved from old license, old license disabled |
 | Detention & Release | `DetainedLicenses`, `Licenses`, `Applications` | `ISReleased` default 0, `ReleaseApplicationID` linking to Release application |
 | International Permit | `InternationalLicenses`, `Licenses`, `Drivers` | Must link to active Class 3 license, 1 active international license per person |
+
+---
+
+## 8. Queries of the System Documentation (`Db Design / Quries Of System`)
+
+The database design includes a curated suite of operational, transactional, analytical, and validation SQL queries preserved in the repository under:
+- [`Db Design/Quries Of System/SQLQuery1.sql`](../Db%20Design/Quries%20Of%20System/SQLQuery1.sql) – Core transactional queries, business-rule validation queries, atomic T-SQL transactions, and identity retrieval routines.
+- [`Db Design/Quries Of System/Views.sql`](../Db%20Design/Quries%20Of%20System/Views.sql) – Database view creation scripts containing complex multi-table joins, conditional status mapping, and calculated aggregate subqueries.
+
+This section provides comprehensive technical documentation for all system queries, organized by functional domain.
+
+---
+
+### 8.1 Query Architecture & Execution Patterns
+
+Across the Data Access Layer (DAL), SQL queries follow strictly defined execution patterns:
+
+1. **Identity Retrieval via `SCOPE_IDENTITY()`:**
+   Primary keys are generated using `IDENTITY(1,1)`. Insertion queries append `SELECT SCOPE_IDENTITY();` to immediately return the newly generated integer identifier to the calling BLL object.
+2. **Boolean Existence Probing via `SELECT R = 'T'`:**
+   To determine whether a record, duplicate, or condition exists without pulling unnecessary columns into memory, validation queries return a single string cell (`'T'`) when matching rows exist:
+   ```sql
+   SELECT R = 'T'
+   FROM TableName
+   WHERE Condition = @Parameter;
+   ```
+   If a match is found, `cmd.ExecuteScalar()` returns `"T"`; if no match exists, it returns `null` or `DBNull.Value`.
+3. **Atomic Multi-Table Transactions:**
+   Operations affecting multiple dependent tables (such as deleting an application across both `LocalDrivingLicenseApplications` and `Applications`) are encapsulated in explicit `BEGIN TRANSACTION ... COMMIT TRANSACTION` blocks to prevent orphan records.
+4. **Parameterized Inputs:**
+   All dynamic criteria utilize ADO.NET parameters (`@ParamName`) preventing SQL injection.
+
+---
+
+### 8.2 Person Management & Identity Verification Queries
+
+#### 8.2.1 Demographic Record Insertion
+- **Purpose:** Inserts a newly registered citizen into `People`.
+- **Source Script:** `SQLQuery1.sql` (Lines 33–45)
+- **Consuming DAL:** `clsAddNewPerson.AddNewPerson()`
+
+```sql
+INSERT INTO People 
+(
+    NationalNumber, FirstName, SecondName, ThirdName, LastName, 
+    DateOfBirth, Gender, Address, Phone, Email, ImagePath, NationalityCountryID
+)
+VALUES 
+(
+    @NationalNumber, @FirstName, @SecondName, @ThirdName, @LastName, 
+    @DateOfBirth, @Gender, @Address, @Phone, @Email, @ImagePath, @NationalityCountryID
+);
+
+SELECT SCOPE_IDENTITY();
+```
+
+- **Parameters:**
+  - `@NationalNumber` (`NVARCHAR(20)`): Unique national ID.
+  - `@FirstName`, `@SecondName`, `@ThirdName`, `@LastName` (`NVARCHAR(20)`): Full 4-part name.
+  - `@DateOfBirth` (`DATE`): Date of birth used for minimum age calculation.
+  - `@Gender` (`TINYINT`): `1` for Male, `2` for Female.
+  - `@Address` (`NVARCHAR(500)`): Physical residence address.
+  - `@Phone` (`NVARCHAR(20)`): Mobile number (unique).
+  - `@Email` (`NVARCHAR(50)`): Email address (unique).
+  - `@ImagePath` (`NVARCHAR(250)`): Saved portrait image filepath or `empty`.
+  - `@NationalityCountryID` (`INT`): FK pointing to `Countries.CountryID`.
+
+#### 8.2.2 National Number Uniqueness Probe
+- **Purpose:** Checks if a National Number is already assigned to an existing citizen before allowing creation or update.
+- **Source Script:** `SQLQuery1.sql` (Lines 47–50)
+- **Consuming DAL:** `clsCheckNationalNumExistence.IsNationalNumberExist()`
+
+```sql
+SELECT R = 'T'
+FROM People
+WHERE People.NationalNumber = @NationalNum;
+```
+
+#### 8.2.3 Portrait Image Path Retrieval
+- **Purpose:** Retrieves the stored image file path for a person to load their portrait in presentation controls.
+- **Source Script:** `SQLQuery1.sql` (Lines 52–55)
+
+```sql
+SELECT People.ImagePath
+FROM People
+WHERE People.PersonID = @PersonID;
+```
+
+#### 8.2.4 Country Lookup by Name
+- **Purpose:** Resolves a country name selected in a combo box into its database integer `CountryID`.
+- **Source Script:** `SQLQuery1.sql` (Lines 41–44)
+
+```sql
+SELECT Countries.CountryID 
+FROM Countries
+WHERE Countries.CountryName = @CountryName;
+```
+
+---
+
+### 8.3 System User Security & Authentication Queries
+
+#### 8.3.1 Operator Authentication & Password Verification
+- **Purpose:** Verifies operator login credentials against stored AES-256 encrypted passwords.
+- **Source Script:** `SQLQuery1.sql` (Lines 66–69)
+- **Consuming DAL:** `clsCheckLoginInfo.IsLoginInfoValid()`
+
+```sql
+SELECT R = 'T'
+FROM Users
+WHERE Users.UserName = @UserName 
+  AND Users.Password = @EncryptedPassword;
+```
+
+#### 8.3.2 Operator Account Active Status Check
+- **Purpose:** Ensures the account has not been deactivated before admitting the operator into the system.
+- **Source Script:** `SQLQuery1.sql` (Lines 80–84)
+- **Consuming DAL:** `clsIsUserActive.IsUserActive()`
+
+```sql
+SELECT R = 'T'
+FROM Users
+WHERE Users.IsActive = 1 
+  AND Users.UserID = @UserID;
+```
+
+#### 8.3.3 Single Operator Account per Person Constraint Check
+- **Purpose:** Business rule validation guaranteeing that a single person cannot hold multiple system operator accounts.
+- **Source Script:** `SQLQuery1.sql` (Lines 119–122)
+- **Consuming DAL:** `clsCheckUserExistence.IsPersonIsAUser()`
+
+```sql
+SELECT 'T' AS R
+FROM Users
+WHERE UserPersonID = @PersonID;
+```
+
+#### 8.3.4 New System User Registration
+- **Purpose:** Creates a new operator account linked to a registered person record.
+- **Source Script:** `SQLQuery1.sql` (Lines 127–131)
+- **Consuming DAL:** `clsAddNewUser.AddNewUser()`
+
+```sql
+INSERT INTO Users (UserPersonID, UserName, Password, IsActive)
+VALUES (@UserPersonID, @UserName, @Password, @IsActive);
+
+SELECT SCOPE_IDENTITY();
+```
+
+#### 8.3.5 User Profile & Password Modification
+- **Purpose:** Updates operator login credentials and active status.
+- **Source Script:** `SQLQuery1.sql` (Lines 90–94)
+- **Consuming DAL:** `clsUpdateUser.UpdateUser()`
+
+```sql
+UPDATE Users 
+SET UserName = @UserName,
+    Password = @Password,
+    IsActive = @IsActive
+WHERE UserID = @UserID;
+```
+
+---
+
+### 8.4 Reference Data & Pricing Configuration Queries
+
+#### 8.4.1 Application Type Catalog & Pricing Updates
+- **Purpose:** Retrieves and updates the official catalog of service application fees.
+- **Source Script:** `SQLQuery1.sql` (Lines 134–142)
+- **Consuming DAL:** `clsGetAllAppTypes`, `clsUpdateAppType`
+
+```sql
+-- Retrieve all application types
+SELECT * FROM ApplicationTypes;
+
+-- Update service title and statutory fee
+UPDATE ApplicationTypes 
+SET ApplicationTypeTitle = @Title, 
+    ApplicationFees = @Fees 
+WHERE ApplicationTypeID = @ApplicationTypeID;
+```
+
+#### 8.4.2 Test Types Catalog & Fee Updates
+- **Purpose:** Updates fee schedules and descriptions for Vision, Written, and Practical tests, enforcing uniqueness on title.
+- **Source Script:** `SQLQuery1.sql` (Lines 144–155)
+- **Consuming DAL:** `clsGetAllTestTypes`, `clsUpdateTestType`
+
+```sql
+-- Enforce unique test titles
+ALTER TABLE TestTypes 
+ADD CONSTRAINT UQ_TestTitle UNIQUE(TestTypeTitle);
+
+-- Update test parameters
+UPDATE TestTypes 
+SET TestTypeTitle = @TestTypeTitle,
+    TestTypeDescription = @TestTypeDescription,
+    TestTypeFees = @TestTypeFees 
+WHERE TestTypeID = @TestTypeID;
+```
+
+---
+
+### 8.5 Local Driving License Application Lifecycle Queries
+
+#### 8.5.1 Base Application Record Creation
+- **Purpose:** Inserts the parent application entry into `Applications` to establish transaction tracking and paid fees.
+- **Source Script:** `SQLQuery1.sql` (Lines 172–193)
+- **Consuming DAL:** `clsAddNewApplicationToApplicationTable`
+
+```sql
+INSERT INTO Applications
+(
+    ApplicantPersonID,
+    ApplicationDateTime,
+    ApplicationTypeID,
+    ApplicationStatus,
+    LastStatusDateTime,
+    PaidFees,
+    CreatedByUserID
+)
+VALUES
+(
+    @ApplicantPersonID,
+    @ApplicationDateTime,
+    @ApplicationTypeID,    -- 1 for New Local Driving License
+    @ApplicationStatus,    -- 1 for New
+    @LastStatusDateTime,
+    @PaidFees,
+    @CreatedByUserID
+);
+
+SELECT SCOPE_IDENTITY();
+```
+
+#### 8.5.2 Local Driving License Specialization Insertion
+- **Purpose:** Links the newly created generic `Applications` record with the requested `LicenseClassID`.
+- **Source Script:** `SQLQuery1.sql` (Lines 196–198)
+- **Consuming DAL:** `clsAddNewLocalDrivingLicense`
+
+```sql
+INSERT INTO LocalDrivingLicenseApplications (LApplicationID, LLicenseClassID)
+VALUES (@ApplicationID, @LicenseClassID);
+
+SELECT SCOPE_IDENTITY();
+```
+
+#### 8.5.3 Duplicate Active Application Validation
+- **Purpose:** Critical business validation preventing a person from opening multiple active applications for the exact same license class.
+- **Source Script:** `SQLQuery1.sql` (Lines 211–221)
+- **Consuming DAL:** `clsIsPersonHasRegisteredBefore.IsPersonHasRegisteredBefore()`
+
+```sql
+SELECT R = 'T' 
+FROM LocalDrivingLicenseApplications AS Local
+INNER JOIN Applications AS app ON app.ApplicationID = Local.LApplicationID
+WHERE app.ApplicationStatus = 1          -- Status: 1 = New / In-Progress
+  AND app.ApplicantPersonID = @PersonID  -- Exact applicant
+  AND Local.LLicenseClassID = @LicenseClassID;
+```
+
+#### 8.5.4 Atomic Two-Table Deletion Transaction
+- **Purpose:** Safely deletes a local driving license application by deleting both the specialized row and the base application within an atomic T-SQL transaction.
+- **Source Script:** `SQLQuery1.sql` (Lines 312–328)
+- **Consuming DAL:** `clsDeleteLocalDrivingLicense.DeleteLocalDrivingLicenseApplication()`
+
+```sql
+BEGIN TRANSACTION;
+
+DECLARE @AppID INT; 
+
+-- 1. Identify the parent ApplicationID
+SELECT @AppID = LocalDrivingLicenseApplications.LApplicationID
+FROM LocalDrivingLicenseApplications
+WHERE LocalDrivingLicenseApplicationID = @LocalAppID;
+
+-- 2. Delete child specialization record
+DELETE LocalDrivingLicenseApplications
+WHERE LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalAppID;
+
+-- 3. Delete parent base application record
+DELETE Applications
+WHERE Applications.ApplicationID = @AppID;
+
+COMMIT TRANSACTION;
+```
+
+#### 8.5.5 Application Status Transition
+- **Purpose:** Updates the state of an application (`1 = New`, `2 = Cancelled`, `3 = Completed`) and timestamps the change.
+- **Source Script:** `SQLQuery1.sql` (Lines 244–249)
+- **Consuming DAL:** `clsUpdateApplication.UpdateApplication()`
+
+```sql
+UPDATE Applications
+SET ApplicationStatus = @ApplicationStatus,
+    LastStatusDateTime = @LastStatusDateTime 
+WHERE Applications.ApplicationID = @ApplicationID;
+```
+
+---
+
+### 8.6 Testing Pipeline & Appointment Scheduling Queries
+
+#### 8.6.1 Gate Precondition Check (Passage of Previous Testing Stage)
+- **Purpose:** Enforces sequential test pipeline: Vision (1) must be passed before Written (2); Written (2) must be passed before Practical (3).
+- **Source Script:** `SQLQuery1.sql` (Lines 528–543)
+- **Consuming DAL:** `clsCheckExistence.CheckIfVisionTestHasCompletedOrNot()`, `CheckIfWrittenTestHasCompletedOrNot()`
+
+```sql
+SELECT R = 'T' 
+FROM TestAppointments 
+INNER JOIN TestTypes ON TestTypes.TestTypeID = TestAppointments.AppointmentTestTypeID
+INNER JOIN LocalDrivingLicenseApplications ON LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+INNER JOIN Applications ON Applications.ApplicationID = LocalDrivingLicenseApplications.LApplicationID
+INNER JOIN Test ON Test.AppointmentOfTestID = TestAppointments.TestAppointmentID
+WHERE TestTypeID = @TestTypeID                                                        -- 1 for Vision, 2 for Written
+  AND LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalAppID
+  AND Test.TestResult = 1;                                                            -- Must be Passed (1)
+```
+
+#### 8.6.2 Open Appointment Conflict Check
+- **Purpose:** Prevents booking a new appointment if an existing appointment of the same test type is still unlocked/pending.
+- **Source Script:** `SQLQuery1.sql` (Lines 491–498)
+- **Consuming DAL:** `clsCheckIfThereIsOpenAppointmentBefore`
+
+```sql
+SELECT R = 'T'
+FROM TestAppointments
+INNER JOIN TestTypes ON TestTypes.TestTypeID = TestAppointments.AppointmentTestTypeID
+INNER JOIN LocalDrivingLicenseApplications ON LocalDrivingLicenseApplicationID = TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+WHERE LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalAppID
+  AND TestTypes.TestTypeID = @TestTypeID
+  AND TestAppointments.IsLocked = 0; -- Open / Not taken yet
+```
+
+#### 8.6.3 Test Appointment Booking & Rescheduling
+- **Purpose:** Books an exam date or reschedules an existing appointment prior to execution.
+- **Source Script:** `SQLQuery1.sql` (Lines 462–475, 571–574)
+- **Consuming DAL:** `clsAddNewTestAppointment`, `clsUpdateTestAppointment`
+
+```sql
+-- Book new appointment
+INSERT INTO TestAppointments
+(
+    AppointmentTestTypeID,
+    TestAppointmentForLocalDrivingLicenseAppID,
+    AppointmentDateTime,
+    PaidFees,
+    CreatedByUserID,
+    IsLocked,
+    RetakeApplicationID
+)
+VALUES
+(   
+    @TestTypeID, @LocalAppID, @AppointmentDateTime,
+    @PaidFees, @CreatedByUserID, 0, @RetakeApplicationID
+);
+
+SELECT SCOPE_IDENTITY();
+
+-- Reschedule existing appointment date
+UPDATE TestAppointments 
+SET AppointmentDateTime = @NewAppointmentDateTime 
+WHERE TestAppointments.TestAppointmentID = @TestAppointmentID;
+```
+
+#### 8.6.4 Test Result Recording & Appointment Locking
+- **Purpose:** Records examination outcome (Pass/Fail) and immediately locks the appointment against further tampering.
+- **Source Script:** `SQLQuery1.sql` (Lines 514–526)
+- **Consuming DAL:** `clsAddNewTest.AddNewTest()`, `clsLockTestAppointment.LockTestAppointment()`
+
+```sql
+-- 1. Insert exam result
+INSERT INTO Test (AppointmentOfTestID, TestResult, Notes, CreatedByUserID)
+VALUES (@TestAppointmentID, @TestResult, @Notes, @CreatedByUserID);
+
+SELECT SCOPE_IDENTITY();
+
+-- 2. Lock appointment
+UPDATE TestAppointments
+SET IsLocked = 1
+WHERE TestAppointments.TestAppointmentID = @TestAppointmentID;
+```
+
+#### 8.6.5 Attempt / Trial Counter Query
+- **Purpose:** Computes how many times an applicant has attempted a specific test stage for a given local license application.
+- **Source Script:** `SQLQuery1.sql` (Lines 500–509)
+- **Consuming DAL:** `clsGetNumOfTrialsForVisionTest`, `clsGetNumOfTrialsForWrittenTest`, `clsGetNumOfTrialsForPracticalTest`
+
+```sql
+SELECT COUNT(*) AS NumOfTrials
+FROM Test
+INNER JOIN TestAppointments ON TestAppointments.TestAppointmentID = Test.AppointmentOfTestID
+INNER JOIN LocalDrivingLicenseApplications ON LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+WHERE LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalAppID
+  AND TestAppointments.AppointmentTestTypeID = @TestTypeID;
+```
+
+#### 8.6.6 Total Passed Tests Evaluation
+- **Purpose:** Counts the number of distinct passed tests (0 to 3) for an application to verify eligibility for license issuance.
+- **Source Script:** `SQLQuery1.sql` (Lines 556–564)
+- **Consuming DAL:** `clsGetNumOfPassedTestsByLocalAppID`
+
+```sql
+SELECT COUNT(*) AS NumOfPassedTests 
+FROM Test
+INNER JOIN TestAppointments ON Test.AppointmentOfTestID = TestAppointments.TestAppointmentID
+INNER JOIN LocalDrivingLicenseApplications ON LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.TestAppointmentForLocalDrivingLicenseAppID
+INNER JOIN Applications ON Applications.ApplicationID = LocalDrivingLicenseApplications.LApplicationID
+WHERE Test.TestResult = 1 -- Passed
+  AND LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalAppID;
+```
+
+---
+
+### 8.7 Retake Test Workflow & Fee Allocation Queries
+
+#### 8.7.1 Retake Requirement Verification
+- **Purpose:** Verifies that the applicant previously failed an examination before enabling the retake test fee charging workflow.
+- **Source Script:** `SQLQuery1.sql` (Lines 589–605, 728–736)
+- **Consuming DAL:** `clsCheckIfTheTestHasTakenAndFailedOrNot`
+
+```sql
+SELECT TOP 1 Test.TestResult
+FROM TestAppointments
+INNER JOIN Test ON Test.AppointmentOfTestID = TestAppointments.TestAppointmentID
+WHERE Test.TestResult = 0                      -- Failed
+  AND TestAppointments.IsLocked = 1            -- Exam was taken and finalized
+  AND TestAppointments.TestAppointmentForLocalDrivingLicenseAppID = @LocalAppID
+  AND TestAppointments.AppointmentTestTypeID = @TestTypeID
+ORDER BY TestAppointments.TestAppointmentID DESC;
+```
+
+#### 8.7.2 Retake Fee Calculation & Total Fee Compilation
+- **Purpose:** Joins `TestTypes` and `ApplicationTypes` to calculate total payable fees (Retake Application Fee + Test Type Fee).
+- **Source Script:** `SQLQuery1.sql` (Lines 664–676)
+
+```sql
+SELECT 
+    TestAppointments.RetakeApplicationID, 
+    ApplicationTypes.ApplicationFees AS [Retake Application Fees], 
+    [Total Application Fees] = ApplicationTypes.ApplicationFees + TestTypes.TestTypeFees
+FROM TestAppointments 
+INNER JOIN LocalDrivingLicenseApplications 
+    ON TestAppointments.TestAppointmentForLocalDrivingLicenseAppID = LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+INNER JOIN TestTypes 
+    ON TestTypes.TestTypeID = TestAppointments.AppointmentTestTypeID
+INNER JOIN Applications 
+    ON Applications.ApplicationID = TestAppointments.RetakeApplicationID
+INNER JOIN ApplicationTypes 
+    ON Applications.ApplicationTypeID = ApplicationTypes.ApplicationTypeID
+WHERE TestAppointments.RetakeApplicationID IS NOT NULL 
+  AND TestAppointments.AppointmentTestTypeID = @TestTypeID
+  AND TestAppointments.TestAppointmentForLocalDrivingLicenseAppID = @LocalAppID;
+```
+
+---
+
+### 8.8 Driver Registry & First-Time License Issuance Queries
+
+#### 8.8.1 Driver Existence Check & Registration
+- **Purpose:** Checks whether a person is already registered as a driver; if not, inserts them into `Drivers`.
+- **Source Script:** `SQLQuery1.sql` (Lines 749–764)
+- **Consuming DAL:** `clsCheckIfThePersonIsDriverOrNot`, `clsAddNewDriver`
+
+```sql
+-- Check if person is registered driver
+SELECT *
+FROM Drivers
+WHERE Drivers.DriverPersonID = @PersonID;
+
+-- If not registered, create new driver record
+INSERT INTO Drivers (DriverPersonID, CreatedByUserID, CreateDate)
+VALUES (@PersonID, @CreatedByUserID, CAST(GETDATE() AS Date));
+
+SELECT SCOPE_IDENTITY();
+```
+
+#### 8.8.2 First-Time Driving License Card Issuance
+- **Purpose:** Issues the official license card linked to the driver, license class, and application.
+- **Source Script:** `SQLQuery1.sql` (Lines 782–800)
+- **Consuming DAL:** `clsAddNewLicense.AddNewLicense()`
+
+```sql
+INSERT INTO Licenses
+(
+    LicApplicationID,
+    LicDriverID,
+    ClassOfLicenseID,
+    IssueDate,
+    ExpirationDate,
+    Notes,
+    PaidFees,
+    IsActive,
+    IssueReason,
+    CreatedByUserID
+)
+VALUES 
+(
+    @LicApplicationID,
+    @LicDriverID, 
+    @ClassOfLicenseID, 
+    @IssueDate, 
+    @ExpirationDate, 
+    @Notes, 
+    @PaidFees, 
+    1,                 -- IsActive = True
+    1,                 -- IssueReason: 1 = First Time
+    @CreatedByUserID
+);
+
+SELECT SCOPE_IDENTITY();
+```
+
+---
+
+### 8.9 Driver Directory & License History Queries
+
+#### 8.9.1 Drivers Directory with Active License Subquery
+- **Purpose:** Renders the system driver catalog, computing total active licenses for each driver in real time.
+- **Source Script:** `SQLQuery1.sql` (Lines 861–874), `Views.sql` (Lines 209–222)
+- **Consuming View:** `ListDrivers`
+
+```sql
+SELECT 
+    Drivers.DriverID, 
+    People.PersonID,
+    People.NationalNumber, 
+    CONCAT(People.FirstName, ' ', People.SecondName, ' ', People.ThirdName, ' ', People.LastName) AS [Full Name],
+    Drivers.CreateDate, 
+    [Active License] = (
+        SELECT COUNT(*) 
+        FROM Licenses 
+        WHERE Licenses.LicDriverID = Drivers.DriverID
+          AND Licenses.IsActive = 1
+    )
+FROM Drivers
+INNER JOIN People ON People.PersonID = Drivers.DriverPersonID;
+```
+
+#### 8.9.2 Local License History by Person ID
+- **Purpose:** Retrieves all historical local licenses issued to a specific person across all license classes.
+- **Source Script:** `SQLQuery1.sql` (Lines 846–857)
+- **Consuming DAL:** `clsLicenseHistory.GetLicenseHistoryByApplicantID()`
+
+```sql
+SELECT 
+    Licenses.LicenseID,
+    Licenses.LicApplicationID, 
+    LicenseClasses.ClassName,
+    Licenses.IssueDate,
+    Licenses.ExpirationDate,
+    Licenses.IsActive
+FROM Licenses
+INNER JOIN LicenseClasses ON LicenseClasses.LicenseClassID = Licenses.ClassOfLicenseID
+INNER JOIN Applications ON Applications.ApplicationID = Licenses.LicApplicationID
+WHERE Applications.ApplicantPersonID = @PersonID;
+```
+
+---
+
+### 8.10 License Renewal Queries
+
+#### 8.10.1 License Expiration Verification
+- **Purpose:** Checks if a license has expired before allowing a renewal application to proceed.
+- **Source Script:** `SQLQuery1.sql` (Lines 906–911)
+- **Consuming DAL:** `clsCheckIfTheLicenseHasExpiredOrNot`
+
+```sql
+SELECT R = 'T'
+FROM Licenses
+WHERE Licenses.ExpirationDate > CAST(GETDATE() AS Date)
+  AND Licenses.LicenseID = @LicenseID;
+```
+
+> [!NOTE]
+> If the query returns `'T'`, the license has **not** yet expired and renewal is blocked by the business logic layer.
+
+#### 8.10.2 License Card Deactivation
+- **Purpose:** Deactivates the expired license card when a renewed card is issued.
+- **Source Script:** `SQLQuery1.sql` (Lines 1062–1065)
+- **Consuming DAL:** `clsDisableLicenseByLicID.DisableLicense()`
+
+```sql
+UPDATE Licenses 
+SET IsActive = 0
+WHERE Licenses.LicenseID = @OldLicenseID;
+```
+
+#### 8.10.3 Renewal License Fee Calculation Query
+- **Purpose:** Calculates total fees for the renewal transaction combining application fee and license class statutory fee.
+- **Source Script:** `SQLQuery1.sql` (Lines 1093–1106)
+
+```sql
+SELECT 
+    Licenses.LicenseID, 
+    ApplicationTypes.ApplicationTypeID, 
+    Licenses.IssueDate,
+    Licenses.ExpirationDate, 
+    LicenseFees = (
+        SELECT LicenseClasses.ClassFees 
+        FROM LicenseClasses
+        WHERE LicenseClasses.LicenseClassID = Licenses.ClassOfLicenseID
+    ),
+    TotalFees = Licenses.PaidFees + ApplicationTypes.ApplicationFees
+FROM Licenses
+INNER JOIN Applications ON Applications.ApplicationID = Licenses.LicApplicationID
+INNER JOIN ApplicationTypes ON Applications.ApplicationTypeID = ApplicationTypes.ApplicationTypeID
+WHERE Licenses.LicenseID = @LicenseID;
+```
+
+---
+
+### 8.11 License Replacement Queries (Damaged / Lost)
+
+#### 8.11.1 Replacement License Card Issuance
+- **Purpose:** Issues a replacement card with `IssueReason = 3` (Damaged) or `4` (Lost), while preserving the original card's expiration date.
+- **Source Script:** `SQLQuery1.sql` (Lines 1179–1207)
+- **Consuming BLL/DAL:** `clsReplacementLicense.Save()`, `clsAddNewLicense.AddNewLicense()`
+
+```sql
+-- 1. Deactivate original card
+UPDATE Licenses 
+SET IsActive = 0
+WHERE Licenses.LicenseID = @OriginalLicenseID;
+
+-- 2. Issue replacement card with PRESERVED ExpirationDate
+INSERT INTO Licenses
+(
+    LicApplicationID, LicDriverID, ClassOfLicenseID, IssueDate,
+    ExpirationDate, Notes, PaidFees, IsActive, IssueReason, CreatedByUserID
+)
+VALUES
+(
+    @NewReplacementAppID, @DriverID, @ClassOfLicenseID, GETDATE(),
+    @OriginalExpirationDate, @Notes, @PaidFees, 1, @IssueReason, @CreatedByUserID
+);
+
+SELECT SCOPE_IDENTITY();
+```
+
+---
+
+### 8.12 License Detention & Release Management Queries
+
+#### 8.12.1 License Detention Record Creation
+- **Purpose:** Impounds a license by creating a record in `DetainedLicenses` with a positive fine fee constraint.
+- **Source Script:** `SQLQuery1.sql` (Lines 1214–1221)
+- **Consuming DAL:** `clsAddNewDetainedLicense`
+
+```sql
+-- Table constraint
+ALTER TABLE DetainedLicenses
+ADD CONSTRAINT Chk_FineFees CHECK (FineFees > 0);
+
+-- Insert detention entry
+INSERT INTO DetainedLicenses
+(
+    DLicenseID, DetainDateTime, FineFees, ISReleased, CreatedByUserID
+)
+VALUES 
+(
+    @LicenseID, @DetainDateTime, @FineFees, 0, @CreatedByUserID
+);
+
+SELECT SCOPE_IDENTITY();
+```
+
+#### 8.12.2 Active Detention Probe
+- **Purpose:** Prevents duplicate detentions by checking if an active, unreleased detention record exists for the license card.
+- **Source Script:** `SQLQuery1.sql` (Lines 1223–1228, 1239–1241)
+- **Consuming DAL:** `clsIsLicenseDetained.IsLicenseDetained()`
+
+```sql
+SELECT R = 'T'
+FROM DetainedLicenses
+WHERE DetainedLicenses.DLicenseID = @LicenseID 
+  AND DetainedLicenses.ISReleased = 0;
+```
+
+#### 8.12.3 Detained License Release Update
+- **Purpose:** Releases an impounded license card upon payment of fine fees and generation of a release application (Type 5).
+- **Source Script:** `SQLQuery1.sql` (Lines 1243–1249)
+- **Consuming DAL:** `clsReleaseLicnese.ReleaseLicense()`
+
+```sql
+UPDATE DetainedLicenses
+SET ISReleased = 1, 
+    ReleasedDateTime = @ReleasedDateTime, 
+    ReleasedByUserID = @ReleasedByUserID, 
+    ReleaseApplicationID = @ReleaseApplicationID
+WHERE DetainID = @DetainID;
+```
+
+---
+
+### 8.13 International Driving License Issuance Queries
+
+#### 8.13.1 Active Class 3 Prerequisite Probe
+- **Purpose:** Validates that the applicant holds an active Ordinary Driving License (Class 3) before permitting an International Driving License application.
+- **Source Script:** `SQLQuery1.sql` (Lines 889–895)
+- **Consuming DAL:** `clsCheckIfThePersonHasInternationalLicenseOrNot`
+
+```sql
+SELECT R = 'T'
+FROM Licenses
+INNER JOIN Applications ON Applications.ApplicationID = Licenses.LicApplicationID
+WHERE Applications.ApplicantPersonID = @PersonID 
+  AND Licenses.IsActive = 1 
+  AND Licenses.ClassOfLicenseID = 3; -- Class 3: Ordinary Driving License
+```
+
+#### 8.13.2 Active International Permit Existence Check
+- **Purpose:** Prevents duplicate active international driving permits for the same applicant.
+- **Source Script:** `SQLQuery1.sql` (Lines 960–967)
+- **Consuming DAL:** `clsCheckIfThePersonHasInternationalLicenseOrNot`
+
+```sql
+SELECT R = 'T'
+FROM InternationalLicenses
+INNER JOIN Licenses ON Licenses.LicenseID = InternationalLicenses.LicenseID
+INNER JOIN Applications ON Applications.ApplicationID = Licenses.LicApplicationID
+WHERE Applications.ApplicantPersonID = @PersonID
+  AND InternationalLicenses.IsActive = 1;
+```
+
+#### 8.13.3 International Driving License Issuance
+- **Purpose:** Issues an international driving permit with fixed 1-year validity.
+- **Source Script:** `SQLQuery1.sql` (Lines 928–943)
+- **Consuming DAL:** `clsAddNewInternationalLicense`
+
+```sql
+INSERT INTO InternationalLicenses
+(
+    IssueDateTime, ExpirationDate, IsActive, 
+    UserID, DriverID, LicenseID, ApplicationID
+)
+VALUES
+(
+    @IssueDateTime, 
+    DATEADD(YEAR, 1, @IssueDateTime), 
+    1, 
+    @UserID, @DriverID, @LicenseID, @ApplicationID
+);
+
+SELECT SCOPE_IDENTITY();
+```
+
+---
+
+### 8.14 Production View Definitions (`Views.sql`)
+
+The script [`Db Design/Quries Of System/Views.sql`](../Db%20Design/Quries%20Of%20System/Views.sql) defines 13 specialized database views used throughout the Windows Forms UI:
+
+| # | View Name | SQL Definition Summary | Target UI Binding |
+|---|---|---|---|
+| 1 | `ShowBasicPersonInfo` | `SELECT PersonID, NationalNumber, FirstName, SecondName, ThirdName, LastName, Gender = CASE WHEN Gender = 1 THEN 'M' WHEN Gender = 2 THEN 'F' END, Countries.CountryName AS Nationality, Phone, Email FROM People INNER JOIN Countries ON Countries.CountryID = People.NationalityCountryID` | Citizen management grid (`FrmPeopleManagement`) |
+| 2 | `DetailedPersonInfo` | `SELECT ShowBasicPersonInfo.*, People.Address, People.DateOfBirth, People.ImagePath, People.NationalityCountryID FROM ShowBasicPersonInfo INNER JOIN People ON People.PersonID = ShowBasicPersonInfo.PersonID` | Detailed person card (`ctrlPersonInfo`, `FrmShowPersonDetails`) |
+| 3 | `BasicUserInfo` | `SELECT UserID, UserPersonID, CONCAT(FirstName, ' ', SecondName, ' ', ThirdName, ' ', LastName) AS FullName, UserName, IsActive FROM Users INNER JOIN People ON People.PersonID = Users.UserPersonID` | User management grid (`frmManageUsers`) |
+| 4 | `DetailsUserInfo` | `SELECT DetailedPersonInfo.*, Users.UserID, Users.UserName, Users.Password, Users.IsActive FROM DetailedPersonInfo INNER JOIN Users ON Users.UserPersonID = DetailedPersonInfo.PersonID` | Complete user view & edit (`frmShowCurrentUserInfo`, `ctrlShowUserInfo`) |
+| 5 | `LocalDrivingLicenseApplicationsView` | `SELECT LDLAppID, ClassName AS [Driving Class], NationalNumber AS [National No], FullName AS [Full Name], ApplicationDateTime, [Passed Tests] = (SELECT COUNT(*) FROM Test INNER JOIN TestAppointments ON Test.AppointmentOfTestID = TestAppointments.TestAppointmentID WHERE TestResult = 1 AND TestAppointmentForLocalDrivingLicenseAppID = LDLAppID), Status = CASE ApplicationStatus WHEN 1 THEN 'New' WHEN 2 THEN 'Cancelled' WHEN 3 THEN 'Completed' END FROM LocalDrivingLicenseApplications ...` | Main application management grid (`frmManageLocalDrivingLicenseApplications`) |
+| 6 | `DetailedApplicationInfo` | `SELECT ApplicationID, ApplicantPersonID, ApplicationDateTime, ApplicationTypeTitle AS ApplicationType, ApplicationStatus = CASE ApplicationStatus WHEN 1 THEN 'New' WHEN 2 THEN 'Cancelled' WHEN 3 THEN 'Completed' END, LastStatusDateTime, PaidFees, CreatedByUserName = (SELECT UserName FROM Users WHERE UserID = CreatedByUserID) FROM Applications INNER JOIN ApplicationTypes ...` | Application info header card (`CtrlApplicationInfo`) |
+| 7 | `ShowBasicInfoLocalDrivingLicense` | `SELECT LDLAppID, LApplicationID, ClassName FROM LocalDrivingLicenseApplications INNER JOIN LicenseClasses ON LicenseClassID = LLicenseClassID` | Application summary control (`ctrlLocalDrivingLicenseInfo`) |
+| 8 | `DriverLicenseInfo` | `SELECT ClassName, FullName, LicenseID, NationalNumber, Gender = CASE WHEN Gender = 1 THEN 'M' ELSE 'F' END, IssueDate, ExpirationDate, IsActive, DriverID, DateOfBirth, Notes, IssueReason = CASE IssueReason WHEN 1 THEN 'First Time' WHEN 2 THEN 'Renew' WHEN 3 THEN 'Replacement For Damage' WHEN 4 THEN 'Replacement For Lost' END FROM Applications ...` | Driver license display card (`ctrlDriverLicenseInfo`) |
+| 9 | `ListDrivers` | `SELECT DriverID, PersonID, NationalNumber, FullName, CreateDate, [Active License] = (SELECT COUNT(*) FROM Licenses WHERE LicDriverID = DriverID AND IsActive = 1) FROM Drivers INNER JOIN People ...` | Driver management grid (`frmListDrivers`) |
+| 10 | `ShowInternationalLicenseInfo` | `SELECT InternationalLicenseID, ApplicationID, ApplicantPersonID, ClassName, IssueDateTime, ExpirationDate, IsActive FROM InternationalLicenses INNER JOIN Licenses ... INNER JOIN LicenseClasses ...` | International license summary card |
+| 11 | `ShowInternationalLicensesInfo` | `SELECT FullName, InternationalLicenseID, LicenseID, NationalNumber, Gender, IssueDateTime, ApplicationID, IsActive, DateOfBirth, DriverID, ExpirationDate FROM InternationalLicenses ...` | Full international license details card (`ctrlDriverInternationalInfo`) |
+| 12 | `InternationalAppInfo` | `SELECT ApplicationID, ApplicationDateTime, IssueDateTime, ApplicationFees, InternationalLicenseID, LicenseID, ExpirationDate, UserName FROM InternationalLicenses INNER JOIN Licenses ... INNER JOIN Applications ... INNER JOIN Users ...` | International license application card (`ctrlInternationalAppInfo`) |
+| 13 | `InernationalLicenseApplications` | `SELECT InternationalLicenseID, ApplicationID, DriverID, IssueDateTime, ExpirationDate, IsActive FROM InternationalLicenses` | International application grid (`frnInternationalLicensesApps`) |
+| 14 | `DetailedDetainInfo` | `SELECT DetainID, DLicenseID, DetainDateTime, FineFees, ISReleased, ReleasedDateTime, NationalNumber, FullName, ReleaseApplicationID FROM DetainedLicenses INNER JOIN Licenses ...` | Detained license grid & details (`frmManageDetainedLicenses`, `ctrlDetainAppInfo`) |
+
