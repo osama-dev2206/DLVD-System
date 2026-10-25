@@ -69,7 +69,7 @@ namespace FrontEnd
             }
 
 
-            if (person.ImagePath is null || person.ImagePath == "" || !File.Exists(person.ImagePath)) // set the default image if the person has no image or the image path is invalid
+            if (person?.ImagePath is null || person.ImagePath == "" || !File.Exists(person.ImagePath)) // set the default image if the person has no image or the image path is invalid
             {
                 SetDefaultPFP();
                 lblSetImage.Visible = true;
@@ -79,16 +79,26 @@ namespace FrontEnd
             {
                 //this.pbPFP.Image = Image.FromFile(this.person.ImagePath);
 
-                using (var stream = new FileStream(
-             person.ImagePath,
-             FileMode.Open,
-             FileAccess.Read,
-             FileShare.Read))
+                try
                 {
-                    using (var temp = Image.FromStream(stream))
+                    using (var stream = new FileStream(
+                 person.ImagePath,
+                 FileMode.Open,
+                 FileAccess.Read,
+                 FileShare.Read))
                     {
-                        pbPFP.Image = new Bitmap(temp);
+                        using (var temp = Image.FromStream(stream))
+                        {
+                            pbPFP.Image = new Bitmap(temp);
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to load image from path: {person.ImagePath}\nError: {ex.Message}", "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    SetDefaultPFP();
+                    lblSetImage.Visible = true;
+                    return;
                 }
 
                 lblSetImage.Visible = false;

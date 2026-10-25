@@ -284,12 +284,13 @@ namespace BussinessLogicLayer
         // Image Handling 
         // Path To Move C:\
         private DirectoryInfo DI;  // class 
-        string PathToMove = @"C:\DVLDPeopleImages\";
+        private const string PathToMove = @"C:\DVLDPeopleImages\";
 
         // Create New Directory If Not Exist 
         private bool  CheckDir()
         {
             if (Directory.Exists(PathToMove)) return true; // if the directory already exists return true
+
             try { DI = Directory.CreateDirectory(PathToMove); } // create new directory if not exist
             catch { return false; }
             
@@ -313,7 +314,7 @@ namespace BussinessLogicLayer
             if(CheckDir() && File.Exists(this.ImagePath) )
             {
                 CopyTheFileToNewDestination();
-                return File.Exists(this.ImagePath); // check if the new path exists and return true if it does, false otherwise
+                return File.Exists(this.ImagePath); // check if the new path exists and return true if it does, false otherwise (check physically if the file exists in the new path)
             }
             return false;
         }
