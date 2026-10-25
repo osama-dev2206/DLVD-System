@@ -12,7 +12,7 @@ namespace FrontEnd
     public partial class frmManageDetainedLicenses : Form
     {
         int selectedRowIndex = -1;
-        DataTable? dt;
+        DataTable? dt; // the data  from db 
 
         public frmManageDetainedLicenses()
         {
@@ -53,7 +53,7 @@ NationalNo
 FullName
 ReleaseAppID
          */
-        DataTable FillDtBySearchRes(string query)
+        DataTable FillDtBySearchRes(string  query)
         {
             DataTable dataTable = new DataTable();
             try
@@ -81,7 +81,7 @@ ReleaseAppID
 
                 case "FullName":
                     DgvLicenses.DataSource = FillDtBySearchRes(
-      $"FullName Like '%{SearchKeyword}%'");
+      $"FullName Like '%{SearchKeyword.Trim()}%'");
                     break;
 
                 case "ReleaseAppID":
@@ -89,6 +89,10 @@ ReleaseAppID
                     {
                         DgvLicenses.DataSource = FillDtBySearchRes($"ReleaseApplicationID = {Rid}");
                     }
+                    break;
+
+                case "NationalNo":
+                    DgvLicenses.DataSource = FillDtBySearchRes($"NationalNumber = '{SearchKeyword.Trim()}' "); // add '' to search for string values in the datatable
                     break;
             }
 
@@ -105,7 +109,8 @@ ReleaseAppID
             else if (cbFilter.SelectedItem == "IsReleased")
             {
                 tbSearchBy.Visible = false;
-                FillDtBySearchRes($"IsReleased = 1");
+                this.DgvLicenses.DataSource = FillDtBySearchRes(query: $"ISReleased = true");
+
             }
             else if (cbFilter.SelectedIndex == 0) // if i set the filter to none 
             {

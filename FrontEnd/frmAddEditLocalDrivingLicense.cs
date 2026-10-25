@@ -19,6 +19,7 @@ namespace FrontEnd
         {
 
             InitializeComponent();
+            FillCbWithLicenseClasses(); // fill the combobox with license classes
 
             btnNext.Enabled = false; // disable the Next button by default
             btnSave.Enabled = false; // disable the Save button by default
@@ -50,7 +51,7 @@ namespace FrontEnd
 
                 this.ctrlPersonInfo1.LoadInfoUsingPersonID(this.NewLocalDrivingLicenseApplication.Application.ApplicantPersonID);
                 NewLocalDrivingLicenseApplication.OnSaveErrorGetMessage += OnSaveGetMessage;
-                FillCbWithLicenseClasses();
+
                 FillApplicationInfo();
                 btnNext.Enabled = true;
                 btnSave.Enabled = true;
@@ -72,7 +73,7 @@ namespace FrontEnd
         void GetPersonFoundedOrAdded(int PersonID) // EVENT when a person is found or added, this method will be called
         {
             this.ctrlPersonInfo1.LoadInfoUsingPersonID(PersonID);
-            FillCbWithLicenseClasses(); // as the person has found so we can fill the combobox with license classes
+
             this.btnNext.Enabled = true; // enable the Next button when a person is found or added
             this.btnSave.Enabled = true; // enable the Save button when a person is found or added
             this.labEditPerson.Enabled = true; // as the person has found so we can enable the edit person link label
@@ -94,7 +95,7 @@ namespace FrontEnd
                  }
                else if(this.formStatus == enFormStatus.Edit)
                 {
-                    this.cbLicenseClass.Text = clsLicenseClasses.FindLicenseClassByID(this.NewLocalDrivingLicenseApplication.LicenseClassID).ClassName;
+                    this.cbLicenseClass.Text = clsLicenseClasses.FindLicenseClassByID(this.NewLocalDrivingLicenseApplication.LicenseClassID)?.ClassName;
                 }
 
                 this.labDateTime.Text = this.NewLocalDrivingLicenseApplication.Application.ApplicationDateTime.ToString(); // creation date time
